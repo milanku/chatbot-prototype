@@ -1,3 +1,13 @@
 {
-  "python-envs.pythonProjects": []
+  "python-envs.pythonProjects": [],
+  "editor.formatOnSave": true,
+  "python.formatting.provider": "black",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.organizeImports": "always"
+  },
+  "python.linting.enabled": true,
+  "python.linting.ruffEnabled": true,
+  "python.linting.ruffPath": ".venv/bin/ruff",
+  "python.formatting.blackPath": ".venv/bin/black"
 }
