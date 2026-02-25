@@ -13,7 +13,7 @@ def route(message: str) -> RouterDecision:
     # Spending total
     if any(keyphrase in text for keyphrase in ["how much", "spent on"]):
         return RouterDecision(recipe=Recipe.TX_SUMMARY, confidence=0.9)
-      
+
     # Answer questions about docs
     if any(
         keyphrase in text

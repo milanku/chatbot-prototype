@@ -4,8 +4,11 @@ from dataclasses import dataclass
 from uuid import uuid4
 
 from bot.logging import log_event
+from bot.models.repository import TransactionsRepository, TxFilter
 from bot.models.responses import BotResponse
 from bot.models.routing import Recipe, RouterDecision
+from bot.recipes.tx_qa import parse
+from bot.recipes.tx_qa.compute import compute_total_spent
 from bot.routing.router import route
 
 
@@ -15,10 +18,16 @@ class EngineConfig:
     app_name: str = "chatbot-prototype"
 
 
+@dataclass(frozen=True)
+class EngineDeps:
+    tx_repository: TransactionsRepository
+
+
 class ChatbotEngine:
-    def __init__(self, config: EngineConfig) -> None:
+    def __init__(self, config: EngineConfig, deps: EngineDeps) -> None:
         self._config = config
-        
+        self._deps = deps
+
     def answer(self, message: str, *, session_id: str = "default") -> BotResponse:
         trace_id = uuid4().hex
 
@@ -34,12 +43,28 @@ class ChatbotEngine:
         log_event(
             trace_id=trace_id,
             event="router.decision",
-            payload={"recipe": router_decision.recipe.value, "confidence": router_decision.confidence},
+            payload={
+                "recipe": router_decision.recipe.value,
+                "confidence": router_decision.confidence,
+            },
         )
 
         match router_decision.recipe:
             case Recipe.TX_SUMMARY:
-                answer_text = "TX_SUMMARY is not implemented yet.\n"
+                parsed_query = parse.parse_query(message)
+                if parsed_query is None:
+                    answer_text = "Sorry, I couldn't understand your query. Please make sure to include a label (food, pets, other) and a date range (e.g., 01/01/2026 - 31/01/2026).\n"
+                else:
+                    filter = TxFilter(
+                        label=parsed_query.label,
+                        start=parsed_query.start,
+                        end=parsed_query.end,
+                        direction="spend",  # For simplicity, we only consider spending transactions in this example
+                    )
+                    txs = self._deps.tx_repository.list_transactions(filter)
+                    total_spent = compute_total_spent(txs)
+                    answer_text = f"You spent a total of ${total_spent:.2f} on {parsed_query.label} from {parsed_query.start} to {parsed_query.end}.\n"
+
             case Recipe.TX_EXPLAIN:
                 answer_text = "TX_EXPLAIN is not implemented yet.\n"
             case Recipe.DOCS_ANSWER:
@@ -58,5 +83,4 @@ class ChatbotEngine:
             payload={"references": resp.references},
         )
 
-        return resp
         return resp

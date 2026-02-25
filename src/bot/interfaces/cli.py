@@ -1,9 +1,12 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 import typer
 
-from bot.engine import ChatbotEngine, EngineConfig
+from bot.engine import ChatbotEngine, EngineConfig, EngineDeps
 from bot.logging import setup_logging
+from bot.recipes.tx_qa.mock_repository import JsonMockTransactionsRepository
 
 app = typer.Typer(add_completion=False)
 
@@ -12,7 +15,10 @@ app = typer.Typer(add_completion=False)
 def main() -> None:
     setup_logging()
 
-    engine = ChatbotEngine(EngineConfig())
+    tx_repository = JsonMockTransactionsRepository.from_json_file(
+        Path("data/mocks/transactions_mock.json")
+    )
+    engine = ChatbotEngine(EngineConfig(), EngineDeps(tx_repository=tx_repository))
 
     typer.echo("Chatbot prototype (type 'exit' to quit)")
 
@@ -22,4 +28,5 @@ def main() -> None:
             break
         response = engine.answer(msg)
         typer.echo(response.answer)
+        typer.echo(f"(trace_id: {response.trace_id})")
         typer.echo(f"(trace_id: {response.trace_id})")
