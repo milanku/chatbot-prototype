@@ -28,26 +28,26 @@ class ChatbotEngine:
             event="engine.start",
             payload={"session_id": session_id, "message": message, "app": self._config.app_name},
         )
-        
+
         router_decision: RouterDecision = route(message)
-        
+
         log_event(
             trace_id=trace_id,
             event="router.decision",
             payload={"recipe": router_decision.recipe, "confidence": router_decision.confidence},
         )
-        
+
         match router_decision.recipe:
             case "TX_SUMMARY":
-              answer_text = "TX_SUMMARY is not implemented yet.\n"
+                answer_text = "TX_SUMMARY is not implemented yet.\n"
             case "TX_EXPLAIN":
-              answer_text = "TX_EXPLAIN is not implemented yet.\n"
+                answer_text = "TX_EXPLAIN is not implemented yet.\n"
             case "DOCS_ANSWER":
-              answer_text = "DOCS_ANSWER is not implemented yet.\n"
+                answer_text = "DOCS_ANSWER is not implemented yet.\n"
             case "OUT_OF_SCOPE":
-              answer_text = "Sorry, I can't help with that.\n"
+                answer_text = "Sorry, I can't help with that.\n"
             case _:
-              answer_text = "Unknown recipe.\n"
+                answer_text = "Unknown recipe.\n"
 
         resp = BotResponse(answer=answer_text, references=[], trace_id=trace_id)
 

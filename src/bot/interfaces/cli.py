@@ -11,9 +11,9 @@ app = typer.Typer(add_completion=False)
 @app.callback(invoke_without_command=True)
 def main() -> None:
     setup_logging()
-    
+
     engine = ChatbotEngine(EngineConfig())
-    
+
     typer.echo("Chatbot prototype (type 'exit' to quit)")
 
     while True:
