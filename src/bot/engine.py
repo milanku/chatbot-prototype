@@ -5,7 +5,7 @@ from uuid import uuid4
 
 from bot.logging import log_event
 from bot.models.responses import BotResponse
-from bot.models.routing import RouterDecision
+from bot.models.routing import Recipe, RouterDecision
 from bot.routing.router import route
 
 
@@ -18,7 +18,7 @@ class EngineConfig:
 class ChatbotEngine:
     def __init__(self, config: EngineConfig) -> None:
         self._config = config
-
+        
     def answer(self, message: str, *, session_id: str = "default") -> BotResponse:
         trace_id = uuid4().hex
 
@@ -34,17 +34,17 @@ class ChatbotEngine:
         log_event(
             trace_id=trace_id,
             event="router.decision",
-            payload={"recipe": router_decision.recipe, "confidence": router_decision.confidence},
+            payload={"recipe": router_decision.recipe.value, "confidence": router_decision.confidence},
         )
 
         match router_decision.recipe:
-            case "TX_SUMMARY":
+            case Recipe.TX_SUMMARY:
                 answer_text = "TX_SUMMARY is not implemented yet.\n"
-            case "TX_EXPLAIN":
+            case Recipe.TX_EXPLAIN:
                 answer_text = "TX_EXPLAIN is not implemented yet.\n"
-            case "DOCS_ANSWER":
+            case Recipe.DOCS_ANSWER:
                 answer_text = "DOCS_ANSWER is not implemented yet.\n"
-            case "OUT_OF_SCOPE":
+            case Recipe.OUT_OF_SCOPE:
                 answer_text = "Sorry, I can't help with that.\n"
             case _:
                 answer_text = "Unknown recipe.\n"
@@ -58,4 +58,5 @@ class ChatbotEngine:
             payload={"references": resp.references},
         )
 
+        return resp
         return resp
