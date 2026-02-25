@@ -1,0 +1,55 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+
+# Distribution / packaging
+.Python
+dist/
+build/
+*.egg-info/
+.eggs/
+*.whl
+
+# Logs
+*.log
+
+# IDE settings
+.vscode/
+.idea/
+*.iml
+
+# Testing / Coverage
+.tox/
+.nox/
+.pytest_cache/
+.coverage
+.coverage.*
+
+# Type checking
+.mypy_cache/
+.pyre/
+
+# Linting
+.ruff_cache/
+
+# Environment variables
+.env
+.env.*
+
+# Documentation
+_build/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Local development artifacts
+traces/
+data/docs/
