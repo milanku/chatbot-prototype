@@ -79,7 +79,7 @@ class ChatbotEngine:
                     answer_text = f"You spent a total of ${total_spent:.2f} on {parsed_query.label} from {parsed_query.start} to {parsed_query.end}.\n"
 
             case Recipe.TX_EXPLAIN:
-                answer_text = "Here are the transactions that contributed to this sum:\n"
+                answer_text = f"Here are the transactions that contributed to this (${self._deps.tx_history.tsx_results[-1].total:.2f}) sum:\n"
                 for tx in self._deps.tx_history.tsx_results[-1].txs:
                     answer_text += (
                         f"- {tx.date}: ${tx.amount:.2f} to {tx.other_account} ({tx.description})\n"
