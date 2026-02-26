@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
+from datetime import datetime, timezone
 from uuid import uuid4
 
 from bot.logging import log_event
@@ -8,7 +9,6 @@ from bot.models.memory import SessionState, TxQAQueryResult
 from bot.models.repository import TransactionsRepository, TxFilter
 from bot.models.responses import BotResponse
 from bot.models.routing import Recipe, RouterDecision
-from bot.recipes.doc_qa import answer
 from bot.recipes.tx_qa import parse
 from bot.recipes.tx_qa.compute import compute_total_spent
 from bot.routing.router import route
@@ -23,7 +23,6 @@ class EngineConfig:
 @dataclass(frozen=True)
 class EngineDeps:
     tx_repository: TransactionsRepository
-    tx_history: SessionState
 
 
 class ChatbotEngine:
@@ -31,14 +30,22 @@ class ChatbotEngine:
         self._config = config
         self._deps = deps
 
-    def answer(self, message: str, *, session_id: str = "default") -> BotResponse:
+    def answer(
+        self, message: str, *, session_id: str, session_state: SessionState
+    ) -> tuple[BotResponse, SessionState]:
         trace_id = uuid4().hex
+
+        new_state = session_state  # By default, the state doesn't change. Recipes can override this if needed.
 
         # Trace: engine start
         log_event(
             trace_id=trace_id,
             event="engine.start",
-            payload={"session_id": session_id, "message": message, "app": self._config.app_name},
+            payload={
+                "session_id": session_id,
+                "message": message,
+                "app": self._config.app_name,
+            },
         )
 
         router_decision: RouterDecision = route(message)
@@ -67,26 +74,40 @@ class ChatbotEngine:
                     txs = self._deps.tx_repository.list_transactions(tx_filter)
                     total_spent = compute_total_spent(txs)
 
-                    # Save query to history
-                    self._deps.tx_history.txs_results.append(
-                        TxQAQueryResult(
-                            query=parsed_query,
-                            txs=txs,
-                            total=total_spent,
-                        )
+                    query_result: TxQAQueryResult = TxQAQueryResult(
+                        query=parsed_query,
+                        total=total_spent,
+                        created_at=datetime.now(
+                            timezone.utc
+                        ),  # Using current UTC time as a timestamp
                     )
 
-                    answer_text = f"You spent a total of ${total_spent:.2f} on {parsed_query.label} from {parsed_query.start} to {parsed_query.end}.\n"
+                    # Update state with the new query result
+                    new_state = replace(
+                        session_state,
+                        txs_results=session_state.txs_results + (query_result,),
+                    )
+
+                    answer_text = f"You spent a total of {total_spent:.2f} EUR on {parsed_query.label} from {parsed_query.start} to {parsed_query.end}.\n"
 
             case Recipe.TX_EXPLAIN:
-                if not self._deps.tx_history.txs_results or self._deps.tx_history.txs_results[-1].query is None:
+                txs_results = session_state.txs_results
+                last_txs_result = txs_results[-1] if txs_results else None
+
+                if last_txs_result is None:
                     answer_text = "Sorry, I don't have any transaction summary to explain. Please ask a question about your spending first (e.g., 'How much did I spend on food last month?').\n"
-                else: 
-                    answer_text = f"Here are the transactions that contributed to this ({self._deps.tx_history.txs_results[-1].total:.2f} EUR) sum:\n"
-                    for tx in self._deps.tx_history.txs_results[-1].txs:
-                        answer_text += (
-                            f"- {tx.date}: {tx.amount:.2f} EUR to {tx.other_account} ({tx.description})\n"
+                else:
+                    answer_text = f"Here are the transactions that contributed to this ({last_txs_result.total:.2f} EUR) sum:\n"
+                    txs = self._deps.tx_repository.list_transactions(
+                        TxFilter(
+                            label=last_txs_result.query.label,
+                            start=last_txs_result.query.start,
+                            end=last_txs_result.query.end,
+                            direction="spend",
                         )
+                    )
+                    for tx in txs:
+                        answer_text += f"- {tx.date}: {tx.amount:.2f} EUR to {tx.other_account} ({tx.description})\n"
 
             case Recipe.DOCS_ANSWER:
                 answer_text = "DOCS_ANSWER is not implemented yet.\n"
@@ -95,13 +116,14 @@ class ChatbotEngine:
             case _:
                 answer_text = "Unknown recipe.\n"
 
-        resp = BotResponse(answer=answer_text, references=[], trace_id=trace_id)
+        bot_response = BotResponse(answer=answer_text, references=[], trace_id=trace_id)
+        result: tuple[BotResponse, SessionState] = (bot_response, new_state)
 
         # Trace: engine finish
         log_event(
             trace_id=trace_id,
             event="engine.finish",
-            payload={"references": resp.references},
+            payload={"references": bot_response.references},
         )
 
-        return resp
+        return result

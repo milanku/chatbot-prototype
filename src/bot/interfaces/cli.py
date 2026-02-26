@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 from pathlib import Path
+from uuid import uuid4
 
 import typer
 
 from bot.engine import ChatbotEngine, EngineConfig, EngineDeps
 from bot.logging import setup_logging
-from bot.models.memory import SessionState
+from bot.memory.session_store import InMemorySessionStore
 from bot.recipes.tx_qa.mock_repository import JsonMockTransactionsRepository
 
 app = typer.Typer(add_completion=False)
@@ -16,12 +17,13 @@ app = typer.Typer(add_completion=False)
 def main() -> None:
     setup_logging()
 
+    session_store = InMemorySessionStore()
+    session_id = uuid4().hex
+
     tx_repository = JsonMockTransactionsRepository.from_json_file(
         Path("data/mocks/transactions_mock.json")
     )
-    engine = ChatbotEngine(
-        EngineConfig(), EngineDeps(tx_repository=tx_repository, tx_history=SessionState())
-    )
+    engine = ChatbotEngine(EngineConfig(), EngineDeps(tx_repository=tx_repository))
 
     typer.echo("Chatbot prototype (type 'exit' to quit)")
 
@@ -29,7 +31,9 @@ def main() -> None:
         msg = typer.prompt("> ")
         if msg.strip().lower() in {"exit", "quit"}:
             break
-        response = engine.answer(msg)
+        response, new_state = engine.answer(
+            msg, session_id=session_id, session_state=session_store.get_session(session_id)
+        )
+        session_store.set_session(session_id, new_state)  # Update session state
         typer.echo(response.answer)
-        typer.echo(f"(trace_id: {response.trace_id})")
         typer.echo(f"(trace_id: {response.trace_id})")
