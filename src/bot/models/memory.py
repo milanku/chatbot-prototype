@@ -11,9 +11,9 @@ class TxQAQueryResult:
     query: TxQAQuery
     txs: list[Transaction]
     total: Decimal
-    created_at: datetime = datetime.now(timezone.utc)
+    created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
 
 
-@dataclass(frozen=True)
+@dataclass
 class SessionState:
-    tsx_results: list[TxQAQueryResult] = field(default_factory=list)
+    txs_results: list[TxQAQueryResult] = field(default_factory=list)

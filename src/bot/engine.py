@@ -56,19 +56,19 @@ class ChatbotEngine:
             case Recipe.TX_SUMMARY:
                 parsed_query = parse.parse_query(message)
                 if parsed_query is None:
-                    answer_text = "Sorry, I couldn't understand your query. Please make sure to include a label (food, pets, other) and a date range (e.g., 01/01/2026 - 31/01/2026).\n"
+                    answer_text = "Sorry, I couldn't understand your query. Please make sure to include a label (food, pets, other) and a date range (e.g., 2026-01-01 - 2026-01-31).\n"
                 else:
-                    filter = TxFilter(
+                    tx_filter = TxFilter(
                         label=parsed_query.label,
                         start=parsed_query.start,
                         end=parsed_query.end,
                         direction="spend",  # For simplicity, we only consider spending transactions in this example
                     )
-                    txs = self._deps.tx_repository.list_transactions(filter)
+                    txs = self._deps.tx_repository.list_transactions(tx_filter)
                     total_spent = compute_total_spent(txs)
 
                     # Save query to history
-                    self._deps.tx_history.tsx_results.append(
+                    self._deps.tx_history.txs_results.append(
                         TxQAQueryResult(
                             query=parsed_query,
                             txs=txs,
@@ -79,11 +79,14 @@ class ChatbotEngine:
                     answer_text = f"You spent a total of ${total_spent:.2f} on {parsed_query.label} from {parsed_query.start} to {parsed_query.end}.\n"
 
             case Recipe.TX_EXPLAIN:
-                answer_text = f"Here are the transactions that contributed to this (${self._deps.tx_history.tsx_results[-1].total:.2f}) sum:\n"
-                for tx in self._deps.tx_history.tsx_results[-1].txs:
-                    answer_text += (
-                        f"- {tx.date}: ${tx.amount:.2f} to {tx.other_account} ({tx.description})\n"
-                    )
+                if not self._deps.tx_history.txs_results or self._deps.tx_history.txs_results[-1].query is None:
+                    answer_text = "Sorry, I don't have any transaction summary to explain. Please ask a question about your spending first (e.g., 'How much did I spend on food last month?').\n"
+                else: 
+                    answer_text = f"Here are the transactions that contributed to this (${self._deps.tx_history.txs_results[-1].total:.2f}) sum:\n"
+                    for tx in self._deps.tx_history.txs_results[-1].txs:
+                        answer_text += (
+                            f"- {tx.date}: ${tx.amount:.2f} to {tx.other_account} ({tx.description})\n"
+                        )
 
             case Recipe.DOCS_ANSWER:
                 answer_text = "DOCS_ANSWER is not implemented yet.\n"

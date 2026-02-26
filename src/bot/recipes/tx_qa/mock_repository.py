@@ -37,14 +37,14 @@ class JsonMockTransactionsRepository(TransactionsRepository):
             )
         return cls(transactions=transactions)
 
-    def list_transactions(self, filter: TxFilter) -> list[Transaction]:
+    def list_transactions(self, tx_filter: TxFilter) -> list[Transaction]:
         return [
             tx
             for tx in self._transactions
-            if filter.start <= tx.date <= filter.end
-            and tx.direction == filter.direction
-            and tx.label == filter.label
+            if tx_filter.start <= tx.date <= tx_filter.end
+            and tx.direction == tx_filter.direction
+            and tx.label == tx_filter.label
         ]
 
-    def list_transaction_ids(self, filter: TxFilter) -> list[str]:
-        return [tx.id for tx in self.list_transactions(filter)]
+    def list_transaction_ids(self, tx_filter: TxFilter) -> list[str]:
+        return [tx.id for tx in self.list_transactions(tx_filter)]
