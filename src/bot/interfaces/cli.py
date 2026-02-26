@@ -6,6 +6,7 @@ import typer
 
 from bot.engine import ChatbotEngine, EngineConfig, EngineDeps
 from bot.logging import setup_logging
+from bot.models.memory import SessionState
 from bot.recipes.tx_qa.mock_repository import JsonMockTransactionsRepository
 
 app = typer.Typer(add_completion=False)
@@ -18,7 +19,9 @@ def main() -> None:
     tx_repository = JsonMockTransactionsRepository.from_json_file(
         Path("data/mocks/transactions_mock.json")
     )
-    engine = ChatbotEngine(EngineConfig(), EngineDeps(tx_repository=tx_repository))
+    engine = ChatbotEngine(
+        EngineConfig(), EngineDeps(tx_repository=tx_repository, tx_history=SessionState())
+    )
 
     typer.echo("Chatbot prototype (type 'exit' to quit)")
 

@@ -4,9 +4,11 @@ from dataclasses import dataclass
 from uuid import uuid4
 
 from bot.logging import log_event
+from bot.models.memory import SessionState, TxQAQueryResult
 from bot.models.repository import TransactionsRepository, TxFilter
 from bot.models.responses import BotResponse
 from bot.models.routing import Recipe, RouterDecision
+from bot.recipes.doc_qa import answer
 from bot.recipes.tx_qa import parse
 from bot.recipes.tx_qa.compute import compute_total_spent
 from bot.routing.router import route
@@ -21,6 +23,7 @@ class EngineConfig:
 @dataclass(frozen=True)
 class EngineDeps:
     tx_repository: TransactionsRepository
+    tx_history: SessionState
 
 
 class ChatbotEngine:
@@ -63,10 +66,25 @@ class ChatbotEngine:
                     )
                     txs = self._deps.tx_repository.list_transactions(filter)
                     total_spent = compute_total_spent(txs)
+
+                    # Save query to history
+                    self._deps.tx_history.tsx_results.append(
+                        TxQAQueryResult(
+                            query=parsed_query,
+                            txs=txs,
+                            total=total_spent,
+                        )
+                    )
+
                     answer_text = f"You spent a total of ${total_spent:.2f} on {parsed_query.label} from {parsed_query.start} to {parsed_query.end}.\n"
 
             case Recipe.TX_EXPLAIN:
-                answer_text = "TX_EXPLAIN is not implemented yet.\n"
+                answer_text = "Here are the transactions that contributed to this sum:\n"
+                for tx in self._deps.tx_history.tsx_results[-1].txs:
+                    answer_text += (
+                        f"- {tx.date}: ${tx.amount:.2f} to {tx.other_account} ({tx.description})\n"
+                    )
+
             case Recipe.DOCS_ANSWER:
                 answer_text = "DOCS_ANSWER is not implemented yet.\n"
             case Recipe.OUT_OF_SCOPE:
