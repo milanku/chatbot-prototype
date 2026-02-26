@@ -82,10 +82,10 @@ class ChatbotEngine:
                 if not self._deps.tx_history.txs_results or self._deps.tx_history.txs_results[-1].query is None:
                     answer_text = "Sorry, I don't have any transaction summary to explain. Please ask a question about your spending first (e.g., 'How much did I spend on food last month?').\n"
                 else: 
-                    answer_text = f"Here are the transactions that contributed to this (${self._deps.tx_history.txs_results[-1].total:.2f}) sum:\n"
+                    answer_text = f"Here are the transactions that contributed to this ({self._deps.tx_history.txs_results[-1].total:.2f} EUR) sum:\n"
                     for tx in self._deps.tx_history.txs_results[-1].txs:
                         answer_text += (
-                            f"- {tx.date}: ${tx.amount:.2f} to {tx.other_account} ({tx.description})\n"
+                            f"- {tx.date}: {tx.amount:.2f} EUR to {tx.other_account} ({tx.description})\n"
                         )
 
             case Recipe.DOCS_ANSWER:
