@@ -14,8 +14,8 @@ app = typer.Typer(add_completion=False)
 
 
 @app.callback(invoke_without_command=True)
-def main() -> None:
-    setup_logging()
+def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable verbose logging")) -> None:
+    setup_logging(verbose=verbose)
 
     session_store = InMemorySessionStore()
     session_id = uuid4().hex

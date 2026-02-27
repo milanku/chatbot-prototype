@@ -6,7 +6,8 @@ from datetime import datetime, timezone
 from typing import Any
 
 
-def setup_logging(level: int = logging.INFO) -> None:
+def setup_logging(*, verbose: bool = False) -> None:
+    level = logging.DEBUG if verbose else logging.INFO
     logging.basicConfig(level=level, format="%(message)s")
 
 
@@ -17,4 +18,4 @@ def log_event(*, trace_id: str, event: str, payload: dict[str, Any]) -> None:
         "event": event,
         "payload": payload,
     }
-    logging.getLogger("bot").info(json.dumps(record, ensure_ascii=False))
+    logging.getLogger("bot").debug(json.dumps(record, ensure_ascii=False))
