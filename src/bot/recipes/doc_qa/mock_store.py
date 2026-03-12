@@ -1,9 +1,8 @@
-from hmac import new
+from pathlib import Path
 
 from attr import dataclass
-from zipp import Path
 
-from bot.models.repository import DocChunk, DocRepository
+from bot.models.repository import DocChunk, DocHit, DocRepository
 from bot.recipes.doc_qa.score import score_chunks
 from bot.recipes.doc_qa.tokenizer import tokenize
 
@@ -21,18 +20,18 @@ class MockBankDocStore(DocRepository):
             all_chunks.extend(chunks)
         return cls(chunks=all_chunks)
     
-    def search(self, query: str, *, top_k: int = 5) -> list[DocChunk]:
-        return self.chunks[:top_k]
+    def search(self, query: str, *, top_k: int = 5) -> list[str]:
+        return [chunk.content for chunk in self.chunks[:top_k]]
     
     @staticmethod
     def split_into_chunks(file_name: str, content: str) -> list[DocChunk]:
         new_chunks = []
         # Splits markdown content into chunks by newlines, and assigns a chunk_id to each chunk
-        title_stack = []
+        title_stack: list[str] = []
         chunk_id = 0
-        current_chunk_lines = []
+        current_chunk_lines: list[str] = []
         
-        def flush_chunk():
+        def flush_chunk() -> None:
             nonlocal chunk_id
             if current_chunk_lines:
                 # Prepend the current titles stack to the chunk content
@@ -69,7 +68,7 @@ class MockBankDocStore(DocRepository):
         flush_chunk()
         return new_chunks
     
-    def get_top_k_chunks(self, query: str, *, top_k: int = 5) -> list[DocChunk]:
+    def get_top_k_chunks(self, query: str, *, top_k: int = 5) -> list[DocHit]:
         query_tokens = tokenize(query)
         chunk_scores = []
         for chunk in self.chunks:
@@ -77,4 +76,4 @@ class MockBankDocStore(DocRepository):
             chunk_score = score_chunks(query_tokens, chunk_tokens)
             chunk_scores.append((chunk, chunk_score))
         sorted_chunks = sorted(chunk_scores, key=lambda x: x[1], reverse=True)
-        return [chunk for chunk, _ in sorted_chunks[:top_k]]
+        return [DocHit(id=str(chunk.chunk_id), score=score, content=chunk.content) for chunk, score in sorted_chunks[:top_k]]

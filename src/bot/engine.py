@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, replace
 from datetime import datetime, timezone
+from decimal import Decimal
 from uuid import uuid4
 
 from bot.logging import log_event
@@ -100,7 +101,7 @@ class ChatbotEngine:
                     )
                     query_result: TxQAQueryResult = TxQAQueryResult(
                         query=parsed_query,
-                        total=f"{total_spent:.2f}",
+                        total=Decimal(total_spent), 
                         created_at=datetime.now(
                             timezone.utc
                         ),  # Using current UTC time as a timestamp
@@ -143,7 +144,7 @@ class ChatbotEngine:
                 top_k_chunks = self._deps.doc_repository.get_top_k_chunks(message, top_k=5)
                 answer_text = "Here are some relevant pieces of information I found in your documents:\n"
                 for chunk in top_k_chunks:
-                    answer_text += f"- {chunk.file_name} (chunk {chunk.chunk_id}): {chunk.content}\n\n"
+                    answer_text += f"- {chunk.id} (chunk {chunk.id}): {chunk.content}\n\n"
             case Recipe.OUT_OF_SCOPE:
                 answer_text = "Sorry, I can't help with that.\n"
             case _:
@@ -158,5 +159,4 @@ class ChatbotEngine:
             payload={"references": bot_response.references},
         )
 
-        return bot_response, new_state
         return bot_response, new_state

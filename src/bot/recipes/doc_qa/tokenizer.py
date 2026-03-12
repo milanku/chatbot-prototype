@@ -1,3 +1,3 @@
-def tokenize(text) -> list[str]:
+def tokenize(text: str) -> list[str]:
     # Simple whitespace tokenizer
     return text.lower().split()
