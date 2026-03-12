@@ -6,7 +6,7 @@ from uuid import uuid4
 
 from bot.logging import log_event
 from bot.models.memory import SessionState, TxQAQueryResult
-from bot.models.repository import TransactionsRepository, TxFilter
+from bot.models.repository import DocRepository, TransactionsRepository, TxFilter
 from bot.models.responses import BotResponse
 from bot.models.routing import Recipe, RouterDecision
 from bot.recipes.tx_qa import parse
@@ -23,12 +23,14 @@ class EngineConfig:
 @dataclass(frozen=True)
 class EngineDeps:
     tx_repository: TransactionsRepository
+    doc_repository: DocRepository
 
 
 class ChatbotEngine:
     def __init__(self, config: EngineConfig, deps: EngineDeps) -> None:
         self._config = config
         self._deps = deps
+        self._docs = deps.doc_repository
 
     def answer(
         self, message: str, *, session_id: str, session_state: SessionState
@@ -138,7 +140,10 @@ class ChatbotEngine:
                         answer_text += f"- {tx.date}: {tx.amount:.2f} EUR to {tx.other_account} ({tx.description})\n"
 
             case Recipe.DOCS_ANSWER:
-                answer_text = "DOCS_ANSWER is not implemented yet.\n"
+                top_k_chunks = self._deps.doc_repository.get_top_k_chunks(message, top_k=5)
+                answer_text = "Here are some relevant pieces of information I found in your documents:\n"
+                for chunk in top_k_chunks:
+                    answer_text += f"- {chunk.file_name} (chunk {chunk.chunk_id}): {chunk.content}\n\n"
             case Recipe.OUT_OF_SCOPE:
                 answer_text = "Sorry, I can't help with that.\n"
             case _:

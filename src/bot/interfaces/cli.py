@@ -8,6 +8,7 @@ import typer
 from bot.engine import ChatbotEngine, EngineConfig, EngineDeps
 from bot.logging import setup_logging
 from bot.memory.session_store import InMemorySessionStore
+from bot.recipes.doc_qa.mock_store import MockBankDocStore
 from bot.recipes.tx_qa.mock_repository import JsonMockTransactionsRepository
 
 app = typer.Typer(add_completion=False)
@@ -23,7 +24,18 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
     tx_repository = JsonMockTransactionsRepository.from_json_file(
         Path("data/mocks/transactions_mock.json")
     )
-    engine = ChatbotEngine(EngineConfig(), EngineDeps(tx_repository=tx_repository))
+    doc_repository = MockBankDocStore.from_files(
+        [
+            Path("data/docs/accounts-and-access.md"),
+            Path("data/docs/cards-and-payments.md"),
+            Path("data/docs/digital-banking-and-support.md"),
+            Path("data/docs/disputes-and-chargebacks.md"),
+            Path("data/docs/fees-and-pricing.md"),
+            Path("data/docs/loans-and-credit.md"),
+            Path("data/docs/privacy-and-data.md")
+        ]
+    )
+    engine = ChatbotEngine(EngineConfig(), EngineDeps(tx_repository=tx_repository, doc_repository=doc_repository))
 
     typer.echo("Chatbot prototype (type 'exit' to quit)")
 
