@@ -10,6 +10,7 @@ from bot.models.memory import SessionState, TxQAQueryResult
 from bot.models.repository import DocRepository, TransactionsRepository, TxFilter
 from bot.models.responses import BotResponse
 from bot.models.routing import Recipe, RouterDecision
+from bot.recipes.doc_qa.synthesize import synthesize_doc_answer
 from bot.recipes.tx_qa import parse
 from bot.recipes.tx_qa.compute import compute_total_spent
 from bot.recipes.tx_qa.synthesize import synthesize_tx_summary
@@ -143,9 +144,7 @@ class ChatbotEngine:
 
             case Recipe.DOCS_ANSWER:
                 top_k_chunks = self._deps.doc_repository.get_top_k_chunks(message, top_k=5)
-                answer_text = "Here are some relevant pieces of information I found in your documents:\n"
-                for chunk in top_k_chunks:
-                    answer_text += f"- {chunk.id} (chunk {chunk.id}): {chunk.content}\n\n"
+                answer_text = synthesize_doc_answer(message, top_k_chunks)
             case Recipe.OUT_OF_SCOPE:
                 answer_text = "Sorry, I can't help with that.\n"
             case _:
