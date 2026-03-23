@@ -67,7 +67,7 @@ class ChatbotEngine:
 
         match router_decision.route:
             case Route.TX_SUMMARY:
-                parsed_query = parse.parse_query(message)
+                parsed_query = parse.parse_query(session_id=session_id, llm_client=self._deps.llm_client, msg=message)
                                 
                 if parsed_query is None:
                     trace(

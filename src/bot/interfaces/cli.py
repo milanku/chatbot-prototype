@@ -40,7 +40,6 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
     settings = Settings()  # Load settings (e.g., API keys) from environment variables or config files
     llm_client = openai_client.OpenAIClient(
         api_key=settings.OPENAI_API_KEY,
-        model=settings.OPENAI_LLM_MODEL,
     )
     engine = ChatbotEngine(EngineConfig(), EngineDeps(tx_repository=tx_repository, doc_repository=doc_repository, llm_client=llm_client))
 
