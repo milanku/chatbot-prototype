@@ -12,6 +12,7 @@ from bot.models.responses import BotResponse
 from bot.models.routing import Recipe, RouterDecision
 from bot.recipes.tx_qa import parse
 from bot.recipes.tx_qa.compute import compute_total_spent
+from bot.recipes.tx_qa.synthesize import synthesize_tx_summary
 from bot.routing.router import route
 
 
@@ -111,7 +112,7 @@ class ChatbotEngine:
                         session_state,
                         txs_results=session_state.txs_results + (query_result,),
                     )
-                    answer_text = f"You spent a total of {total_spent:.2f} EUR on {parsed_query.label} from {parsed_query.start} to {parsed_query.end}.\n"
+                    answer_text = synthesize_tx_summary(parsed_query, total_spent)
 
             case Recipe.TX_EXPLAIN:
                 txs_results = session_state.txs_results

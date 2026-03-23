@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import date
 from typing import cast
 
-from bot.models.domain import Label
+from bot.models.domain import Direction, Label
 
 _LABEL_RE = re.compile(r"\b(food|pets|other)\b", re.IGNORECASE)
 _DATE_RE = re.compile(r"\b(\d{4}-\d{2}-\d{2})\b")
@@ -15,6 +15,7 @@ class TxQAQuery:
     label: Label
     start: date
     end: date
+    direction: Direction
 
 
 def parse_query(msg: str) -> TxQAQuery | None:
@@ -37,5 +38,6 @@ def parse_query(msg: str) -> TxQAQuery | None:
 
     start = date.fromisoformat(start_date_str)
     end = date.fromisoformat(end_date_str)
+    direction = "spend" if "spent" in text else "receive" if "received" in text else None
 
-    return TxQAQuery(label=label, start=start, end=end)
+    return TxQAQuery(label=label, start=start, end=end, direction=cast(Direction, direction))
