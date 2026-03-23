@@ -1,10 +1,9 @@
+from dataclasses import dataclass
 from pathlib import Path
 
-from attr import dataclass
-
 from bot.models.repository import DocChunk, DocHit, DocRepository
-from bot.recipes.doc_qa.score import score_chunks
-from bot.recipes.doc_qa.tokenizer import tokenize
+from bot.routes.doc_qa.score import score_chunks
+from bot.routes.doc_qa.tokenizer import tokenize
 
 
 @dataclass

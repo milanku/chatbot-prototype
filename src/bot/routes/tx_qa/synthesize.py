@@ -1,4 +1,4 @@
-from bot.recipes.tx_qa.parse import TxQAQuery
+from bot.routes.tx_qa.parse import TxQAQuery
 
 
 def synthesize_tx_summary(query: TxQAQuery, total_spent: float) -> str:

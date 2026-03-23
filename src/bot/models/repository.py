@@ -1,7 +1,6 @@
+from dataclasses import dataclass
 from datetime import date
 from typing import Protocol
-
-from attr import dataclass
 
 from bot.models.domain import Direction, Label, Transaction
 

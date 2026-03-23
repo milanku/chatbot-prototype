@@ -1,8 +1,7 @@
+from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from typing import Literal
-
-from attr import dataclass
 
 Direction = Literal["spend", "receive"]
 Label = Literal["food", "pets", "other"]

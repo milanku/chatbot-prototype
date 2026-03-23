@@ -1,9 +1,8 @@
+from dataclasses import dataclass
 import json
 from datetime import date
 from decimal import Decimal
 from pathlib import Path
-
-from attr import dataclass
 
 from bot.models.domain import Transaction
 from bot.models.repository import TransactionsRepository, TxFilter
@@ -35,7 +34,7 @@ class JsonMockTransactionsRepository(TransactionsRepository):
                     label=tx.get("label"),
                 )
             )
-        return cls(transactions=transactions)
+        return cls(_transactions=transactions)
 
     def list_transactions(self, tx_filter: TxFilter) -> list[Transaction]:
         return [

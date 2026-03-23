@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from enum import Enum
 
 
-class Recipe(Enum):
+class Route(Enum):
     TX_SUMMARY = "TX_SUMMARY"
     TX_EXPLAIN = "TX_EXPLAIN"
     DOCS_ANSWER = "DOCS_ANSWER"
@@ -13,5 +13,6 @@ class Recipe(Enum):
 
 @dataclass(frozen=True)
 class RouterDecision:
-    recipe: Recipe
+    route: Route
     confidence: float
+    reason: str | None = None

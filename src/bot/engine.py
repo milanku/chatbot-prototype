@@ -5,15 +5,18 @@ from datetime import datetime, timezone
 from decimal import Decimal
 from uuid import uuid4
 
+from black import const
+
+from bot.llm import llm_client
 from bot.logging import log_event
 from bot.models.memory import SessionState, TxQAQueryResult
 from bot.models.repository import DocRepository, TransactionsRepository, TxFilter
 from bot.models.responses import BotResponse
-from bot.models.routing import Recipe, RouterDecision
-from bot.recipes.doc_qa.synthesize import synthesize_doc_answer
-from bot.recipes.tx_qa import parse
-from bot.recipes.tx_qa.compute import compute_total_spent
-from bot.recipes.tx_qa.synthesize import synthesize_tx_summary
+from bot.models.routing import Route, RouterDecision
+from bot.routes.doc_qa.synthesize import synthesize_doc_answer
+from bot.routes.tx_qa import parse
+from bot.routes.tx_qa.compute import compute_total_spent
+from bot.routes.tx_qa.synthesize import synthesize_tx_summary
 from bot.routing.router import route
 
 
@@ -27,7 +30,8 @@ class EngineConfig:
 class EngineDeps:
     tx_repository: TransactionsRepository
     doc_repository: DocRepository
-
+    llm_client: llm_client.LLMClient
+    
 
 class ChatbotEngine:
     def __init__(self, config: EngineConfig, deps: EngineDeps) -> None:
@@ -39,8 +43,8 @@ class ChatbotEngine:
         self, message: str, *, session_id: str, session_state: SessionState
     ) -> tuple[BotResponse, SessionState]:
         trace_id = uuid4().hex
-
-        new_state = session_state  # By default, the state doesn't change. Recipes can override this if needed.
+        
+        new_state = session_state  # By default, the state doesn't change. Routes can override this if needed.
 
         def trace(event: str, **payload: object) -> None:
              log_event(trace_id=trace_id, event=event, payload=payload)
@@ -53,16 +57,16 @@ class ChatbotEngine:
             app=self._config.app_name,
         )
 
-        router_decision: RouterDecision = route(message)
+        router_decision: RouterDecision = route(session_id=session_id, llm_client=self._deps.llm_client, message=message)
 
         trace(
             "router.decision",
-            recipe=router_decision.recipe.value,
+            route=router_decision.route.value,
             confidence=router_decision.confidence,
         )
 
-        match router_decision.recipe:
-            case Recipe.TX_SUMMARY:
+        match router_decision.route:
+            case Route.TX_SUMMARY:
                 parsed_query = parse.parse_query(message)
                                 
                 if parsed_query is None:
@@ -115,7 +119,7 @@ class ChatbotEngine:
                     )
                     answer_text = synthesize_tx_summary(parsed_query, total_spent)
 
-            case Recipe.TX_EXPLAIN:
+            case Route.TX_EXPLAIN:
                 txs_results = session_state.txs_results
                 last_txs_result = txs_results[-1] if txs_results else None
                 
@@ -142,13 +146,13 @@ class ChatbotEngine:
                     for tx in txs:
                         answer_text += f"- {tx.date}: {tx.amount:.2f} EUR to {tx.other_account} ({tx.description})\n"
 
-            case Recipe.DOCS_ANSWER:
+            case Route.DOCS_ANSWER:
                 top_k_chunks = self._deps.doc_repository.get_top_k_chunks(message, top_k=5)
                 answer_text = synthesize_doc_answer(message, top_k_chunks)
-            case Recipe.OUT_OF_SCOPE:
+            case Route.OUT_OF_SCOPE:
                 answer_text = "Sorry, I can't help with that.\n"
             case _:
-                answer_text = "Unknown recipe.\n"
+                answer_text = "Unknown route.\n"
 
         bot_response = BotResponse(answer=answer_text, references=[], trace_id=trace_id)
 
