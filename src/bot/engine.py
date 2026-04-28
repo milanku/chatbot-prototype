@@ -16,6 +16,10 @@ from bot.models.routing import Route, RouterDecision
 from bot.routes.doc_qa.synthesize import synthesize_doc_answer
 from bot.routes.tx_qa import parse
 from bot.routes.tx_qa.compute import compute_total_spent
+from bot.routes.tx_qa.explain import (
+    TXExplainParseIntermediateResult,
+    parse_explain_query,
+)
 from bot.routes.tx_qa.synthesize import synthesize_tx_summary
 from bot.routing.router import route
 
@@ -121,30 +125,54 @@ class ChatbotEngine:
 
             case Route.TX_EXPLAIN:
                 txs_results = session_state.txs_results
-                last_txs_result = txs_results[-1] if txs_results else None
+                
+                reference_result:TXExplainParseIntermediateResult = parse_explain_query(session_id=session_id, llm_client=self._deps.llm_client, msg=message)
                 
                 trace(
-                    "tx_explain.fetch_last_query_result",
-                    ok=last_txs_result is not None,
-                    label=last_txs_result.query.label if last_txs_result else None,
-                    start=last_txs_result.query.start.isoformat() if last_txs_result else None,
-                    end=last_txs_result.query.end.isoformat() if last_txs_result else None
+                    "tx_explain.parse_query",
+                    txs_results=len(txs_results),
+                    reference_offset=reference_result.reference_offset,
+                    reference_count=reference_result.reference_count,
+                    confidence=reference_result.confidence,
+                    reason=reference_result.reason,
                 )
+                
+                related_results = []
+                if reference_result.reference_offset is not None and reference_result.reference_count is not None:
+                    offset = reference_result.reference_offset
+                    count = reference_result.reference_count
+                    related_results = txs_results[max(0, len(txs_results) - offset - count):len(txs_results) - offset]
+                    trace(
+                        "tx_explain.find_reference",
+                        found=bool(related_results),
+                        reference_offset=reference_result.reference_offset,
+                        reference_count=reference_result.reference_count,
+                        confidence=reference_result.confidence,
+                        reason=reference_result.reason,
+                    )
+                else:
+                    trace(
+                        "tx_explain.find_reference",
+                        found=False,
+                        confidence=reference_result.confidence,
+                        reason=reference_result.reason,
+                    )
 
-                if last_txs_result is None:
+                if not related_results:
                     answer_text = "Sorry, I don't have any transaction summary to explain. Please ask a question about your spending first (e.g., 'How much did I spend on food last month?').\n"
                 else:
-                    answer_text = f"Here are the transactions that contributed to this ({last_txs_result.total:.2f} EUR) sum:\n"
-                    txs = self._deps.tx_repository.list_transactions(
-                        TxFilter(
-                            label=last_txs_result.query.label,
-                            start=last_txs_result.query.start,
-                            end=last_txs_result.query.end,
-                            direction="spend",
+                    answer_text = f"Here are the transactions that contributed to your selected sum:\n"
+                    for tx_result in related_results:
+                        txs = self._deps.tx_repository.list_transactions(
+                            TxFilter(
+                                label=tx_result.query.label,
+                                start=tx_result.query.start,
+                                end=tx_result.query.end,
+                                direction="spend",
+                            )
                         )
-                    )
-                    for tx in txs:
-                        answer_text += f"- {tx.date}: {tx.amount:.2f} EUR to {tx.other_account} ({tx.description})\n"
+                        for tx in txs:
+                            answer_text += f"- {tx.date}: {tx.amount:.2f} EUR to {tx.other_account} ({tx.description})\n"
 
             case Route.DOCS_ANSWER:
                 top_k_chunks = self._deps.doc_repository.get_top_k_chunks(message, top_k=5)
@@ -163,4 +191,4 @@ class ChatbotEngine:
             payload={"references": bot_response.references},
         )
 
-        return bot_response, new_state
+        return bot_response, new_state        
