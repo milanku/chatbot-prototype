@@ -3,7 +3,6 @@ from pathlib import Path
 
 from bot.llm.openai_client import OpenAIClient
 from bot.models.repository import DocHit
-from bot.routes.tx_qa.explain_prompt_builder import TXExplainParserPromptInput
 
 
 @dataclass(frozen=True)

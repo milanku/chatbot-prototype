@@ -12,6 +12,7 @@ from bot.models.repository import DocRepository, TransactionsRepository, TxFilte
 from bot.models.responses import BotResponse
 from bot.models.routing import Route, RouterDecision
 from bot.routes.doc_qa.synthesize import synthesize_doc_answer
+from bot.routes.doc_qa.verify import filter_relevant_hits
 from bot.routes.tx_qa import parse
 from bot.routes.tx_qa.compute import compute_total_spent
 from bot.routes.tx_qa.explain import (
@@ -174,7 +175,19 @@ class ChatbotEngine:
 
             case Route.DOCS_ANSWER:
                 top_k_chunks = self._deps.doc_repository.get_top_k_chunks(message, top_k=5)
-                answer_text = synthesize_doc_answer(llm_client=self._deps.llm_client, question=message, hits=top_k_chunks)
+                trace(
+                    "doc_qa.retrieval",
+                    query=message,
+                    retrieved_chunks=[{"id": hit.id, "score": hit.score, "content": hit.content} for hit in top_k_chunks]
+                )
+                filtered_hits = filter_relevant_hits(hits=top_k_chunks, relevance_threshold=0.7)
+                trace(
+                    "doc_qa.relevance_filter",
+                    query=message,
+                    retrieved_chunks=len(top_k_chunks),
+                    relevant_chunks=len(filtered_hits),
+                )
+                answer_text = synthesize_doc_answer(llm_client=self._deps.llm_client, question=message, hits=filtered_hits)
             case Route.OUT_OF_SCOPE:
                 answer_text = "Sorry, I can't help with that.\n"
             case _:
