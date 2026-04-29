@@ -84,6 +84,7 @@ def load_persisted_embeddings(input_path: Path) -> list[EmbeddedDocChunk]:
         EmbeddedDocChunk(
             file_name=item["file_name"],
             content=item["content"],
+            headings=item["headings"],
             chunk_id=item["chunk_id"],
             embedding=item["embedding"],
         )

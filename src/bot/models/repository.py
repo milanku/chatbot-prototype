@@ -22,6 +22,7 @@ class TransactionsRepository(Protocol):
 @dataclass(frozen=True)
 class DocChunk:
     file_name: str
+    headings: list[str]
     content: str
     chunk_id: int
 
@@ -34,6 +35,8 @@ class EmbeddedDocChunk(DocChunk):
 class DocHit:
     id: str
     score: float
+    file_name: str
+    headings: list[str]
     content: str
 
 @dataclass

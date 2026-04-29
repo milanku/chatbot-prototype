@@ -23,4 +23,4 @@ class DocStore(DocRepository):
                 score = vectors_cosine_similarity(query_vector, embedding)
                 chunk_scores.append((chunk, score))
         sorted_chunks = sorted(chunk_scores, key=lambda x: x[1], reverse=True)
-        return [DocHit(id=str(chunk.chunk_id), score=score, content=chunk.content) for chunk, score in sorted_chunks[:top_k]]
+        return [DocHit(id=str(chunk.chunk_id), file_name=chunk.file_name, headings=chunk.headings, score=score, content=chunk.content) for chunk, score in sorted_chunks[:top_k]]

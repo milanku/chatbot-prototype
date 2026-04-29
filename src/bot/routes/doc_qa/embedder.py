@@ -10,6 +10,7 @@ def embed_doc_chunks(chunks: list[DocChunk], embedder: OpenAIEmbeddings) -> list
     for chunk, embedding in zip(chunks, embedded_vectors, strict=True):
         embedded_chunks.append(EmbeddedDocChunk(
             file_name=chunk.file_name,
+            headings=chunk.headings,
             content=chunk.content,
             chunk_id=chunk.chunk_id,
             embedding=embedding
