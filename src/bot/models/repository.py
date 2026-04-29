@@ -20,13 +20,16 @@ class TransactionsRepository(Protocol):
     def list_transaction_ids(self, tx_filter: TxFilter) -> list[str]: ...
 
 @dataclass(frozen=True)
-class DocChunk:
+class DocReference:
     file_name: str
-    headings: list[str]
+    heading_path: list[str]
+    
+@dataclass(frozen=True)
+class DocChunk:
+    doc_reference: DocReference
     content: str
     chunk_id: int
-
-
+    
 @dataclass(frozen=True)
 class EmbeddedDocChunk(DocChunk):
     embedding: list[float]
@@ -35,8 +38,7 @@ class EmbeddedDocChunk(DocChunk):
 class DocHit:
     id: str
     score: float
-    file_name: str
-    headings: list[str]
+    doc_reference: DocReference
     content: str
 
 @dataclass

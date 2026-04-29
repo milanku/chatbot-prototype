@@ -26,9 +26,8 @@ class DocStore(DocRepository):
 
         return [
             DocHit(
-                id=f"{chunk.file_name}_{chunk.chunk_id}",
-                file_name=chunk.file_name,
-                headings=chunk.headings,
+                id=f"{chunk.doc_reference.file_name}_{chunk.chunk_id}",
+                doc_reference=chunk.doc_reference,
                 score=score,
                 content=chunk.content,
             )

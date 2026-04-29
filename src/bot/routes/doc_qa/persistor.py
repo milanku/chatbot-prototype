@@ -5,7 +5,7 @@ from pathlib import Path
 
 from langchain_openai import OpenAIEmbeddings
 
-from bot.models.repository import EmbeddedDocChunk
+from bot.models.repository import DocReference, EmbeddedDocChunk
 from bot.routes.doc_qa.chunker import split_markdown_into_chunks
 from bot.routes.doc_qa.embedder import embed_doc_chunks
 from bot.routes.doc_qa.index import EmbeddingsManifest
@@ -82,9 +82,8 @@ def load_persisted_embeddings(input_path: Path) -> list[EmbeddedDocChunk]:
 
     return [
         EmbeddedDocChunk(
-            file_name=item["file_name"],
+            doc_reference=DocReference(**item["doc_reference"]),
             content=item["content"],
-            headings=item["headings"],
             chunk_id=item["chunk_id"],
             embedding=item["embedding"],
         )

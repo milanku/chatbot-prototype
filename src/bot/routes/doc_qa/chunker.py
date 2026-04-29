@@ -1,4 +1,4 @@
-from bot.models.repository import DocChunk
+from bot.models.repository import DocChunk, DocReference
 
 
 def split_markdown_into_chunks(file_name: str, content: str) -> list[DocChunk]:
@@ -13,7 +13,7 @@ def split_markdown_into_chunks(file_name: str, content: str) -> list[DocChunk]:
         if current_chunk_lines:
             # Prepend the current titles stack to the chunk content
             chunk_content = "\n".join(title_stack) + "\n" + "\n".join(current_chunk_lines)
-            new_chunks.append(DocChunk(file_name=file_name, headings=title_stack.copy(), content=chunk_content, chunk_id=chunk_id))
+            new_chunks.append(DocChunk(doc_reference=DocReference(file_name=file_name, heading_path=title_stack.copy()), content=chunk_content, chunk_id=chunk_id))
             chunk_id += 1
             current_chunk_lines.clear()
 

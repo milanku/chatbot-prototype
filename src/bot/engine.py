@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, replace
+from dataclasses import asdict, dataclass, replace
 from datetime import datetime, timezone
 from decimal import Decimal
 from uuid import uuid4
@@ -8,7 +8,12 @@ from uuid import uuid4
 from bot.llm import llm_client
 from bot.logging import log_event
 from bot.models.memory import SessionState, TxQAQueryResult
-from bot.models.repository import DocRepository, TransactionsRepository, TxFilter
+from bot.models.repository import (
+    DocReference,
+    DocRepository,
+    TransactionsRepository,
+    TxFilter,
+)
 from bot.models.responses import BotResponse
 from bot.models.routing import Route, RouterDecision
 from bot.routes.doc_qa.synthesize import synthesize_doc_answer
@@ -67,6 +72,7 @@ class ChatbotEngine:
             route=router_decision.route.value,
             confidence=router_decision.confidence,
         )
+        references: list[DocReference] = []
 
         match router_decision.route:
             case Route.TX_SUMMARY:
@@ -232,18 +238,19 @@ class ChatbotEngine:
                     relevant_chunks=len(filtered_hits),
                 )
                 answer_text = synthesize_doc_answer(llm_client=self._deps.llm_client, question=message, hits=filtered_hits)
+                references = [hit.doc_reference for hit in filtered_hits]
             case Route.OUT_OF_SCOPE:
                 answer_text = "Sorry, I can't help with that.\n"
             case _:
                 answer_text = "Unknown route.\n"
 
-        bot_response = BotResponse(answer=answer_text, references=[], trace_id=trace_id)
+        bot_response = BotResponse(answer=answer_text, doc_references=references, trace_id=trace_id)
 
         # Trace: engine finish
         log_event(
             trace_id=trace_id,
             event="engine.finish",
-            payload={"references": bot_response.references},
+            payload={"doc_references": [asdict(ref) for ref in bot_response.doc_references]},
         )
 
-        return bot_response, new_state        
+        return bot_response, new_state

@@ -37,8 +37,4 @@ def synthesize_doc_answer(*, llm_client: OpenAIClient, question: str, hits: list
         prompt=user_prompt,
         system_instructions=system_prompt,
     )
-    return (
-        f"{llm_response}\n\n"
-        f"References:\n" +
-        "\n".join(f"- {hit.file_name} (headings: {' > '.join(hit.headings)}) [score: {hit.score:.2f}]" for hit in hits)
-    )
+    return llm_response
