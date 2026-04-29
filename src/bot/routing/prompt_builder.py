@@ -19,6 +19,16 @@ ROUTE_DESCRIPTIONS: dict[Route, str] = {
         '- "Total spending on pets this year"\n'
         'This route applies even if the request is incomplete, for example if the timeframe is missing but the user is clearly asking for a spending total.'
     ),
+    Route.TX_LIST: (
+        'TX_LIST\n'
+        'Choose this when the user is asking for a list of transactions matching a new query without reference to a previous summary.\n'
+        'Typical examples:\n'
+        '- "List all my transactions from last month"\n'
+        '- "Show me my transactions in January 2026"\n'
+        '- "What transactions did I have on February 14th?"\n'
+        '- "List all my expenses above $100"\n'
+        'This route applies even if the request is incomplete, for example if the timeframe is missing but the user is clearly asking for a list of transactions.'
+    ),
     Route.TX_EXPLAIN: (
         'TX_EXPLAIN\n'
         'Choose this when the user is asking to see the transactions that make up a previously discussed spending sum.\n'
@@ -53,10 +63,10 @@ ROUTE_DESCRIPTIONS: dict[Route, str] = {
 def load_router_instructions(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
-def build_router_system_prompt(template: str, allowed_routes: tuple[Route, ...]) -> str:
-    allowed_routes_str = "\n\n".join(route.value for route in allowed_routes)
-    allowed_routes_descriptions_str = "\n\n".join(ROUTE_DESCRIPTIONS[route] for route in allowed_routes)
-    allowed_routes_list_with_commas = ", ".join(route.value for route in allowed_routes)
+def build_router_system_prompt(template: str, allowed_routes: list[str]) -> str:
+    allowed_routes_str = "\n\n".join(allowed_routes)
+    allowed_routes_descriptions_str = "\n\n".join(ROUTE_DESCRIPTIONS[Route(route)] for route in allowed_routes)
+    allowed_routes_list_with_commas = ", ".join(allowed_routes)
     
     return template.format(
         allowed_routes=allowed_routes_str,

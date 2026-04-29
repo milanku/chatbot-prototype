@@ -16,7 +16,7 @@ def route(session_id: str, llm_client: LLMClient, message: str) -> RouterDecisio
     prompt_template = load_router_instructions(Path("src/bot/prompts/router_instructions.txt"))
     system_prompt = build_router_system_prompt(
         template=prompt_template,
-        allowed_routes=(Route.TX_SUMMARY, Route.TX_EXPLAIN, Route.DOCS_ANSWER, Route.OUT_OF_SCOPE),
+        allowed_routes=[route.value for route in Route]
     )
     user_prompt = build_router_user_prompt(RouterPromptInput(message=message))
     
