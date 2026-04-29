@@ -25,6 +25,11 @@ class DocChunk:
     content: str
     chunk_id: int
 
+
+@dataclass(frozen=True)
+class EmbeddedDocChunk(DocChunk):
+    embedding: list[float]
+
 @dataclass(frozen=True)
 class DocHit:
     id: str

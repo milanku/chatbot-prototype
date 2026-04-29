@@ -5,8 +5,6 @@ from datetime import datetime, timezone
 from decimal import Decimal
 from uuid import uuid4
 
-from black import const
-
 from bot.llm import llm_client
 from bot.logging import log_event
 from bot.models.memory import SessionState, TxQAQueryResult
@@ -42,7 +40,7 @@ class ChatbotEngine:
         self._config = config
         self._deps = deps
         self._docs = deps.doc_repository
-
+        
     def answer(
         self, message: str, *, session_id: str, session_state: SessionState
     ) -> tuple[BotResponse, SessionState]:
@@ -161,7 +159,7 @@ class ChatbotEngine:
                 if not related_results:
                     answer_text = "Sorry, I don't have any transaction summary to explain. Please ask a question about your spending first (e.g., 'How much did I spend on food last month?').\n"
                 else:
-                    answer_text = f"Here are the transactions that contributed to your selected sum:\n"
+                    answer_text = "Here are the transactions that contributed to your selected sum:\n"
                     for tx_result in related_results:
                         txs = self._deps.tx_repository.list_transactions(
                             TxFilter(

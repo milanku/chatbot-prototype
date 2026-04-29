@@ -4,14 +4,14 @@ from pathlib import Path
 from uuid import uuid4
 
 import typer
-from pyexpat import model
+from langchain_openai import OpenAIEmbeddings
 
 from bot.config import Settings
 from bot.engine import ChatbotEngine, EngineConfig, EngineDeps
 from bot.llm import openai_client
 from bot.logging import setup_logging
 from bot.memory.session_store import InMemorySessionStore
-from bot.routes.doc_qa.mock_store import MockBankDocStore
+from bot.routes.doc_qa.doc_store import DocStore
 from bot.routes.tx_qa.mock_repository import JsonMockTransactionsRepository
 
 app = typer.Typer(add_completion=False)
@@ -23,23 +23,29 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
 
     session_store = InMemorySessionStore()
     session_id = uuid4().hex
-    tx_repository = JsonMockTransactionsRepository.from_json_file(
-        Path("data/mocks/transactions_mock.json")
-    )
-    doc_repository = MockBankDocStore.from_files(
-        [
-            Path("data/docs/accounts-and-access.md"),
-            Path("data/docs/cards-and-payments.md"),
-            Path("data/docs/digital-banking-and-support.md"),
-            Path("data/docs/disputes-and-chargebacks.md"),
-            Path("data/docs/fees-and-pricing.md"),
-            Path("data/docs/loans-and-credit.md"),
-            Path("data/docs/privacy-and-data.md")
-        ]
-    )
     settings = Settings()  # Load settings (e.g., API keys) from environment variables or config files
     llm_client = openai_client.OpenAIClient(
         api_key=settings.OPENAI_API_KEY,
+    )
+    embedder = OpenAIEmbeddings(
+        model=settings.EMBEDDINGS_MODEL,
+        api_key=settings.OPENAI_API_KEY,
+    )
+    
+    tx_repository = JsonMockTransactionsRepository.from_json_file(
+        Path("data/mocks/transactions_mock.json")
+    )
+    doc_repository = DocStore.build_store_from_md_files(
+        embedder=embedder,
+        md_file_paths=[
+            Path("data/docs/accounts-and-access.md"),
+            #Path("data/docs/cards-and-payments.md"),
+            #Path("data/docs/digital-banking-and-support.md"),
+            #Path("data/docs/disputes-and-chargebacks.md"),
+            #Path("data/docs/fees-and-pricing.md"),
+            #Path("data/docs/loans-and-credit.md"),
+            #Path("data/docs/privacy-and-data.md")
+        ]
     )
     engine = ChatbotEngine(EngineConfig(), EngineDeps(tx_repository=tx_repository, doc_repository=doc_repository, llm_client=llm_client))
 
