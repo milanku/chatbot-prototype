@@ -24,6 +24,8 @@ class TxQAQuery:
     end: date
     direction: Direction
 
+DateRange = tuple[date, date]
+
 class TimeframeType(Enum):
     RELATIVE_DAY = "RELATIVE_DAY"
     RELATIVE_WEEK = "RELATIVE_WEEK"
@@ -36,6 +38,19 @@ class TimeframeType(Enum):
     DATE_RANGE = "DATE_RANGE"
     UNKNOWN = "UNKNOWN"
     
+RELATIVE_TIMEFRAMES = {
+    TimeframeType.RELATIVE_DAY,
+    TimeframeType.RELATIVE_WEEK,
+    TimeframeType.RELATIVE_MONTH,
+    TimeframeType.RELATIVE_YEAR,
+}
+
+NAMED_TIMEFRAMES = {
+    TimeframeType.NAMED_DAY,
+    TimeframeType.NAMED_MONTH,
+    TimeframeType.NAMED_QUARTER,
+    TimeframeType.NAMED_YEAR,
+}
 
 @dataclass(frozen=True)
 class TXQAParseIntermediateResult:
@@ -52,6 +67,24 @@ class TXQAParseIntermediateResult:
     confidence: float | None # Confidence score for the parsed timeframe information, between 0 and 1
     reason: str | None # Optional reason or explanation for the parsed timeframe information, can be used for debugging or logging purposes
 
+def parse_intermediate_result(intermediate_raw_result: str) -> TxQAQuery | None:
+    try:
+        intermediate_result = _deserialize_intermediate_result(intermediate_raw_result)
+        date_range = _resolve_date_range(intermediate_result, today=date.today())
+    except (json.JSONDecodeError, KeyError, ValueError):
+        return None
+
+    if date_range is None:
+        return None
+
+    start, end = date_range
+
+    return TxQAQuery(
+        label=intermediate_result.label or "other",
+        direction=intermediate_result.direction or "spend",
+        start=start,
+        end=end,
+    )
 
 def _deserialize_intermediate_result(raw: str) -> TXQAParseIntermediateResult:
     data = json.loads(raw)
@@ -72,83 +105,115 @@ def _deserialize_intermediate_result(raw: str) -> TXQAParseIntermediateResult:
         reason=data.get("reason"),
     )
 
+def _resolve_date_range(
+    intermediate_result: TXQAParseIntermediateResult,
+    *,
+    today: date,
+) -> DateRange | None:
+    timeframe_type = intermediate_result.timeframe_type
 
-def parse_intermediate_result(intermediate_raw_result: str) -> TxQAQuery | None:
-    try:
-        intermediate_result = _deserialize_intermediate_result(intermediate_raw_result)
-    except (json.JSONDecodeError, KeyError, ValueError):
-        return None
-    current_date = date.today()
-    
-    if intermediate_result.timeframe_type == TimeframeType.DATE_RANGE:
-        if intermediate_result.start_date and intermediate_result.end_date:
-            return TxQAQuery(
-                label=intermediate_result.label or "other",
-                direction=intermediate_result.direction or "spend",
-                start=intermediate_result.start_date,
-                end=intermediate_result.end_date,
-            )
-        else:
-            return None
-    if intermediate_result.timeframe_type in [TimeframeType.RELATIVE_DAY, TimeframeType.RELATIVE_WEEK, TimeframeType.RELATIVE_MONTH, TimeframeType.RELATIVE_YEAR]:
-        if intermediate_result.relative_offset is not None:
-            if intermediate_result.timeframe_type == TimeframeType.RELATIVE_DAY:
-                start = current_date + timedelta(days=intermediate_result.relative_offset)
-                end = start
-            elif intermediate_result.timeframe_type == TimeframeType.RELATIVE_WEEK:
-                current_monday = current_date - timedelta(days=current_date.weekday())
-                start = current_monday + timedelta(weeks=intermediate_result.relative_offset)
-                end = start + timedelta(days=6)
-            elif intermediate_result.timeframe_type == TimeframeType.RELATIVE_MONTH:
-                month_offset = (current_date.month - 1) + intermediate_result.relative_offset
-                year_offset = month_offset // 12
-                month = (month_offset % 12) + 1
-                year = current_date.year + year_offset
-                start = date(year, month, 1)
-                end = date(year, month, calendar.monthrange(year, month)[1])
-            elif intermediate_result.timeframe_type == TimeframeType.RELATIVE_YEAR:
-                year = current_date.year + intermediate_result.relative_offset
-                start = date(year, 1, 1)
-                end = date(year, 12, 31)
-            else:
-                return None
-            
-            return TxQAQuery(
-                label=intermediate_result.label or "other",
-                direction=intermediate_result.direction or "spend",
-                start=start,
-                end=end,
-            )
-    if intermediate_result.timeframe_type in [TimeframeType.NAMED_DAY, TimeframeType.NAMED_MONTH, TimeframeType.NAMED_QUARTER, TimeframeType.NAMED_YEAR]:
-        year = intermediate_result.year if intermediate_result.year is not None else current_date.year
-        if intermediate_result.timeframe_type == TimeframeType.NAMED_YEAR:
-            start = date(year, 1, 1)
-            end = date(year, 12, 31)
-        elif intermediate_result.timeframe_type == TimeframeType.NAMED_MONTH and intermediate_result.month is not None:
-            month = intermediate_result.month
-            start = date(year, month, 1)
-            end = date(year, month, calendar.monthrange(year, month)[1])
-        elif intermediate_result.timeframe_type == TimeframeType.NAMED_QUARTER and intermediate_result.quarter is not None:
-            quarter = intermediate_result.quarter
-            start_month = (quarter - 1) * 3 + 1
-            end_month = quarter * 3
-            start = date(year, start_month, 1)
-            end = date(year, end_month, calendar.monthrange(year, end_month)[1])
-        elif intermediate_result.timeframe_type == TimeframeType.NAMED_DAY and intermediate_result.month is not None and intermediate_result.day is not None:
-            month = intermediate_result.month
-            day = intermediate_result.day
-            start = date(year, month, day)
-            end = start
-        else:
-            return None
+    if timeframe_type == TimeframeType.DATE_RANGE:
+        return _explicit_date_range(intermediate_result)
 
-        return TxQAQuery(
-            label=intermediate_result.label or "other",
-            direction=intermediate_result.direction or "spend",
-            start=start,
-            end=end,
-        )
+    if timeframe_type in RELATIVE_TIMEFRAMES:
+        return _relative_date_range(timeframe_type, intermediate_result.relative_offset, today)
+
+    if timeframe_type in NAMED_TIMEFRAMES:
+        return _named_date_range(intermediate_result, today)
+
     return None
+
+
+def _explicit_date_range(intermediate_result: TXQAParseIntermediateResult) -> DateRange | None:
+    if not intermediate_result.start_date or not intermediate_result.end_date:
+        return None
+
+    return intermediate_result.start_date, intermediate_result.end_date
+
+
+def _relative_date_range(
+    timeframe_type: TimeframeType,
+    offset: int | None,
+    today: date,
+) -> DateRange | None:
+    if offset is None:
+        return None
+
+    match timeframe_type:
+        case TimeframeType.RELATIVE_DAY:
+            target_day = today + timedelta(days=offset)
+            return target_day, target_day
+
+        case TimeframeType.RELATIVE_WEEK:
+            current_monday = today - timedelta(days=today.weekday())
+            start = current_monday + timedelta(weeks=offset)
+            return start, start + timedelta(days=6)
+
+        case TimeframeType.RELATIVE_MONTH:
+            month_offset = today.month - 1 + offset
+            year = today.year + month_offset // 12
+            month = month_offset % 12 + 1
+            return _month_range(year, month)
+
+        case TimeframeType.RELATIVE_YEAR:
+            return _year_range(today.year + offset)
+
+        case _:
+            return None
+
+
+def _named_date_range(intermediate_result: TXQAParseIntermediateResult, today: date) -> DateRange | None:
+    year = intermediate_result.year or today.year
+
+    match intermediate_result.timeframe_type:
+        case TimeframeType.NAMED_YEAR:
+            return _year_range(year)
+
+        case TimeframeType.NAMED_MONTH:
+            if intermediate_result.month is None:
+                return None
+            return _month_range(year, intermediate_result.month)
+
+        case TimeframeType.NAMED_QUARTER:
+            if intermediate_result.quarter is None:
+                return None
+            return _quarter_range(year, intermediate_result.quarter)
+
+        case TimeframeType.NAMED_DAY:
+            if intermediate_result.month is None or intermediate_result.day is None:
+                return None
+
+            target_day = date(
+                year,
+                intermediate_result.month,
+                intermediate_result.day,
+            )
+            return target_day, target_day
+
+        case _:
+            return None
+
+
+def _year_range(year: int) -> DateRange:
+    return date(year, 1, 1), date(year, 12, 31)
+
+
+def _month_range(year: int, month: int) -> DateRange:
+    last_day = calendar.monthrange(year, month)[1]
+    return date(year, month, 1), date(year, month, last_day)
+
+
+def _quarter_range(year: int, quarter: int) -> DateRange:
+    if quarter not in {1, 2, 3, 4}:
+        raise ValueError(f"Invalid quarter: {quarter}")
+
+    start_month = (quarter - 1) * 3 + 1
+    end_month = quarter * 3
+
+    start = date(year, start_month, 1)
+    end = date(year, end_month, calendar.monthrange(year, end_month)[1])
+
+    return start, end
 
 
 def parse_query(session_id: str, llm_client: LLMClient, msg: str) -> TxQAQuery | None:
