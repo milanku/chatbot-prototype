@@ -10,43 +10,43 @@ class RouterPromptInput:
     
 ROUTE_DESCRIPTIONS: dict[Route, str] = {
     Route.TX_SUMMARY: (
-        "TX_SUMMARY\n"
-        "Choose this when the user is asking for a transaction-based spending summary that should be computed from bank transactions.\n"
-        "Typical examples:\n"
-        "- \"How much did I spend on pets in February?\"\n"
-        "- \"What did I spend on food last month?\"\n"
-        "- \"How much did I spend on other in January 2026?\"\n"
-        "- \"Total spending on pets this year\"\n"
-        "This route applies even if the request is incomplete, for example if the timeframe is missing but the user is clearly asking for a spending total."
+        'TX_SUMMARY\n'
+        'Choose this when the user is asking for a transaction-based spending summary that should be computed from bank transactions.\n'
+        'Typical examples:\n'
+        '- "How much did I spend on pets in February?"\n'
+        '- "What did I spend on food last month?"\n'
+        '- "How much did I spend on other in January 2026?"\n'
+        '- "Total spending on pets this year"\n'
+        'This route applies even if the request is incomplete, for example if the timeframe is missing but the user is clearly asking for a spending total.'
     ),
     Route.TX_EXPLAIN: (
-        "TX_EXPLAIN\n"
-        "Choose this when the user is asking to see the transactions that make up a previously discussed spending sum.\n"
-        "Typical examples:\n"
-        "- \"Show me the transactions that built up this sum\"\n"
-        "- \"Which transactions are included?\"\n"
-        "- \"List those payments\"\n"
-        "- \"What makes up that amount?\"\n"
-        "Choose this route even if the previous summary may be missing. The executor will handle that later."
+        'TX_EXPLAIN\n'
+        'Choose this when the user is asking to see the transactions that make up a previously discussed spending sum.\n'
+        'Typical examples:\n'
+        '- "Show me the transactions that built up this sum"\n'
+        '- "Which transactions are included?"\n'
+        '- "List those payments"\n'
+        '- "What makes up that amount?"\n'
+        'Choose this route even if the previous summary may be missing. The executor will handle that later.'
     ),
     Route.DOCS_ANSWER: (
-        "DOCS_ANSWER\n"
-        "Choose this when the user is asking an informational question that should be answered from markdown documentation.\n"
-        "Typical examples:\n"
-        "- \"How do refunds work?\"\n"
-        "- \"What is the return policy?\"\n"
-        "- \"How can I reset my password?\"\n"
-        "- \"What are the supported payment methods?\"\n"
-        "Choose this only when the message looks like a documentation question."
+        'DOCS_ANSWER\n'
+        'Choose this when the user is asking an informational question that should be answered from markdown documentation.\n'
+        'Typical examples:\n'
+        '- "How do refunds work?"\n'
+        '- "What is the return policy?"\n'
+        '- "How can I reset my password?"\n'
+        '- "What are the supported payment methods?"\n'
+        'Choose this only when the message looks like a documentation question.'
     ),
     Route.OUT_OF_SCOPE: (
-        "OUT_OF_SCOPE\n"
-        "Choose this when the message does not fit any of the routes above.\n"
-        "Typical examples:\n"
-        "- \"What is the capital of France?\"\n"
-        "- \"Write me a poem\"\n"
-        "- \"What's the weather today?\"\n"
-        "- anything unrelated to transaction summaries, transaction follow-up explanations, or documentation-based questions"
+        'OUT_OF_SCOPE\n'
+        'Choose this when the message does not fit any of the routes above.\n'
+        'Typical examples:\n'
+        '- "What is the capital of France?"\n'
+        '- "Write me a poem"\n'
+        '- "What\'s the weather today?"\n'
+        '- anything unrelated to transaction summaries, transaction follow-up explanations, or documentation-based questions'
     ),
 }
 

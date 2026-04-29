@@ -16,6 +16,7 @@ from bot.routes.tx_qa.timeframe_parse_prompt_builder import (
     load_date_parser_instructions,
 )
 
+
 @dataclass(frozen=True)
 class TxQAQuery:
     label: Label
