@@ -18,7 +18,7 @@ class DocStore(DocRepository):
     def get_top_k_chunks(self, query: str, *, top_k: int = 5) -> list[DocHit]:
         query_vector = self.embedder.embed_query(query)
         chunk_scores: list[tuple[DocChunk, float]] = []
-        for chunk in self.chunks:
+        for chunk in self.embedded_chunks:
             embedding = next((e.embedding for e in self.embedded_chunks if e.chunk_id == chunk.chunk_id and e.file_name == chunk.file_name), None)
             if embedding is not None:
                 score = vectors_cosine_similarity(query_vector, embedding)
