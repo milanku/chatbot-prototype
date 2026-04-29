@@ -180,7 +180,7 @@ class ChatbotEngine:
                     query=message,
                     retrieved_chunks=[{"id": hit.id, "score": hit.score, "content": hit.content} for hit in top_k_chunks]
                 )
-                filtered_hits = filter_relevant_hits(hits=top_k_chunks, relevance_threshold=0.7)
+                filtered_hits = filter_relevant_hits(hits=top_k_chunks, absolute_relevance_threshold=0.5, relative_relevance_threshold=0.85)
                 trace(
                     "doc_qa.relevance_filter",
                     query=message,

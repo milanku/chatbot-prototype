@@ -1,5 +1,5 @@
 {
   "embedding_model": "text-embedding-3-small",
-  "docs_fingerprint": "630c22b2a5c8b65ae073d4ed7e8e46f5bb34817280215b8fc4d5b63317c15184",
-  "chunk_count": 56
+  "docs_fingerprint": "b2ff4487687c078aaa0a48688c0ae106372630357041f1a64b80d4721da3a157",
+  "chunk_count": 207
 }
