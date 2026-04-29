@@ -174,7 +174,7 @@ class ChatbotEngine:
 
             case Route.DOCS_ANSWER:
                 top_k_chunks = self._deps.doc_repository.get_top_k_chunks(message, top_k=5)
-                answer_text = synthesize_doc_answer(message, top_k_chunks)
+                answer_text = synthesize_doc_answer(llm_client=self._deps.llm_client, question=message, hits=top_k_chunks)
             case Route.OUT_OF_SCOPE:
                 answer_text = "Sorry, I can't help with that.\n"
             case _:

@@ -53,5 +53,5 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
             msg, session_id=session_id, session_state=session_store.get_session(session_id)
         )
         session_store.set_session(session_id, new_state)  # Update session state
-        typer.echo(response.answer)
+        typer.echo(f"\n\n{response.answer}\n\n")
         typer.echo(f"(trace_id: {response.trace_id})")
