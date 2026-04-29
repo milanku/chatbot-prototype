@@ -33,13 +33,13 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
     )
     
     tx_repository = JsonMockTransactionsRepository.from_json_file(
-        Path("data/mocks/transactions_mock.json")
+        Path(settings.TRANSACTIONS_MOCK_PATH)
     )
     doc_repository = build_doc_store(
         embedder=embedder,
-        md_docs_dir=Path("data/docs"),
-        embeddings_dir=Path("data/embeddings"),
-        manifest_path=Path("data/embeddings/manifest.json"),
+        md_docs_dir=Path(settings.DOCS_PATH),
+        embeddings_dir=Path(settings.EMBEDDINGS_PATH),
+        manifest_path=Path(settings.EMBEDDINGS_MANIFEST_PATH),
     )
     engine = ChatbotEngine(EngineConfig(), EngineDeps(tx_repository=tx_repository, doc_repository=doc_repository, llm_client=llm_client))
 

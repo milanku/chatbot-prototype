@@ -17,6 +17,9 @@ class Settings(BaseSettings):
 
     # Paths
     DOCS_PATH: str = "data/docs"
+    EMBEDDINGS_PATH: str = "data/embeddings"
+    EMBEDDINGS_MANIFEST_PATH: str = "data/embeddings/manifest.json"
+    TRANSACTIONS_MOCK_PATH: str = "data/mocks/transactions_mock.json"
     TRACES_PATH: str = "traces"
     
 settings = Settings()
