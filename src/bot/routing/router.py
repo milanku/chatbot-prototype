@@ -13,7 +13,7 @@ from bot.routing.prompt_builder import (
 
 
 def route(session_id: str, llm_client: LLMClient, message: str) -> RouterDecision:
-    prompt_template = load_router_instructions(Path("src/bot/routing/router_instructions.txt"))
+    prompt_template = load_router_instructions(Path("src/bot/prompts/router_instructions.txt"))
     system_prompt = build_router_system_prompt(
         template=prompt_template,
         allowed_routes=(Route.TX_SUMMARY, Route.TX_EXPLAIN, Route.DOCS_ANSWER, Route.OUT_OF_SCOPE),

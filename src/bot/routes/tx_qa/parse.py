@@ -218,7 +218,7 @@ def _quarter_range(year: int, quarter: int) -> DateRange:
 
 def parse_query(session_id: str, llm_client: LLMClient, msg: str) -> TxQAQuery | None:
 
-    prompt_template = load_date_parser_instructions(Path("src/bot/routes/tx_qa/timeframe_parse_instructions.txt"))
+    prompt_template = load_date_parser_instructions(Path("src/bot/prompts/timeframe_parse_instructions.txt"))
     system_prompt = build_date_parser_system_prompt(
         template=prompt_template,
     )

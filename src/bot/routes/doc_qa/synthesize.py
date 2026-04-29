@@ -28,7 +28,7 @@ def build_synthesize_doc_answer_user_prompt(*, question: str,hits: list[DocHit])
     )
 
 def synthesize_doc_answer(*, llm_client: OpenAIClient, question: str, hits: list[DocHit]) -> str:
-    prompt_template = load_synthesize_doc_answer_instructions(Path("src/bot/routes/doc_qa/synthesize_doc_answer_instructions.txt"))
+    prompt_template = load_synthesize_doc_answer_instructions(Path("src/bot/prompts/synthesize_doc_answer_instructions.txt"))
     system_prompt = build_synthesize_doc_answer_system_prompt(
         template=prompt_template
     )

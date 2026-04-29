@@ -30,7 +30,7 @@ def _deserialize_explain_parse_intermediate_result(raw: str) -> TXExplainParseIn
     )
     
 def parse_explain_query(session_id: str, llm_client: LLMClient, msg: str) -> TXExplainParseIntermediateResult | None:
-    prompt_template = load_tx_explain_parser_instructions(Path("src/bot/routes/tx_qa/explain_parse_instructions.txt"))
+    prompt_template = load_tx_explain_parser_instructions(Path("src/bot/prompts/explain_parse_instructions.txt"))
     system_prompt = build_tx_explain_parser_system_prompt(
         template=prompt_template
     )
