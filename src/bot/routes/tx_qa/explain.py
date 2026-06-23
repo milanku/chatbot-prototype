@@ -4,6 +4,7 @@ from pathlib import Path
 
 from bot.llm.llm_client import LLMClient
 from bot.logging import log_event
+from bot.models.tx_qa.query import TXExplainParseIntermediateResult
 from bot.routes.tx_qa.explain_prompt_builder import (
     TXExplainParserPromptInput,
     build_tx_explain_parser_system_prompt,
@@ -11,14 +12,6 @@ from bot.routes.tx_qa.explain_prompt_builder import (
     load_tx_explain_parser_instructions,
 )
 
-
-@dataclass(frozen=True)
-class TXExplainParseIntermediateResult:
-    reference_offset: int | None
-    reference_count: int | None
-    confidence: float | None
-    reason: str | None
-    
 
 def _deserialize_explain_parse_intermediate_result(raw: str) -> TXExplainParseIntermediateResult:
     data = json.loads(raw)

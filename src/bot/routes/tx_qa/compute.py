@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from bot.models.domain import Transaction
+from bot.models.tx_qa.domain import Transaction
 
 
 def compute_total_amount(transactions: list[Transaction]) -> Decimal:

@@ -4,7 +4,7 @@ from datetime import date
 from decimal import Decimal
 from pathlib import Path
 
-from bot.models.domain import Transaction
+from bot.models.tx_qa.domain import Transaction
 from bot.models.repository import TransactionsRepository, TxFilter
 
 
