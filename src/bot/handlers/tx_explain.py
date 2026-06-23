@@ -1,5 +1,5 @@
 from bot.handlers.models import HandlerResult
-from bot.llm import llm_client
+from bot.llm import client
 from bot.models.memory import SessionState
 from bot.models.tx_qa.query import TxFilter
 from bot.models.tx_qa.repository import TransactionsRepository
@@ -10,7 +10,7 @@ from bot.routes.tx_qa.explain import (
 
 
 class TxExplainHandler:
-    def __init__(self, tx_repository: TransactionsRepository, llm_client: llm_client.LLMClient):
+    def __init__(self, tx_repository: TransactionsRepository, llm_client: client.LLMClient):
         self._tx_repository = tx_repository
         self._llm_client = llm_client
         

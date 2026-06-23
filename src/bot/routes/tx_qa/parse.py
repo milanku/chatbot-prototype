@@ -4,7 +4,7 @@ from datetime import date, timedelta
 from pathlib import Path
 from typing import cast
 
-from bot.llm.llm_client import LLMClient
+from bot.llm.client import LLMClient
 from bot.logging import log_event
 from bot.models.tx_qa.domain import Direction, Label
 from bot.models.tx_qa.query import (

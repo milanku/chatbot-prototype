@@ -10,7 +10,7 @@ from bot.handlers.tx_explain import TxExplainHandler
 from bot.handlers.tx_list import TxListHandler
 from bot.handlers.tx_summary import TxSummaryHandler
 from bot.handlers.unknown_route import UnknownRouteHandler
-from bot.llm import llm_client
+from bot.llm import client
 from bot.logging import log_event
 from bot.models.doc_qa.docs import DocReference, DocRepository
 from bot.models.memory import SessionState
@@ -30,7 +30,7 @@ class EngineConfig:
 class EngineDeps:
     tx_repository: TransactionsRepository
     doc_repository: DocRepository
-    llm_client: llm_client.LLMClient
+    llm_client: client.LLMClient
     
 
 class ChatbotEngine:

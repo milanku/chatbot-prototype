@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from bot.llm.llm_client import LLMClient
+from bot.llm.client import LLMClient
 from bot.logging import log_event
 from bot.models.tx_qa.query import TXExplainParseIntermediateResult
 from bot.routes.tx_qa.explain_prompt_builder import (

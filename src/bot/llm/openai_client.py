@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 from langchain.messages import HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
 
-from bot.llm.llm_client import LLMClient
+from bot.llm.client import LLMClient
 
 
 @dataclass

@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from bot.llm.llm_client import LLMClient
+from bot.llm.client import LLMClient
 from bot.logging import log_event
 from bot.models.routing import Route, RouterDecision
 from bot.routing.prompt_builder import (

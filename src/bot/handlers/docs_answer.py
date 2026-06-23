@@ -1,5 +1,5 @@
 from bot.handlers.models import HandlerResult
-from bot.llm import llm_client
+from bot.llm import client
 from bot.models.doc_qa.docs import DocRepository
 from bot.models.memory import SessionState
 from bot.routes.doc_qa.synthesize import synthesize_doc_answer
@@ -7,7 +7,7 @@ from bot.routes.doc_qa.verify import filter_relevant_hits
 
 
 class DocsAnswerHandler:
-    def __init__(self, doc_repository: DocRepository, llm_client: llm_client.LLMClient):
+    def __init__(self, doc_repository: DocRepository, llm_client: client.LLMClient):
         self._doc_repository = doc_repository
         self._llm_client = llm_client
 
