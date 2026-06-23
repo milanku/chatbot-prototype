@@ -1,30 +1,25 @@
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass, replace
-from datetime import datetime, timezone
-from decimal import Decimal
+from dataclasses import asdict, dataclass
 from uuid import uuid4
 
+from bot.handlers.docs_answer import DocsAnswerHandler
+from bot.handlers.models import HandlerResult
+from bot.handlers.out_of_scope import OutOfScopeHandler
+from bot.handlers.tx_explain import TxExplain
+from bot.handlers.tx_list import TxListHandler
+from bot.handlers.tx_summary import TxSummaryHandler
+from bot.handlers.unknown_route import UnknownRouteHandler
 from bot.llm import llm_client
 from bot.logging import log_event
-from bot.models.memory import SessionState, TxQAQueryResult
+from bot.models.memory import SessionState
 from bot.models.repository import (
     DocReference,
     DocRepository,
     TransactionsRepository,
-    TxFilter,
 )
 from bot.models.responses import BotResponse
 from bot.models.routing import Route, RouterDecision
-from bot.routes.doc_qa.synthesize import synthesize_doc_answer
-from bot.routes.doc_qa.verify import filter_relevant_hits
-from bot.routes.tx_qa import parse
-from bot.routes.tx_qa.compute import compute_total_spent
-from bot.routes.tx_qa.explain import (
-    TXExplainParseIntermediateResult,
-    parse_explain_query,
-)
-from bot.routes.tx_qa.synthesize import synthesize_tx_summary
 from bot.routing.router import route
 
 
@@ -46,6 +41,13 @@ class ChatbotEngine:
         self._config = config
         self._deps = deps
         self._docs = deps.doc_repository
+        
+        self._tx_summary_handler = TxSummaryHandler(tx_respository=deps.tx_repository, llm_client=deps.llm_client)
+        self._tx_list_handler = TxListHandler(tx_respository=deps.tx_repository, llm_client=deps.llm_client)
+        self._tx_explain_handler = TxExplain(tx_respository=deps.tx_repository, llm_client=deps.llm_client)
+        self._docs_answer_handler = DocsAnswerHandler(doc_repository=deps.doc_repository, llm_client=deps.llm_client)
+        self._out_of_scope_handler = OutOfScopeHandler()
+        self._unknown_route_handler = UnknownRouteHandler()
         
     def answer(
         self, message: str, *, session_id: str, session_state: SessionState
@@ -76,174 +78,22 @@ class ChatbotEngine:
 
         match router_decision.route:
             case Route.TX_SUMMARY:
-                parsed_query = parse.parse_query(session_id=session_id, llm_client=self._deps.llm_client, msg=message)
-                                
-                if parsed_query is None:
-                    trace(
-                        "tx_qa.parse_query",
-                        ok=False,
-                    )
-                    answer_text = "Sorry, I couldn't understand your query. Please make sure to include a label (food, pets, other) and a date range (e.g., 2026-01-01 - 2026-01-31).\n"
-                else:
-                    trace(
-                        "tx_qa.parse_query",
-                        ok=True,
-                        label=parsed_query.label,
-                        start=parsed_query.start.isoformat(),
-                        end=parsed_query.end.isoformat(),
-                    )
-                    tx_filter = TxFilter(
-                        label=parsed_query.label,
-                        start=parsed_query.start,
-                        end=parsed_query.end,
-                        direction="spend",  # For simplicity, we only consider spending transactions in this example
-                    )
-                    trace(
-                        "tx_qa.query",
-                        label=parsed_query.label,
-                        start=parsed_query.start.isoformat(),
-                        end=parsed_query.end.isoformat(),
-                        direction=tx_filter.direction,
-                    )
-                    
-                    txs = self._deps.tx_repository.list_transactions(tx_filter)
-                    total_spent = compute_total_spent(txs)
-                    
-                    trace(
-                        "tx_qa.query_result",
-                        total_spent=f"{total_spent:.2f}",
-                        num_transactions=len(txs),
-                    )
-                    query_result: TxQAQueryResult = TxQAQueryResult(
-                        query=parsed_query,
-                        total=Decimal(total_spent), 
-                        created_at=datetime.now(
-                            timezone.utc
-                        ),  # Using current UTC time as a timestamp
-                    )
-                    # Update state with the new query result
-                    new_state = replace(
-                        session_state,
-                        txs_results=session_state.txs_results + (query_result,),
-                    )
-                    answer_text = synthesize_tx_summary(parsed_query, total_spent)
-                    
+                result: HandlerResult = self._tx_summary_handler.handle(message=message, session_id=session_id, session_state=session_state, trace=trace)    
             case Route.TX_LIST:
-                parsed_query = parse.parse_query(session_id=session_id, llm_client=self._deps.llm_client, msg=message)
-                if parsed_query is None:
-                    trace(
-                        "tx_qa.parse_query",
-                        ok=False,
-                    )
-                    answer_text = "Sorry, I couldn't understand your query. Please make sure to include a label (food, pets, other) and a date range (e.g., 2026-01-01 - 2026-01-31).\n"
-                else:
-                    trace(
-                        "tx_qa.parse_query",
-                        ok=True,
-                        label=parsed_query.label,
-                        start=parsed_query.start.isoformat(),
-                        end=parsed_query.end.isoformat(),
-                    )
-                    tx_filter = TxFilter(
-                        label=parsed_query.label,
-                        start=parsed_query.start,
-                        end=parsed_query.end,
-                        direction="spend",  # For simplicity, we only consider spending transactions in this example
-                    )
-                    trace(
-                        "tx_qa.query",
-                        label=parsed_query.label,
-                        start=parsed_query.start.isoformat(),
-                        end=parsed_query.end.isoformat(),
-                        direction=tx_filter.direction,
-                    )
-                    
-                    txs = self._deps.tx_repository.list_transactions(tx_filter)
-                    
-                    trace(
-                        "tx_qa.query_result",
-                        num_transactions=len(txs),
-                    )
-                    
-                    if not txs:
-                        answer_text = "No transactions found for the specified query.\n"
-                    else:
-                        answer_text = "Here are your transactions:\n"
-                        for tx in txs:
-                            answer_text += f"- {tx.date}: {tx.amount:.2f} EUR to {tx.other_account} ({tx.description})\n"
-
+                result: HandlerResult = self._tx_list_handler.handle(message=message, session_id=session_id, session_state=session_state, trace=trace)
             case Route.TX_EXPLAIN:
-                txs_results = session_state.txs_results
-                
-                reference_result:TXExplainParseIntermediateResult = parse_explain_query(session_id=session_id, llm_client=self._deps.llm_client, msg=message)
-                
-                trace(
-                    "tx_explain.parse_query",
-                    txs_results=len(txs_results),
-                    reference_offset=reference_result.reference_offset,
-                    reference_count=reference_result.reference_count,
-                    confidence=reference_result.confidence,
-                    reason=reference_result.reason,
-                )
-                
-                related_results = []
-                if reference_result.reference_offset is not None and reference_result.reference_count is not None:
-                    offset = reference_result.reference_offset
-                    count = reference_result.reference_count
-                    related_results = txs_results[max(0, len(txs_results) - offset - count):len(txs_results) - offset]
-                    trace(
-                        "tx_explain.find_reference",
-                        found=bool(related_results),
-                        reference_offset=reference_result.reference_offset,
-                        reference_count=reference_result.reference_count,
-                        confidence=reference_result.confidence,
-                        reason=reference_result.reason,
-                    )
-                else:
-                    trace(
-                        "tx_explain.find_reference",
-                        found=False,
-                        confidence=reference_result.confidence,
-                        reason=reference_result.reason,
-                    )
-
-                if not related_results:
-                    answer_text = "Sorry, I don't have any transaction summary to explain. Please ask a question about your spending first (e.g., 'How much did I spend on food last month?').\n"
-                else:
-                    answer_text = "Here are the transactions that contributed to your selected sum:\n"
-                    for tx_result in related_results:
-                        txs = self._deps.tx_repository.list_transactions(
-                            TxFilter(
-                                label=tx_result.query.label,
-                                start=tx_result.query.start,
-                                end=tx_result.query.end,
-                                direction="spend",
-                            )
-                        )
-                        for tx in txs:
-                            answer_text += f"- {tx.date}: {tx.amount:.2f} EUR to {tx.other_account} ({tx.description})\n"
-
+                result: HandlerResult = self._tx_explain_handler.handle(message=message, session_id=session_id, session_state=session_state, trace=trace)
             case Route.DOCS_ANSWER:
-                top_k_chunks = self._deps.doc_repository.get_top_k_chunks(message, top_k=5)
-                trace(
-                    "doc_qa.retrieval",
-                    query=message,
-                    retrieved_chunks=[{"id": hit.id, "score": hit.score, "content": hit.content} for hit in top_k_chunks]
-                )
-                filtered_hits = filter_relevant_hits(hits=top_k_chunks, absolute_relevance_threshold=0.5, relative_relevance_threshold=0.85)
-                trace(
-                    "doc_qa.relevance_filter",
-                    query=message,
-                    retrieved_chunks=len(top_k_chunks),
-                    relevant_chunks=len(filtered_hits),
-                )
-                answer_text = synthesize_doc_answer(llm_client=self._deps.llm_client, question=message, hits=filtered_hits)
-                references = [hit.doc_reference for hit in filtered_hits]
+                result: HandlerResult = self._docs_answer_handler.handle(message=message, session_id=session_id, session_state=session_state, trace=trace)
             case Route.OUT_OF_SCOPE:
-                answer_text = "Sorry, I can't help with that.\n"
+                result: HandlerResult = self._out_of_scope_handler.handle(message=message, session_id=session_id, session_state=session_state, trace=trace)
             case _:
-                answer_text = "Unknown route.\n"
-
+                result: HandlerResult = self._unknown_route_handler.handle(message=message, session_id=session_id, session_state=session_state, trace=trace)
+        
+        new_state = result.new_state
+        answer_text = result.answer_text
+        references = result.references
+        
         bot_response = BotResponse(answer=answer_text, doc_references=references, trace_id=trace_id)
 
         # Trace: engine finish
