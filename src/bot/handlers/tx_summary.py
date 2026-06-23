@@ -5,7 +5,7 @@ from bot.models.memory import SessionState, TxQAQueryResult
 from bot.models.repository import TransactionsRepository, TxFilter
 from bot.llm import llm_client
 from bot.routes.tx_qa import parse
-from bot.routes.tx_qa.compute import compute_total_spent
+from bot.routes.tx_qa.compute import compute_total_amount
 from datetime import datetime, timezone
 from decimal import Decimal
 
@@ -49,7 +49,7 @@ class TxSummaryHandler:
             )
             
             txs = self._tx_repository.list_transactions(tx_filter)
-            total_spent = compute_total_spent(txs)
+            total_spent = compute_total_amount(txs)
             
             trace(
                 "tx_qa.query_result",
