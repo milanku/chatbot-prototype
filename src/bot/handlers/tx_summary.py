@@ -18,7 +18,8 @@ class TxSummaryHandler:
 
     def handle(self, *, message:str, session_id:str, session_state: SessionState, trace) -> HandlerResult:
         parsed_query = parse.parse_query(session_id=session_id, llm_client=self._llm_client, msg=message)
-                                
+        new_state = session_state
+    
         if parsed_query is None:
             trace(
                 "tx_qa.parse_query",
