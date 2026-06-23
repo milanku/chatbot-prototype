@@ -5,8 +5,8 @@ from bot.routes.tx_qa import parse
 from bot.handlers.models import HandlerResult
 
 class TxListHandler:
-    def __init__(self, tx_respository: TransactionsRepository, llm_client: llm_client.LLMClient):
-        self._tx_repository = tx_respository
+    def __init__(self, tx_repository: TransactionsRepository, llm_client: llm_client.LLMClient):
+        self._tx_repository = tx_repository
         self._llm_client = llm_client
     
     def handle(self, *, message:str, session_id:str, session_state: SessionState, trace)  -> HandlerResult:

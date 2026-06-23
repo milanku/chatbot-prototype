@@ -42,9 +42,9 @@ class ChatbotEngine:
         self._deps = deps
         self._docs = deps.doc_repository
         
-        self._tx_summary_handler = TxSummaryHandler(tx_respository=deps.tx_repository, llm_client=deps.llm_client)
-        self._tx_list_handler = TxListHandler(tx_respository=deps.tx_repository, llm_client=deps.llm_client)
-        self._tx_explain_handler = TxExplain(tx_respository=deps.tx_repository, llm_client=deps.llm_client)
+        self._tx_summary_handler = TxSummaryHandler(tx_repository=deps.tx_repository, llm_client=deps.llm_client)
+        self._tx_list_handler = TxListHandler(tx_repository=deps.tx_repository, llm_client=deps.llm_client)
+        self._tx_explain_handler = TxExplain(tx_repository=deps.tx_repository, llm_client=deps.llm_client)
         self._docs_answer_handler = DocsAnswerHandler(doc_repository=deps.doc_repository, llm_client=deps.llm_client)
         self._out_of_scope_handler = OutOfScopeHandler()
         self._unknown_route_handler = UnknownRouteHandler()
