@@ -6,7 +6,6 @@ from typing import Literal
 Direction = Literal["spend", "receive"]
 Label = Literal["food", "pets", "other"]
 
-
 @dataclass(frozen=True)
 class Transaction:
     id: str

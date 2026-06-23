@@ -1,8 +1,7 @@
 from bot.handlers.models import HandlerResult
 from bot.llm import client
 from bot.models.memory import SessionState
-from bot.models.tx_qa.query import TxFilter
-from bot.models.tx_qa.repository import TransactionsRepository
+from bot.models.tx_qa.repository import TransactionsRepository, TxFilter
 from bot.routes.tx_qa.explain import (
     TXExplainParseIntermediateResult,
     parse_explain_query,

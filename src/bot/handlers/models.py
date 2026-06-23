@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from bot.models.doc_qa.docs import DocReference
+from bot.models.doc_qa.references import DocReference
 from bot.models.memory import SessionState
 
 

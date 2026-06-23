@@ -1,11 +1,5 @@
 from dataclasses import dataclass
 
-from bot.models.doc_qa.docs import DocChunk
-
-
-@dataclass(frozen=True)
-class EmbeddedDocChunk(DocChunk):
-    embedding: list[float]
 
 @dataclass(frozen=True)
 class EmbeddingsManifest:

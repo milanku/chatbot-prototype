@@ -5,8 +5,9 @@ from pathlib import Path
 
 from langchain_openai import OpenAIEmbeddings
 
-from bot.models.doc_qa.docs import DocReference
-from bot.models.doc_qa.embedings import EmbeddedDocChunk, EmbeddingsManifest
+from bot.models.doc_qa.chunks import EmbeddedDocChunk
+from bot.models.doc_qa.embedings import EmbeddingsManifest
+from bot.models.doc_qa.references import DocReference
 from bot.routes.doc_qa.chunker import split_markdown_into_chunks
 from bot.routes.doc_qa.embedder import embed_doc_chunks
 

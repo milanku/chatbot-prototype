@@ -5,8 +5,7 @@ from decimal import Decimal
 from bot.handlers.models import HandlerResult
 from bot.llm import client
 from bot.models.memory import SessionState, TxQAQueryResult
-from bot.models.tx_qa.query import TxFilter
-from bot.models.tx_qa.repository import TransactionsRepository
+from bot.models.tx_qa.repository import TransactionsRepository, TxFilter
 from bot.routes.tx_qa import parse
 from bot.routes.tx_qa.compute import compute_total_amount
 from bot.routes.tx_qa.synthesize import synthesize_tx_summary

@@ -1,17 +1,9 @@
-from dataclasses import dataclass, field
-from datetime import date, datetime, timezone
-from decimal import Decimal
+from dataclasses import dataclass
+from datetime import date
+from enum import Enum
 
 from bot.models.tx_qa.domain import Direction, Label
-from bot.models.tx_qa.timeframes import TimeframeType
 
-
-@dataclass(frozen=True)
-class TxFilter:
-    label: Label
-    start: date
-    end: date
-    direction: Direction
 
 @dataclass(frozen=True)
 class TxQAQuery:
@@ -20,11 +12,35 @@ class TxQAQuery:
     end: date
     direction: Direction
     
-@dataclass(frozen=True)
-class TxQAQueryResult:
-    query: TxQAQuery
-    total: Decimal
-    created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+DateRange = tuple[date, date]
+
+class TimeframeType(Enum):
+    RELATIVE_DAY = "RELATIVE_DAY"
+    RELATIVE_WEEK = "RELATIVE_WEEK"
+    RELATIVE_MONTH = "RELATIVE_MONTH"
+    RELATIVE_YEAR = "RELATIVE_YEAR"
+    NAMED_DATE = "NAMED_DATE"
+    NAMED_DAY = "NAMED_DAY"
+    NAMED_MONTH = "NAMED_MONTH"
+    NAMED_QUARTER = "NAMED_QUARTER"
+    NAMED_YEAR = "NAMED_YEAR"
+    DATE_RANGE = "DATE_RANGE"
+    UNKNOWN = "UNKNOWN"
+    
+RELATIVE_TIMEFRAMES = {
+    TimeframeType.RELATIVE_DAY,
+    TimeframeType.RELATIVE_WEEK,
+    TimeframeType.RELATIVE_MONTH,
+    TimeframeType.RELATIVE_YEAR,
+}
+
+NAMED_TIMEFRAMES = {
+    TimeframeType.NAMED_DATE,
+    TimeframeType.NAMED_DAY,
+    TimeframeType.NAMED_MONTH,
+    TimeframeType.NAMED_QUARTER,
+    TimeframeType.NAMED_YEAR,
+}
 
 @dataclass(frozen=True)
 class TXQAParseIntermediateResult:

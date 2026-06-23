@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 
-from bot.models.tx_qa.query import TxQAQueryResult
+from bot.models.tx_qa.results import TxQAQueryResult
 
 
 @dataclass(frozen=True)

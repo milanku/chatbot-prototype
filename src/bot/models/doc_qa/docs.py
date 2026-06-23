@@ -1,24 +1,8 @@
 from dataclasses import dataclass
 from typing import Protocol
 
+from bot.models.doc_qa.retrieval import DocHit
 
-@dataclass(frozen=True)
-class DocReference:
-    file_name: str
-    heading_path: list[str]
-    
-@dataclass(frozen=True)
-class DocChunk:
-    doc_reference: DocReference
-    content: str
-    chunk_id: int
-    
-@dataclass(frozen=True) 
-class DocHit:
-    id: str
-    score: float
-    doc_reference: DocReference
-    content: str
 
 @dataclass
 class DocRepository(Protocol):

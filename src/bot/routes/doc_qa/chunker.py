@@ -1,4 +1,5 @@
-from bot.models.doc_qa.docs import DocChunk, DocReference
+from bot.models.doc_qa.chunks import DocChunk
+from bot.models.doc_qa.references import DocReference
 
 
 def split_markdown_into_chunks(file_name: str, content: str) -> list[DocChunk]:

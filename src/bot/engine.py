@@ -12,7 +12,8 @@ from bot.handlers.tx_summary import TxSummaryHandler
 from bot.handlers.unknown_route import UnknownRouteHandler
 from bot.llm import client
 from bot.logging import log_event
-from bot.models.doc_qa.docs import DocReference, DocRepository
+from bot.models.doc_qa.docs import DocRepository
+from bot.models.doc_qa.references import DocReference
 from bot.models.memory import SessionState
 from bot.models.responses import BotResponse
 from bot.models.routing import Route, RouterDecision

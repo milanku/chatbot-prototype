@@ -1,9 +1,16 @@
 from dataclasses import dataclass
+from datetime import date
 from typing import Protocol
 
-from bot.models.tx_qa.domain import Transaction
-from bot.models.tx_qa.query import TxFilter
+from bot.models.tx_qa.domain import Direction, Label, Transaction
 
+
+@dataclass(frozen=True)
+class TxFilter:
+    label: Label
+    start: date
+    end: date
+    direction: Direction
 
 @dataclass
 class TransactionsRepository(Protocol):

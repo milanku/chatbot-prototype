@@ -8,11 +8,13 @@ from bot.llm.client import LLMClient
 from bot.logging import log_event
 from bot.models.tx_qa.domain import Direction, Label
 from bot.models.tx_qa.query import (
+    NAMED_TIMEFRAMES,
+    RELATIVE_TIMEFRAMES,
+    DateRange,
     TimeframeType,
     TXQAParseIntermediateResult,
     TxQAQuery,
 )
-from bot.models.tx_qa.timeframes import NAMED_TIMEFRAMES, RELATIVE_TIMEFRAMES, DateRange
 from bot.routes.tx_qa.timeframe_parse_prompt_builder import (
     DateParserPromptInput,
     build_date_parser_system_prompt,
