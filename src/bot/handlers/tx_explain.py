@@ -13,7 +13,20 @@ class TxExplain:
     def handle(self, *, message:str, session_id:str, session_state: SessionState, trace)  -> HandlerResult:
         txs_results = session_state.txs_results
                 
-        reference_result:TXExplainParseIntermediateResult = parse_explain_query(session_id=session_id, llm_client=self._llm_client, msg=message)
+        reference_result:TXExplainParseIntermediateResult | None = parse_explain_query(session_id=session_id, llm_client=self._llm_client, msg=message)
+        
+        # TODO: Fix the logic here to handle the case where reference_result is None.
+        if reference_result is None:
+            trace(
+                "tx_explain.parse_query",
+                ok=False,
+            )
+            answer_text = "Sorry, your query could not be processed.\n"
+            return HandlerResult(
+                answer_text=answer_text,
+                new_state=session_state,
+                references=[],
+            )
         
         trace(
             "tx_explain.parse_query",
