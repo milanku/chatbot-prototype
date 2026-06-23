@@ -1,4 +1,4 @@
-from bot.models.repository import DocHit
+from bot.models.doc_qa.docs import DocHit
 
 
 def filter_relevant_hits(*, hits: list[DocHit], absolute_relevance_threshold: float = 0.75, relative_relevance_threshold: float = 0.85) -> list[DocHit]:

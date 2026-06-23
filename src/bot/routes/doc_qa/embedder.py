@@ -1,6 +1,7 @@
 from langchain_openai import OpenAIEmbeddings
 
-from bot.models.repository import DocChunk, EmbeddedDocChunk
+from bot.models.doc_qa.docs import DocChunk
+from bot.models.doc_qa.embedings import EmbeddedDocChunk
 
 
 def embed_doc_chunks(chunks: list[DocChunk], embedder: OpenAIEmbeddings) -> list[EmbeddedDocChunk]:

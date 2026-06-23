@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from bot.models.repository import DocReference
+from bot.models.doc_qa.docs import DocReference
 
 
 @dataclass(frozen=True)

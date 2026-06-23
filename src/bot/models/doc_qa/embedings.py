@@ -1,17 +1,8 @@
 from dataclasses import dataclass
-from datetime import date
-from typing import Protocol
 
-from bot.models.tx_qa.domain import Direction, Label, Transaction
+from bot.models.doc_qa.docs import DocChunk
 
 
-
-
-
-
-
-
-    
 @dataclass(frozen=True)
 class EmbeddedDocChunk(DocChunk):
     embedding: list[float]

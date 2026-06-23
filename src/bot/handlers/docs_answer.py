@@ -1,7 +1,7 @@
 from bot.handlers.models import HandlerResult
 from bot.llm import llm_client
+from bot.models.doc_qa.docs import DocRepository
 from bot.models.memory import SessionState
-from bot.models.repository import DocRepository
 from bot.routes.doc_qa.synthesize import synthesize_doc_answer
 from bot.routes.doc_qa.verify import filter_relevant_hits
 

@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from bot.llm.openai_client import OpenAIClient
-from bot.models.repository import DocHit
+from bot.models.doc_qa.docs import DocHit
 
 
 @dataclass(frozen=True)

@@ -2,7 +2,7 @@ from pathlib import Path
 
 from langchain_openai import OpenAIEmbeddings
 
-from bot.models.repository import EmbeddedDocChunk
+from bot.models.doc_qa.embedings import EmbeddedDocChunk
 from bot.routes.doc_qa.doc_store import DocStore
 from bot.routes.doc_qa.persistor import (
     build_doc_embeddings,

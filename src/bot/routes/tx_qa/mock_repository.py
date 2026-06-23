@@ -5,7 +5,8 @@ from decimal import Decimal
 from pathlib import Path
 
 from bot.models.tx_qa.domain import Transaction
-from bot.models.repository import TransactionsRepository, TxFilter
+from bot.models.tx_qa.query import TxFilter
+from bot.models.tx_qa.repository import TransactionsRepository
 
 
 def _parse_date(date_str: str) -> date:

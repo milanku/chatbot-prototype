@@ -2,7 +2,8 @@ from dataclasses import dataclass
 
 from langchain_openai import OpenAIEmbeddings
 
-from bot.models.repository import DocHit, DocRepository, EmbeddedDocChunk
+from bot.models.doc_qa.docs import DocHit, DocRepository
+from bot.models.doc_qa.embedings import EmbeddedDocChunk
 from bot.routes.doc_qa.score import vectors_cosine_similarity
 
 
