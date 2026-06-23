@@ -31,6 +31,7 @@ class TimeframeType(Enum):
     RELATIVE_WEEK = "RELATIVE_WEEK"
     RELATIVE_MONTH = "RELATIVE_MONTH"
     RELATIVE_YEAR = "RELATIVE_YEAR"
+    NAMED_DATE = "NAMED_DATE"
     NAMED_DAY = "NAMED_DAY"
     NAMED_MONTH = "NAMED_MONTH"
     NAMED_QUARTER = "NAMED_QUARTER"
@@ -46,6 +47,7 @@ RELATIVE_TIMEFRAMES = {
 }
 
 NAMED_TIMEFRAMES = {
+    TimeframeType.NAMED_DATE,
     TimeframeType.NAMED_DAY,
     TimeframeType.NAMED_MONTH,
     TimeframeType.NAMED_QUARTER,
@@ -111,17 +113,24 @@ def _resolve_date_range(
     today: date,
 ) -> DateRange | None:
     timeframe_type = intermediate_result.timeframe_type
+    
+    range: DateRange | None = None
 
-    if timeframe_type == TimeframeType.DATE_RANGE:
-        return _explicit_date_range(intermediate_result)
+    if timeframe_type == TimeframeType.NAMED_DATE:
+        range = _explicit_date(intermediate_result, today)
 
-    if timeframe_type in RELATIVE_TIMEFRAMES:
-        return _relative_date_range(timeframe_type, intermediate_result.relative_offset, today)
+    elif timeframe_type == TimeframeType.DATE_RANGE:
+        range = _explicit_date_range(intermediate_result)
 
-    if timeframe_type in NAMED_TIMEFRAMES:
-        return _named_date_range(intermediate_result, today)
+    elif timeframe_type in RELATIVE_TIMEFRAMES:
+        range = _relative_date_range(timeframe_type, intermediate_result.relative_offset, today)
 
-    return None
+    elif timeframe_type in NAMED_TIMEFRAMES:
+        range = _named_date_range(intermediate_result, today)
+
+    log_event(trace_id="SASA", event="tx_qa.parse", payload={"intermediate_result": intermediate_result, "range": range})
+
+    return range
 
 
 def _explicit_date_range(intermediate_result: TXQAParseIntermediateResult) -> DateRange | None:
@@ -130,6 +139,28 @@ def _explicit_date_range(intermediate_result: TXQAParseIntermediateResult) -> Da
 
     return intermediate_result.start_date, intermediate_result.end_date
 
+def _explicit_date(intermediate_result: TXQAParseIntermediateResult, today: date) -> DateRange | None:
+    day = intermediate_result.day
+    month = intermediate_result.month
+    year = intermediate_result.year
+
+    # If year isn't provided, choose the most recent occurrence of the month/day.
+    # If the month/day this year is on-or-before `today`, use this year; otherwise use previous year.
+    if year is None:
+        if not (month and day):
+            return None
+        try:
+            candidate = date(today.year, month, day)
+        except ValueError:
+            return None
+
+        year = today.year if candidate <= today else today.year - 1
+
+    # Validate final date
+    try:
+        return _day_range(year, month, day) if year and month and day else None
+    except Exception:
+        return None
 
 def _relative_date_range(
     timeframe_type: TimeframeType,
@@ -202,6 +233,8 @@ def _month_range(year: int, month: int) -> DateRange:
     last_day = calendar.monthrange(year, month)[1]
     return date(year, month, 1), date(year, month, last_day)
 
+def _day_range(year: int, month: int, day: int) -> DateRange:
+    return date(year, month, day), date(year, month, day)
 
 def _quarter_range(year: int, quarter: int) -> DateRange:
     if quarter not in {1, 2, 3, 4}:
