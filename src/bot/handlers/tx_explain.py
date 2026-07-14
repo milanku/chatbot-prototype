@@ -1,11 +1,11 @@
 from bot.handlers.models import HandlerResult
 from bot.llm import client
+from bot.logging import log_event
 from bot.models.memory import SessionState
+from bot.models.tx_qa.query import TXExplainParseIntermediateResult
 from bot.models.tx_qa.repository import TransactionsRepository, TxFilter
-from bot.routes.tx_qa.explain import (
-    TXExplainParseIntermediateResult,
-    parse_explain_query,
-)
+from bot.models.tx_qa.results import TxQAQueryResult
+from bot.routes.tx_qa.explain import parse_explain_query
 
 
 class TxExplainHandler:
@@ -13,16 +13,19 @@ class TxExplainHandler:
         self._tx_repository = tx_repository
         self._llm_client = llm_client
         
-    def handle(self, *, message:str, session_id:str, session_state: SessionState, trace)  -> HandlerResult:
+    def handle(self, *, message:str, session_id:str, session_state: SessionState)  -> HandlerResult:
         txs_results = session_state.txs_results
                 
-        reference_result:TXExplainParseIntermediateResult | None = parse_explain_query(session_id=session_id, llm_client=self._llm_client, msg=message)
+        reference_result:TXExplainParseIntermediateResult | None = parse_explain_query(llm_client=self._llm_client, msg=message)
         
         # TODO: Fix the logic here to handle the case where reference_result is None.
         if reference_result is None:
-            trace(
-                "tx_explain.parse_query",
-                ok=False,
+            log_event(
+                event="tx_explain.parse_query.error",
+                payload={
+                    "ok": False,
+                    "session_id": session_id,
+                },
             )
             answer_text = "Sorry, your query could not be processed.\n"
             return HandlerResult(
@@ -31,34 +34,45 @@ class TxExplainHandler:
                 references=[],
             )
         
-        trace(
-            "tx_explain.parse_query",
-            txs_results=len(txs_results),
-            reference_offset=reference_result.reference_offset,
-            reference_count=reference_result.reference_count,
-            confidence=reference_result.confidence,
-            reason=reference_result.reason,
+        log_event(
+            event="tx_explain.parse_query.success",
+            payload={
+                "txs_results": len(txs_results),
+                "reference_offset": reference_result.reference_offset,
+                "reference_count": reference_result.reference_count,
+                "confidence": reference_result.confidence,
+                "reason": reference_result.reason,
+                "session_id": session_id,
+            },
         )
         
-        related_results = []
+        related_results: list[TxQAQueryResult] = []
         if reference_result.reference_offset is not None and reference_result.reference_count is not None:
             offset = reference_result.reference_offset
             count = reference_result.reference_count
-            related_results = txs_results[max(0, len(txs_results) - offset - count):len(txs_results) - offset]
-            trace(
-                "tx_explain.find_reference",
-                found=bool(related_results),
-                reference_offset=reference_result.reference_offset,
-                reference_count=reference_result.reference_count,
-                confidence=reference_result.confidence,
-                reason=reference_result.reason,
+            related_results = list(
+                txs_results[max(0, len(txs_results) - offset - count):len(txs_results) - offset]
+            )
+            log_event(
+                event="tx_explain.find_reference",
+                payload={
+                    "found": bool(related_results),
+                    "reference_offset": reference_result.reference_offset,
+                    "reference_count": reference_result.reference_count,
+                    "confidence": reference_result.confidence,
+                    "reason": reference_result.reason,
+                    "session_id": session_id,
+                },
             )
         else:
-            trace(
-                "tx_explain.find_reference",
-                found=False,
-                confidence=reference_result.confidence,
-                reason=reference_result.reason,
+            log_event(
+                event="tx_explain.find_reference",
+                payload={
+                    "found": False,
+                    "confidence": reference_result.confidence,
+                    "reason": reference_result.reason,
+                    "session_id": session_id,
+                },
             )
 
         if not related_results:

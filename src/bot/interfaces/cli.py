@@ -57,6 +57,6 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
         typer.echo(f"\n\n{response.answer}\n\n")
         if(response.doc_references):
             typer.echo(        
-                f"Referenced documents:\n" + "\n".join(f"{ref.file_name} ({' >> '.join(ref.heading_path)})" for ref in response.doc_references) + "\n\n"
+                "Referenced documents:\n" + "\n".join(f"{ref.file_name} ({' >> '.join(ref.heading_path)})" for ref in response.doc_references) + "\n\n"
             )
         typer.echo(f"(trace_id: {response.trace_id})")

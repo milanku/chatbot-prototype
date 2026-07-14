@@ -21,7 +21,7 @@ def _deserialize_explain_parse_intermediate_result(raw: str) -> TXExplainParseIn
         reason=data.get("reason"),
     )
     
-def parse_explain_query(session_id: str, llm_client: LLMClient, msg: str) -> TXExplainParseIntermediateResult | None:
+def parse_explain_query(llm_client: LLMClient, msg: str) -> TXExplainParseIntermediateResult | None:
     prompt_template = load_tx_explain_parser_instructions(Path("src/bot/prompts/explain_parse_instructions.txt"))
     system_prompt = build_tx_explain_parser_system_prompt(
         template=prompt_template
@@ -29,7 +29,6 @@ def parse_explain_query(session_id: str, llm_client: LLMClient, msg: str) -> TXE
     user_prompt = build_tx_explain_parser_user_prompt(TXExplainParserPromptInput(message=msg))
     
     log_event(
-        trace_id=session_id,
         event="explain_parser.input",
         payload={"message": msg}
     )
@@ -40,7 +39,6 @@ def parse_explain_query(session_id: str, llm_client: LLMClient, msg: str) -> TXE
     )
     
     log_event(
-        trace_id=session_id,
         event="explain_parser.output",
         payload={"raw_result": raw_result}
     )
@@ -50,7 +48,6 @@ def parse_explain_query(session_id: str, llm_client: LLMClient, msg: str) -> TXE
     except Exception as e:
         # Log the error and return None if deserialization fails
         log_event(
-            trace_id=session_id,
             event="explain_parser.error",
             payload={"error": str(e)}
         )

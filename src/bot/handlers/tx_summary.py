@@ -4,8 +4,10 @@ from decimal import Decimal
 
 from bot.handlers.models import HandlerResult
 from bot.llm import client
-from bot.models.memory import SessionState, TxQAQueryResult
+from bot.logging import log_event
+from bot.models.memory import SessionState
 from bot.models.tx_qa.repository import TransactionsRepository, TxFilter
+from bot.models.tx_qa.results import TxQAQueryResult
 from bot.routes.tx_qa import parse
 from bot.routes.tx_qa.compute import compute_total_amount
 from bot.routes.tx_qa.synthesize import synthesize_tx_summary
@@ -16,23 +18,28 @@ class TxSummaryHandler:
         self._tx_repository = tx_repository
         self._llm_client = llm_client
 
-    def handle(self, *, message:str, session_id:str, session_state: SessionState, trace) -> HandlerResult:
-        parsed_query = parse.parse_query(session_id=session_id, llm_client=self._llm_client, msg=message)
+    def handle(self, *, message:str, session_id:str, session_state: SessionState) -> HandlerResult:
+        parsed_query = parse.parse_query(llm_client=self._llm_client, msg=message)
         new_state = session_state
     
         if parsed_query is None:
-            trace(
-                "tx_qa.parse_query",
-                ok=False,
+            log_event(
+                event="tx_qa.parse_query.error",
+                payload={
+                    "message": "Parsed query is None. Could not extract label and date range from the message.",
+                    "session_id": session_id,
+                }
             )
             answer_text = "Sorry, I couldn't understand your query. Please make sure to include a label (food, pets, other) and a date range (e.g., 2026-01-01 - 2026-01-31).\n"
         else:
-            trace(
-                "tx_qa.parse_query",
-                ok=True,
-                label=parsed_query.label,
-                start=parsed_query.start.isoformat(),
-                end=parsed_query.end.isoformat(),
+            log_event(
+                event="tx_qa.parse_query.success",
+                payload={
+                    "label": parsed_query.label,
+                    "start": parsed_query.start.isoformat(),
+                    "end": parsed_query.end.isoformat(),
+                    "session_id": session_id,
+                }
             )
             tx_filter = TxFilter(
                 label=parsed_query.label,
@@ -40,21 +47,26 @@ class TxSummaryHandler:
                 end=parsed_query.end,
                 direction="spend",  # For simplicity, we only consider spending transactions in this example
             )
-            trace(
-                "tx_qa.query",
-                label=parsed_query.label,
-                start=parsed_query.start.isoformat(),
-                end=parsed_query.end.isoformat(),
-                direction=tx_filter.direction,
+            log_event(
+                event="tx_qa.query",
+                payload={
+                    "label": parsed_query.label,
+                    "start": parsed_query.start.isoformat(),
+                    "end": parsed_query.end.isoformat(),
+                    "direction": tx_filter.direction,
+                    "session_id": session_id,
+                }
             )
             
             txs = self._tx_repository.list_transactions(tx_filter)
             total_spent = compute_total_amount(txs)
-            
-            trace(
-                "tx_qa.query_result",
-                total_spent=f"{total_spent:.2f}",
-                num_transactions=len(txs),
+            log_event(
+                event="tx_qa.query_result",
+                payload={
+                    "total_spent": f"{total_spent:.2f}",
+                    "num_transactions": len(txs),
+                    "session_id": session_id,
+                }
             )
             query_result: TxQAQueryResult = TxQAQueryResult(
                 query=parsed_query,
@@ -68,7 +80,7 @@ class TxSummaryHandler:
                 session_state,
                 txs_results=session_state.txs_results + (query_result,),
             )
-            answer_text = synthesize_tx_summary(parsed_query, total_spent)
+            answer_text = synthesize_tx_summary(parsed_query, float(total_spent))
         
         return HandlerResult(
             answer_text=answer_text,

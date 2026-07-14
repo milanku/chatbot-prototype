@@ -19,6 +19,7 @@ from bot.models.responses import BotResponse
 from bot.models.routing import Route, RouterDecision
 from bot.models.tx_qa.repository import TransactionsRepository
 from bot.routing.router import route
+from bot.trace_context import bind_trace_id
 
 
 @dataclass(frozen=True)
@@ -53,52 +54,50 @@ class ChatbotEngine:
         trace_id = uuid4().hex
         
         new_state = session_state  # By default, the state doesn't change. Routes can override this if needed.
+        with bind_trace_id(trace_id):
+            log_event(
+                event="engine.start",
+                payload={
+                    "session_id": session_id,
+                    "message": message,
+                    "app": self._config.app_name,
+                }
+            )
 
-        def trace(event: str, **payload: object) -> None:
-             log_event(trace_id=trace_id, event=event, payload=payload)
+            router_decision: RouterDecision = route(llm_client=self._deps.llm_client, message=message)
 
-        # Trace: engine start
-        trace(
-            "engine.start",
-            session_id=session_id,
-            message=message,
-            app=self._config.app_name,
-        )
+            log_event(
+                event="router.decision",
+                payload={
+                    "route": router_decision.route.value,
+                    "confidence": router_decision.confidence,
+                }
+            )
+            references: list[DocReference] = []
 
-        router_decision: RouterDecision = route(session_id=session_id, llm_client=self._deps.llm_client, message=message)
+            match router_decision.route:
+                case Route.TX_SUMMARY:
+                    result: HandlerResult = self._tx_summary_handler.handle(message=message, session_id=session_id, session_state=session_state)
+                case Route.TX_LIST:
+                    result = self._tx_list_handler.handle(message=message, session_id=session_id, session_state=session_state)
+                case Route.TX_EXPLAIN:
+                    result = self._tx_explain_handler.handle(message=message, session_id=session_id, session_state=session_state)
+                case Route.DOCS_ANSWER:
+                    result = self._docs_answer_handler.handle(message=message, session_id=session_id, session_state=session_state)
+                case Route.OUT_OF_SCOPE:
+                    result = self._out_of_scope_handler.handle(message=message, session_id=session_id, session_state=session_state)
+                case _:
+                    result = self._unknown_route_handler.handle(message=message, session_id=session_id, session_state=session_state)
 
-        trace(
-            "router.decision",
-            route=router_decision.route.value,
-            confidence=router_decision.confidence,
-        )
-        references: list[DocReference] = []
+            new_state = result.new_state
+            answer_text = result.answer_text
+            references = result.references
 
-        match router_decision.route:
-            case Route.TX_SUMMARY:
-                result: HandlerResult = self._tx_summary_handler.handle(message=message, session_id=session_id, session_state=session_state, trace=trace)    
-            case Route.TX_LIST:
-                result: HandlerResult = self._tx_list_handler.handle(message=message, session_id=session_id, session_state=session_state, trace=trace)
-            case Route.TX_EXPLAIN:
-                result: HandlerResult = self._tx_explain_handler.handle(message=message, session_id=session_id, session_state=session_state, trace=trace)
-            case Route.DOCS_ANSWER:
-                result: HandlerResult = self._docs_answer_handler.handle(message=message, session_id=session_id, session_state=session_state, trace=trace)
-            case Route.OUT_OF_SCOPE:
-                result: HandlerResult = self._out_of_scope_handler.handle(message=message, session_id=session_id, session_state=session_state, trace=trace)
-            case _:
-                result: HandlerResult = self._unknown_route_handler.handle(message=message, session_id=session_id, session_state=session_state, trace=trace)
-        
-        new_state = result.new_state
-        answer_text = result.answer_text
-        references = result.references
-        
+            log_event(
+                event="engine.finish",
+                payload={"doc_references": [asdict(ref) for ref in references]},
+            )
+
         bot_response = BotResponse(answer=answer_text, doc_references=references, trace_id=trace_id)
-
-        # Trace: engine finish
-        log_event(
-            trace_id=trace_id,
-            event="engine.finish",
-            payload={"doc_references": [asdict(ref) for ref in bot_response.doc_references]},
-        )
 
         return bot_response, new_state

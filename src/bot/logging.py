@@ -5,9 +5,12 @@ import enum
 import json
 import logging
 from datetime import date, datetime, timezone
-from typing import Any, Protocol, cast
+from typing import Any, Protocol, cast, runtime_checkable
+
+from bot.trace_context import get_current_trace_id
 
 
+@runtime_checkable
 class _SupportsToDict(Protocol):
     def to_dict(self) -> Any: ...
 
@@ -34,13 +37,12 @@ def _default_serializer(o: Any) -> Any:
 
     # Sets -> list
     if isinstance(o, set):
-        return list(cast(set[Any], o))
+        return list(cast(set[object], o))
 
     # Objects providing to_dict
-    if hasattr(o, "to_dict") and callable(getattr(o, "to_dict")):
-        to_dict_obj = cast(_SupportsToDict, o)
+    if isinstance(o, _SupportsToDict):
         try:
-            return to_dict_obj.to_dict()
+            return o.to_dict()
         except Exception:
             pass
 
@@ -55,10 +57,11 @@ def _default_serializer(o: Any) -> Any:
     return str(o)
 
 
-def log_event(*, trace_id: str, event: str, payload: dict[str, Any]) -> None:
+def log_event(*, event: str, payload: dict[str, Any], trace_id: str | None = None) -> None:
+    resolved_trace_id = trace_id or get_current_trace_id() or "missing-trace-id"
     record: dict[str, Any] = {
         "ts": datetime.now(timezone.utc).isoformat(),
-        "trace_id": trace_id,
+        "trace_id": resolved_trace_id,
         "event": event,
         "payload": payload,
     }
@@ -71,6 +74,6 @@ def log_event(*, trace_id: str, event: str, payload: dict[str, Any]) -> None:
             record["payload"] = str(payload)
             text = json.dumps(record, ensure_ascii=False)
         except Exception:
-            text = f"{record['ts']} {trace_id} {event} (unserializable payload)"
+            text = f"{record['ts']} {resolved_trace_id} {event} (unserializable payload)"
 
     logging.getLogger("bot").debug(text)

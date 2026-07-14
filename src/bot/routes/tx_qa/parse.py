@@ -2,7 +2,6 @@ import calendar
 import json
 from datetime import date, timedelta
 from pathlib import Path
-from typing import cast
 
 from bot.llm.client import LLMClient
 from bot.logging import log_event
@@ -46,9 +45,13 @@ def _deserialize_intermediate_result(raw: str) -> TXQAParseIntermediateResult:
     data = json.loads(raw)
     raw_label = data.get("label")
     raw_direction = data.get("direction")
+    parsed_label: Label | None = raw_label if raw_label in ("food", "pets", "other") else None
+    parsed_direction: Direction | None = (
+        raw_direction if raw_direction in ("spend", "receive") else None
+    )
     return TXQAParseIntermediateResult(
-        label=cast(Label, raw_label) if raw_label in ("food", "pets", "other") else None,
-        direction=cast(Direction, raw_direction) if raw_direction in ("spend", "receive") else None,
+        label=parsed_label,
+        direction=parsed_direction,
         timeframe_type=TimeframeType(data["timeframe_type"]),
         relative_offset=data.get("relative_offset"),
         year=data.get("year"),
@@ -82,7 +85,7 @@ def _resolve_date_range(
     elif timeframe_type in NAMED_TIMEFRAMES:
         range = _named_date_range(intermediate_result, today)
 
-    log_event(trace_id="SASA", event="tx_qa.parse", payload={"intermediate_result": intermediate_result, "range": range})
+    log_event(event="tx_qa.parse", payload={"intermediate_result": intermediate_result, "range": range})
 
     return range
 
@@ -203,7 +206,7 @@ def _quarter_range(year: int, quarter: int) -> DateRange:
     return start, end
 
 
-def parse_query(session_id: str, llm_client: LLMClient, msg: str) -> TxQAQuery | None:
+def parse_query(llm_client: LLMClient, msg: str) -> TxQAQuery | None:
 
     prompt_template = load_date_parser_instructions(Path("src/bot/prompts/timeframe_parse_instructions.txt"))
     system_prompt = build_date_parser_system_prompt(
@@ -212,7 +215,6 @@ def parse_query(session_id: str, llm_client: LLMClient, msg: str) -> TxQAQuery |
     user_prompt = build_date_parser_user_prompt(DateParserPromptInput(message=msg))
     
     log_event(
-        trace_id=session_id,
         event="tx_qa.date_parser.input",
         payload={"message": msg}
     )
@@ -223,7 +225,6 @@ def parse_query(session_id: str, llm_client: LLMClient, msg: str) -> TxQAQuery |
     )
 
     log_event(
-        trace_id=session_id,
         event="tx_qa.date_parser.output",
         payload={"date_parser_response": date_parser_response}
     )
@@ -231,7 +232,6 @@ def parse_query(session_id: str, llm_client: LLMClient, msg: str) -> TxQAQuery |
     parsed = parse_intermediate_result(intermediate_raw_result=date_parser_response)
     if parsed is None:
         log_event(
-            trace_id=session_id,
             event="tx_qa.date_parser.parse_failed",
             payload={"date_parser_response": date_parser_response}
         )

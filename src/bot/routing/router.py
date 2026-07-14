@@ -12,7 +12,7 @@ from bot.routing.prompt_builder import (
 )
 
 
-def route(session_id: str, llm_client: LLMClient, message: str) -> RouterDecision:
+def route(llm_client: LLMClient, message: str) -> RouterDecision:
     prompt_template = load_router_instructions(Path("src/bot/prompts/router_instructions.txt"))
     system_prompt = build_router_system_prompt(
         template=prompt_template,
@@ -21,7 +21,6 @@ def route(session_id: str, llm_client: LLMClient, message: str) -> RouterDecisio
     user_prompt = build_router_user_prompt(RouterPromptInput(message=message))
     
     log_event(
-        trace_id=session_id,
         event="router.input",
         payload={"message": message}
     )
@@ -32,7 +31,6 @@ def route(session_id: str, llm_client: LLMClient, message: str) -> RouterDecisio
     )
     
     log_event(
-        trace_id=session_id,
         event="router.output",
         payload={"router_response": router_response}
     )
