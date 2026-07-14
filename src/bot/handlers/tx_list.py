@@ -25,7 +25,7 @@ class TxListHandler(TxBaseHandler):
                 label=parsed_query.label,
                 start=parsed_query.start,
                 end=parsed_query.end,
-                direction=parsed_query.direction,  # For simplicity, we only consider spending transactions in this example
+                direction=parsed_query.direction,
             )
             log_event(
                 event="tx_qa.parse_query.success",
