@@ -9,15 +9,23 @@ from typing import Any, Protocol, cast, runtime_checkable
 
 from bot.trace_context import get_current_trace_id
 
+_json_indent: int | None = None
+
 
 @runtime_checkable
 class _SupportsToDict(Protocol):
     def to_dict(self) -> Any: ...
 
 
-def setup_logging(*, verbose: bool = False) -> None:
+def setup_logging(*, verbose: bool = False, pretty_json: bool | None = None) -> None:
+    global _json_indent
+
     level = logging.DEBUG if verbose else logging.INFO
     logging.basicConfig(level=level, format="%(message)s")
+
+    # Default to pretty logs in verbose mode unless explicitly overridden.
+    use_pretty_json = verbose if pretty_json is None else pretty_json
+    _json_indent = 2 if use_pretty_json else None
 
 
 def _default_serializer(o: Any) -> Any:
@@ -67,13 +75,18 @@ def log_event(*, event: str, payload: dict[str, Any], trace_id: str | None = Non
     }
 
     try:
-        text = json.dumps(record, ensure_ascii=False, default=_default_serializer)
+        text = json.dumps(
+            record,
+            ensure_ascii=False,
+            default=_default_serializer,
+            indent=_json_indent,
+        )
     except TypeError:
         # Very defensive: fall back to a best-effort string representation
         try:
             record["payload"] = str(payload)
-            text = json.dumps(record, ensure_ascii=False)
+            text = json.dumps(record, ensure_ascii=False, indent=_json_indent)
         except Exception:
             text = f"{record['ts']} {resolved_trace_id} {event} (unserializable payload)"
 
-    logging.getLogger("bot").debug(text)
+    logging.getLogger("bot").debug(f"\n\n{text}")
