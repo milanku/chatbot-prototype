@@ -23,7 +23,7 @@ class DocsAnswerHandler(Handler):
                 "session_id": session_id,
             }
         )
-        filtered_hits = filter_relevant_hits(hits=top_k_chunks, absolute_relevance_threshold=0.5, relative_relevance_threshold=0.85)
+        filtered_hits = filter_relevant_hits(hits=top_k_chunks, absolute_relevance_threshold=0.4, relative_relevance_threshold=0.85)
         log_event(
             event="doc_qa.relevance_filter",
             payload={
