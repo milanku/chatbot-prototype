@@ -2,6 +2,7 @@ import hashlib
 import json
 from dataclasses import asdict
 from pathlib import Path
+from typing import Any
 
 from langchain_openai import OpenAIEmbeddings
 
@@ -46,7 +47,7 @@ def hash_file(file_path: Path) -> str:
     return hashlib.sha256(file_path.read_bytes()).hexdigest()
 
 def compute_docs_fingerprint(*, file_paths: list[Path], embedding_model: str) -> str:
-    payload = {
+    payload: dict[str, Any] = {
         "embedding_model": embedding_model,
         "files": [
             {
