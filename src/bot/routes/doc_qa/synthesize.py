@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from pathlib import Path
 
-from bot.llm.openai_client import OpenAIClient
-from bot.models.doc_qa.docs import DocHit
+from bot.llm.client import LLMClient
+from bot.models.doc_qa.retrieval import DocHit
 
 
 @dataclass(frozen=True)
@@ -26,7 +26,7 @@ def build_synthesize_doc_answer_user_prompt(*, question: str,hits: list[DocHit])
         f"Retrieved information: \n{context_block}\n\n"
     )
 
-def synthesize_doc_answer(*, llm_client: OpenAIClient, question: str, hits: list[DocHit]) -> str:
+def synthesize_doc_answer(*, llm_client: LLMClient, question: str, hits: list[DocHit]) -> str:
     prompt_template = load_synthesize_doc_answer_instructions(Path("src/bot/prompts/synthesize_doc_answer_instructions.txt"))
     system_prompt = build_synthesize_doc_answer_system_prompt(
         template=prompt_template

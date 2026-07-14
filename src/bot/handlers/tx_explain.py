@@ -1,17 +1,14 @@
+from bot.handlers.base import TxBaseHandler
 from bot.handlers.models import HandlerResult
-from bot.llm import client
 from bot.logging import log_event
 from bot.models.memory import SessionState
 from bot.models.tx_qa.query import TXExplainParseIntermediateResult
-from bot.models.tx_qa.repository import TransactionsRepository, TxFilter
+from bot.models.tx_qa.repository import TxFilter
 from bot.models.tx_qa.results import TxQAQueryResult
 from bot.routes.tx_qa.explain import parse_explain_query
 
 
-class TxExplainHandler:
-    def __init__(self, tx_repository: TransactionsRepository, llm_client: client.LLMClient):
-        self._tx_repository = tx_repository
-        self._llm_client = llm_client
+class TxExplainHandler(TxBaseHandler):
         
     def handle(self, *, message:str, session_id:str, session_state: SessionState)  -> HandlerResult:
         txs_results = session_state.txs_results

@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 from decimal import Decimal
 
 from bot.models.tx_qa.query import TxQAQuery
@@ -9,4 +9,4 @@ from bot.models.tx_qa.query import TxQAQuery
 class TxQAQueryResult:
     query: TxQAQuery
     total: Decimal
-    created_at: datetime = field(default_factory=lambda: datetime.now(datetime.timezone.utc))
+    created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))

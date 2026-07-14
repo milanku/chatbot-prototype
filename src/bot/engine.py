@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from uuid import uuid4
 
+from bot.handlers.base import Handler
 from bot.handlers.docs_answer import DocsAnswerHandler
 from bot.handlers.models import HandlerResult
 from bot.handlers.out_of_scope import OutOfScopeHandler
@@ -41,12 +42,24 @@ class ChatbotEngine:
         self._deps = deps
         self._docs = deps.doc_repository
         
-        self._tx_summary_handler = TxSummaryHandler(tx_repository=deps.tx_repository, llm_client=deps.llm_client)
-        self._tx_list_handler = TxListHandler(tx_repository=deps.tx_repository, llm_client=deps.llm_client)
-        self._tx_explain_handler = TxExplainHandler(tx_repository=deps.tx_repository, llm_client=deps.llm_client)
-        self._docs_answer_handler = DocsAnswerHandler(doc_repository=deps.doc_repository, llm_client=deps.llm_client)
-        self._out_of_scope_handler = OutOfScopeHandler()
-        self._unknown_route_handler = UnknownRouteHandler()
+        self._tx_summary_handler: Handler = TxSummaryHandler(
+            tx_repository=deps.tx_repository,
+            llm_client=deps.llm_client,
+        )
+        self._tx_list_handler: Handler = TxListHandler(
+            tx_repository=deps.tx_repository,
+            llm_client=deps.llm_client,
+        )
+        self._tx_explain_handler: Handler = TxExplainHandler(
+            tx_repository=deps.tx_repository,
+            llm_client=deps.llm_client,
+        )
+        self._docs_answer_handler: Handler = DocsAnswerHandler(
+            doc_repository=deps.doc_repository,
+            llm_client=deps.llm_client,
+        )
+        self._out_of_scope_handler: Handler = OutOfScopeHandler()
+        self._unknown_route_handler: Handler = UnknownRouteHandler()
         
     def answer(
         self, message: str, *, session_id: str, session_state: SessionState
