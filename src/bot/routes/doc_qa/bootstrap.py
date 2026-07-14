@@ -2,6 +2,7 @@ from pathlib import Path
 
 from langchain_openai import OpenAIEmbeddings
 
+from bot.logging import log_event
 from bot.models.doc_qa.chunks import EmbeddedDocChunk
 from bot.routes.doc_qa.doc_store import DocStore
 from bot.routes.doc_qa.persistor import (
@@ -51,6 +52,15 @@ def load_or_build_embeddings(
             rebuild_reason = "Existing manifest or embeddings are outdated"
             
     if should_rebuild:
+        log_event(
+            trace_id="doc_qa_bootstrap",
+            event="rebuild_doc_embeddings",
+            payload={
+                "reason": rebuild_reason,
+                "embedding_model": embedder.model,
+                "docs_fingerprint": current_embeddings_fingerprint,
+            }
+        )
         embedded_chunks = build_doc_embeddings(
             embedder=embedder,
             docs_dir_path=docs_dir_path,

@@ -4,7 +4,7 @@ from bot.models.doc_qa.chunks import DocChunk, EmbeddedDocChunk
 
 
 def embed_doc_chunks(chunks: list[DocChunk], embedder: OpenAIEmbeddings) -> list[EmbeddedDocChunk]:
-    embedded_chunks = []
+    embedded_chunks: list[EmbeddedDocChunk] = []
     embedded_vectors = embedder.embed_documents([chunk.content for chunk in chunks])
     
     for chunk, embedding in zip(chunks, embedded_vectors, strict=True):

@@ -3,7 +3,7 @@ from bot.models.doc_qa.references import DocReference
 
 
 def split_markdown_into_chunks(file_name: str, content: str) -> list[DocChunk]:
-    new_chunks = []
+    new_chunks: list[DocChunk] = []
     # Splits markdown content into chunks by newlines, and assigns a chunk_id to each chunk
     title_stack: list[str] = []
     chunk_id = 0
