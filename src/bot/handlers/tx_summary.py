@@ -42,7 +42,7 @@ class TxSummaryHandler(TxBaseHandler):
                 label=parsed_query.label,
                 start=parsed_query.start,
                 end=parsed_query.end,
-                direction="spend",  # For simplicity, we only consider spending transactions in this example
+                direction=parsed_query.direction,  # For simplicity, we only consider spending transactions in this example
             )
             log_event(
                 event="tx_qa.query",
@@ -56,18 +56,18 @@ class TxSummaryHandler(TxBaseHandler):
             )
             
             txs = self._tx_repository.list_transactions(tx_filter)
-            total_spent = compute_total_amount(txs)
+            total_amount = compute_total_amount(txs)
             log_event(
                 event="tx_qa.query_result",
                 payload={
-                    "total_spent": f"{total_spent:.2f}",
+                    "total_amount": f"{total_amount:.2f}",
                     "num_transactions": len(txs),
                     "session_id": session_id,
                 }
             )
             query_result: TxQAQueryResult = TxQAQueryResult(
                 query=parsed_query,
-                total=Decimal(total_spent), 
+                total=Decimal(total_amount), 
                 created_at=datetime.now(
                     timezone.utc
                 ),  # Using current UTC time as a timestamp
@@ -77,7 +77,7 @@ class TxSummaryHandler(TxBaseHandler):
                 session_state,
                 txs_results=session_state.txs_results + (query_result,),
             )
-            answer_text = synthesize_tx_summary(parsed_query, float(total_spent))
+            answer_text = synthesize_tx_summary(parsed_query, float(total_amount))
         
         return HandlerResult(
             answer_text=answer_text,
