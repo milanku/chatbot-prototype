@@ -5,7 +5,11 @@ import enum
 import json
 import logging
 from datetime import date, datetime, timezone
-from typing import Any
+from typing import Any, Protocol, cast
+
+
+class _SupportsToDict(Protocol):
+    def to_dict(self) -> Any: ...
 
 
 def setup_logging(*, verbose: bool = False) -> None:
@@ -16,6 +20,8 @@ def setup_logging(*, verbose: bool = False) -> None:
 def _default_serializer(o: Any) -> Any:
     # dataclasses -> dict
     if dataclasses.is_dataclass(o):
+        if isinstance(o, type):
+            return o.__name__
         return dataclasses.asdict(o)
 
     # datetime/date -> ISO format
@@ -28,12 +34,13 @@ def _default_serializer(o: Any) -> Any:
 
     # Sets -> list
     if isinstance(o, set):
-        return list(o)
+        return list(cast(set[Any], o))
 
     # Objects providing to_dict
     if hasattr(o, "to_dict") and callable(getattr(o, "to_dict")):
+        to_dict_obj = cast(_SupportsToDict, o)
         try:
-            return o.to_dict()
+            return to_dict_obj.to_dict()
         except Exception:
             pass
 
@@ -49,7 +56,7 @@ def _default_serializer(o: Any) -> Any:
 
 
 def log_event(*, trace_id: str, event: str, payload: dict[str, Any]) -> None:
-    record = {
+    record: dict[str, Any] = {
         "ts": datetime.now(timezone.utc).isoformat(),
         "trace_id": trace_id,
         "event": event,
