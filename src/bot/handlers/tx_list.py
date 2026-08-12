@@ -8,13 +8,13 @@ from bot.routes.tx_qa import parse
 
 class TxListHandler(TxBaseHandler):
     
-    def handle(self, *, message:str, session_id:str, session_state: SessionState)  -> HandlerResult:
-        parsed_query = parse.parse_query(llm_client=self._llm_client, msg=message)
+    def handle(self, *, message:str, session_id:str, session_state: SessionState) -> HandlerResult:
+        parsed_tx_query = parse.parse_tx_query_from_user_message(llm_client=self._llm_client, user_msg=message)
         
-        if parsed_query is None:
+        if parsed_tx_query is None:
             answer_text = "Sorry, I couldn't understand your query. Please make sure to include a label (food, pets, other) and a date range (e.g., 2026-01-01 - 2026-01-31).\n"
             log_event(
-                event="tx_qa.parse_query.error",
+                event="tx_qa.parse_tx_query.error",
                 payload={
                     "message": "Parsed query is None. Could not extract label and date range from the message.",
                     "session_id": session_id,
@@ -22,17 +22,17 @@ class TxListHandler(TxBaseHandler):
             )
         else:
             tx_filter = TxFilter(
-                label=parsed_query.label,
-                start=parsed_query.start,
-                end=parsed_query.end,
-                direction=parsed_query.direction,
+                label=parsed_tx_query.label,
+                start=parsed_tx_query.start,
+                end=parsed_tx_query.end,
+                direction=parsed_tx_query.direction,
             )
             log_event(
-                event="tx_qa.parse_query.success",
+                event="tx_qa.parse_tx_query.success",
                 payload={
-                    "label": parsed_query.label,
-                    "start": parsed_query.start.isoformat(),
-                    "end": parsed_query.end.isoformat(),
+                    "label": parsed_tx_query.label,
+                    "start": parsed_tx_query.start.isoformat(),
+                    "end": parsed_tx_query.end.isoformat(),
                     "direction": tx_filter.direction,
                     "session_id": session_id,
                 },

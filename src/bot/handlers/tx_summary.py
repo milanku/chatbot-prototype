@@ -8,15 +8,15 @@ from bot.logging import log_event
 from bot.models.memory import SessionState
 from bot.models.tx_qa.repository import TxFilter
 from bot.models.tx_qa.results import TxQAQueryResult
-from bot.routes.tx_qa import parse
 from bot.routes.tx_qa.compute import compute_total_amount
+from bot.routes.tx_qa import parse
 from bot.routes.tx_qa.synthesize import synthesize_tx_summary
 
 
 class TxSummaryHandler(TxBaseHandler):
 
     def handle(self, *, message:str, session_id:str, session_state: SessionState) -> HandlerResult:
-        parsed_query = parse.parse_query(llm_client=self._llm_client, msg=message)
+        parsed_query = parse.parse_tx_query_from_user_message(llm_client=self._llm_client, user_msg=message)
         new_state = session_state
     
         if parsed_query is None:

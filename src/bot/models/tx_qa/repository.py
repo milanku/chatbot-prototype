@@ -7,10 +7,10 @@ from bot.models.tx_qa.domain import Direction, Label, Transaction
 
 @dataclass(frozen=True)
 class TxFilter:
-    label: Label
+    label: Label | None
     start: date
     end: date
-    direction: Direction
+    direction: Direction | None
 
 @dataclass
 class TransactionsRepository(Protocol):

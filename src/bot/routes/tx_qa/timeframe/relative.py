@@ -1,0 +1,34 @@
+from datetime import date, timedelta
+
+from bot.models.tx_qa.query import DateRange
+from bot.routes.tx_qa.timeframe.calendar_utils import month_range, year_range
+
+def resolve_relative_year(
+    offset: int,
+    today: date,
+) -> DateRange:
+    return year_range(today.year + offset)
+
+def resolve_relative_month(
+    offset: int,
+    today: date,
+) -> DateRange:
+    month_offset = today.month - 1 + offset
+    year = today.year + month_offset // 12
+    month = month_offset % 12 + 1
+    return month_range(year, month)
+
+def resolve_relative_week(
+    offset: int,
+    today: date,
+) -> DateRange:
+    current_monday = today - timedelta(days=today.weekday())
+    start = current_monday + timedelta(weeks=offset)
+    return start, start + timedelta(days=6)
+
+def resolve_relative_day(
+    offset: int,
+    today: date,
+) -> DateRange:
+    target_day = today + timedelta(days=offset)
+    return target_day, target_day

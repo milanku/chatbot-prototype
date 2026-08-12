@@ -1,10 +1,17 @@
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
-from typing import Literal
+from enum import Enum
 
-Direction = Literal["spend", "receive"]
-Label = Literal["food", "pets", "other"]
+
+class Label(Enum):
+    FOOD = "food"
+    PETS = "pets"
+    OTHER = "other"
+    
+class Direction(Enum):
+    SPEND = "spend"
+    RECEIVE = "receive"
 
 @dataclass(frozen=True)
 class Transaction:

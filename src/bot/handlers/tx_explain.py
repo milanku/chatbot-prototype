@@ -82,7 +82,7 @@ class TxExplainHandler(TxBaseHandler):
                         label=tx_result.query.label,
                         start=tx_result.query.start,
                         end=tx_result.query.end,
-                        direction="spend",
+                        direction=tx_result.query.direction,
                     )
                 )
                 for tx in txs:

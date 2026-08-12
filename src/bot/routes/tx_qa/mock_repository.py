@@ -4,7 +4,7 @@ from datetime import date
 from decimal import Decimal
 from pathlib import Path
 
-from bot.models.tx_qa.domain import Transaction
+from bot.models.tx_qa.domain import Direction, Label, Transaction
 from bot.models.tx_qa.repository import TransactionsRepository, TxFilter
 
 
@@ -27,11 +27,11 @@ class JsonMockTransactionsRepository(TransactionsRepository):
                     id=str(tx["id"]),
                     date=_parse_date(tx["date"]),
                     amount=Decimal(str(tx["amount"])),
-                    direction=tx["direction"],
+                    direction=Direction(tx["direction"]),
                     other_account=tx["other_account"],
                     other_contact_name=tx.get("other_contact_name"),
                     description=tx.get("description"),
-                    label=tx.get("label"),
+                    label=Label(tx["label"]) if tx.get("label") else None,
                 )
             )
         return cls(_transactions=transactions)
