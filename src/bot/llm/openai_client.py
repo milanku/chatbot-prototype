@@ -1,26 +1,43 @@
 from dataclasses import dataclass, field
+from typing import TypeVar, cast
 
+from langchain.chat_models import init_chat_model
 from langchain.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_core.messages.base import BaseMessage
 from langchain_openai import ChatOpenAI
-from pydantic import SecretStr
+from pydantic import BaseModel, SecretStr
 
 from bot.llm.client import LLMClient
 
+T = TypeVar("T", bound=BaseModel)
 
 @dataclass
 class OpenAIClient(LLMClient):
     api_key: SecretStr = field(repr=False)
+    default_model: str = "gpt-4.1-mini"
     
-    def _get_chat_model(self, model: str = "gpt-4.1-mini") -> ChatOpenAI:
-        return ChatOpenAI(model=model, api_key=self.api_key)
+    def _get_chat_model(self, model: str) -> ChatOpenAI:
+        return ChatOpenAI(model=model or self.default_model, api_key=self.api_key)
     
-    def generate(self, prompt: str, system_instructions: str | None = None) -> str:
-        chat = self._get_chat_model()
+    def generate(self, *, prompt: str, system_instructions: str | None = None) -> str:
+        chat = self._get_chat_model(model=self.default_model)
         messages: list[BaseMessage] = []
         if system_instructions:
             messages.append(SystemMessage(content=system_instructions))
         messages.append(HumanMessage(content=prompt))
-        response: AIMessage = chat.invoke(messages)
         
+        response: AIMessage = chat.invoke(messages)
         return response.text
+    
+    def generate_with_structured_output(self, *, prompt: str, output_format: type[T], system_instructions: str | None = None) -> T:
+        chat = init_chat_model(model=self.default_model, api_key=self.api_key)
+        structured_model = chat.with_structured_output(output_format)
+        messages: list[BaseMessage] = []
+        if system_instructions:
+            messages.append(SystemMessage(content=system_instructions))
+        messages.append(HumanMessage(content=prompt))        
+        
+        result = structured_model.invoke(
+            messages
+        )
+        return cast(T, result)

@@ -102,22 +102,22 @@ def resolve_date_range_from_raw_query_data(
                     today=today
                 )
         case TimeframeType.ROLLING_RANGE:
-            if(raw_query_data.unit is not None and raw_query_data.amount is not None):
+            if(raw_query_data.unit is not None and raw_query_data.unit_amount is not None):
                 if(raw_query_data.mode == RollingRangeMode.TRAILING):
                     resolved_range = resolve_trailing_range(
                         unit=raw_query_data.unit,
-                        amount=raw_query_data.amount,
+                        unit_amount=raw_query_data.unit_amount,
                         today=today
                     )
                 elif(raw_query_data.mode == RollingRangeMode.PREVIOUS_COMPLETE):
                     resolved_range = resolve_previous_complete_range(
                         unit=raw_query_data.unit,
-                        amount=raw_query_data.amount,
+                        unit_amount=raw_query_data.unit_amount,
                         today=today
                     )
         case _:
             resolved_range = None
 
-    log_event(event="tx_qa.parse", payload={"raw_query_data": raw_query_data, "range": resolved_range})
+    log_event(event="tx_qa.resolve_date_range_from_raw_query_data", payload={"raw_query_data": raw_query_data, "range": resolved_range})
 
     return resolved_range

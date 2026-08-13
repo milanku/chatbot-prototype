@@ -20,7 +20,7 @@ Label rules:
 - Use "food" when the user refers to food-related spending or transactions.
 - Use "pets" when the user refers to pets, pet supplies, or pet-related spending or transactions.
 - Use "other" when the user explicitly refers to the "other" label or when the request clearly targets uncategorized/general transactions mapped to this label.
-- If the label cannot be determined reliably, use None.
+- If the label cannot be determined reliably, use null.
 
 Supported directions:
 - "spend"
@@ -29,7 +29,7 @@ Supported directions:
 Direction rules:
 - Use "spend" when the user asks about money spent, purchases, expenses, outgoing transactions, or payments made.
 - Use "receive" when the user asks about money received, incoming payments, salary, refunds received, or transfers received.
-- If the direction cannot be determined reliably, use None.
+- If the direction cannot be determined reliably, use null.
 
 Supported timeframe types:
 
@@ -43,7 +43,7 @@ Examples:
 - equivalents in any language
 
 Fields:
-- timeframe_type = "RELATIVE_DAY"
+- timeframe_type: "RELATIVE_DAY"
 - relative_offset: integer day offset relative to the current day
   - 0 means today
   - -1 means yesterday
@@ -61,7 +61,7 @@ Examples:
 - equivalents in any language
 
 Fields:
-- timeframe_type = "RELATIVE_WEEK"
+- timeframe_type: "RELATIVE_WEEK"
 - relative_offset: integer week offset relative to the current week
   - 0 means this/current week
   - -1 means last/previous week
@@ -78,7 +78,7 @@ Examples:
 - equivalents in any language
 
 Fields:
-- timeframe_type = "RELATIVE_MONTH"
+- timeframe_type: "RELATIVE_MONTH"
 - relative_offset: integer month offset relative to the current month
   - 0 means this/current month
   - -1 means last/previous month
@@ -95,7 +95,7 @@ Examples:
 - equivalents in any language
 
 Fields:
-- timeframe_type = "RELATIVE_YEAR"
+- timeframe_type: "RELATIVE_YEAR"
 - relative_offset: integer year offset relative to the current year
   - 0 means this/current year
   - -1 means last/previous year
@@ -115,13 +115,13 @@ Examples:
 - equivalents in any language
 
 Fields:
-- timeframe_type = "NAMED_WEEKDAY"
-- day: integer from 1 to 7 where 1 means Monday and 7 means Sunday
+- timeframe_type: "NAMED_WEEKDAY"
+- day: integer
 - relative_offset:
   - -2 when the user asks for the "two <weekday> ago" or equvalent
   - -1 when the user says "last <weekday>" or equivalent
   - 0 when the user says "this <weekday>" or "on <weekday>" without more details or equivalent
-  - None otherwise
+  - null otherwise
 
 6. NAMED_DATE
 Use this when the user refers to a specific calendar date, with month and year optional.
@@ -134,12 +134,10 @@ Examples:
 - equivalents in any language
 
 Fields:
-- timeframe_type = "NAMED_DATE"
-- year: integer or None if not explicitly given and not reliably implied
-- month: 
-  - integer from 1 to 12 where 1 is january and 12 is december
-  - None if not explicitly given
-- day: integer from 1 to 31
+- timeframe_type: "NAMED_DATE"
+- year: integer or null if not explicitly given
+- month: integer, or null if not explicitly given
+- day: integer
 
 7. NAMED_MONTH
 Use this when the user refers to a specific named month, optionally with a year.
@@ -149,11 +147,9 @@ Examples:
 - equivalents in any language
 
 Fields:
-- timeframe_type = "NAMED_MONTH"
-- month: integer from 1 to 12 where 1 is january and 12 is december
-- year: 
-  - integer
-  - None if not explicitly given
+- timeframe_type: "NAMED_MONTH"
+- month: integer
+- year: integer, or null if not explicitly given
 
 8. NAMED_QUARTER
 Use this when the user refers to a specific quarter, optionally with a year.
@@ -164,11 +160,9 @@ Examples:
 - equivalents in any language
 
 Fields:
-- timeframe_type = "NAMED_QUARTER"
-- quarter: integer from 1 to 4
-- year:
-  - integer 
-  - None if not explicitly given
+- timeframe_type: "NAMED_QUARTER"
+- quarter: integer
+- year: integer, or null if not explicitly given
 
 9. NAMED_YEAR
 Use this when the user refers to a specific named year.
@@ -178,7 +172,7 @@ Examples:
 - equivalents in any language
 
 Fields:
-- timeframe_type = "NAMED_YEAR"
+- timeframe_type: "NAMED_YEAR"
 - year: integer
 
 10. EXPLICIT_RANGE
@@ -193,27 +187,21 @@ Examples:
 - equivalents in any language
 
 Fields:
-- timeframe_type = "EXPLICIT_RANGE"
-- start_year: integer or None if not explicitly given
-- start_quarter:
-  - integer from 1 to 4
-  - None if not explicitly given
-- start_month:
-  - integer from 1 to 12 where 1 is january and 12 is december
-  - None if not explicitly given
-- start_day: 
- - integer from 1 to 31
- - None if not explicitly given
-- end_year: integer or None if not explicitly given
-- end_quarter:
-  - integer from 1 to 4
-  - None if not explicitly given
-- end_month: 
-  - integer from 1 to 12 where 1 is january and 12 is december
-  - None if not explicitly given
-- end_day: 
- - integer from 1 to 31
- - None if not explicitly given
+- timeframe_type: "EXPLICIT_RANGE"
+- start_endpoint:
+  {
+    - year: integer, or null if not explicitly given
+    - quarter: integer, or null if not explicitly given
+    - month: integer, or null if not explicitly given
+    - day: integer, or null if not explicitly given
+  } or null if neither year, quarter, month and day for start is given
+- end_endpoint:
+  {
+    - year: integer, or null if not explicitly given
+    - quarter: integer, or null if not explicitly given
+    - month: integer, or null if not explicitly given
+    - day: integer, or null if not explicitly given
+  } or null if neither year, quarter, month and day for start is given
 
 11. ROLLING_RANGE
 Use this when user gives rolling range with more than one day, week, month, quarter, year.
@@ -225,15 +213,13 @@ Examples:
 
 Fields:
 - timeframe_type: "ROLLING_RANGE"
-- unit:
-  - "day", "week", "month", "quarter" or "year"
 - mode:
   - "trailing" if asked for "the last N days", "within the last N weeks" or similiar
   - "previous_complete" if asked for "previous", "preceding N months" or similiar
-  - None if the wording is ambiguous
-- amount:
-  - integer
-  - None if not explicitly given
+  - null if the wording is ambiguous
+- unit:
+  - "day", "week", "month", "quarter" or "year"
+- unit_amount: integer, or null if not explicitly given
 
 12. UNKNOWN
 Use this when the timeframe cannot be determined reliably.
@@ -244,20 +230,20 @@ Additional rules:
 - Do not resolve final calendar dates. Only extract the explicitly stated date components and relative offsets.
 - Do not infer missing months or years from the current date.
 - Do not invent unsupported timeframe types, labels, or directions.
-- If the label cannot be determined reliably, use None.
-- If the direction cannot be determined reliably, use None.
+- If the label cannot be determined reliably, use null.
+- If the direction cannot be determined reliably, use null.
 - If the timeframe is missing or too ambiguous, use UNKNOWN.
-- For fields that do not apply, use None.
+- For fields that do not apply, use null.
 - Prefer the most specific supported timeframe_type that matches the message.
 - Use RELATIVE_DAY/RELATIVE_WEEK/RELATIVE_MONTH/RELATIVE_YEAR when the message refers to one specific relative calendar period, such as "two months ago".
 - Use ROLLING_RANGE when the message refers to a duration containing multiple periods, such as "the last two months".
 - Use NAMED_WEEKDAY only for weekday references without a fully specified calendar date.
 - Use NAMED_DATE when a concrete calendar date is present, even if a weekday name is also present.
 - If both a weekday name and a concrete calendar date are present, prefer NAMED_DATE.
-- For DATE_RANGE, return only the date components that are explicitly stated by both dates. If the user says "between 5th and 12th march", set start_day=5, end_day=12 and end_month=5, and leave start_quarter, start_month, end_quarter, start_year, and end_year as None.
+- For DATE_RANGE, return only the date components that are explicitly stated by both dates. If the user says "between 5th and 12th march", set start_day=5, end_day=12 and end_month=5, and leave start_quarter, start_month, end_quarter, start_year, and end_year as null.
 - If a date range gives one shared month, dont apply it to both start and end, only to what it explicitly corresponds.
 - If start and end dates mention different months, preserve each month separately.
-- If the year is not mentioned, leave start_year and end_year as None.
+- If the year is not mentioned, leave start_year and end_year as null.
 - Treat YYYY-MM-DD as an unambiguous ISO date. For ambiguous numeric formats such as 03/04/2026, use the ordering implied by the language or explicit context only when reliable. Otherwise lower confidence. Do not guess.
 
 Return only a JSON object with exactly these fields:
@@ -269,23 +255,25 @@ Return only a JSON object with exactly these fields:
 - quarter
 - month
 - day
-- start_year
-- start_quarter
-- start_month
-- start_day
-- end_year
-- end_quarter
-- end_month
-- end_day
-- unit
+- start_endpoint:
+  - year
+  - quarter
+  - month
+  - day
+- end_endpoint:
+  - year
+  - quarter
+  - month
+  - day
 - mode
-- amount
+- unit
+- unit_amount
 - confidence
 - reason
 
 Field rules:
-- label must be one of: "food", "pets", "other", or None
-- direction must be one of: "spend", "receive", or None
+- label must be one of: "food", "pets", "other", or null
+- direction must be one of: "spend", "receive", or null
 - timeframe_type must be one of:
   - "RELATIVE_DAY"
   - "RELATIVE_WEEK"
@@ -299,9 +287,9 @@ Field rules:
   - "DATE_RANGE"
   - "ROLLING_RANGE"
   - "UNKNOWN"
-- For fields that do not apply, use None.
-- confidence must be a number between 0 and 1, or None if unavailable.
-- reason must be a short one-sentence explanation for debugging purposes, or None if unavailable.
+- For fields that do not apply, use null.
+- confidence must be a number between 0 and 1, or null if unavailable.
+- reason must be a short one-sentence explanation for debugging purposes, or null if unavailable.
 - Do not add any extra keys.
 - Do not include markdown.
 - Do not include code fences.
@@ -309,140 +297,130 @@ Field rules:
 
 Example 1:
 
-User: list transactions between 5th and 12th
+User message: list transactions between 5th and 12th
 Output:
 {
-  "label": None,
-  "direction": None,
+  "label": null,
+  "direction": null,
   "timeframe_type": "EXPLICIT_RANGE",
-  "relative_offset": None,
-  "year": None,
-  "quarter": None,
-  "month": None,
-  "day": None,
-  "start_year": None,
-  "start_quarter": None,
-  "start_month": None,
-  "start_day": 5,
-  "end_year": None,
-  "end_quarter": None,
-  "end_month": None,
-  "end_day": 12,
-  "unit": None,
-  "mode": None,
-  "amount": None,
+  "relative_offset": null,
+  "year": null,
+  "quarter": null,
+  "month": null,
+  "day": null,
+  "start_endpoint": {
+    "year": null,
+    "quarter": null,
+    "month": null,
+    "day": 5
+  },
+  "end_endpoint": {
+    "year": null,
+    "quarter": null,
+    "month": null,
+    "day": 12
+  },
+  "mode": null,
+  "unit": null,
+  "unit_amount": null,
   "confidence": 0.86,
   "reason": "The user gave an explicit day-to-day range without month or year."
 }
 
 Example 2:
 
-User: show food expenses between March 5 and 12
+User message: show food expenses between March 5 and 12
 Output:
 {
   "label": "food",
   "direction": "spend",
   "timeframe_type": "EXPLICIT_RANGE",
-  "relative_offset": None,
-  "year": None,
-  "quarter": None,
-  "month": None,
-  "day": None,
-  "start_year": None,
-  "start_quarter": None,
-  "start_month": 3,
-  "start_day": 5,
-  "end_year": None,
-  "end_quarter": None,
-  "end_month": 3,
-  "end_day": 12,
-  "unit": None,
-  "mode": None,
-  "amount": None,
+  "relative_offset": null,
+  "year": null,
+  "quarter": null,
+  "month": null,
+  "day": null,
+  "start_endpoint": {
+    "year": null,
+    "quarter": null,
+    "month": 3,
+    "day": 5
+  },
+  "end_endpoint": {
+    "year": null,
+    "quarter": null,
+    "month": 3,
+    "day": 12
+  },
+  "mode": null,
+  "unit": null,
+  "unit_amount": null,
   "confidence": 0.93,
   "reason": "The user asked for food spending over an explicit March date range."
 }
 
 Example 3:
 
-User: how much did I spend on pets on the 20th?
+User message: how much did I spend on pets on the 20th?
 Output:
 {
   "label": "pets",
   "direction": "spend",
   "timeframe_type": "NAMED_DATE",
-  "relative_offset": None,
-  "year": None,
-  "quarter": None,
-  "month": None,
+  "relative_offset": null,
+  "year": null,
+  "quarter": null,
+  "month": null,
   "day": 20,
-  "start_year": None,
-  "start_quarter": None,
-  "start_month": None,
-  "start_day": None,
-  "end_year": None,
-  "end_quarter": None,
-  "end_month": None,
-  "end_day": None,
-  "unit": None,
-  "mode": None,
-  "amount": None,
+  "start_endpoint": null,
+  "end_endpoint": null,
+  "mode": null,
+  "unit": null,
+  "unit_amount": null,
   "confidence": 0.88,
   "reason": "The user specified a day of month but not month or year."
 }
 
 Example 4:
 
-User: how much did I spend on food last month?
+User message: how much did I spend on food last month?
 Output:
 {
   "label": "food",
   "direction": "spend",
   "timeframe_type": "RELATIVE_MONTH",
   "relative_offset": -1,
-  "year": None,
-  "quarter": None,
-  "month": None,
-  "day": None,
-  "start_year": None,
-  "start_quarter": None,
-  "start_month": None,
-  "start_day": None,
-  "end_year": None,
-  "end_quarter": None,
-  "end_month": None,
-  "end_day": None,
-  "unit": None,
-  "mode": None,
-  "amount": None,
+  "year": null,
+  "quarter": null,
+  "month": null,
+  "day": null,
+  "start_endpoint": null,
+  "end_endpoint": null,
+  "mode": null,
+  "unit": null,
+  "unit_amount": null,
   "confidence": 0.96,
   "reason": "The user asked for food spending in the previous month."
 }
 
 Example 5:
 
-User: what were the incomes during the previous three quarters?
+User message: what were the incomes during the previous three quarters?
 Output:
 {
-  "label": None,
+  "label": null,
   "direction": "receive",
   "timeframe_type": "ROLLING_RANGE",
-  "relative_offset": None,
-  "year": None,
-  "quarter": None,
-  "month": None,
-  "day": None,
-  "start_year": None,
-  "start_quarter": None,
-  "start_month": None,
-  "start_day": None,
-  "end_year": None,
-  "end_quarter": None,
-  "end_month": None,
-  "end_day": None,
-  "unit": "quarter",
+  "relative_offset": null,
+  "year": null,
+  "quarter": null,
+  "month": null,
+  "day": null,
+  "start_endpoint": null,
+  "end_endpoint": null,
   "mode": "previous_complete",
-  "amount": 3,
+  "unit": "quarter",
+  "unit_amount": 3,
   "confidence": 0.81,
   "reason": "The user asked about received income during the previous three complete quarters."
 }

@@ -1,4 +1,3 @@
-from dataclasses import replace
 from datetime import date
 from unittest.mock import call, patch
 
@@ -32,24 +31,9 @@ RAW_RANGE_ENDPOINT_2025_05_10 = RawRangeEndpoint(
 )
 
 def make_raw_query(**overrides: object) -> TXQAParseRawQueryData:
-    base = TXQAParseRawQueryData(
-        label=None,
-        direction=None,
+    return TXQAParseRawQueryData(
         timeframe_type=TimeframeType.UNKNOWN,
-        relative_offset=None,
-        year=None,
-        quarter=None,
-        month=None,
-        day=None,
-        start_endpoint=None,
-        end_endpoint=None,
-        unit=None,
-        mode=None,
-        amount=None,
-        confidence=None,
-        reason=None,
-    )
-    return replace(base, **overrides)
+    ).model_copy(update=overrides)
 
 
 @pytest.mark.parametrize(
@@ -167,16 +151,16 @@ def make_raw_query(**overrides: object) -> TXQAParseRawQueryData:
         ),
         pytest.param(
             TimeframeType.ROLLING_RANGE,
-            {"mode": RollingRangeMode.TRAILING, "unit": RollingRangeUnit.DAY, "amount": 5},
+            {"mode": RollingRangeMode.TRAILING, "unit": RollingRangeUnit.DAY, "unit_amount": 5},
             "resolve_trailing_range",
-            call(unit=RollingRangeUnit.DAY, amount=5, today=TODAY),
+            call(unit=RollingRangeUnit.DAY, unit_amount=5, today=TODAY),
             id="rolling-range",
         ),
         pytest.param(
             TimeframeType.ROLLING_RANGE,
-            {"mode": RollingRangeMode.PREVIOUS_COMPLETE, "unit": RollingRangeUnit.WEEK, "amount": 2},
+            {"mode": RollingRangeMode.PREVIOUS_COMPLETE, "unit": RollingRangeUnit.WEEK, "unit_amount": 2},
             "resolve_previous_complete_range",
-            call(unit=RollingRangeUnit.WEEK, amount=2, today=TODAY),
+            call(unit=RollingRangeUnit.WEEK, unit_amount=2, today=TODAY),
             id="rolling-range-previous-complete",
         )
     ],
@@ -320,7 +304,7 @@ def test_dispatches_to_correct_resolver_with_expected_arguments(
         ),
         pytest.param(
             TimeframeType.ROLLING_RANGE,
-            {"mode": RollingRangeMode.TRAILING, "amount": 5},
+            {"mode": RollingRangeMode.TRAILING, "unit_amount": 5},
             "resolve_trailing_range",
             id="rolling-range-missing-unit"
         ),
@@ -338,19 +322,19 @@ def test_dispatches_to_correct_resolver_with_expected_arguments(
         ),
         pytest.param(
             TimeframeType.ROLLING_RANGE,
-            {"mode": RollingRangeMode.PREVIOUS_COMPLETE, "amount": 5},
+            {"mode": RollingRangeMode.PREVIOUS_COMPLETE, "unit_amount": 5},
             "resolve_previous_complete_range",
             id="rolling-range-previous-complete-missing-unit"
         ),
         pytest.param(
             TimeframeType.ROLLING_RANGE,
-            {"mode": None, "amount": 5, "unit": RollingRangeUnit.DAY},
+            {"mode": None, "unit_amount": 5, "unit": RollingRangeUnit.DAY},
             "resolve_trailing_range",
             id="rolling-missing-mode-does-not-call-trailing"
         ),
         pytest.param(
             TimeframeType.ROLLING_RANGE,
-            {"mode": None, "amount": 5, "unit": RollingRangeUnit.DAY},
+            {"mode": None, "unit_amount": 5, "unit": RollingRangeUnit.DAY},
             "resolve_previous_complete_range",
             id="rolling-missing-mode-does-not-call-previous-complete"
         ),
@@ -455,7 +439,7 @@ def test_logs_resolved_range() -> None:
     assert result == SENTINEL_RANGE
 
     log_event.assert_called_once_with(
-        event="tx_qa.parse",
+        event="tx_qa.resolve_date_range_from_raw_query_data",
         payload={
             "raw_query_data": raw,
             "range": SENTINEL_RANGE,

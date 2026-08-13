@@ -109,7 +109,7 @@ def test_range_from_trailing_rolling_range(
 ) -> None:
     result = resolve_trailing_range(
         unit=unit,
-        amount=amount,
+        unit_amount=amount,
         today=today
     )
 
@@ -236,7 +236,7 @@ def test_range_from_previous_complete_rolling_range(
 ) -> None:
     result = resolve_previous_complete_range(
         unit=unit,
-        amount=amount,
+        unit_amount=amount,
         today=today
     )
 

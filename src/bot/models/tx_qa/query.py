@@ -3,6 +3,8 @@ from datetime import date
 from enum import Enum
 from typing import Final
 
+from pydantic import BaseModel
+
 from bot.models.tx_qa.domain import Direction, Label
 
 
@@ -14,25 +16,6 @@ class TxQAQuery:
     direction: Direction | None
     
 DateRange = tuple[date, date]
-
-@dataclass(frozen=True)
-class RawRangeEndpoint:
-    year: int | None = None
-    quarter: int | None = None
-    month: int | None = None
-    day: int | None = None
-
-    @property
-    def has_data(self) -> bool:
-        return any(
-            value is not None
-            for value in (
-                self.year,
-                self.quarter,
-                self.month,
-                self.day,
-            )
-        )
 
 class TimeframeType(Enum):
     RELATIVE_DAY = "RELATIVE_DAY"
@@ -66,6 +49,24 @@ NAMED_RANGE_TIMEFRAMES: Final[frozenset[TimeframeType]] = frozenset(
     }
 )
 
+class RawRangeEndpoint(BaseModel):
+    year: int | None = None
+    quarter: int | None = None
+    month: int | None = None
+    day: int | None = None
+
+    @property
+    def has_data(self) -> bool:
+        return any(
+            value is not None
+            for value in (
+                self.year,
+                self.quarter,
+                self.month,
+                self.day,
+            )
+        )
+        
 class RollingRangeUnit(Enum):
     DAY = "day"
     WEEK = "week"
@@ -76,24 +77,37 @@ class RollingRangeUnit(Enum):
 class RollingRangeMode(Enum):
     TRAILING = "trailing"
     PREVIOUS_COMPLETE = "previous_complete"
+ 
+class TXQAParseRawQueryData(BaseModel):
+    label: Label | None = None
+    direction: Direction | None = None
+    timeframe_type: TimeframeType | None = None
+    
+    # For relative timeframes, e.g., "last month" -> relative_offset = -1, "next month" -> relative_offset = 1
+    relative_offset: int | None = None
 
-@dataclass(frozen=True)
-class TXQAParseRawQueryData:
-    label: Label | None
-    direction: Direction | None
-    timeframe_type: TimeframeType
-    relative_offset: int | None # For relative timeframes, e.g., "last month" -> relative_offset = -1, "next month" -> relative_offset = 1
-    year: int | None # For named timeframes, e.g., "January 2026" -> year = 2026
-    quarter: int | None # For named timeframes, e.g., "Q1 2026" -> quarter = 1
-    month: int | None # For named timeframes, e.g., "January 2026" -> month = 1
-    day: int | None # For named timeframes, e.g., "January 1, 2026" -> day = 1
-    start_endpoint: RawRangeEndpoint | None # For DATE_RANGE timeframe this contains start date data only.
-    end_endpoint: RawRangeEndpoint | None # For DATE_RANGE timeframe this contains end date data only.
-    unit: RollingRangeUnit | None # For ROLLING_RANGE timeframes, e.g., "last 3 months" -> unit = RollingRangeUnit.MONTH
-    mode: RollingRangeMode | None # For ROLLING_RANGE timeframes, e.g., "last 3 months" -> mode = RollingRangeMode.TRAILING
-    amount: int | None # For ROLLING_RANGE timeframes, e.g., "last 3 months" -> amount = 3
-    confidence: float | None # Confidence score for the parsed timeframe information, between 0 and 1
-    reason: str | None # Optional reason or explanation for the parsed timeframe information, can be used for debugging or logging purposes
+    # For named timeframes
+    year: int | None =  None
+    quarter: int | None = None
+    month: int | None = None
+    day: int | None = None
+
+    # For DATE_RANGE timeframe this contains start date data only.
+    start_endpoint: RawRangeEndpoint | None = None
+    # For DATE_RANGE timeframe this contains end date data only.
+    end_endpoint: RawRangeEndpoint | None = None
+    
+    # For ROLLING_RANGE timeframes, e.g., "last 3 months" -> mode = RollingRangeMode.TRAILING
+    mode: RollingRangeMode | None = None
+    # For ROLLING_RANGE timeframes, e.g., "last 3 months" -> unit = RollingRangeUnit.MONTH
+    unit: RollingRangeUnit | None = None
+    # For ROLLING_RANGE timeframes, e.g., "last 3 months" -> unit_amount = 3
+    unit_amount: int | None = None
+
+    # Confidence score for the parsed timeframe information, between 0 and 1
+    confidence: float | None = None
+    # Optional reason or explanation for the parsed timeframe information, can be used for debugging or logging purposes
+    reason: str | None = None
     
 @dataclass(frozen=True)
 class TXExplainParseIntermediateResult:

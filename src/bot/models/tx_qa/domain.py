@@ -4,12 +4,12 @@ from decimal import Decimal
 from enum import Enum
 
 
-class Label(Enum):
+class Label(str, Enum):
     FOOD = "food"
     PETS = "pets"
     OTHER = "other"
     
-class Direction(Enum):
+class Direction(str, Enum):
     SPEND = "spend"
     RECEIVE = "receive"
 
