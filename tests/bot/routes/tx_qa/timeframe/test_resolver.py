@@ -8,7 +8,7 @@ from bot.models.tx_qa.query import (
     RollingRangeMode,
     RollingRangeUnit,
     TimeframeType,
-    TXQAParseRawQueryData,
+    TXQARawQuery,
 )
 from bot.routes.tx_qa.timeframe.resolver import resolve_date_range_from_raw_query_data
 
@@ -30,8 +30,8 @@ RAW_RANGE_ENDPOINT_2025_05_10 = RawRangeEndpoint(
     day=10,
 )
 
-def make_raw_query(**overrides: object) -> TXQAParseRawQueryData:
-    return TXQAParseRawQueryData(
+def make_raw_query(**overrides: object) -> TXQARawQuery:
+    return TXQARawQuery(
         timeframe_type=TimeframeType.UNKNOWN,
     ).model_copy(update=overrides)
 

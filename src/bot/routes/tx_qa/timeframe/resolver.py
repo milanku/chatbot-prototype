@@ -5,7 +5,7 @@ from bot.models.tx_qa.query import (
     DateRange,
     RollingRangeMode,
     TimeframeType,
-    TXQAParseRawQueryData,
+    TXQARawQuery,
 )
 from bot.routes.tx_qa.timeframe.explicit_range import resolve_explicit_range
 from bot.routes.tx_qa.timeframe.named import (
@@ -28,7 +28,7 @@ from bot.routes.tx_qa.timeframe.weekday import resolve_named_weekday
 
 
 def resolve_date_range_from_raw_query_data(
-    raw_query_data: TXQAParseRawQueryData,
+    raw_query_data: TXQARawQuery,
     *,
     today: date,
 ) -> DateRange | None:

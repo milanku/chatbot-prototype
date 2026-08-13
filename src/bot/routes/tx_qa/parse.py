@@ -4,8 +4,8 @@ from pathlib import Path
 from bot.llm.client import LLMClient
 from bot.logging import log_event
 from bot.models.tx_qa.query import (
-    TXQAParseRawQueryData,
     TxQAQuery,
+    TXQAQueryExtraction,
 )
 from bot.routes.tx_qa.timeframe.resolver import resolve_date_range_from_raw_query_data
 from bot.routes.tx_qa.timeframe_parse_prompt_builder import (
@@ -26,26 +26,26 @@ def parse_tx_query_from_user_message(llm_client: LLMClient, user_msg: str) -> Tx
         payload={"message": user_msg}
     )
     
-    raw_query_data = llm_client.generate_with_structured_output(
+    llm_response = llm_client.generate_with_structured_output(
         prompt=user_prompt,
-        output_format=TXQAParseRawQueryData,
+        output_format=TXQAQueryExtraction,
         system_instructions=system_prompt,
     )
 
     log_event(
         event="tx_qa.timeframe_parser.output",
-        payload={"raw_query_data": raw_query_data}
+        payload={"llm_response": llm_response}
     )
     
-    date_range = resolve_date_range_from_raw_query_data(raw_query_data, today=date.today())
+    date_range = resolve_date_range_from_raw_query_data(llm_response.raw_query_data, today=date.today())
     if date_range is None:
         return None
 
     start, end = date_range
 
     return TxQAQuery(
-        label=raw_query_data.label,
-        direction=raw_query_data.direction,
+        label=llm_response.raw_query_data.label,
+        direction=llm_response.raw_query_data.direction,
         start=start,
         end=end,
     )

@@ -78,7 +78,7 @@ class RollingRangeMode(Enum):
     TRAILING = "trailing"
     PREVIOUS_COMPLETE = "previous_complete"
  
-class TXQAParseRawQueryData(BaseModel):
+class TXQARawQuery(BaseModel):
     label: Label | None = None
     direction: Direction | None = None
     timeframe_type: TimeframeType | None = None
@@ -104,6 +104,8 @@ class TXQAParseRawQueryData(BaseModel):
     # For ROLLING_RANGE timeframes, e.g., "last 3 months" -> unit_amount = 3
     unit_amount: int | None = None
 
+class TXQAQueryExtraction(BaseModel):
+    raw_query_data: TXQARawQuery
     # Confidence score for the parsed timeframe information, between 0 and 1
     confidence: float | None = None
     # Optional reason or explanation for the parsed timeframe information, can be used for debugging or logging purposes

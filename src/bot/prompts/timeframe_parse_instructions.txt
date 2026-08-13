@@ -300,29 +300,31 @@ Example 1:
 User message: list transactions between 5th and 12th
 Output:
 {
-  "label": null,
-  "direction": null,
-  "timeframe_type": "EXPLICIT_RANGE",
-  "relative_offset": null,
-  "year": null,
-  "quarter": null,
-  "month": null,
-  "day": null,
-  "start_endpoint": {
+  raw_query_data: {
+    "label": null,
+    "direction": null,
+    "timeframe_type": "EXPLICIT_RANGE",
+    "relative_offset": null,
     "year": null,
     "quarter": null,
     "month": null,
-    "day": 5
-  },
-  "end_endpoint": {
-    "year": null,
-    "quarter": null,
-    "month": null,
-    "day": 12
-  },
-  "mode": null,
-  "unit": null,
-  "unit_amount": null,
+    "day": null,
+    "start_endpoint": {
+      "year": null,
+      "quarter": null,
+      "month": null,
+      "day": 5
+    },
+    "end_endpoint": {
+      "year": null,
+      "quarter": null,
+      "month": null,
+      "day": 12
+    },
+    "mode": null,
+    "unit": null,
+    "unit_amount": null,
+  }
   "confidence": 0.86,
   "reason": "The user gave an explicit day-to-day range without month or year."
 }
@@ -332,29 +334,31 @@ Example 2:
 User message: show food expenses between March 5 and 12
 Output:
 {
-  "label": "food",
-  "direction": "spend",
-  "timeframe_type": "EXPLICIT_RANGE",
-  "relative_offset": null,
-  "year": null,
-  "quarter": null,
-  "month": null,
-  "day": null,
-  "start_endpoint": {
+  "raw_query_data": {
+    "label": "food",
+    "direction": "spend",
+    "timeframe_type": "EXPLICIT_RANGE",
+    "relative_offset": null,
     "year": null,
     "quarter": null,
-    "month": 3,
-    "day": 5
-  },
-  "end_endpoint": {
-    "year": null,
-    "quarter": null,
-    "month": 3,
-    "day": 12
-  },
-  "mode": null,
-  "unit": null,
-  "unit_amount": null,
+    "month": null,
+    "day": null,
+    "start_endpoint": {
+      "year": null,
+      "quarter": null,
+      "month": 3,
+      "day": 5
+    },
+    "end_endpoint": {
+      "year": null,
+      "quarter": null,
+      "month": 3,
+      "day": 12
+    },
+    "mode": null,
+    "unit": null,
+    "unit_amount": null,
+  }
   "confidence": 0.93,
   "reason": "The user asked for food spending over an explicit March date range."
 }
@@ -364,19 +368,21 @@ Example 3:
 User message: how much did I spend on pets on the 20th?
 Output:
 {
-  "label": "pets",
-  "direction": "spend",
-  "timeframe_type": "NAMED_DATE",
-  "relative_offset": null,
-  "year": null,
-  "quarter": null,
-  "month": null,
-  "day": 20,
-  "start_endpoint": null,
-  "end_endpoint": null,
-  "mode": null,
-  "unit": null,
-  "unit_amount": null,
+  "raw_query_data": {
+    "label": "pets",
+    "direction": "spend",
+    "timeframe_type": "NAMED_DATE",
+    "relative_offset": null,
+    "year": null,
+    "quarter": null,
+    "month": null,
+    "day": 20,
+    "start_endpoint": null,
+    "end_endpoint": null,
+    "mode": null,
+    "unit": null,
+    "unit_amount": null,
+  }
   "confidence": 0.88,
   "reason": "The user specified a day of month but not month or year."
 }
@@ -386,19 +392,21 @@ Example 4:
 User message: how much did I spend on food last month?
 Output:
 {
-  "label": "food",
-  "direction": "spend",
-  "timeframe_type": "RELATIVE_MONTH",
-  "relative_offset": -1,
-  "year": null,
-  "quarter": null,
-  "month": null,
-  "day": null,
-  "start_endpoint": null,
-  "end_endpoint": null,
-  "mode": null,
-  "unit": null,
-  "unit_amount": null,
+  "raw_query_data": {
+    "label": "food",
+    "direction": "spend",
+    "timeframe_type": "RELATIVE_MONTH",
+    "relative_offset": -1,
+    "year": null,
+    "quarter": null,
+    "month": null,
+    "day": null,
+    "start_endpoint": null,
+    "end_endpoint": null,
+    "mode": null,
+    "unit": null,
+    "unit_amount": null,
+  }
   "confidence": 0.96,
   "reason": "The user asked for food spending in the previous month."
 }
@@ -408,19 +416,21 @@ Example 5:
 User message: what were the incomes during the previous three quarters?
 Output:
 {
-  "label": null,
-  "direction": "receive",
-  "timeframe_type": "ROLLING_RANGE",
-  "relative_offset": null,
-  "year": null,
-  "quarter": null,
-  "month": null,
-  "day": null,
-  "start_endpoint": null,
-  "end_endpoint": null,
-  "mode": "previous_complete",
-  "unit": "quarter",
-  "unit_amount": 3,
+  "raw_query_data": {
+    "label": null,
+    "direction": "receive",
+    "timeframe_type": "ROLLING_RANGE",
+    "relative_offset": null,
+    "year": null,
+    "quarter": null,
+    "month": null,
+    "day": null,
+    "start_endpoint": null,
+    "end_endpoint": null,
+    "mode": "previous_complete",
+    "unit": "quarter",
+    "unit_amount": 3,
+  }
   "confidence": 0.81,
   "reason": "The user asked about received income during the previous three complete quarters."
 }
