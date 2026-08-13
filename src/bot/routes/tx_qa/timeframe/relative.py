@@ -13,9 +13,10 @@ def resolve_relative_month(
     offset: int,
     today: date,
 ) -> DateRange:
-    month_offset = today.month - 1 + offset
-    year = today.year + month_offset // 12
-    month = month_offset % 12 + 1
+    # target_month_index: 0 (January) to 11 (December)
+    target_month_index = today.month - 1 + offset
+    year = today.year + target_month_index // 12
+    month = target_month_index % 12 + 1
     return month_range(year, month)
 
 def resolve_relative_week(
