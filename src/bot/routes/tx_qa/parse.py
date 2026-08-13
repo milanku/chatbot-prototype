@@ -7,7 +7,7 @@ from bot.models.tx_qa.query import (
     TxQAQuery,
     TXQAQueryExtraction,
 )
-from bot.routes.tx_qa.timeframe.resolver import resolve_date_range_from_raw_query_data
+from bot.routes.tx_qa.timeframe.resolver import resolve_date_range_from_raw_query
 from bot.routes.tx_qa.timeframe_parse_prompt_builder import (
     TimeframeParserPromptInput,
     build_timeframe_parser_system_prompt,
@@ -37,7 +37,7 @@ def parse_tx_query_from_user_message(llm_client: LLMClient, user_msg: str) -> Tx
         payload={"llm_response": llm_response}
     )
     
-    date_range = resolve_date_range_from_raw_query_data(llm_response.raw_query_data, today=date.today())
+    date_range = resolve_date_range_from_raw_query(llm_response.raw_query_data, today=date.today())
     if date_range is None:
         return None
 

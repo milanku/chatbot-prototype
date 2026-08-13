@@ -10,7 +10,7 @@ from bot.models.tx_qa.query import (
     TimeframeType,
     TXQARawQuery,
 )
-from bot.routes.tx_qa.timeframe.resolver import resolve_date_range_from_raw_query_data
+from bot.routes.tx_qa.timeframe.resolver import resolve_date_range_from_raw_query
 
 TODAY = date(2025, 1, 3)
 SENTINEL_RANGE = (
@@ -183,7 +183,7 @@ def test_dispatches_to_correct_resolver_with_expected_arguments(
         autospec=True,
         return_value=SENTINEL_RANGE,
     ) as resolver:
-        result = resolve_date_range_from_raw_query_data(
+        result = resolve_date_range_from_raw_query(
             raw,
             today=TODAY,
         )
@@ -360,7 +360,7 @@ def test_does_not_dispatch_when_required_data_is_missing(
             autospec=True,
         ),
     ):
-        result = resolve_date_range_from_raw_query_data(
+        result = resolve_date_range_from_raw_query(
             raw,
             today=TODAY,
         )
@@ -377,7 +377,7 @@ def test_returns_none_for_unknown_timeframe() -> None:
         "bot.routes.tx_qa.timeframe.resolver.log_event",
         autospec=True,
     ):
-        result = resolve_date_range_from_raw_query_data(
+        result = resolve_date_range_from_raw_query(
             raw,
             today=TODAY,
         )
@@ -401,7 +401,7 @@ def test_propagates_none_from_resolver() -> None:
             autospec=True,
         ),
     ):
-        result = resolve_date_range_from_raw_query_data(
+        result = resolve_date_range_from_raw_query(
             raw,
             today=TODAY,
         )
@@ -431,7 +431,7 @@ def test_logs_resolved_range() -> None:
             autospec=True,
         ) as log_event,
     ):
-        result = resolve_date_range_from_raw_query_data(
+        result = resolve_date_range_from_raw_query(
             raw,
             today=TODAY,
         )
@@ -439,7 +439,7 @@ def test_logs_resolved_range() -> None:
     assert result == SENTINEL_RANGE
 
     log_event.assert_called_once_with(
-        event="tx_qa.resolve_date_range_from_raw_query_data",
+        event="tx_qa.resolve_date_range_from_raw_query",
         payload={
             "raw_query_data": raw,
             "range": SENTINEL_RANGE,
