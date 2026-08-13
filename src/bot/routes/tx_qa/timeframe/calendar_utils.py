@@ -14,10 +14,10 @@ def quarter_range(year: int, quarter: int) -> DateRange:
     start_month = (quarter - 1) * 3 + 1
     end_month = quarter * 3
 
-    start = date(year, start_month, 1)
-    end = date(year, end_month, calendar.monthrange(year, end_month)[1])
+    start_date = date(year, start_month, 1)
+    end_date = date(year, end_month, calendar.monthrange(year, end_month)[1])
 
-    return start, end
+    return start_date, end_date
 
 def month_range(year: int, month: int) -> DateRange:
     last_day = calendar.monthrange(year, month)[1]
