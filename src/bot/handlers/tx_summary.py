@@ -33,23 +33,23 @@ class TxSummaryHandler(TxBaseHandler):
                 event="tx_qa.parse_query.success",
                 payload={
                     "label": parsed_query.label,
-                    "start": parsed_query.start.isoformat(),
-                    "end": parsed_query.end.isoformat(),
+                    "start": parsed_query.start_date.isoformat(),
+                    "end_date": parsed_query.end_date.isoformat(),
                     "session_id": session_id,
                 }
             )
             tx_filter = TxFilter(
                 label=parsed_query.label,
-                start=parsed_query.start,
-                end=parsed_query.end,
+                start_date=parsed_query.start_date,
+                end_date=parsed_query.end_date,
                 direction=parsed_query.direction,
             )
             log_event(
                 event="tx_qa.query",
                 payload={
                     "label": parsed_query.label,
-                    "start": parsed_query.start.isoformat(),
-                    "end": parsed_query.end.isoformat(),
+                    "start_date": parsed_query.start_date.isoformat(),
+                    "end_date": parsed_query.end_date.isoformat(),
                     "direction": tx_filter.direction,
                     "session_id": session_id,
                 }

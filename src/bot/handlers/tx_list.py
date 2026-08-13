@@ -23,16 +23,16 @@ class TxListHandler(TxBaseHandler):
         else:
             tx_filter = TxFilter(
                 label=parsed_tx_query.label,
-                start=parsed_tx_query.start,
-                end=parsed_tx_query.end,
+                start_date=parsed_tx_query.start_date,
+                end_date=parsed_tx_query.end_date,
                 direction=parsed_tx_query.direction,
             )
             log_event(
                 event="tx_qa.parse_tx_query.success",
                 payload={
                     "label": parsed_tx_query.label,
-                    "start": parsed_tx_query.start.isoformat(),
-                    "end": parsed_tx_query.end.isoformat(),
+                    "start_date": parsed_tx_query.start_date.isoformat(),
+                    "end_date": parsed_tx_query.end_date.isoformat(),
                     "direction": tx_filter.direction,
                     "session_id": session_id,
                 },

@@ -40,7 +40,7 @@ class JsonMockTransactionsRepository(TransactionsRepository):
         return [
             tx
             for tx in self._transactions
-            if tx_filter.start <= tx.date <= tx_filter.end
+            if tx_filter.start_date <= tx.date <= tx_filter.end_date
             and tx.direction == tx_filter.direction
             and tx.label == tx_filter.label
         ]

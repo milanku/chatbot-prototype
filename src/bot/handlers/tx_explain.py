@@ -80,8 +80,8 @@ class TxExplainHandler(TxBaseHandler):
                 txs = self._tx_repository.list_transactions(
                     TxFilter(
                         label=tx_result.query.label,
-                        start=tx_result.query.start,
-                        end=tx_result.query.end,
+                        start_date=tx_result.query.start_date,
+                        end_date=tx_result.query.end_date,
                         direction=tx_result.query.direction,
                     )
                 )

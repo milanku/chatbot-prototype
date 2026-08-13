@@ -41,11 +41,11 @@ def parse_tx_query_from_user_message(llm_client: LLMClient, user_msg: str) -> Tx
     if date_range is None:
         return None
 
-    start, end = date_range
+    start_date, end_date = date_range
 
     return TxQAQuery(
         label=llm_structured_response.raw_query_data.label,
         direction=llm_structured_response.raw_query_data.direction,
-        start=start,
-        end=end,
+        start_date=start_date,
+        end_date=end_date,
     )

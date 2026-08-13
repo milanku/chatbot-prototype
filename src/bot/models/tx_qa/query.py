@@ -11,8 +11,8 @@ from bot.models.tx_qa.domain import Direction, Label
 @dataclass(frozen=True)
 class TxQAQuery:
     label: Label | None
-    start: date
-    end: date
+    start_date: date
+    end_date: date
     direction: Direction | None
     
 DateRange = tuple[date, date]
