@@ -26,7 +26,7 @@ def parse_tx_query_from_user_message(llm_client: LLMClient, user_msg: str) -> Tx
         payload={"message": user_msg}
     )
     
-    llm_response = llm_client.generate_with_structured_output(
+    llm_structured_response = llm_client.generate_with_structured_output(
         prompt=user_prompt,
         output_format=TXQAQueryExtraction,
         system_instructions=system_prompt,
@@ -34,18 +34,18 @@ def parse_tx_query_from_user_message(llm_client: LLMClient, user_msg: str) -> Tx
 
     log_event(
         event="tx_qa.timeframe_parser.output",
-        payload={"llm_response": llm_response}
+        payload={"llm_response": llm_structured_response}
     )
     
-    date_range = resolve_date_range_from_raw_query(llm_response.raw_query_data, today=date.today())
+    date_range = resolve_date_range_from_raw_query(llm_structured_response.raw_query_data, today=date.today())
     if date_range is None:
         return None
 
     start, end = date_range
 
     return TxQAQuery(
-        label=llm_response.raw_query_data.label,
-        direction=llm_response.raw_query_data.direction,
+        label=llm_structured_response.raw_query_data.label,
+        direction=llm_structured_response.raw_query_data.direction,
         start=start,
         end=end,
     )

@@ -4,7 +4,7 @@ from datetime import date, timedelta
 from bot.models.tx_qa.query import DateRange, RollingRangeUnit
 
 
-# Calculates the trailing range based on the specified unit and amount. It returns a DateRange object representing the start and end dates of the trailing range. Includes current day (last 5 days = today and 4 days before)
+# Calculates the trailing range (past X time units ending with today) based on the specified unit and amount. It returns a DateRange object representing the start and end dates of the trailing range. Includes current day (last 5 days = today and 4 days before)
 def resolve_trailing_range(
     *,
     unit: RollingRangeUnit,
@@ -13,24 +13,26 @@ def resolve_trailing_range(
 ) -> DateRange | None:
     match unit:
         case RollingRangeUnit.DAY:
-            start = today - timedelta(days=unit_amount - 1)
-            return start, today
+            start_date = today - timedelta(days=unit_amount - 1)
+            return start_date, today
         case RollingRangeUnit.WEEK:
-            start = today - timedelta(days=7 * unit_amount - 1)
-            return start, today
+            start_date = today - timedelta(days=7 * unit_amount - 1)
+            return start_date, today
         case RollingRangeUnit.MONTH:
-            start_month = (today.month - unit_amount - 1) % 12 + 1
-            start_year = today.year + (today.month - unit_amount - 1) // 12
-            start_month_last_day = calendar.monthrange(start_year, start_month)[1]
-            return date(start_year, start_month, min(today.day, start_month_last_day)), today
+            start_month_index = today.month - 1 - unit_amount
+            start_month = (start_month_index) % 12 + 1
+            start_year = today.year + (start_month_index // 12)
+            last_day_of_start_month = calendar.monthrange(start_year, start_month)[1]
+            return date(start_year, start_month, min(today.day, last_day_of_start_month)), today
         case RollingRangeUnit.QUARTER:
             return None  # Trailing range for quarters is not implemented
         case RollingRangeUnit.YEAR:
             start_year = today.year - unit_amount
-            start_month_last_day = calendar.monthrange(start_year, today.month)[1]
-            return date(start_year, today.month, min(today.day, start_month_last_day)), today
+            last_day_of_start_month = calendar.monthrange(start_year, today.month)[1]
+            return date(start_year, today.month, min(today.day, last_day_of_start_month)), today
     return None  # If the unit is not recognized, return None
 
+# Calculates the previous complete range (past X time units excluding current unit (e.g. previous 5 months means 5 months without current month)) based on the specified unit and amount. It returns a DateRange object representing the start and end dates of the previous complete range.
 def resolve_previous_complete_range(
     *,
     unit: RollingRangeUnit,
@@ -39,19 +41,21 @@ def resolve_previous_complete_range(
 ) -> DateRange | None:
     match unit:
         case RollingRangeUnit.DAY:
-            start_day = today - timedelta(days=unit_amount)
-            end_day = today - timedelta(days=1)
-            return start_day, end_day
+            start_date = today - timedelta(days=unit_amount)
+            end_date = today - timedelta(days=1)
+            return start_date, end_date
         case RollingRangeUnit.WEEK:
             current_monday = today - timedelta(days=today.weekday())
-            start_day = current_monday - timedelta(weeks=unit_amount)
-            end_day = current_monday - timedelta(days=1)
-            return start_day, end_day
+            start_date = current_monday - timedelta(weeks=unit_amount)
+            end_date = current_monday - timedelta(days=1)
+            return start_date, end_date
         case RollingRangeUnit.MONTH:
-            start_month = (today.month - unit_amount - 1) % 12 + 1
-            start_year = today.year + (today.month - unit_amount - 1) // 12
-            end_month = (today.month - 2) % 12 + 1
-            end_year = today.year + (today.month - 2) // 12
+            start_month_index = today.month - 1 - unit_amount
+            start_month = (start_month_index) % 12 + 1
+            start_year = today.year + (start_month_index // 12)
+            end_month_index = today.month - 2
+            end_month = (end_month_index) % 12 + 1
+            end_year = today.year + (end_month_index // 12)
             last_day_of_end_month = calendar.monthrange(end_year, end_month)[1]
             return date(start_year, start_month, 1), date(end_year, end_month, last_day_of_end_month)
         case RollingRangeUnit.QUARTER:
