@@ -1,14 +1,12 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 
 from bot.models.doc_qa.references import DocReference
 
 
-@dataclass(frozen=True)
-class DocChunk:
+class DocChunk(BaseModel):
     doc_reference: DocReference
     content: str
     chunk_id: int
     
-@dataclass(frozen=True)
-class EmbeddedDocChunk(DocChunk):
+class EmbeddedDocChunk(DocChunk, BaseModel):
     embedding: list[float]

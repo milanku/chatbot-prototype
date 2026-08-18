@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     
     # Embeddings
     EMBEDDINGS_MODEL: str = "text-embedding-3-small"
+    CHUNKING_VERSION: str = "v1.0.0"
 
     # Paths
     DOCS_PATH: str = "data/docs"

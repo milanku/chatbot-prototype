@@ -40,6 +40,7 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
     )
     doc_repository = build_doc_store(
         embedder=embedder,
+        chunking_version=settings.CHUNKING_VERSION,
         md_docs_dir=Path(settings.DOCS_PATH),
         embeddings_dir=Path(settings.EMBEDDINGS_PATH),
         manifest_path=Path(settings.EMBEDDINGS_MANIFEST_PATH),
