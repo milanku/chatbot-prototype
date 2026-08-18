@@ -7,11 +7,13 @@ from bot.models.tx_qa.query import (
 )
 from bot.models.tx_qa.results import TxQAQueryResult
 from bot.routes.tx_qa.explain_parser import parse_explain_query_from_user_message
+from bot.trace_context import get_current_session_id
 
 
 class TxExplainHandler(TxBaseHandler):
         
-    def handle(self, *, message: str, session_id: str, session_state: SessionState)  -> HandlerResult:
+    def handle(self, *, message: str, session_state: SessionState)  -> HandlerResult:
+        session_id = get_current_session_id()
         txs_results = session_state.txs_results
                 
         query_extraction: TXExplainQueryExtraction | None = parse_explain_query_from_user_message(llm_client=self._llm_client, msg=message)

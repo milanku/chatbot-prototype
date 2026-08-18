@@ -7,11 +7,13 @@ from bot.models.memory import SessionState
 from bot.models.tx_qa.repository import TxFilter
 from bot.routes.tx_qa import parse
 from bot.routes.tx_qa.timeframe.resolver import resolve_date_range_from_raw_query
+from bot.trace_context import get_current_session_id
 
 
 class TxListHandler(TxBaseHandler):
     
-    def handle(self, *, message:str, session_id:str, session_state: SessionState) -> HandlerResult:
+    def handle(self, *, message:str, session_state: SessionState) -> HandlerResult:
+        session_id = get_current_session_id()
         parsed_tx_query = parse.parse_raw_tx_query_from_user_message(llm_client=self._llm_client, user_msg=message)
         
         raw_query_data = parsed_tx_query.raw_query_data
