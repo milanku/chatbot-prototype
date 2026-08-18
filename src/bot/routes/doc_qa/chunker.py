@@ -11,10 +11,19 @@ def split_markdown_into_chunks(file_name: str, content: str) -> list[DocChunk]:
     
     def flush_chunk() -> None:
         nonlocal chunk_id
-        if current_chunk_lines:
+        if(current_chunk_lines):
             # Prepend the current titles stack to the chunk content
             chunk_content = "\n".join(title_stack) + "\n" + "\n".join(current_chunk_lines)
-            new_chunks.append(DocChunk(doc_reference=DocReference(file_name=file_name, heading_path=title_stack.copy()), content=chunk_content, chunk_id=chunk_id))
+            new_chunks.append(
+                DocChunk(
+                    doc_reference=DocReference(
+                        file_name=file_name,
+                        heading_path=title_stack.copy()
+                    ),
+                    content=chunk_content,
+                    chunk_id=chunk_id
+                )
+            )
             chunk_id += 1
             current_chunk_lines.clear()
 
@@ -24,24 +33,22 @@ def split_markdown_into_chunks(file_name: str, content: str) -> list[DocChunk]:
             continue  # Skip empty lines
 
         if normalized_line.startswith("#"):
-            # Determine the level of the heading
+            # Determine the level of the heading (number of '#' characters)
             level = len(normalized_line) - len(normalized_line.lstrip("#"))
             title = normalized_line.lstrip("#").strip()
 
+            # Found a new heading, flush the current chunk (if it has content)
+            flush_chunk()
+                
             # Remove titles from the stack that are deeper than or equal to the current level
             while len(title_stack) >= level:
                 title_stack.pop()
 
             # Add the current title to the stack
             title_stack.append(title)
-
-            # If this is a higher-level title and there are subheadings, don't create a chunk
-            if level > 1:
-                flush_chunk()  # Close the current chunk before starting a new section
         else:
             # Add the line to the current chunk
             current_chunk_lines.append(normalized_line)
 
-    # Flush the last chunk
     flush_chunk()
     return new_chunks
