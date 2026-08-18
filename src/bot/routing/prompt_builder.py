@@ -8,56 +8,12 @@ from bot.models.routing import Route
 class RouterPromptInput:
     message: str
     
-ROUTE_DESCRIPTIONS: dict[Route, str] = {
-    Route.TX_SUMMARY: (
-        'TX_SUMMARY\n'
-        'Choose this when the user is asking for a transaction-based spending summary that should be computed from bank transactions.\n'
-        'Typical examples:\n'
-        '- "How much did I spend on pets in February?"\n'
-        '- "What did I spend on food last month?"\n'
-        '- "How much did I spend on other in January 2026?"\n'
-        '- "Total spending on pets this year"\n'
-        'This route applies even if the request is incomplete, for example if the timeframe is missing but the user is clearly asking for a spending total.'
-    ),
-    Route.TX_LIST: (
-        'TX_LIST\n'
-        'Choose this when the user is asking for a list of transactions matching a new query without reference to a previous summary.\n'
-        'Typical examples:\n'
-        '- "List all my transactions from last month"\n'
-        '- "Show me my transactions in January 2026"\n'
-        '- "What transactions did I have on February 14th?"\n'
-        '- "List all my expenses above $100"\n'
-        'This route applies even if the request is incomplete, for example if the timeframe is missing but the user is clearly asking for a list of transactions.'
-    ),
-    Route.TX_EXPLAIN: (
-        'TX_EXPLAIN\n'
-        'Choose this when the user is asking to see the transactions that make up a previously discussed spending sum.\n'
-        'Typical examples:\n'
-        '- "Show me the transactions that built up this sum"\n'
-        '- "Which transactions are included?"\n'
-        '- "List those payments"\n'
-        '- "What makes up that amount?"\n'
-        'Choose this route even if the previous summary may be missing. The executor will handle that later.'
-    ),
-    Route.DOCS_ANSWER: (
-        'DOCS_ANSWER\n'
-        'Choose this when the user is asking an informational question that should be answered from markdown documentation.\n'
-        'Typical examples:\n'
-        '- "How do refunds work?"\n'
-        '- "What is the return policy?"\n'
-        '- "How can I reset my password?"\n'
-        '- "What are the supported payment methods?"\n'
-        'Choose this only when the message looks like a documentation question.'
-    ),
-    Route.OUT_OF_SCOPE: (
-        'OUT_OF_SCOPE\n'
-        'Choose this when the message does not fit any of the routes above.\n'
-        'Typical examples:\n'
-        '- "What is the capital of France?"\n'
-        '- "Write me a poem"\n'
-        '- "What\'s the weather today?"\n'
-        '- anything unrelated to transaction summaries, transaction follow-up explanations, or documentation-based questions'
-    ),
+ROUTE_DESCRIPTIONS_PATHS: dict[Route, Path] = {
+    Route.TX_SUMMARY: Path("src/bot/prompts/router_path_descriptions/tx_summary_description.txt"),
+    Route.TX_LIST: Path("src/bot/prompts/router_path_descriptions/tx_list_description.txt"),
+    Route.TX_EXPLAIN: Path("src/bot/prompts/router_path_descriptions/tx_explain_description.txt"),
+    Route.DOCS_ANSWER: Path("src/bot/prompts/router_path_descriptions/docs_answer_description.txt"),
+    Route.OUT_OF_SCOPE: Path("src/bot/prompts/router_path_descriptions/out_of_scope_description.txt"),
 }
 
 def load_router_instructions(path: Path) -> str:
@@ -65,7 +21,7 @@ def load_router_instructions(path: Path) -> str:
 
 def build_router_system_prompt(template: str, allowed_routes: list[str]) -> str:
     allowed_routes_str = "\n\n".join(allowed_routes)
-    allowed_routes_descriptions_str = "\n\n".join(ROUTE_DESCRIPTIONS[Route(route)] for route in allowed_routes)
+    allowed_routes_descriptions_str = "\n\n".join(load_router_instructions(ROUTE_DESCRIPTIONS_PATHS[Route(route)]) for route in allowed_routes)
     allowed_routes_list_with_commas = ", ".join(allowed_routes)
     
     return template.format(

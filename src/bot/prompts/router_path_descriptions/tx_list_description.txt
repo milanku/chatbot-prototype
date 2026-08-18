@@ -1,0 +1,8 @@
+TX_LIST
+Choose this when the user is asking for a list of transactions matching a new query without reference to a previous summary.
+Typical examples:
+- "List all my transactions from last month"
+- "Show me my transactions in January 2026"
+- "What transactions did I have on February 14th?"
+- "List all my expenses above $100"
+This route applies even if the request is incomplete, for example if the timeframe is missing but the user is clearly asking for a list of transactions.

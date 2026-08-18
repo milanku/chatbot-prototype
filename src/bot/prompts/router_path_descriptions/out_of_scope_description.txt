@@ -1,0 +1,7 @@
+OUT_OF_SCOPE
+Choose this when the message does not fit any of the routes above.
+Typical examples:
+- "What is the capital of France?"
+- "Write me a poem"
+- "What\'s the weather today?"
+- anything unrelated to transaction summaries, transaction follow-up explanations, or documentation-based questions
