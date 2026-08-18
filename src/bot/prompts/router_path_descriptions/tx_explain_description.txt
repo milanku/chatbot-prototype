@@ -1,0 +1,8 @@
+TX_EXPLAIN
+Choose this when the user is asking to see the transactions that make up a previously discussed spending sum.
+Typical examples:
+- "Show me the transactions that built up this sum"
+- "Which transactions are included?"
+- "List those payments"
+- "What makes up that amount?"
+Choose this route even if the previous summary may be missing. The executor will handle that later.

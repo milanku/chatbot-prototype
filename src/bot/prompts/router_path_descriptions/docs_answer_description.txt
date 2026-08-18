@@ -1,0 +1,8 @@
+DOCS_ANSWER
+Choose this when the user is asking an informational question that should be answered from markdown documentation.
+Typical examples:
+- "How do refunds work?"
+- "What is the return policy?"
+- "How can I reset my password?"
+- "What are the supported payment methods?"
+Choose this only when the message looks like a documentation question.
