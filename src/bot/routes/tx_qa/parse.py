@@ -1,7 +1,6 @@
 from pathlib import Path
 
 from bot.llm.client import LLMClient
-from bot.logging import log_event
 from bot.models.tx_qa.query import (
     TXQAQueryExtraction,
 )
@@ -18,20 +17,10 @@ def parse_raw_tx_query_from_user_message(llm_client: LLMClient, user_msg: str) -
     system_prompt = build_timeframe_parser_system_prompt(template=prompt_template)
     user_prompt = build_timeframe_parser_user_prompt(TimeframeParserPromptInput(message=user_msg))
     
-    log_event(
-        event="tx_qa.timeframe_parser.input",
-        payload={"message": user_msg},
-    )
-    
     llm_structured_response = llm_client.generate_with_structured_output(
         prompt=user_prompt,
         output_format=TXQAQueryExtraction,
         system_instructions=system_prompt,
-    )
-
-    log_event(
-        event="tx_qa.timeframe_parser.output",
-        payload={"llm_response": llm_structured_response}
     )
     
     return llm_structured_response

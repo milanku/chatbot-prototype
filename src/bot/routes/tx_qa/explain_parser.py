@@ -1,7 +1,6 @@
 from pathlib import Path
 
 from bot.llm.client import LLMClient
-from bot.logging import log_event
 from bot.models.tx_qa.query import TXExplainQueryExtraction
 from bot.routes.tx_qa.explain_prompt_builder import (
     TXExplainParserPromptInput,
@@ -19,17 +18,9 @@ def parse_explain_query_from_user_message(llm_client: LLMClient, msg: str) -> TX
     user_prompt = build_tx_explain_parser_user_prompt(TXExplainParserPromptInput(message=msg))
     
     llm_structured_response = llm_client.generate_with_structured_output(
-            prompt=user_prompt,
-            output_format=TXExplainQueryExtraction,
-            system_instructions=system_prompt,
-        )
-    
-    log_event(
-        event="explain_parser.output",
-        payload={
-            "user_message": msg,
-            "llm_response": llm_structured_response
-        }
+        prompt=user_prompt,
+        output_format=TXExplainQueryExtraction,
+        system_instructions=system_prompt,
     )
     
     return llm_structured_response

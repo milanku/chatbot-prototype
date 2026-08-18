@@ -8,6 +8,7 @@ from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, SecretStr
 
 from bot.llm.client import LLMClient
+from bot.logging import log_event
 
 T = TypeVar("T", bound=BaseModel)
 
@@ -40,4 +41,14 @@ class OpenAIClient(LLMClient):
         result = structured_model.invoke(
             messages
         )
+        
+        log_event(
+            event="llm_client.generate_with_structured_output",
+            payload={
+                "prompt": prompt,
+                "system_instructions": system_instructions,
+                "llm_response": result.model_dump() if isinstance(result, BaseModel) else str(result),
+            }
+        )
+        
         return cast(T, result)
