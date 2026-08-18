@@ -12,7 +12,9 @@ from bot.llm import openai_client
 from bot.logging import setup_logging
 from bot.memory.session_store import InMemorySessionStore
 from bot.routes.doc_qa.bootstrap import build_doc_store
-from bot.routes.tx_qa.mock_repository import JsonMockTransactionsRepository
+from bot.routes.tx_qa.transactions_repository_mock import (
+    TransactionsRepositoryFromJsonMock,
+)
 from bot.trace_context import bind_session_id, get_current_session_id
 
 app = typer.Typer(add_completion=False)
@@ -33,7 +35,7 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
         api_key=settings.OPENAI_API_KEY,
     )
     
-    tx_repository = JsonMockTransactionsRepository.from_json_file(
+    tx_repository = TransactionsRepositoryFromJsonMock.from_json_file(
         Path(settings.TRANSACTIONS_MOCK_PATH)
     )
     doc_repository = build_doc_store(
