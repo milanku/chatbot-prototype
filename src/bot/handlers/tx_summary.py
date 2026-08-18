@@ -1,84 +1,68 @@
 from dataclasses import replace
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from decimal import Decimal
 
 from bot.handlers.base import TxBaseHandler
 from bot.handlers.models import HandlerResult
 from bot.logging import log_event
 from bot.models.memory import SessionState
+from bot.models.tx_qa.query import TxQAQuery
 from bot.models.tx_qa.repository import TxFilter
 from bot.models.tx_qa.results import TxQAQueryResult
-from bot.routes.tx_qa.compute import compute_total_amount
 from bot.routes.tx_qa import parse
+from bot.routes.tx_qa.compute import compute_total_amount
 from bot.routes.tx_qa.synthesize import synthesize_tx_summary
+from bot.routes.tx_qa.timeframe.resolver import resolve_date_range_from_raw_query
 
 
 class TxSummaryHandler(TxBaseHandler):
 
-    def handle(self, *, message:str, session_id:str, session_state: SessionState) -> HandlerResult:
-        parsed_query = parse.parse_tx_query_from_user_message(llm_client=self._llm_client, user_msg=message)
+    def handle(self, *, message: str, session_id: str, session_state: SessionState) -> HandlerResult:
         new_state = session_state
-    
-        if parsed_query is None:
-            log_event(
-                event="tx_qa.parse_query.error",
-                payload={
-                    "message": "Parsed query is None. Could not extract label and date range from the message.",
-                    "session_id": session_id,
-                }
-            )
-            answer_text = "Sorry, I couldn't understand your query. Please make sure to include a label (food, pets, other) and a date range (e.g., 2026-01-01 - 2026-01-31).\n"
-        else:
-            log_event(
-                event="tx_qa.parse_query.success",
-                payload={
-                    "label": parsed_query.label,
-                    "start": parsed_query.start_date.isoformat(),
-                    "end_date": parsed_query.end_date.isoformat(),
-                    "session_id": session_id,
-                }
-            )
-            tx_filter = TxFilter(
-                label=parsed_query.label,
-                start_date=parsed_query.start_date,
-                end_date=parsed_query.end_date,
-                direction=parsed_query.direction,
-            )
-            log_event(
-                event="tx_qa.query",
-                payload={
-                    "label": parsed_query.label,
-                    "start_date": parsed_query.start_date.isoformat(),
-                    "end_date": parsed_query.end_date.isoformat(),
-                    "direction": tx_filter.direction,
-                    "session_id": session_id,
-                }
-            )
-            
-            txs = self._tx_repository.list_transactions(tx_filter)
-            total_amount = compute_total_amount(txs)
-            log_event(
-                event="tx_qa.query_result",
-                payload={
-                    "total_amount": f"{total_amount:.2f}",
-                    "num_transactions": len(txs),
-                    "session_id": session_id,
-                }
-            )
-            query_result: TxQAQueryResult = TxQAQueryResult(
-                query=parsed_query,
-                transactions=txs,
-                total=Decimal(total_amount), 
-                created_at=datetime.now(
-                    timezone.utc
-                ),  # Using current UTC time as a timestamp
-            )
-            # Update state with the new query result
-            new_state = replace(
-                session_state,
-                txs_results=session_state.txs_results + (query_result,),
-            )
-            answer_text = synthesize_tx_summary(parsed_query, float(total_amount))
+        parsed_raw_query = parse.parse_raw_tx_query_from_user_message(llm_client=self._llm_client, user_msg=message)
+        
+        raw_query_data = parsed_raw_query.raw_query_data
+        # confidence = parsed_raw_query.confidence
+        # reason = parsed_raw_query.reason
+        
+        date_range = resolve_date_range_from_raw_query(raw_query_data, today=date.today())
+        if date_range is None:
+            return HandlerResult(
+                answer_text="Sorry, I could not determine the date range for your query. Please make sure to specify a valid timeframe (e.g., 'last month', 'from January 1st to January 31st').\n",
+                new_state=new_state,
+                references=[],
+            )   
+        start_date, end_date = date_range
+        query = TxQAQuery(
+            label=raw_query_data.label,
+            start_date=start_date,
+            end_date=end_date,
+            direction=raw_query_data.direction,
+        )
+                    
+        tx_filter = TxFilter(
+            label=query.label,
+            start_date=query.start_date,
+            end_date=query.end_date,
+            direction=query.direction,
+        )
+        
+        txs = self._tx_repository.list_transactions(tx_filter)
+        total_amount = compute_total_amount(txs)
+        query_result: TxQAQueryResult = TxQAQueryResult(
+            query=query,
+            transactions=txs,
+            total=Decimal(total_amount), 
+            created_at=datetime.now(
+                timezone.utc
+            ),  # Using current UTC time as a timestamp
+        )
+        # Update state with the new query result
+        new_state = replace(
+            session_state,
+            txs_results=session_state.txs_results + (query_result,),
+        )
+        answer_text = synthesize_tx_summary(query, float(total_amount))
         
         return HandlerResult(
             answer_text=answer_text,
