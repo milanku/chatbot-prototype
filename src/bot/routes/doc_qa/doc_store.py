@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from langchain_openai import OpenAIEmbeddings
 
 from bot.models.doc_qa.chunks import EmbeddedDocChunk
-from bot.models.doc_qa.docs import DocRepository
+from bot.models.doc_qa.doc_repository import DocRepository
 from bot.models.doc_qa.retrieval import DocHit
 from bot.routes.doc_qa.score import vectors_cosine_similarity
 
