@@ -67,6 +67,7 @@ class TxSummaryHandler(TxBaseHandler):
             )
             query_result: TxQAQueryResult = TxQAQueryResult(
                 query=parsed_query,
+                transactions=txs,
                 total=Decimal(total_amount), 
                 created_at=datetime.now(
                     timezone.utc
