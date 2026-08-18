@@ -19,7 +19,7 @@ from bot.models.memory import SessionState
 from bot.models.responses import BotResponse
 from bot.models.routing import Route, RouterDecision
 from bot.models.tx_qa.repository import TransactionsRepository
-from bot.routing.router import route
+from bot.routing.router import select_route
 from bot.trace_context import bind_trace_id
 
 
@@ -77,7 +77,7 @@ class ChatbotEngine:
                 }
             )
 
-            router_decision: RouterDecision = route(llm_client=self._deps.llm_client, message=message)
+            router_decision: RouterDecision = select_route(llm_client=self._deps.llm_client, message=message)
 
             log_event(
                 event="router.decision",
