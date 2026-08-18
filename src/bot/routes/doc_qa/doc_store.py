@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from langchain_core.embeddings import Embeddings
-from pydantic.dataclasses import dataclass
+from dataclasses import dataclass
 
 from bot.models.doc_qa.chunks import EmbeddedDocChunk
 from bot.models.doc_qa.doc_repository import DocRepository
