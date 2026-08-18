@@ -1,5 +1,4 @@
 import json
-from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from pathlib import Path
@@ -12,13 +11,14 @@ def _parse_date(date_str: str) -> date:
     y, m, d = date_str.split("-")
     return date(int(y), int(m), int(d))
 
-
-@dataclass
-class JsonMockTransactionsRepository(TransactionsRepository):
+class TransactionsRepositoryFromJsonMock(TransactionsRepository):
     _transactions: list[Transaction]
+    
+    def __init__(self, *, _transactions: list[Transaction]):
+        self._transactions = _transactions
 
     @classmethod
-    def from_json_file(cls, file_path: Path) -> "JsonMockTransactionsRepository":
+    def from_json_file(cls, file_path: Path) -> "TransactionsRepositoryFromJsonMock":
         raw_data = json.loads(file_path.read_text(encoding="utf-8"))
         transactions: list[Transaction] = []
         for tx in raw_data:
