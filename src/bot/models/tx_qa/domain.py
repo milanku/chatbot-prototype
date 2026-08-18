@@ -1,7 +1,8 @@
-from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from enum import Enum
+
+from pydantic import BaseModel
 
 
 class Label(str, Enum):
@@ -13,8 +14,7 @@ class Direction(str, Enum):
     SPEND = "spend"
     RECEIVE = "receive"
 
-@dataclass(frozen=True)
-class Transaction:
+class Transaction(BaseModel):
     id: str
     date: date
     amount: Decimal
