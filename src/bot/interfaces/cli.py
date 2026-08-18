@@ -13,6 +13,7 @@ from bot.logging import setup_logging
 from bot.memory.session_store import InMemorySessionStore
 from bot.routes.doc_qa.bootstrap import build_doc_store
 from bot.routes.tx_qa.mock_repository import JsonMockTransactionsRepository
+from bot.trace_context import bind_session_id, get_current_session_id
 
 app = typer.Typer(add_completion=False)
 
@@ -45,18 +46,20 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
 
     typer.echo("Chatbot prototype (type 'exit' to quit)")
 
-    while True:
-        msg = typer.prompt("> ")
-        if msg.strip().lower() in {"exit", "quit"}:
-            break
-        response, new_state = engine.answer(
-            msg, session_id=session_id, session_state=session_store.get_session(session_id)
-        )
-        session_store.set_session(session_id, new_state)  # Update session state
-        
-        typer.echo(f"\n\n{response.answer}\n\n")
-        if(response.doc_references):
-            typer.echo(        
-                "Referenced documents:\n" + "\n".join(f"{ref.file_name} ({' >> '.join(ref.heading_path)})" for ref in response.doc_references) + "\n\n"
+    with bind_session_id(session_id):
+        while True:
+            msg = typer.prompt("> ")
+            if msg.strip().lower() in {"exit", "quit"}:
+                break
+            
+            response, new_state = engine.answer(
+                msg, session_state=session_store.get_session(get_current_session_id() or session_id)
             )
-        typer.echo(f"(trace_id: {response.trace_id})")
+            session_store.set_session(session_id, new_state)  # Update session state
+            
+            typer.echo(f"\n\n{response.answer}\n\n")
+            if(response.doc_references):
+                typer.echo(        
+                    "Referenced documents:\n" + "\n".join(f"{ref.file_name} ({' >> '.join(ref.heading_path)})" for ref in response.doc_references) + "\n\n"
+                )
+            typer.echo(f"(trace_id: {response.trace_id})")

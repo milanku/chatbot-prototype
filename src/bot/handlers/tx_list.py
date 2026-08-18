@@ -4,12 +4,14 @@ from bot.logging import log_event
 from bot.models.memory import SessionState
 from bot.models.tx_qa.repository import TxFilter
 from bot.routes.tx_qa import parse
+from bot.trace_context import get_current_session_id
 
 
 class TxListHandler(TxBaseHandler):
     
-    def handle(self, *, message:str, session_id:str, session_state: SessionState) -> HandlerResult:
-        parsed_tx_query = parse.parse_tx_query_from_user_message(llm_client=self._llm_client, user_msg=message)
+    def handle(self, *, message:str, session_state: SessionState) -> HandlerResult:
+        session_id = get_current_session_id()
+        parsed_tx_query = parse.parse_raw_tx_query_from_user_message(llm_client=self._llm_client, user_msg=message)
         
         if parsed_tx_query is None:
             answer_text = "Sorry, I couldn't understand your query. Please make sure to include a label (food, pets, other) and a date range (e.g., 2026-01-01 - 2026-01-31).\n"

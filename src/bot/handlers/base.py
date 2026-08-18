@@ -14,7 +14,6 @@ class Handler(ABC):
         self,
         *,
         message: str,
-        session_id: str,
         session_state: SessionState,
     ) -> HandlerResult:
         raise NotImplementedError

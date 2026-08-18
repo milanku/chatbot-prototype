@@ -20,7 +20,7 @@ from bot.models.responses import BotResponse
 from bot.models.routing import Route, RouterDecision
 from bot.models.tx_qa.repository import TransactionsRepository
 from bot.routing.router import select_route
-from bot.trace_context import bind_trace_id
+from bot.trace_context import bind_trace_id, get_current_session_id
 
 
 @dataclass(frozen=True)
@@ -62,9 +62,10 @@ class ChatbotEngine:
         self._unknown_route_handler: Handler = UnknownRouteHandler()
         
     def answer(
-        self, message: str, *, session_id: str, session_state: SessionState
+        self, message: str, *, session_state: SessionState
     ) -> tuple[BotResponse, SessionState]:
         trace_id = uuid4().hex
+        session_id = get_current_session_id()
         
         new_state = session_state  # By default, the state doesn't change. Routes can override this if needed.
         with bind_trace_id(trace_id):
@@ -89,17 +90,17 @@ class ChatbotEngine:
 
             match router_decision.route:
                 case Route.TX_SUMMARY:
-                    result: HandlerResult = self._tx_summary_handler.handle(message=message, session_id=session_id, session_state=session_state)
+                    result: HandlerResult = self._tx_summary_handler.handle(message=message, session_state=session_state)
                 case Route.TX_LIST:
-                    result = self._tx_list_handler.handle(message=message, session_id=session_id, session_state=session_state)
+                    result = self._tx_list_handler.handle(message=message, session_state=session_state)
                 case Route.TX_EXPLAIN:
-                    result = self._tx_explain_handler.handle(message=message, session_id=session_id, session_state=session_state)
+                    result = self._tx_explain_handler.handle(message=message, session_state=session_state)
                 case Route.DOCS_ANSWER:
-                    result = self._docs_answer_handler.handle(message=message, session_id=session_id, session_state=session_state)
+                    result = self._docs_answer_handler.handle(message=message, session_state=session_state)
                 case Route.OUT_OF_SCOPE:
-                    result = self._out_of_scope_handler.handle(message=message, session_id=session_id, session_state=session_state)
+                    result = self._out_of_scope_handler.handle(message=message, session_state=session_state)
                 case _:
-                    result = self._unknown_route_handler.handle(message=message, session_id=session_id, session_state=session_state)
+                    result = self._unknown_route_handler.handle(message=message, session_state=session_state)
 
             new_state = result.new_state
             answer_text = result.answer_text

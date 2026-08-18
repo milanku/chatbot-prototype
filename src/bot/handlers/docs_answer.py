@@ -6,6 +6,7 @@ from bot.models.doc_qa.docs import DocRepository
 from bot.models.memory import SessionState
 from bot.routes.doc_qa.synthesize import synthesize_doc_answer
 from bot.routes.doc_qa.verify import filter_relevant_hits
+from bot.trace_context import get_current_session_id
 
 
 class DocsAnswerHandler(Handler):
@@ -13,7 +14,8 @@ class DocsAnswerHandler(Handler):
         self._doc_repository = doc_repository
         self._llm_client = llm_client
 
-    def handle(self, *, message:str, session_id:str, session_state: SessionState)  -> HandlerResult:
+    def handle(self, *, message:str, session_state: SessionState)  -> HandlerResult:
+        session_id = get_current_session_id()
         top_k_chunks = self._doc_repository.get_top_k_chunks(message, top_k=5)
         log_event(
             event="doc_qa.retrieval",
