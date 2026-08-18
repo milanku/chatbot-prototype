@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from collections.abc import Iterator
 from contextlib import contextmanager
 from contextvars import ContextVar
+from typing import Generator
 
 _CURRENT_TRACE_ID: ContextVar[str | None] = ContextVar("current_trace_id", default=None)
 
@@ -12,7 +12,7 @@ def get_current_trace_id() -> str | None:
 
 
 @contextmanager
-def bind_trace_id(trace_id: str) -> Iterator[None]:
+def bind_trace_id(trace_id: str) -> Generator[None]:
     token = _CURRENT_TRACE_ID.set(trace_id)
     try:
         yield
