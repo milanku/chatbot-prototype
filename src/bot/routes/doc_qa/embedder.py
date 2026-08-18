@@ -1,9 +1,9 @@
-from langchain_openai import OpenAIEmbeddings
+from langchain_core.embeddings import Embeddings
 
 from bot.models.doc_qa.chunks import DocChunk, EmbeddedDocChunk
 
 
-def embed_doc_chunks(chunks: list[DocChunk], embedder: OpenAIEmbeddings) -> list[EmbeddedDocChunk]:
+def embed_doc_chunks(chunks: list[DocChunk], embedder: Embeddings) -> list[EmbeddedDocChunk]:
     embedded_chunks: list[EmbeddedDocChunk] = []
     embedded_vectors = embedder.embed_documents([chunk.content for chunk in chunks])
     

@@ -1,11 +1,10 @@
 from pathlib import Path
 
-from langchain_openai import OpenAIEmbeddings
+from langchain_core.embeddings import Embeddings
 
 from bot.logging import log_event
 from bot.models.doc_qa.chunks import EmbeddedDocChunk
 from bot.models.doc_qa.embedings import EmbeddingsManifest
-from bot.routes.doc_qa.doc_store import DocStore
 from bot.routes.doc_qa.persistor import (
     build_docs_embeddings,
     compute_docs_fingerprint,
@@ -15,29 +14,12 @@ from bot.routes.doc_qa.persistor import (
     persist_manifest,
 )
 
-
-def build_doc_store(
-    *,
-    embedder: OpenAIEmbeddings,
-    md_docs_dir: Path,
-    embeddings_dir: Path,
-    manifest_path: Path,
-    chunking_version: str,
-) -> DocStore:
-    embedded_chunks = load_or_build_embeddings(
-        embedder=embedder,
-        chunking_version=chunking_version,
-        docs_dir_path=md_docs_dir,
-        embeddings_dir_path=embeddings_dir,
-        manifest_path=manifest_path,
-    )
-    return DocStore(embedder=embedder, embedded_chunks=embedded_chunks)
-
 def load_or_build_embeddings(
     *, 
-    embedder: OpenAIEmbeddings,
-    docs_dir_path: Path,
+    embedder: Embeddings,
+    embedding_model: str,
     embeddings_dir_path: Path,
+    docs_dir_path: Path,
     manifest_path: Path,
     chunking_version: str,
 ) -> list[EmbeddedDocChunk]:
@@ -53,7 +35,7 @@ def load_or_build_embeddings(
     rebuild_reason: str | None = None
     if manifest is None:
         rebuild_reason = "No existing manifest found"
-    elif manifest.embedding_model != embedder.model:
+    elif manifest.embedding_model != embedding_model:
         rebuild_reason = "Embedding model has changed"
     elif manifest.chunking_version != chunking_version:
         rebuild_reason = "Chunking version has changed"
@@ -67,7 +49,7 @@ def load_or_build_embeddings(
             event="doc_qa.rebuild_doc_embeddings",
             payload={
                 "reason": rebuild_reason,
-                "embedding_model": embedder.model,
+                "embedding_model": embedding_model,
                 "chunking_version": chunking_version,
                 "docs_fingerprint": current_docs_fingerprint,
             }
@@ -80,7 +62,7 @@ def load_or_build_embeddings(
         persist_manifest(
             manifest_path=manifest_path,
             manifest=EmbeddingsManifest(
-                embedding_model=embedder.model,
+                embedding_model=embedding_model,
                 chunk_count=len(embedded_chunks),
                 chunking_version=chunking_version,
                 docs_fingerprint=compute_docs_fingerprint(
