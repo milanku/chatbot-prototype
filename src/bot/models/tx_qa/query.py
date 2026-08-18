@@ -111,9 +111,13 @@ class TXQAQueryExtraction(BaseModel):
     # Optional reason or explanation for the parsed timeframe information, can be used for debugging or logging purposes
     reason: str | None = None
     
-@dataclass(frozen=True)
-class TXExplainParseIntermediateResult:
-    reference_offset: int | None
-    reference_count: int | None
-    confidence: float | None
-    reason: str | None
+class TXExplainQuery(BaseModel):
+    # Related reference offset - this, current, last = 0; previous = 1
+    reference_offset: int | None = None
+    # Number of related references (1 = that sum, 2 = previous two sums...)
+    reference_count: int | None = None
+    
+class TXExplainQueryExtraction(BaseModel):
+    raw_query_data: TXExplainQuery
+    confidence: float | None = None
+    reason: str | None = None
