@@ -106,8 +106,6 @@ class TXQARawQuery(BaseModel):
 
 class TXQAQueryExtraction(BaseModel):
     raw_query_data: TXQARawQuery
-    # Confidence score for the parsed timeframe information, between 0 and 1
-    confidence: float | None = None
     # Optional reason or explanation for the parsed timeframe information, can be used for debugging or logging purposes
     reason: str | None = None
     
@@ -119,5 +117,4 @@ class TXExplainQuery(BaseModel):
     
 class TXExplainQueryExtraction(BaseModel):
     raw_query_data: TXExplainQuery
-    confidence: float | None = None
     reason: str | None = None

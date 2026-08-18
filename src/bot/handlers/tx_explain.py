@@ -16,7 +16,7 @@ class TxExplainHandler(TxBaseHandler):
                 
         query_extraction: TXExplainQueryExtraction | None = parse_explain_query_from_user_message(llm_client=self._llm_client, msg=message)
         
-        # TODO: Fix the logic here to handle missing extraction, confidence levels, reason.
+        # TODO: Fix the logic here to handle missing extraction, reason.
         if query_extraction is None:
             log_event(
                 event="tx_explain.parse_query.error",
@@ -35,7 +35,6 @@ class TxExplainHandler(TxBaseHandler):
         
         reference_count = query_extraction.raw_query_data.reference_count
         reference_offset = query_extraction.raw_query_data.reference_offset
-        # confidence = query_extraction.confidence
         # reason = query_extraction.reason
         
         related_query_results: list[TxQAQueryResult] = []

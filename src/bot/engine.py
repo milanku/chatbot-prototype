@@ -83,7 +83,6 @@ class ChatbotEngine:
                 event="router.decision",
                 payload={
                     "route": router_decision.route.value,
-                    "confidence": router_decision.confidence,
                 }
             )
             references: list[DocReference] = []

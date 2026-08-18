@@ -1,9 +1,8 @@
-import json
 from pathlib import Path
 
 from bot.llm.client import LLMClient
 from bot.logging import log_event
-from bot.models.routing import Route, RouterDecision
+from bot.models.routing import Route, RouterDecision, RouterDecisionExtraction
 from bot.routing.prompt_builder import (
     RouterPromptInput,
     build_router_system_prompt,
@@ -25,8 +24,9 @@ def route(llm_client: LLMClient, message: str) -> RouterDecision:
         payload={"message": message}
     )
     
-    router_response = llm_client.generate(
+    router_response = llm_client.generate_with_structured_output(
         prompt=user_prompt,
+        output_format=RouterDecisionExtraction,
         system_instructions=system_prompt,
     )
     
@@ -35,15 +35,6 @@ def route(llm_client: LLMClient, message: str) -> RouterDecision:
         payload={"router_response": router_response}
     )
     
-    try:
-        parsed_response = json.loads(router_response)
-        route_value = parsed_response.get("route", "").strip()
-        confidence_value = float(parsed_response.get("confidence", 0))
-        reason = parsed_response.get("reason", None)
-        if route_value not in [route.value for route in Route]:
-            return RouterDecision(route=Route.OUT_OF_SCOPE, confidence=0.5, reason="Invalid route in response")
-        return RouterDecision(route=Route(route_value), confidence=confidence_value, reason=reason)
-        
-    except json.JSONDecodeError:
-        # If the response is not valid JSON, classify as OUT_OF_SCOPE with low confidence
-        return RouterDecision(route=Route.OUT_OF_SCOPE, confidence=0.5, reason="Invalid JSON response")
+    return RouterDecision(
+        route=router_response.decision.route,
+    )

@@ -17,7 +17,7 @@ class OpenAIClient(LLMClient):
     default_model: str = "gpt-4.1-mini"
     
     def _get_chat_model(self, model: str) -> BaseChatModel:
-        return ChatOpenAI(model=model or self.default_model, api_key=self.api_key, logprobs=True, temperature=0.0)
+        return ChatOpenAI(model=model or self.default_model, api_key=self.api_key)
     
     def generate(self, *, prompt: str, system_instructions: str | None = None) -> str:
         chat = self._get_chat_model(model=self.default_model)

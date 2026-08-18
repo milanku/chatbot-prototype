@@ -4,7 +4,6 @@ from decimal import Decimal
 
 from bot.handlers.base import TxBaseHandler
 from bot.handlers.models import HandlerResult
-from bot.logging import log_event
 from bot.models.memory import SessionState
 from bot.models.tx_qa.query import TxQAQuery
 from bot.models.tx_qa.repository import TxFilter
@@ -22,7 +21,6 @@ class TxSummaryHandler(TxBaseHandler):
         parsed_raw_query = parse.parse_raw_tx_query_from_user_message(llm_client=self._llm_client, user_msg=message)
         
         raw_query_data = parsed_raw_query.raw_query_data
-        # confidence = parsed_raw_query.confidence
         # reason = parsed_raw_query.reason
         
         date_range = resolve_date_range_from_raw_query(raw_query_data, today=date.today())

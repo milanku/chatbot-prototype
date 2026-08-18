@@ -244,7 +244,7 @@ Additional rules:
 - If a date range gives one shared month, dont apply it to both start and end, only to what it explicitly corresponds.
 - If start and end dates mention different months, preserve each month separately.
 - If the year is not mentioned, leave start_year and end_year as null.
-- Treat YYYY-MM-DD as an unambiguous ISO date. For ambiguous numeric formats such as 03/04/2026, use the ordering implied by the language or explicit context only when reliable. Otherwise lower confidence. Do not guess.
+- Treat YYYY-MM-DD as an unambiguous ISO date. For ambiguous numeric formats such as 03/04/2026, use the ordering implied by the language or explicit context only when reliable. Do not guess.
 
 Return only a JSON object with exactly these fields:
 - label
@@ -268,7 +268,6 @@ Return only a JSON object with exactly these fields:
 - mode
 - unit
 - unit_amount
-- confidence
 - reason
 
 Field rules:
@@ -288,7 +287,6 @@ Field rules:
   - "ROLLING_RANGE"
   - "UNKNOWN"
 - For fields that do not apply, use null.
-- confidence must be a number between 0 and 1, or null if unavailable.
 - reason must be a short one-sentence explanation for debugging purposes, or null if unavailable.
 - Do not add any extra keys.
 - Do not include markdown.
@@ -325,7 +323,6 @@ Output:
     "unit": null,
     "unit_amount": null,
   }
-  "confidence": 0.86,
   "reason": "The user gave an explicit day-to-day range without month or year."
 }
 
@@ -359,7 +356,6 @@ Output:
     "unit": null,
     "unit_amount": null,
   }
-  "confidence": 0.93,
   "reason": "The user asked for food spending over an explicit March date range."
 }
 
@@ -383,7 +379,6 @@ Output:
     "unit": null,
     "unit_amount": null,
   }
-  "confidence": 0.88,
   "reason": "The user specified a day of month but not month or year."
 }
 
@@ -407,7 +402,6 @@ Output:
     "unit": null,
     "unit_amount": null,
   }
-  "confidence": 0.96,
   "reason": "The user asked for food spending in the previous month."
 }
 
@@ -431,6 +425,5 @@ Output:
     "unit": "quarter",
     "unit_amount": 3,
   }
-  "confidence": 0.81,
   "reason": "The user asked about received income during the previous three complete quarters."
 }

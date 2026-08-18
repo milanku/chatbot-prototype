@@ -13,7 +13,6 @@ You must only return a JSON object that matches the required schema.
 Your goal is to extract:
 - reference_offset
 - reference_count
-- confidence
 - reason
 
 Definitions:
@@ -59,13 +58,11 @@ Additional rules:
 Return only a JSON object with exactly these fields:
 - reference_offset
 - reference_count
-- confidence
 - reason
 
 Field rules:
 - reference_offset must be a non-negative integer or null.
 - reference_count must be a positive integer or null.
-- confidence must be a number between 0 and 1, or null if unavailable.
 - reason must be a short one-sentence explanation, or null if unavailable.
 - Do not add any extra keys.
 - Do not include markdown.

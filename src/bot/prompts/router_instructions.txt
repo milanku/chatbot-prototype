@@ -31,7 +31,6 @@ You may receive a boolean field named has_previous_tx_summary.
 Output format:
 Return only a JSON object with exactly these fields:
 - route: one of {allowed_routes_list_with_commas}
-- confidence: a number between 0 and 1
 - reason: a short one-sentence explanation
 
 Do not include markdown.

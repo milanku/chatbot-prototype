@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 from enum import Enum
+
+from pydantic import BaseModel
 
 
 class Route(Enum):
@@ -12,8 +13,9 @@ class Route(Enum):
     OUT_OF_SCOPE = "OUT_OF_SCOPE" # Messages that do not fit any of the above routes
 
 
-@dataclass(frozen=True)
-class RouterDecision:
-    route: Route
-    confidence: float
+class RouterDecisionExtraction(BaseModel):
+    decision: RouterDecision
     reason: str | None = None
+
+class RouterDecision(BaseModel):
+    route: Route
