@@ -4,15 +4,16 @@ from langchain_core.embeddings import Embeddings
 
 from bot.logging import log_event
 from bot.models.doc_qa.chunks import EmbeddedDocChunk
-from bot.models.doc_qa.embedings import EmbeddingsManifest
+from bot.routes.doc_qa.embedder import build_docs_embeddings
 from bot.routes.doc_qa.persistor import (
-    build_docs_embeddings,
+    EmbeddingsManifest,
     compute_docs_fingerprint,
-    load_manifest,
     load_persisted_embeddings,
+    load_persisted_manifest,
     persist_embeddings,
     persist_manifest,
 )
+
 
 def load_or_build_embeddings(
     *, 
@@ -30,7 +31,7 @@ def load_or_build_embeddings(
     current_docs_fingerprint = compute_docs_fingerprint(
         file_paths=md_file_paths,
     )
-    manifest = load_manifest(manifest_path)
+    manifest = load_persisted_manifest(manifest_path)
     
     rebuild_reason: str | None = None
     if manifest is None:

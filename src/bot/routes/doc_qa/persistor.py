@@ -3,30 +3,16 @@ import json
 from pathlib import Path
 from typing import Any
 
-from langchain_core.embeddings import Embeddings
-from pydantic import ValidationError
+from pydantic import BaseModel, ValidationError
 
-from bot.models.doc_qa.chunks import DocChunk, EmbeddedDocChunk
-from bot.models.doc_qa.embedings import EmbeddingsManifest
-from bot.routes.doc_qa.chunker import split_markdown_into_chunks
-from bot.routes.doc_qa.embedder import embed_doc_chunks
+from bot.models.doc_qa.chunks import EmbeddedDocChunk
 
 
-def build_docs_embeddings(
-    *,
-    embedder: Embeddings,
-    docs_dir_path: Path,
-) -> list[EmbeddedDocChunk]:
-    md_file_paths = list(docs_dir_path.glob("*.md"))
-    all_chunks: list[DocChunk] = []
-    embedded_chunks: list[EmbeddedDocChunk] = []
-    for file_path in md_file_paths:
-        content = file_path.read_text(encoding="utf-8")
-        chunks = split_markdown_into_chunks(file_path.name, content)
-        all_chunks.extend(chunks)
-        embeddings = embed_doc_chunks(chunks=chunks, embedder=embedder)
-        embedded_chunks.extend(embeddings)
-    return embedded_chunks
+class EmbeddingsManifest(BaseModel):
+    embedding_model: str
+    chunking_version: str
+    docs_fingerprint: str
+    chunk_count: int
 
 def hash_file(file_path: Path) -> str:
     return hashlib.sha256(file_path.read_bytes()).hexdigest()
@@ -84,7 +70,7 @@ def persist_manifest(*, manifest_path: Path, manifest: EmbeddingsManifest) -> No
         encoding="utf-8",
     )
 
-def load_manifest(manifest_path: Path) -> EmbeddingsManifest | None:
+def load_persisted_manifest(manifest_path: Path) -> EmbeddingsManifest | None:
     try:
         raw_data = json.loads(manifest_path.read_text(encoding="utf-8"))
         embeddings_manifest = EmbeddingsManifest.model_validate(raw_data)
