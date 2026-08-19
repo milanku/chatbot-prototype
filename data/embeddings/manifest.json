@@ -1,5 +1,6 @@
 {
   "embedding_model": "text-embedding-3-small",
-  "docs_fingerprint": "b2ff4487687c078aaa0a48688c0ae106372630357041f1a64b80d4721da3a157",
-  "chunk_count": 207
+  "chunking_version": "v1.0.0",
+  "docs_fingerprint": "abb7f571f1c94fde7dd8261e91cc4c0ad05c2c14eaadc07a39207651462a71f0",
+  "chunk_count": 219
 }

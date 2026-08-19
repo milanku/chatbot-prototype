@@ -2,7 +2,7 @@ from bot.handlers.base import Handler
 from bot.handlers.models import HandlerResult
 from bot.llm.client import LLMClient
 from bot.logging import log_event
-from bot.models.doc_qa.docs import DocRepository
+from bot.models.doc_qa.doc_repository import DocRepository
 from bot.models.memory import SessionState
 from bot.routes.doc_qa.synthesize import synthesize_doc_answer
 from bot.routes.doc_qa.verify import filter_relevant_hits

@@ -4,6 +4,7 @@ from pathlib import Path
 from uuid import uuid4
 
 import typer
+from langchain_core.embeddings import Embeddings
 from langchain_openai import OpenAIEmbeddings
 
 from bot.config import Settings
@@ -11,7 +12,7 @@ from bot.engine import ChatbotEngine, EngineConfig, EngineDeps
 from bot.llm import openai_client
 from bot.logging import setup_logging
 from bot.memory.session_store import InMemorySessionStore
-from bot.routes.doc_qa.bootstrap import build_doc_store
+from bot.routes.doc_qa.doc_store import DocStore
 from bot.routes.tx_qa.transactions_repository_mock import (
     TransactionsRepositoryFromJsonMock,
 )
@@ -30,7 +31,7 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
     llm_client = openai_client.OpenAIClient(
         api_key=settings.OPENAI_API_KEY,
     )
-    embedder = OpenAIEmbeddings(
+    embedder: Embeddings = OpenAIEmbeddings(
         model=settings.EMBEDDINGS_MODEL,
         api_key=settings.OPENAI_API_KEY,
     )
@@ -38,11 +39,13 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
     tx_repository = TransactionsRepositoryFromJsonMock.from_json_file(
         Path(settings.TRANSACTIONS_MOCK_PATH)
     )
-    doc_repository = build_doc_store(
+    doc_repository = DocStore.build_doc_store(
         embedder=embedder,
-        md_docs_dir=Path(settings.DOCS_PATH),
+        embedding_model=settings.EMBEDDINGS_MODEL,
         embeddings_dir=Path(settings.EMBEDDINGS_PATH),
+        md_docs_dir=Path(settings.DOCS_PATH),
         manifest_path=Path(settings.EMBEDDINGS_MANIFEST_PATH),
+        chunking_version=settings.CHUNKING_VERSION,
     )
     engine = ChatbotEngine(EngineConfig(), EngineDeps(tx_repository=tx_repository, doc_repository=doc_repository, llm_client=llm_client))
 
