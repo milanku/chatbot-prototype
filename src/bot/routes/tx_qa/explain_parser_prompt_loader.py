@@ -9,7 +9,7 @@ class TXExplainParserPromptInput:
     
 class TXExplainParserPromptLoader(PromptLoader[TXExplainParserPromptInput]):
     def build_user_prompt(self, input: TXExplainParserPromptInput) -> str:
-         return (
-                "Parse the user's transaction-explain reference.\n\n"
-                f"User Message: {input.message!r}\n"
-            )
+        return (
+            "Parse the user's transaction-explain reference.\n\n"
+            f"User Message: {input.message!r}\n"
+        )
