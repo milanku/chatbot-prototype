@@ -8,8 +8,8 @@ from bot.routes.doc_qa.verifier.models import (
     VerifiedClaimsLLMOutputFormat,
 )
 from bot.routes.doc_qa.verifier.verifier_prompt_loader import (
+    ClaimVerificationPromptLoader,
     ClaimVerifierPromptInput,
-    PromptLoader,
 )
 
 
@@ -53,7 +53,7 @@ def verify_claims_against_evidence(
     user_query: str,
     claims: list[ExtractedClaim],
     evidence_chunks: list[DocHit],
-    verification_prompt_loader: PromptLoader[ClaimVerifierPromptInput],
+    verification_prompt_loader: ClaimVerificationPromptLoader,
 ) -> list[VerifiedClaim]:
     """
     Verifies claims against evidence chunks.

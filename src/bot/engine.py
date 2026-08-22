@@ -30,7 +30,13 @@ from bot.trace_context import bind_trace_id, get_current_session_id
 class EngineConfig:
     # TODO add: docs path, model names, retrieval parameters, etc.
     
-    def __init__(self, *, claim_verifier_config: PromptConfig) -> None:
+    def __init__(
+        self,
+        *,
+        claim_extractor_config: PromptConfig,
+        claim_verifier_config: PromptConfig,
+    ) -> None:
+        self.claim_extractor_config = claim_extractor_config
         self.claim_verifier_config = claim_verifier_config
 
 

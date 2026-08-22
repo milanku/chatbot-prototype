@@ -7,7 +7,10 @@ import typer
 from langchain_core.embeddings import Embeddings
 from langchain_openai import OpenAIEmbeddings
 
-from bot.config.prompts_config import CLAIM_VERIFIER_PROMPT_CONFIG
+from bot.config.prompts_config import (
+    CLAIM_EXTRACTOR_PROMPT_CONFIG,
+    CLAIM_VERIFIER_PROMPT_CONFIG,
+)
 from bot.config.settings import Settings
 from bot.engine import ChatbotEngine, EngineConfig, EngineDeps
 from bot.llm import openai_client
@@ -48,6 +51,7 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
         chunking_version=settings.CHUNKING_VERSION,
     )
     engine_config = EngineConfig(
+        claim_extractor_config=CLAIM_EXTRACTOR_PROMPT_CONFIG,
         claim_verifier_config=CLAIM_VERIFIER_PROMPT_CONFIG
     )
     engine_deps = EngineDeps(

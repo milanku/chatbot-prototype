@@ -16,3 +16,8 @@ CLAIM_VERIFIER_PROMPT_CONFIG = PromptConfig(
     directory=Path("src/bot/prompts/claim_verification_instructions"),
     version="v002",
 )
+
+CLAIM_EXTRACTOR_PROMPT_CONFIG = PromptConfig(
+    directory=Path("src/bot/prompts/claim_extraction_instructions"),
+    version="v001",
+)

@@ -1,11 +1,7 @@
-from pathlib import Path
-
 from bot.llm.client import LLMClient
-from bot.routes.doc_qa.verifier.claim_extraction_prompt_builder import (
+from bot.routes.doc_qa.verifier.claim_extraction_prompt_loader import (
     ClaimExtractionPromptInput,
-    build_claim_extraction_system_prompt,
-    build_claim_extraction_user_prompt,
-    load_claim_extraction_instructions,
+    ClaimExtractionPromptLoader,
 )
 from bot.routes.doc_qa.verifier.models import (
     ExtractedClaim,
@@ -14,7 +10,12 @@ from bot.routes.doc_qa.verifier.models import (
 )
 
 
-def extract_claims_from_sentences(llm_client: LLMClient, sentences: list[SentenceForExtraction]) -> list[ExtractedClaim]:
+def extract_claims_from_sentences(
+    *, 
+    llm_client: LLMClient,
+    sentences: list[SentenceForExtraction],
+    claim_extraction_prompt_loader: ClaimExtractionPromptLoader
+) -> list[ExtractedClaim]:
     """
     Extracts claims from sentences.
 
@@ -26,11 +27,8 @@ def extract_claims_from_sentences(llm_client: LLMClient, sentences: list[Sentenc
         list[ExtractedClaim]: A list of extracted claims.
     """
 
-    prompt_template = load_claim_extraction_instructions(Path("src/bot/prompts/claim_extraction_instructions.txt"))
-    system_prompt = build_claim_extraction_system_prompt(
-        template=prompt_template
-    )
-    user_prompt = build_claim_extraction_user_prompt(ClaimExtractionPromptInput(sentences=sentences))
+    system_prompt = claim_extraction_prompt_loader.load_system_instructions()
+    user_prompt = claim_extraction_prompt_loader.build_user_prompt(ClaimExtractionPromptInput(sentences=sentences))
     
     llm_structured_response = llm_client.generate_with_structured_output(
         prompt=user_prompt,
