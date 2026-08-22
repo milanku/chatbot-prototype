@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from bot.llm.client import LLMClient
 from bot.logging import log_event
 from bot.models.doc_qa.retrieval import DocHit
@@ -9,11 +7,9 @@ from bot.routes.doc_qa.verifier.models import (
     VerifiedClaim,
     VerifiedClaimsLLMOutputFormat,
 )
-from bot.routes.doc_qa.verifier.verifier_prompt_builder import (
+from bot.routes.doc_qa.verifier.verifier_prompt_loader import (
     ClaimVerifierPromptInput,
-    build_verifier_system_prompt,
-    build_verifier_user_prompt,
-    load_verifier_instructions,
+    PromptLoader,
 )
 
 
@@ -57,7 +53,7 @@ def verify_claims_against_evidence(
     user_query: str,
     claims: list[ExtractedClaim],
     evidence_chunks: list[DocHit],
-    prompt_version: str = "v002"    
+    verification_prompt_loader: PromptLoader[ClaimVerifierPromptInput],
 ) -> list[VerifiedClaim]:
     """
     Verifies claims against evidence chunks.
@@ -72,11 +68,8 @@ def verify_claims_against_evidence(
         list[VerifiedClaim]: A list of verified claims.
     """
     
-    prompt_template = load_verifier_instructions(Path(f"src/bot/prompts/claim_verification_instructions/{prompt_version}.txt"))
-    system_prompt = build_verifier_system_prompt(
-        template=prompt_template
-    )
-    user_prompt = build_verifier_user_prompt(ClaimVerifierPromptInput(
+    system_prompt = verification_prompt_loader.load_system_instructions()
+    user_prompt = verification_prompt_loader.build_user_prompt(ClaimVerifierPromptInput(
         user_query=user_query,
         retrieved_evidence_chunks=evidence_chunks,
         claims=claims

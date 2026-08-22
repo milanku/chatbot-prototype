@@ -1,8 +1,9 @@
+from bot.config.prompts_config import PromptConfig
 from prompt_evals.claim_verifier.models import ClaimVerifierBatchEvaluationResult
 
 
 def print_results(
-    prompt_version: str,
+    prompt_config: PromptConfig,
     batch_results: list[ClaimVerifierBatchEvaluationResult],
 ) -> None:
     all_claims = [
@@ -28,7 +29,7 @@ def print_results(
     print("CLAIM VERIFIER EVALUATION")
     print("=" * 60)
 
-    print(f"Prompt:              {prompt_version}")
+    print(f"Prompt:              {prompt_config.version}")
     print(f"Batches:             {total_batches_count}")
     print(f"Completely correct:  {correct_batches_count}/{total_batches_count}")
     print(f"Batch accuracy:      {correct_batches_count / total_batches_count:.1%}")

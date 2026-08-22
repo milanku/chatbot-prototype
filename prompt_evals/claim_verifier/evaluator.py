@@ -2,6 +2,9 @@ from bot.llm.client import LLMClient
 from bot.logging import log_event
 from bot.routes.doc_qa.verifier.models import ExtractedClaim, VerifiedClaim
 from bot.routes.doc_qa.verifier.verifier import verify_claims_against_evidence
+from bot.routes.doc_qa.verifier.verifier_prompt_loader import (
+    ClaimVerificationPromptLoader,
+)
 from prompt_evals.claim_verifier.models import (
     ClaimVerifierBatchEvaluationResult,
     ClaimVerifierTestBatch,
@@ -14,7 +17,7 @@ def _run_case_batch(
     llm_client: LLMClient,
     *,
     batch: ClaimVerifierTestBatch,
-    prompt_version: str
+    prompt_loader: ClaimVerificationPromptLoader,
 ) -> list[VerifiedClaim]:
         
     results = verify_claims_against_evidence(
@@ -30,7 +33,7 @@ def _run_case_batch(
                 for case in batch.claims
         ],
         evidence_chunks=batch.evidence_chunks,
-        prompt_version=prompt_version
+        verification_prompt_loader=prompt_loader
     )
     
     return results
@@ -39,13 +42,13 @@ def evaluate_claim_verifier_batch(
     llm_client: LLMClient,
     *,
     batch: ClaimVerifierTestBatch,
-    prompt_version: str
+    prompt_loader: ClaimVerificationPromptLoader,
 ) -> ClaimVerifierBatchEvaluationResult:
     
     verified_claims = _run_case_batch(
         llm_client=llm_client,
         batch=batch,
-        prompt_version=prompt_version
+        prompt_loader=prompt_loader
     )
     
     # Compare the expected verification status with the actual verification status and categorize the results

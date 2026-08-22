@@ -11,16 +11,20 @@ from bot.routes.doc_qa.verifier.claim_extractor import (
 )
 from bot.routes.doc_qa.verifier.models import ClaimVerificationStatus
 from bot.routes.doc_qa.verifier.verifier import verify_claims_against_evidence
+from bot.routes.doc_qa.verifier.verifier_prompt_loader import (
+    ClaimVerificationPromptLoader,
+)
 from bot.routes.doc_qa.verify import filter_relevant_hits
 from bot.trace_context import get_current_session_id
 
 
 class DocsAnswerHandler(Handler):
-    def __init__(self, doc_repository: DocRepository, llm_client: LLMClient):
+    def __init__(self, doc_repository: DocRepository, llm_client: LLMClient, doc_verifier_prompt_loader: ClaimVerificationPromptLoader):
         self._doc_repository = doc_repository
         self._llm_client = llm_client
+        self._doc_verifier_prompt_loader = doc_verifier_prompt_loader
 
-    def handle(self, *, message:str, session_state: SessionState)  -> HandlerResult:
+    def handle(self, *, message: str, session_state: SessionState)  -> HandlerResult:
         session_id = get_current_session_id()
         top_k_chunks = self._doc_repository.get_top_k_chunks(message, top_k=5)
         log_event(
@@ -66,7 +70,8 @@ class DocsAnswerHandler(Handler):
             llm_client=self._llm_client,
             user_query=message,
             claims=extracted_claims,
-            evidence_chunks=filtered_hits
+            evidence_chunks=filtered_hits,
+            verification_prompt_loader=self._doc_verifier_prompt_loader,
         )
         
         log_event(
