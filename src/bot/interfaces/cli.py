@@ -7,7 +7,8 @@ import typer
 from langchain_core.embeddings import Embeddings
 from langchain_openai import OpenAIEmbeddings
 
-from bot.config import Settings
+from bot.config.prompts_config import CLAIM_VERIFIER_PROMPT_CONFIG
+from bot.config.settings import Settings
 from bot.engine import ChatbotEngine, EngineConfig, EngineDeps
 from bot.llm import openai_client
 from bot.logging import setup_logging
@@ -25,8 +26,8 @@ app = typer.Typer(add_completion=False)
 def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable verbose logging")) -> None:
     setup_logging(verbose=verbose)
 
-    session_store = InMemorySessionStore()
     session_id = uuid4().hex
+    session_store = InMemorySessionStore()
     settings = Settings()  # Load settings (e.g., API keys) from environment variables or config files
     llm_client = openai_client.OpenAIClient(
         api_key=settings.OPENAI_API_KEY,
@@ -35,7 +36,6 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
         model=settings.EMBEDDINGS_MODEL,
         api_key=settings.OPENAI_API_KEY,
     )
-    
     tx_repository = TransactionsRepositoryFromJsonMock.from_json_file(
         Path(settings.TRANSACTIONS_MOCK_PATH)
     )
@@ -47,7 +47,16 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
         manifest_path=Path(settings.EMBEDDINGS_MANIFEST_PATH),
         chunking_version=settings.CHUNKING_VERSION,
     )
-    engine = ChatbotEngine(EngineConfig(), EngineDeps(tx_repository=tx_repository, doc_repository=doc_repository, llm_client=llm_client))
+    engine_config = EngineConfig(
+        claim_verifier_config=CLAIM_VERIFIER_PROMPT_CONFIG
+    )
+    engine_deps = EngineDeps(
+        tx_repository=tx_repository,
+        doc_repository=doc_repository,
+        llm_client=llm_client,
+    )
+    
+    engine = ChatbotEngine(engine_config, engine_deps)
 
     typer.echo("Chatbot prototype (type 'exit' to quit)")
 

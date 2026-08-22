@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from uuid import uuid4
 
+from bot.config.prompts_config import PromptConfig
 from bot.handlers.base import Handler
 from bot.handlers.docs_answer import DocsAnswerHandler
 from bot.handlers.models import HandlerResult
@@ -19,14 +20,18 @@ from bot.models.memory import SessionState
 from bot.models.responses import BotResponse
 from bot.models.routing import Route, RouterDecision
 from bot.models.tx_qa.repository import TransactionsRepository
+from bot.routes.doc_qa.verifier.verifier_prompt_loader import (
+    ClaimVerificationPromptLoader,
+)
 from bot.routing.router import select_route
 from bot.trace_context import bind_trace_id, get_current_session_id
 
 
-@dataclass(frozen=True)
 class EngineConfig:
     # TODO add: docs path, model names, retrieval parameters, etc.
-    app_name: str = "chatbot-prototype"
+    
+    def __init__(self, *, claim_verifier_config: PromptConfig) -> None:
+        self.claim_verifier_config = claim_verifier_config
 
 
 @dataclass(frozen=True)
@@ -57,6 +62,9 @@ class ChatbotEngine:
         self._docs_answer_handler: Handler = DocsAnswerHandler(
             doc_repository=deps.doc_repository,
             llm_client=deps.llm_client,
+            doc_verifier_prompt_loader=ClaimVerificationPromptLoader(
+                prompt_config=self._config.claim_verifier_config
+            ),
         )
         self._out_of_scope_handler: Handler = OutOfScopeHandler()
         self._unknown_route_handler: Handler = UnknownRouteHandler()
@@ -74,7 +82,6 @@ class ChatbotEngine:
                 payload={
                     "session_id": session_id,
                     "message": message,
-                    "app": self._config.app_name,
                 }
             )
 
