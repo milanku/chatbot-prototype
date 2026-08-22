@@ -35,9 +35,11 @@ class EngineConfig:
         *,
         claim_extractor_config: PromptConfig,
         claim_verifier_config: PromptConfig,
+        explain_parse_config: PromptConfig,
     ) -> None:
         self.claim_extractor_config = claim_extractor_config
         self.claim_verifier_config = claim_verifier_config
+        self.explain_parse_config = explain_parse_config
 
 
 @dataclass(frozen=True)

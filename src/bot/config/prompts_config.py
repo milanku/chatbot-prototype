@@ -21,3 +21,8 @@ CLAIM_EXTRACTOR_PROMPT_CONFIG = PromptConfig(
     directory=Path("src/bot/prompts/claim_extraction_instructions"),
     version="v001",
 )
+
+EXPLAIN_PARSE_PROMPT_CONFIG = PromptConfig(
+    directory=Path("src/bot/prompts/explain_parse_instructions"),
+    version="v001",
+)

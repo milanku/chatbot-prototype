@@ -10,6 +10,7 @@ from langchain_openai import OpenAIEmbeddings
 from bot.config.prompts_config import (
     CLAIM_EXTRACTOR_PROMPT_CONFIG,
     CLAIM_VERIFIER_PROMPT_CONFIG,
+    EXPLAIN_PARSE_PROMPT_CONFIG
 )
 from bot.config.settings import Settings
 from bot.engine import ChatbotEngine, EngineConfig, EngineDeps
@@ -52,7 +53,8 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
     )
     engine_config = EngineConfig(
         claim_extractor_config=CLAIM_EXTRACTOR_PROMPT_CONFIG,
-        claim_verifier_config=CLAIM_VERIFIER_PROMPT_CONFIG
+        claim_verifier_config=CLAIM_VERIFIER_PROMPT_CONFIG,
+        explain_parse_config=EXPLAIN_PARSE_PROMPT_CONFIG,
     )
     engine_deps = EngineDeps(
         tx_repository=tx_repository,
