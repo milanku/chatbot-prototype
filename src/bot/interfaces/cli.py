@@ -57,6 +57,7 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
         claim_verifier_config=CLAIM_VERIFIER_PROMPT_CONFIG,
         explain_parse_config=EXPLAIN_PARSE_PROMPT_CONFIG,
         timeframe_parser_config=TIMEFRAME_PARSER_PROMPT_CONFIG,
+        doc_answer_synthesizer_config=DOC_ANSWER_SYNTHESIZER_CONFIG
     )
     engine_deps = EngineDeps(
         tx_repository=tx_repository,

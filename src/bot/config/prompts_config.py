@@ -31,3 +31,8 @@ TIMEFRAME_PARSER_PROMPT_CONFIG = PromptConfig(
     directory=Path("src/bot/prompts/timeframe_parse_instructions"),
     version="v001",
 )
+
+DOC_ANSWER_SYNTHESIZER_CONFIG = PromptConfig(
+    directory=Path("src/bot/prompts/doc_answer_synthesizer_instructions"),
+    version="v001",
+)
