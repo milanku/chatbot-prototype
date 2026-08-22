@@ -10,7 +10,9 @@ from langchain_openai import OpenAIEmbeddings
 from bot.config.prompts_config import (
     CLAIM_EXTRACTOR_PROMPT_CONFIG,
     CLAIM_VERIFIER_PROMPT_CONFIG,
+    DOC_ANSWER_SYNTHESIZER_CONFIG,
     EXPLAIN_PARSE_PROMPT_CONFIG,
+    ROUTER_PROMPT_CONFIG,
     TIMEFRAME_PARSER_PROMPT_CONFIG,
 )
 from bot.config.settings import Settings
@@ -53,6 +55,7 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
         chunking_version=settings.CHUNKING_VERSION,
     )
     engine_config = EngineConfig(
+        router_config=ROUTER_PROMPT_CONFIG,
         claim_extractor_config=CLAIM_EXTRACTOR_PROMPT_CONFIG,
         claim_verifier_config=CLAIM_VERIFIER_PROMPT_CONFIG,
         explain_parse_config=EXPLAIN_PARSE_PROMPT_CONFIG,

@@ -23,6 +23,7 @@ from bot.models.tx_qa.repository import TransactionsRepository
 from bot.routes.doc_qa.verifier.verifier_prompt_loader import (
     ClaimVerificationPromptLoader,
 )
+from bot.routing.prompt_builder import RouterPromptLoader
 from bot.routing.router import select_route
 from bot.trace_context import bind_trace_id, get_current_session_id
 
@@ -33,12 +34,14 @@ class EngineConfig:
     def __init__(
         self,
         *,
+        router_config: PromptConfig,
         claim_extractor_config: PromptConfig,
         claim_verifier_config: PromptConfig,
         explain_parse_config: PromptConfig,
         timeframe_parser_config: PromptConfig,
         doc_answer_synthesizer_config: PromptConfig,
     ) -> None:
+        self.router_config = router_config
         self.claim_extractor_config = claim_extractor_config
         self.claim_verifier_config = claim_verifier_config
         self.explain_parse_config = explain_parse_config
@@ -97,7 +100,11 @@ class ChatbotEngine:
                 }
             )
 
-            router_decision: RouterDecision = select_route(llm_client=self._deps.llm_client, message=message)
+            router_decision: RouterDecision = select_route(
+                llm_client=self._deps.llm_client,
+                message=message,
+                prompt_loader=RouterPromptLoader(prompt_config=self._config.explain_parse_config)
+            )
 
             log_event(
                 event="router.decision",
