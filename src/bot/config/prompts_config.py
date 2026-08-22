@@ -26,3 +26,8 @@ EXPLAIN_PARSE_PROMPT_CONFIG = PromptConfig(
     directory=Path("src/bot/prompts/explain_parse_instructions"),
     version="v001",
 )
+
+TIMEFRAME_PARSER_PROMPT_CONFIG = PromptConfig(
+    directory=Path("src/bot/prompts/timeframe_parse_instructions"),
+    version="v001",
+)
