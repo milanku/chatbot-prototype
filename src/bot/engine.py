@@ -23,7 +23,7 @@ from bot.models.tx_qa.repository import TransactionsRepository
 from bot.routes.doc_qa.verifier.verifier_prompt_loader import (
     ClaimVerificationPromptLoader,
 )
-from bot.routing.prompt_builder import RouterPromptLoader
+from bot.routing.router_prompt_loader import RouterPromptLoader
 from bot.routing.router import select_route
 from bot.trace_context import bind_trace_id, get_current_session_id
 
