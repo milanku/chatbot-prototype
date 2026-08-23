@@ -6,7 +6,7 @@ from bot.config.settings import Settings
 from bot.llm import openai_client
 from bot.logging import setup_logging
 from bot.routes.doc_qa.verifier.verifier_prompt_loader import (
-    ClaimVerificationPromptLoader,
+    ClaimVerifierPromptLoader,
 )
 from prompt_evals.claim_verifier.config import (
     CASES_PATH,
@@ -46,7 +46,7 @@ def main() -> None:
         directory=EVALUATOR_CLAIM_VERIFIER_PROMPT_CONFIG.directory,
         version=args.prompt or EVALUATOR_CLAIM_VERIFIER_PROMPT_CONFIG.version
     )
-    prompt_loader = ClaimVerificationPromptLoader(
+    prompt_loader = ClaimVerifierPromptLoader(
         prompt_config=prompt_config
     )
 
