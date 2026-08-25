@@ -1,12 +1,12 @@
 from dataclasses import dataclass
-from typing import TypeVar
+from typing import Protocol, TypeVar
 
 from pydantic import BaseModel
 
 T = TypeVar("T", bound=BaseModel)
 
 @dataclass
-class LLMClient():
+class LLMClient(Protocol):
         
     def generate(self, *, prompt: str, system_instructions: str | None = None) -> str: ...
     

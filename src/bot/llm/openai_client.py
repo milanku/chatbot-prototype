@@ -1,4 +1,3 @@
-from dataclasses import dataclass, field
 from typing import TypeVar, cast
 
 from langchain.chat_models import BaseChatModel
@@ -12,32 +11,39 @@ from bot.logging import log_event
 
 T = TypeVar("T", bound=BaseModel)
 
-@dataclass
 class OpenAIClient(LLMClient):
-    api_key: SecretStr = field(repr=False)
-    default_model: str = "gpt-4.1-mini"
+    def __init__(self, chat: BaseChatModel) -> None:
+        self._chat = chat
+
+    @classmethod
+    def create(
+        cls,
+        *,
+        api_key: SecretStr,
+        model: str = "gpt-4.1-mini",
+    ) -> "OpenAIClient":
+        return cls(
+            ChatOpenAI(
+                model=model,
+                api_key=api_key,
+            )
+        )
     
-    def _get_chat_model(self, model: str) -> BaseChatModel:
-        return ChatOpenAI(model=model or self.default_model, api_key=self.api_key)
-    
-    def generate(self, *, prompt: str, system_instructions: str | None = None) -> str:
-        chat = self._get_chat_model(model=self.default_model)
+    def _build_messages(self, *, prompt: str, system_instructions: str | None = None) -> list[BaseMessage]:
         messages: list[BaseMessage] = []
         if system_instructions:
             messages.append(SystemMessage(content=system_instructions))
         messages.append(HumanMessage(content=prompt))
-        
-        response: AIMessage = chat.invoke(messages)
+        return messages
+    
+    def generate(self, *, prompt: str, system_instructions: str | None = None) -> str:
+        messages: list[BaseMessage] = self._build_messages(prompt=prompt, system_instructions=system_instructions)
+        response: AIMessage = self._chat.invoke(messages)
         return response.text
     
     def generate_with_structured_output(self, *, prompt: str, output_format: type[T], system_instructions: str | None = None) -> T:
-        chat = self._get_chat_model(model=self.default_model)
-        structured_model = chat.with_structured_output(output_format)
-        messages: list[BaseMessage] = []
-        if system_instructions:
-            messages.append(SystemMessage(content=system_instructions))
-        messages.append(HumanMessage(content=prompt))        
-        
+        structured_model = self._chat.with_structured_output(output_format)
+        messages: list[BaseMessage] = self._build_messages(prompt=prompt, system_instructions=system_instructions)
         result = structured_model.invoke(
             messages
         )

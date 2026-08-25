@@ -18,7 +18,8 @@ from bot.config.prompts_config import (
 from bot.config.settings import Settings
 from bot.engine import ChatbotEngine, EngineConfig, EngineDeps
 from bot.handlers.models import PromptLoaders
-from bot.llm import openai_client
+from bot.llm.client import LLMClient
+from bot.llm.openai_client import OpenAIClient
 from bot.logging import setup_logging
 from bot.memory.models import SessionStore
 from bot.memory.session_store import InMemorySessionStore
@@ -48,8 +49,9 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
     session_id = uuid4().hex
     session_store: SessionStore = InMemorySessionStore()
     settings = Settings()  # Load settings (e.g., API keys) from environment variables or config files
-    llm_client = openai_client.OpenAIClient(
+    llm_client: LLMClient = OpenAIClient.create(
         api_key=settings.OPENAI_API_KEY,
+        model=settings.OPENAI_LLM_MODEL,
     )
     embedder: Embeddings = OpenAIEmbeddings(
         model=settings.EMBEDDINGS_MODEL,
