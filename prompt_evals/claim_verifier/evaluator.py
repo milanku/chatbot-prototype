@@ -3,7 +3,7 @@ from bot.logging import log_event
 from bot.routes.doc_qa.verifier.models import ExtractedClaim, VerifiedClaim
 from bot.routes.doc_qa.verifier.verifier import verify_claims_against_evidence
 from bot.routes.doc_qa.verifier.verifier_prompt_loader import (
-    ClaimVerificationPromptLoader,
+    ClaimVerifierPromptLoader,
 )
 from prompt_evals.claim_verifier.models import (
     ClaimVerifierBatchEvaluationResult,
@@ -17,7 +17,7 @@ def _run_case_batch(
     llm_client: LLMClient,
     *,
     batch: ClaimVerifierTestBatch,
-    prompt_loader: ClaimVerificationPromptLoader,
+    prompt_loader: ClaimVerifierPromptLoader,
 ) -> list[VerifiedClaim]:
         
     results = verify_claims_against_evidence(
@@ -42,7 +42,7 @@ def evaluate_claim_verifier_batch(
     llm_client: LLMClient,
     *,
     batch: ClaimVerifierTestBatch,
-    prompt_loader: ClaimVerificationPromptLoader,
+    prompt_loader: ClaimVerifierPromptLoader,
 ) -> ClaimVerifierBatchEvaluationResult:
     
     verified_claims = _run_case_batch(

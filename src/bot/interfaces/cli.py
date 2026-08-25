@@ -7,16 +7,34 @@ import typer
 from langchain_core.embeddings import Embeddings
 from langchain_openai import OpenAIEmbeddings
 
-from bot.config.prompts_config import CLAIM_VERIFIER_PROMPT_CONFIG
+from bot.config.prompts_config import (
+    CLAIM_EXTRACTOR_PROMPT_CONFIG,
+    CLAIM_VERIFIER_PROMPT_CONFIG,
+    DOC_ANSWER_SYNTHESIZER_CONFIG,
+    EXPLAIN_PARSE_PROMPT_CONFIG,
+    ROUTER_PROMPT_CONFIG,
+    TIMEFRAME_PARSER_PROMPT_CONFIG,
+)
 from bot.config.settings import Settings
 from bot.engine import ChatbotEngine, EngineConfig, EngineDeps
+from bot.handlers.models import PromptLoaders
 from bot.llm import openai_client
 from bot.logging import setup_logging
 from bot.memory.session_store import InMemorySessionStore
+from bot.routes.doc_qa.doc_answer_synthesizer_prompt_loader import (
+    DocAnswerSynthesizerPromptLoader,
+)
 from bot.routes.doc_qa.doc_store import DocStore
+from bot.routes.doc_qa.verifier.claim_extraction_prompt_loader import (
+    ClaimExtractionPromptLoader,
+)
+from bot.routes.doc_qa.verifier.verifier_prompt_loader import ClaimVerifierPromptLoader
+from bot.routes.tx_qa.explain_parser_prompt_loader import TXExplainParserPromptLoader
+from bot.routes.tx_qa.timeframe_parser_prompt_loader import TimeframeParserPromptLoader
 from bot.routes.tx_qa.transactions_repository_mock import (
     TransactionsRepositoryFromJsonMock,
 )
+from bot.routing.router_prompt_loader import RouterPromptLoader
 from bot.trace_context import bind_session_id, get_current_session_id
 
 app = typer.Typer(add_completion=False)
@@ -47,13 +65,20 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
         manifest_path=Path(settings.EMBEDDINGS_MANIFEST_PATH),
         chunking_version=settings.CHUNKING_VERSION,
     )
-    engine_config = EngineConfig(
-        claim_verifier_config=CLAIM_VERIFIER_PROMPT_CONFIG
+    prompt_loaders = PromptLoaders(
+        router=RouterPromptLoader(prompt_config=ROUTER_PROMPT_CONFIG),
+        claim_extractor=ClaimExtractionPromptLoader(prompt_config=CLAIM_EXTRACTOR_PROMPT_CONFIG),
+        claim_verifier=ClaimVerifierPromptLoader(prompt_config=CLAIM_VERIFIER_PROMPT_CONFIG),
+        explain_parser=TXExplainParserPromptLoader(prompt_config=EXPLAIN_PARSE_PROMPT_CONFIG),
+        timeframe_parser=TimeframeParserPromptLoader(prompt_config=TIMEFRAME_PARSER_PROMPT_CONFIG),
+        doc_answer_synthesizer=DocAnswerSynthesizerPromptLoader(prompt_config=DOC_ANSWER_SYNTHESIZER_CONFIG)
     )
+    engine_config = EngineConfig()
     engine_deps = EngineDeps(
         tx_repository=tx_repository,
         doc_repository=doc_repository,
         llm_client=llm_client,
+        prompt_loaders=prompt_loaders
     )
     
     engine = ChatbotEngine(engine_config, engine_deps)

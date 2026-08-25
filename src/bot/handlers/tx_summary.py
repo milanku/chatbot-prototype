@@ -2,30 +2,42 @@ from dataclasses import replace
 from datetime import date, datetime, timezone
 from decimal import Decimal
 
-from bot.handlers.base import TxBaseHandler
-from bot.handlers.models import HandlerResult
+from bot.handlers.models import RouteHandler, RouteHandlerResult
+from bot.llm.client import LLMClient
 from bot.models.memory import SessionState
 from bot.models.tx_qa.query import TxQAQuery
-from bot.models.tx_qa.repository import TxFilter
+from bot.models.tx_qa.repository import TransactionsRepository, TxFilter
 from bot.models.tx_qa.results import TxQAQueryResult
-from bot.routes.tx_qa import parse
 from bot.routes.tx_qa.compute import compute_total_amount
+from bot.routes.tx_qa.parse import parse_raw_tx_query_from_user_message
 from bot.routes.tx_qa.synthesize import synthesize_tx_summary
 from bot.routes.tx_qa.timeframe.resolver import resolve_date_range_from_raw_query
+from bot.routes.tx_qa.timeframe_parser_prompt_loader import TimeframeParserPromptLoader
 
 
-class TxSummaryHandler(TxBaseHandler):
-
-    def handle(self, *, message: str, session_state: SessionState) -> HandlerResult:
+class TxSummaryHandler(RouteHandler):
+    
+    def __init__(
+        self,
+        *,
+        llm_client: LLMClient,
+        tx_repository: TransactionsRepository,
+        timeframe_parser_prompt_loader: TimeframeParserPromptLoader
+    ) -> None:
+        self._llm_client = llm_client
+        self._tx_repository = tx_repository
+        self._timeframe_parser_prompt_loader = timeframe_parser_prompt_loader
+        
+    def handle(self, *, message: str, session_state: SessionState) -> RouteHandlerResult:
         new_state = session_state
-        parsed_raw_query = parse.parse_raw_tx_query_from_user_message(llm_client=self._llm_client, user_msg=message)
+        parsed_raw_query = parse_raw_tx_query_from_user_message(llm_client=self._llm_client, user_msg=message, prompt_loader=self._timeframe_parser_prompt_loader)
         
         raw_query_data = parsed_raw_query.raw_query_data
         # reason = parsed_raw_query.reason
         
         date_range = resolve_date_range_from_raw_query(raw_query_data, today=date.today())
         if date_range is None:
-            return HandlerResult(
+            return RouteHandlerResult(
                 answer_text="Sorry, I could not determine the date range for your query. Please make sure to specify a valid timeframe (e.g., 'last month', 'from January 1st to January 31st').\n",
                 new_state=new_state,
                 references=[],
@@ -62,7 +74,7 @@ class TxSummaryHandler(TxBaseHandler):
         )
         answer_text = synthesize_tx_summary(query, float(total_amount))
         
-        return HandlerResult(
+        return RouteHandlerResult(
             answer_text=answer_text,
             new_state=new_state,
             references=[],

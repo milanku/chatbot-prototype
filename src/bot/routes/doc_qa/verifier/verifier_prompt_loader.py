@@ -11,7 +11,7 @@ class ClaimVerifierPromptInput:
     retrieved_evidence_chunks: list[DocHit]
     claims: list[ExtractedClaim]
     
-class ClaimVerificationPromptLoader(PromptLoader[ClaimVerifierPromptInput]):
+class ClaimVerifierPromptLoader(PromptLoader[ClaimVerifierPromptInput]):
     def build_user_prompt(self, input: ClaimVerifierPromptInput) -> str:
         evidence_segment = "\n\n".join(f"Evidence ID: [{chunk.id}]\nContent: {chunk.content}" for chunk in input.retrieved_evidence_chunks)
         claims_segment = "\n\n".join(f"Claim ID: [{claim.claim_id}]\nContent: {claim.claim}" for claim in input.claims)

@@ -1,21 +1,31 @@
-from bot.handlers.base import TxBaseHandler
-from bot.handlers.models import HandlerResult
+from bot.handlers.models import RouteHandler, RouteHandlerResult
+from bot.llm.client import LLMClient
 from bot.logging import log_event
 from bot.models.memory import SessionState
 from bot.models.tx_qa.query import (
     TXExplainQueryExtraction,
 )
 from bot.routes.tx_qa.explain_parser import parse_explain_query_from_user_message
+from bot.routes.tx_qa.explain_parser_prompt_loader import TXExplainParserPromptLoader
 from bot.trace_context import get_current_session_id
 
 
-class TxExplainHandler(TxBaseHandler):
+class TxExplainHandler(RouteHandler):
     
-    def handle(self, *, message: str, session_state: SessionState)  -> HandlerResult:
+    def __init__(
+        self,
+        *,
+        llm_client: LLMClient,
+        explain_query_parser_prompt_loader: TXExplainParserPromptLoader
+    ) -> None:
+        self._llm_client = llm_client
+        self._explain_query_parser_prompt_loader = explain_query_parser_prompt_loader
+    
+    def handle(self, *, message: str, session_state: SessionState)  -> RouteHandlerResult:
         session_id = get_current_session_id()
         txs_results = session_state.txs_results
                 
-        query_extraction: TXExplainQueryExtraction | None = parse_explain_query_from_user_message(llm_client=self._llm_client, msg=message)
+        query_extraction: TXExplainQueryExtraction | None = parse_explain_query_from_user_message(llm_client=self._llm_client, msg=message, prompt_loader=self._explain_query_parser_prompt_loader)
         
         if query_extraction is None:
             log_event(
@@ -28,7 +38,7 @@ class TxExplainHandler(TxBaseHandler):
                 },
             )
             answer_text = "Sorry, your query could not be processed.\n"
-            return HandlerResult(
+            return RouteHandlerResult(
                 answer_text=answer_text,
                 new_state=session_state,
                 references=[],
@@ -51,7 +61,7 @@ class TxExplainHandler(TxBaseHandler):
                 },
             )
             answer_text = "Sorry, I could not tell which transaction summary you want me to explain. Please ask about the latest result or a specific previous result.\n"
-            return HandlerResult(
+            return RouteHandlerResult(
                 answer_text=answer_text,
                 new_state=session_state,
                 references=[],
@@ -69,7 +79,7 @@ class TxExplainHandler(TxBaseHandler):
                 for tx in tx_result.transactions:
                     answer_text += f"- {tx.date}: {tx.amount:.2f} EUR to {tx.other_account} ({tx.description})\n"
                     
-        return HandlerResult(
+        return RouteHandlerResult(
             answer_text=answer_text,
             new_state=session_state,
             references=[],

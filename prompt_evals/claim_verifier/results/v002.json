@@ -44,7 +44,7 @@
             "content": "If a card is lost, the customer should immediately freeze the card in the app."
           }
         ],
-        "reason": "The evidence explicitly states that the card should be immediately frozen, contradicting waiting 24 hours.",
+        "reason": "The evidence explicitly states that the card should be immediately frozen, contradicting a wait of 24 hours.",
         "actual_verification_status": "CONTRADICTED",
         "correct": true
       }
@@ -73,7 +73,7 @@
             "content": "A replacement-card fee may apply unless the loss was caused by bank error, fraud, expiry, or another fee-waiver circumstance."
           }
         ],
-        "reason": "The evidence says the fee may apply but does not establish that it will definitely apply.",
+        "reason": "The evidence says a fee may apply but does not establish that it will definitely apply.",
         "actual_verification_status": "NOT_SUPPORTED",
         "correct": true
       },
@@ -96,7 +96,7 @@
             "content": "A replacement-card fee may apply unless the loss was caused by bank error, fraud, expiry, or another fee-waiver circumstance."
           }
         ],
-        "reason": "The evidence explicitly states that a replacement-card fee may apply.",
+        "reason": "The evidence explicitly states that a replacement-card fee may apply unless there are fee-waiver circumstances such as bank error, fraud, or expiry related loss or other exceptions.",
         "actual_verification_status": "SUPPORTED",
         "correct": true
       },
@@ -119,7 +119,7 @@
             "content": "A replacement-card fee may apply unless the loss was caused by bank error, fraud, expiry, or another fee-waiver circumstance."
           }
         ],
-        "reason": "The evidence explicitly states that a replacement-card fee may apply, contradicting that it will never apply.",
+        "reason": "The evidence explicitly states that a replacement-card fee may apply, contradicting the claim that it will never apply.",
         "actual_verification_status": "CONTRADICTED",
         "correct": true
       }
