@@ -1,4 +1,3 @@
-from dataclasses import replace
 from datetime import date, datetime, timezone
 from decimal import Decimal
 
@@ -68,10 +67,7 @@ class TxSummaryHandler(RouteHandler):
             ),  # Using current UTC time as a timestamp
         )
         # Update state with the new query result
-        new_state = replace(
-            session_state,
-            txs_results=session_state.txs_results + (query_result,),
-        )
+        new_state = new_state.add_tx_result(query_result)
         answer_text = synthesize_tx_summary(query, float(total_amount))
         
         return RouteHandlerResult(
