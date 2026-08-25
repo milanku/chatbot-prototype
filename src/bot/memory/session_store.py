@@ -1,11 +1,9 @@
-from dataclasses import dataclass, field
-
 from bot.models.memory import SessionState
 
 
-@dataclass
 class InMemorySessionStore:
-    _sessions: dict[str, SessionState] = field(default_factory=lambda: {})
+    def __init__(self) -> None:
+        self._sessions: dict[str, SessionState] = {}
 
     def get_session(self, session_id: str) -> SessionState:
         return self._sessions.setdefault(session_id, SessionState())
