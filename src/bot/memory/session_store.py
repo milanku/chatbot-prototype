@@ -1,7 +1,8 @@
+from bot.memory.models import SessionStore
 from bot.models.memory import SessionState
 
 
-class InMemorySessionStore:
+class InMemorySessionStore(SessionStore):
     def __init__(self) -> None:
         self._sessions: dict[str, SessionState] = {}
 

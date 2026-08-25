@@ -20,6 +20,7 @@ from bot.engine import ChatbotEngine, EngineConfig, EngineDeps
 from bot.handlers.models import PromptLoaders
 from bot.llm import openai_client
 from bot.logging import setup_logging
+from bot.memory.models import SessionStore
 from bot.memory.session_store import InMemorySessionStore
 from bot.routes.doc_qa.doc_answer_synthesizer_prompt_loader import (
     DocAnswerSynthesizerPromptLoader,
@@ -45,7 +46,7 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
     setup_logging(verbose=verbose)
 
     session_id = uuid4().hex
-    session_store = InMemorySessionStore()
+    session_store: SessionStore = InMemorySessionStore()
     settings = Settings()  # Load settings (e.g., API keys) from environment variables or config files
     llm_client = openai_client.OpenAIClient(
         api_key=settings.OPENAI_API_KEY,
