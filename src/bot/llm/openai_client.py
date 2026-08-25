@@ -20,24 +20,23 @@ class OpenAIClient(LLMClient):
     def _get_chat_model(self, model: str) -> BaseChatModel:
         return ChatOpenAI(model=model or self.default_model, api_key=self.api_key)
     
-    def generate(self, *, prompt: str, system_instructions: str | None = None) -> str:
-        chat = self._get_chat_model(model=self.default_model)
+    def _build_messages(self, *, prompt: str, system_instructions: str | None = None) -> list[BaseMessage]:
         messages: list[BaseMessage] = []
         if system_instructions:
             messages.append(SystemMessage(content=system_instructions))
         messages.append(HumanMessage(content=prompt))
-        
+        return messages
+    
+    def generate(self, *, prompt: str, system_instructions: str | None = None) -> str:
+        chat = self._get_chat_model(model=self.default_model)
+        messages: list[BaseMessage] = self._build_messages(prompt=prompt, system_instructions=system_instructions)
         response: AIMessage = chat.invoke(messages)
         return response.text
     
     def generate_with_structured_output(self, *, prompt: str, output_format: type[T], system_instructions: str | None = None) -> T:
         chat = self._get_chat_model(model=self.default_model)
         structured_model = chat.with_structured_output(output_format)
-        messages: list[BaseMessage] = []
-        if system_instructions:
-            messages.append(SystemMessage(content=system_instructions))
-        messages.append(HumanMessage(content=prompt))        
-        
+        messages: list[BaseMessage] = self._build_messages(prompt=prompt, system_instructions=system_instructions)
         result = structured_model.invoke(
             messages
         )
