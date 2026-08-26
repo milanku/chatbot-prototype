@@ -1,5 +1,5 @@
 from bot.config.prompts_config import PromptConfig
-from bot.handlers.tx_explain import TxExplainSummaryHandler
+from bot.handlers.tx_explain_summary import TxExplainSummaryHandler
 from bot.llm.client import LLMClient
 from bot.routes.tx_qa.explain_summary_parser import TXExplainSummaryParser
 from bot.routes.tx_qa.explain_summary_parser_prompt_loader import (
