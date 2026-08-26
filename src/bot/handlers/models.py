@@ -18,7 +18,7 @@ class PromptLoaders:
 @dataclass(frozen=True)
 class RouteHandlerResult:
     answer_text: str
-    new_state: SessionState
+    new_state: SessionState | None
     references: list[DocReference]
     
 class RouteHandler(ABC):

@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from datetime import date
 
-from bot.models.tx_qa.repository import TransactionsRepository, TxFilter
+from bot.models.tx_qa.query import TxQuery
+from bot.models.tx_qa.repository import TransactionsRepository
 from bot.routes.tx_qa.timeframe.resolve import resolve_date_range
 from bot.routes.tx_qa.timeframe_parser import TimeframeParser
 from bot.routes.tx_qa.tx_list_formatter import format_transactions
@@ -26,12 +27,12 @@ class TxListCoordinator:
             )
         
         start_date, end_date = date_range
-        tx_filter = TxFilter(
+        tx_query = TxQuery(
             label=extraction.timeframe.label,
             start_date=start_date,
             end_date=end_date,
             direction=extraction.timeframe.direction,
         )
-        txs = self._tx_repository.list_transactions(tx_filter)
+        txs = self._tx_repository.list_transactions(tx_query)
         
         return TxListAnswer(answer=format_transactions(txs))

@@ -7,6 +7,7 @@ from langchain_core.embeddings import Embeddings
 
 from bot.composer.handlers.doc_qa import create_docs_answer_handler
 from bot.composer.handlers.tx_list import create_tx_list_handler
+from bot.composer.handlers.tx_summary import create_tx_summary_handler
 from bot.config.prompts_config import PromptConfigs
 from bot.handlers.models import RouteHandler, RouteHandlerResult
 from bot.handlers.out_of_scope import OutOfScopeHandler
@@ -44,10 +45,10 @@ class ChatbotEngine:
         self._config = config
         self._deps = deps
         self._docs = deps.doc_repository
-        self._tx_summary_handler: RouteHandler = TxSummaryHandler(
-            tx_repository=deps.tx_repository,
+        self._tx_summary_handler: RouteHandler = create_tx_summary_handler(
             llm_client=deps.llm_client,
-            timeframe_parser_prompt_loader=self._deps.prompt_configs.timeframe_parser
+            tx_repository=deps.tx_repository,
+            timeframe_parser_prompt_config=self._deps.prompt_configs.timeframe_parser,
         )
         self._tx_list_handler: RouteHandler = create_tx_list_handler(
             llm_client=deps.llm_client,

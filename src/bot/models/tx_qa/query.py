@@ -9,7 +9,7 @@ from bot.models.tx_qa.domain import Direction, Label
 
 
 @dataclass(frozen=True)
-class TxQAQuery:
+class TxQuery:
     label: Label | None
     start_date: date
     end_date: date
