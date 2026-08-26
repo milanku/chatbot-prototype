@@ -1,5 +1,5 @@
 from bot.llm.client import LLMClient
-from bot.routes.doc_qa.verifier.claim_extraction_prompt_loader import (
+from bot.routes.doc_qa.verifier.claim_extractor_prompt_loader import (
     ClaimExtractorPromptInput,
     ClaimExtractorPromptLoader,
 )
@@ -59,15 +59,13 @@ class ClaimExtractor:
             system_instructions=system_prompt,
         )
         
-        if(llm_structured_response and llm_structured_response.claims):
-            return [
-                ExtractedClaim(
-                    claim_id=f"CLAIM_{i:03d}",
-                    claim=claim.claim,
-                    source_sentence_ids=claim.source_sentence_ids,
-                    source_text=claim.source_text
-                )
-                for i, claim in enumerate(llm_structured_response.claims)
-            ]
-        else:
-            return []
+        return [
+            ExtractedClaim(
+                claim_id=f"CLAIM_{i:03d}",
+                claim=claim.claim,
+                source_sentence_ids=claim.source_sentence_ids,
+                source_text=claim.source_text
+            )
+            for i, claim in enumerate(llm_structured_response.claims)
+        ]
+        

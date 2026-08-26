@@ -11,7 +11,7 @@ from bot.routes.doc_qa.doc_store import DocStore
 from bot.routes.doc_qa.retriever import DocHitsRetriever, DocRetrievalConfig
 from bot.routes.doc_qa.synthesizer import AnswerSynthesizer
 from bot.routes.doc_qa.verifier.answer_verifier import AnswerVerifier
-from bot.routes.doc_qa.verifier.claim_extraction_prompt_loader import (
+from bot.routes.doc_qa.verifier.claim_extractor_prompt_loader import (
     ClaimExtractorPromptLoader,
 )
 from bot.routes.doc_qa.verifier.claim_extractor import ClaimExtractor

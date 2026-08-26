@@ -108,6 +108,8 @@ If a claim is derived from multiple sentences, include all relevant sentence
 IDs and concatenate their exact original texts in source_text, separated by
 a newline.
 
+If no claims are provided in the prompt, set "claims" array as empty.
+
 OUTPUT:
 
 Return only valid JSON matching this structure:
