@@ -15,5 +15,4 @@ class DocsAnswerHandler(RouteHandler):
         return RouteHandlerResult(
             answer_text=answer.answer_text,
             references=answer.references,
-            new_state=session_state,
         )

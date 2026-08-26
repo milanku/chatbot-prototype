@@ -12,6 +12,5 @@ class TxExplainSummaryHandler(RouteHandler):
         
         return RouteHandlerResult(
             answer_text=coordinator_result.answer,
-            new_state=None,
             references=[],
         )

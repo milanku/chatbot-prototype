@@ -18,8 +18,8 @@ class PromptLoaders:
 @dataclass(frozen=True)
 class RouteHandlerResult:
     answer_text: str
-    new_state: SessionState | None
     references: list[DocReference]
+    new_state: SessionState | None = None
     
 class RouteHandler(ABC):
     @abstractmethod

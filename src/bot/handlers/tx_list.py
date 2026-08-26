@@ -14,6 +14,5 @@ class TxListHandler(RouteHandler):
         
         return RouteHandlerResult(
             answer_text=tx_list_answer.answer,
-            new_state=session_state,
             references=[],
         )

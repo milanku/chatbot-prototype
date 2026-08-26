@@ -12,11 +12,8 @@ class TxSummaryHandler(RouteHandler):
     def handle(self, *, message: str, session_state: SessionState) -> RouteHandlerResult:
         coordinator_result = self._coordinator.answer(message, session_state=session_state, today=datetime.now())
 
-        answer_text = coordinator_result.answer_text
-        new_state = coordinator_result.new_state
-
         return RouteHandlerResult(
-            answer_text=answer_text,
-            new_state=new_state,
+            answer_text=coordinator_result.answer_text,
+            new_state=coordinator_result.new_state,
             references=[],
         )
