@@ -5,7 +5,7 @@ from bot.models.tx_qa.results import SummaryQueryResult
 
 @dataclass(frozen=True)
 class SessionState:
-    txs_results: tuple[SummaryQueryResult, ...] = ()
+    tx_summaries: tuple[SummaryQueryResult, ...] = ()
     
-    def add_tx_result(self, tx_result: SummaryQueryResult) -> "SessionState":
-        return SessionState(txs_results=self.txs_results + (tx_result,))
+    def add_tx_summary(self, tx_summary: SummaryQueryResult) -> "SessionState":
+        return SessionState(tx_summaries=self.tx_summaries + (tx_summary,))

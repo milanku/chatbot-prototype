@@ -6,13 +6,12 @@ from uuid import uuid4
 from langchain_core.embeddings import Embeddings
 
 from bot.composer.handlers.doc_qa import create_docs_answer_handler
+from bot.composer.handlers.tx_explain_summary import create_tx_explain_summary_handler
 from bot.composer.handlers.tx_list import create_tx_list_handler
 from bot.composer.handlers.tx_summary import create_tx_summary_handler
 from bot.config.prompts_config import PromptConfigs
 from bot.handlers.models import RouteHandler, RouteHandlerResult
 from bot.handlers.out_of_scope import OutOfScopeHandler
-from bot.handlers.tx_explain import TxExplainHandler
-from bot.handlers.tx_summary import TxSummaryHandler
 from bot.handlers.unknown_route import UnknownRouteHandler
 from bot.llm import client
 from bot.logging import log_event
@@ -55,9 +54,9 @@ class ChatbotEngine:
             tx_repository=deps.tx_repository,
             timeframe_parser_prompt_config=self._deps.prompt_configs.timeframe_parser
         )
-        self._tx_explain_handler: RouteHandler = TxExplainHandler(
+        self._tx_explain_handler: RouteHandler = create_tx_explain_summary_handler(
             llm_client=deps.llm_client,
-            explain_query_parser_prompt_loader=self._deps.prompt_configs.explain_parser
+            explain_summary_parser_prompt_config=self._deps.prompt_configs.explain_summary_parse
         )
         self._docs_answer_handler: RouteHandler = create_docs_answer_handler(
             llm_client=deps.llm_client,

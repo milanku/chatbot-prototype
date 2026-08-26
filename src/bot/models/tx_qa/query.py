@@ -115,6 +115,6 @@ class TXExplainQuery(BaseModel):
     # Number of related references (1 = that sum, 2 = previous two sums...)
     reference_count: int | None = None
     
-class TXExplainQueryExtraction(BaseModel):
-    raw_query_data: TXExplainQuery
+class TXExplainSummaryQueryExtraction(BaseModel):
+    query: TXExplainQuery
     reason: str | None = None
