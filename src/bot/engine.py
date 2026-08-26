@@ -22,6 +22,7 @@ from bot.models.routing import Route, RouterDecision
 from bot.models.tx_qa.repository import TransactionsRepository
 from bot.routes.doc_qa.doc_store import DocStore
 from bot.routing.router import select_route
+from bot.routing.router_prompt_loader import RouterPromptLoader
 from bot.trace_context import bind_trace_id, get_current_session_id
 
 
@@ -71,7 +72,7 @@ class ChatbotEngine:
         
     def answer(
         self, message: str, *, session_state: SessionState
-    ) -> tuple[BotResponse, SessionState]:
+    ) -> tuple[BotResponse, SessionState | None]:
         trace_id = uuid4().hex
         session_id = get_current_session_id()
         
@@ -88,7 +89,7 @@ class ChatbotEngine:
             router_decision: RouterDecision = select_route(
                 llm_client=self._deps.llm_client,
                 message=message,
-                prompt_loader=self._deps.prompt_configs.router
+                prompt_loader=RouterPromptLoader(prompt_config=self._deps.prompt_configs.router)
             )
 
             log_event(
