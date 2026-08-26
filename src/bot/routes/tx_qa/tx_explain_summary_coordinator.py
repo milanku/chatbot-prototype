@@ -6,14 +6,14 @@ from bot.routes.tx_qa.tx_explain_summary_formatter import format_tx_explain_summ
 
 
 @dataclass
-class TxExplainSummaryResponse:
+class TxExplainSummaryResult:
     answer: str
     
 class TxExplainSummaryCoordinator:
     def __init__(self, *, explain_summary_parser: TXExplainSummaryParser):
         self._explain_summary_parser = explain_summary_parser
     
-    def answer(self, *, question: str, session_state: SessionState) -> TxExplainSummaryResponse:
+    def answer(self, *, question: str, session_state: SessionState) -> TxExplainSummaryResult:
         parse_query_extraction = self._explain_summary_parser.parse(msg=question)
         
         reference_offset = parse_query_extraction.query.reference_offset
@@ -21,7 +21,7 @@ class TxExplainSummaryCoordinator:
 
         if reference_offset is None or reference_count is None:
             answer_text = "Sorry, I could not tell which transaction summary you want me to explain. Please ask about the latest result or a specific previous result.\n"
-            return TxExplainSummaryResponse(
+            return TxExplainSummaryResult(
                 answer=answer_text
             )
         
@@ -35,6 +35,6 @@ class TxExplainSummaryCoordinator:
         else:
             answer_text = format_tx_explain_summary(related_summaries)
            
-        return TxExplainSummaryResponse(
+        return TxExplainSummaryResult(
             answer=answer_text
         )

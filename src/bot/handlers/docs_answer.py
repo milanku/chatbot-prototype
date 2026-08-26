@@ -1,6 +1,6 @@
 from bot.handlers.models import RouteHandler, RouteHandlerResult
 from bot.models.memory import SessionState
-from bot.routes.doc_qa.coordinator import DocsAnswer, DocsAnswerCoordinator
+from bot.routes.doc_qa.coordinator import DocsAnswerCoordinator, DocsAnswerResult
 
 
 class DocsAnswerHandler(RouteHandler):
@@ -8,7 +8,7 @@ class DocsAnswerHandler(RouteHandler):
         self._coordinator = coordinator
         
     def handle(self, *, message: str, session_state: SessionState) -> RouteHandlerResult:
-        answer: DocsAnswer = self._coordinator.answer(
+        answer: DocsAnswerResult = self._coordinator.answer(
             question=message,
         )
 

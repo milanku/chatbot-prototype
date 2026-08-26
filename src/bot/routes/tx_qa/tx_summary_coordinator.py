@@ -13,7 +13,7 @@ from bot.routes.tx_qa.tx_summary_formatter import format_tx_summary
 
 
 @dataclass
-class TxSummaryResponse:
+class TxSummaryResult:
     answer_text: str
     new_state: SessionState | None = None
 
@@ -22,12 +22,12 @@ class TxSummaryCoordinator:
         self._tx_repository = tx_repository
         self._timeframe_parser = timeframe_parser
     
-    def answer(self, message: str, *, session_state: SessionState, today: date) -> TxSummaryResponse:
+    def answer(self, message: str, *, session_state: SessionState, today: date) -> TxSummaryResult:
         extraction = self._timeframe_parser.parse(message)
         date_range = resolve_date_range(extraction.timeframe, today)
         
         if date_range is None:
-            return TxSummaryResponse(
+            return TxSummaryResult(
                 answer_text="Sorry, I could not determine the date range for your query. Please make sure to specify a valid timeframe (e.g., 'last month', 'from January 1st to January 31st').\n",
             )   
         start_date, end_date = date_range
@@ -49,7 +49,7 @@ class TxSummaryCoordinator:
         # Update state with the new query result
         new_state = session_state.add_tx_result(query_result)
         answer_text = format_tx_summary(query, Decimal(total_amount))
-        return TxSummaryResponse(
+        return TxSummaryResult(
             answer_text=answer_text,
             new_state=new_state,
         )

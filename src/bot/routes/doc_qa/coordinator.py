@@ -7,7 +7,7 @@ from bot.routes.doc_qa.verifier.answer_verifier import AnswerVerifier
 
 
 @dataclass
-class DocsAnswer:
+class DocsAnswerResult:
     answer_text: str
     references: list[DocReference]
 
@@ -23,7 +23,7 @@ class DocsAnswerCoordinator:
         self._synthesizer = synthesizer
         self._verifier = verifier
     
-    def answer(self, question: str) -> DocsAnswer:
+    def answer(self, question: str) -> DocsAnswerResult:
         doc_hits = self._retriever.retrieve(question=question)
         draft_answer = self._synthesizer.synthesize(
             question=question,
@@ -36,12 +36,12 @@ class DocsAnswerCoordinator:
         )
         
         if(draft_verification.is_supported):
-            return DocsAnswer(
+            return DocsAnswerResult(
                 answer_text=draft_answer,
                 references=[hit.doc_reference for hit in doc_hits]
             )
         else:
-            return DocsAnswer(
+            return DocsAnswerResult(
                 answer_text="The answer could not be verified against the provided evidence.",
                 references=[]
             )
