@@ -21,7 +21,7 @@ from bot.models.responses import BotResponse
 from bot.models.routing import Route, RouterDecision
 from bot.models.tx_qa.repository import TransactionsRepository
 from bot.routes.doc_qa.doc_store import DocStore
-from bot.routing.router import select_route
+from bot.routing.router import RouteSelector
 from bot.routing.router_prompt_loader import RouterPromptLoader
 from bot.trace_context import bind_trace_id, get_current_session_id
 
@@ -74,6 +74,11 @@ class ChatbotEngine:
         self._out_of_scope_handler: RouteHandler = OutOfScopeHandler()
         self._unknown_route_handler: RouteHandler = UnknownRouteHandler()
         
+        self._route_selector = RouteSelector(
+            llm_client=deps.llm_client,
+            prompt_loader=RouterPromptLoader(prompt_config=self._deps.prompt_configs.router)
+        )
+        
     def answer(
         self, message: str, *, session_state: SessionState
     ) -> EngineAnswerResult:
@@ -90,10 +95,8 @@ class ChatbotEngine:
                 }
             )
 
-            router_decision: RouterDecision = select_route(
-                llm_client=self._deps.llm_client,
-                message=message,
-                prompt_loader=RouterPromptLoader(prompt_config=self._deps.prompt_configs.router)
+            router_decision: RouterDecision = self._route_selector.select(
+                message=message
             )
 
             log_event(
