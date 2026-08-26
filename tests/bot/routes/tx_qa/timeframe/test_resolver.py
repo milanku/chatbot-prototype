@@ -7,10 +7,10 @@ from bot.models.tx_qa.query import (
     RawRangeEndpoint,
     RollingRangeMode,
     RollingRangeUnit,
+    Timeframe,
     TimeframeType,
-    TXQARawQuery,
 )
-from bot.routes.tx_qa.timeframe.resolver import resolve_date_range_from_raw_query
+from bot.routes.tx_qa.timeframe.resolve import resolve_date_range_from_raw_query
 
 TODAY = date(2025, 1, 3)
 SENTINEL_RANGE = (
@@ -30,8 +30,8 @@ RAW_RANGE_ENDPOINT_2025_05_10 = RawRangeEndpoint(
     day=10,
 )
 
-def make_raw_query(**overrides: object) -> TXQARawQuery:
-    return TXQARawQuery(
+def make_raw_query(**overrides: object) -> Timeframe:
+    return Timeframe(
         timeframe_type=TimeframeType.UNKNOWN,
     ).model_copy(update=overrides)
 

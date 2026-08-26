@@ -8,9 +8,9 @@ from bot.models.tx_qa.query import TxQAQuery
 from bot.models.tx_qa.repository import TransactionsRepository, TxFilter
 from bot.models.tx_qa.results import TxQAQueryResult
 from bot.routes.tx_qa.compute import compute_total_amount
-from bot.routes.tx_qa.parse import parse_raw_tx_query_from_user_message
+from bot.routes.tx_qa.timeframe_parser import parse_raw_tx_query_from_user_message
 from bot.routes.tx_qa.synthesize import synthesize_tx_summary
-from bot.routes.tx_qa.timeframe.resolver import resolve_date_range_from_raw_query
+from bot.routes.tx_qa.timeframe.resolve import resolve_date_range_from_raw_query
 from bot.routes.tx_qa.timeframe_parser_prompt_loader import TimeframeParserPromptLoader
 
 
