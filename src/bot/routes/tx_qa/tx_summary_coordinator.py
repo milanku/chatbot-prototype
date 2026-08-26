@@ -47,7 +47,7 @@ class TxSummaryCoordinator:
             created_at=datetime.now(),
         )
         # Update state with the new query result
-        new_state = session_state.add_tx_result(query_result)
+        new_state = session_state.add_tx_summary(query_result)
         answer_text = format_tx_summary(query, Decimal(total_amount))
         return TxSummaryResult(
             answer_text=answer_text,
