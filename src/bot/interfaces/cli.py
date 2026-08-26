@@ -9,7 +9,7 @@ from langchain_openai import OpenAIEmbeddings
 
 from bot.config.prompts_config import PROMPT_CONFIGS
 from bot.config.settings import Settings
-from bot.engine import ChatbotEngine, EngineConfig, EngineDeps
+from bot.engine import ChatbotEngine, EngineAnswerResult, EngineConfig, EngineDeps
 from bot.llm.client import LLMClient
 from bot.llm.openai_client import OpenAIClient
 from bot.logging import setup_logging
@@ -69,10 +69,13 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
             if msg.strip().lower() in {"exit", "quit"}:
                 break
             
-            response, new_state = engine.answer(
+            result: EngineAnswerResult = engine.answer(
                 msg, session_state=session_store.get_session(get_current_session_id() or session_id)
             )
-            session_store.set_session(session_id, new_state)  # Update session state
+            response = result.response
+            new_state = result.new_state
+            if(new_state is not None):
+                session_store.set_session(session_id, new_state)  # Update session state
             
             typer.echo(f"\n\n{response.answer}\n\n")
             if(response.doc_references):

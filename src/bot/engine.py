@@ -39,6 +39,10 @@ class EngineDeps:
     llm_client: client.LLMClient
     prompt_configs: PromptConfigs
     
+@dataclass(frozen=True)
+class EngineAnswerResult:
+    response: BotResponse
+    new_state: SessionState | None
 
 class ChatbotEngine:
     def __init__(self, config: EngineConfig, deps: EngineDeps) -> None:
@@ -72,7 +76,7 @@ class ChatbotEngine:
         
     def answer(
         self, message: str, *, session_state: SessionState
-    ) -> tuple[BotResponse, SessionState | None]:
+    ) -> EngineAnswerResult:
         trace_id = uuid4().hex
         session_id = get_current_session_id()
         
@@ -125,4 +129,4 @@ class ChatbotEngine:
 
         bot_response = BotResponse(answer=answer_text, doc_references=references, trace_id=trace_id)
 
-        return bot_response, new_state
+        return EngineAnswerResult(response=bot_response, new_state=new_state)
