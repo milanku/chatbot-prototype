@@ -3,8 +3,11 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from uuid import uuid4
 
-from bot.handlers.docs_answer import DocsAnswerHandler
-from bot.handlers.models import PromptLoaders, RouteHandler, RouteHandlerResult
+from langchain_core.embeddings import Embeddings
+
+from bot.composer.handlers.doc_qa import create_docs_answer_handler
+from bot.config.prompts_config import PromptConfigs
+from bot.handlers.models import RouteHandler, RouteHandlerResult
 from bot.handlers.out_of_scope import OutOfScopeHandler
 from bot.handlers.tx_explain import TxExplainHandler
 from bot.handlers.tx_list import TxListHandler
@@ -12,12 +15,12 @@ from bot.handlers.tx_summary import TxSummaryHandler
 from bot.handlers.unknown_route import UnknownRouteHandler
 from bot.llm import client
 from bot.logging import log_event
-from bot.models.doc_qa.doc_repository import DocRepository
 from bot.models.doc_qa.references import DocReference
 from bot.models.memory import SessionState
 from bot.models.responses import BotResponse
 from bot.models.routing import Route, RouterDecision
 from bot.models.tx_qa.repository import TransactionsRepository
+from bot.routes.doc_qa.doc_store import DocStore
 from bot.routing.router import select_route
 from bot.trace_context import bind_trace_id, get_current_session_id
 
@@ -30,9 +33,10 @@ class EngineConfig:
 @dataclass(frozen=True)
 class EngineDeps:
     tx_repository: TransactionsRepository
-    doc_repository: DocRepository
+    doc_repository: DocStore
+    embedder: Embeddings
     llm_client: client.LLMClient
-    prompt_loaders: PromptLoaders
+    prompt_configs: PromptConfigs
     
 
 class ChatbotEngine:
@@ -43,23 +47,24 @@ class ChatbotEngine:
         self._tx_summary_handler: RouteHandler = TxSummaryHandler(
             tx_repository=deps.tx_repository,
             llm_client=deps.llm_client,
-            timeframe_parser_prompt_loader=self._deps.prompt_loaders.timeframe_parser
+            timeframe_parser_prompt_loader=self._deps.prompt_configs.timeframe_parser
         )
         self._tx_list_handler: RouteHandler = TxListHandler(
             tx_repository=deps.tx_repository,
             llm_client=deps.llm_client,
-            timeframe_parser_prompt_loader=self._deps.prompt_loaders.timeframe_parser
+            timeframe_parser_prompt_loader=self._deps.prompt_configs.timeframe_parser
         )
         self._tx_explain_handler: RouteHandler = TxExplainHandler(
             llm_client=deps.llm_client,
-            explain_query_parser_prompt_loader=self._deps.prompt_loaders.explain_parser
+            explain_query_parser_prompt_loader=self._deps.prompt_configs.explain_parser
         )
-        self._docs_answer_handler: RouteHandler = DocsAnswerHandler(
-            doc_repository=deps.doc_repository,
+        self._docs_answer_handler: RouteHandler = create_docs_answer_handler(
             llm_client=deps.llm_client,
-            claim_extractor_prompt_loader=self._deps.prompt_loaders.claim_extractor,
-            doc_answer_synthesizer_prompt_loader=self._deps.prompt_loaders.doc_answer_synthesizer,
-            claim_verifier_prompt_loader=self._deps.prompt_loaders.claim_verifier,
+            doc_store=deps.doc_repository,
+            embedder=deps.embedder,
+            answer_synthesizer_prompt_config=deps.prompt_configs.doc_answer_synthesizer,
+            claim_extractor_prompt_config=deps.prompt_configs.claim_extractor,
+            claim_verifier_prompt_config=deps.prompt_configs.claim_verifier,
         )
         self._out_of_scope_handler: RouteHandler = OutOfScopeHandler()
         self._unknown_route_handler: RouteHandler = UnknownRouteHandler()
@@ -83,7 +88,7 @@ class ChatbotEngine:
             router_decision: RouterDecision = select_route(
                 llm_client=self._deps.llm_client,
                 message=message,
-                prompt_loader=self._deps.prompt_loaders.router
+                prompt_loader=self._deps.prompt_configs.router
             )
 
             log_event(

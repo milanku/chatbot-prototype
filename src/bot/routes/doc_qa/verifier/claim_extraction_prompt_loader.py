@@ -5,11 +5,11 @@ from bot.routes.doc_qa.verifier.models import SentenceForExtraction
 
 
 @dataclass(frozen=True)
-class ClaimExtractionPromptInput:
+class ClaimExtractorPromptInput:
     sentences: list[SentenceForExtraction]
     
-class ClaimExtractionPromptLoader(PromptLoader[ClaimExtractionPromptInput]):
-    def build_user_prompt(self, input: ClaimExtractionPromptInput) -> str:
+class ClaimExtractorPromptLoader(PromptLoader[ClaimExtractorPromptInput]):
+    def build_user_prompt(self, input: ClaimExtractorPromptInput) -> str:
         chunks = "\n\n".join(f"Sentence ID: [{sentence.chunk_id}]\nContent: {sentence.content}" for sentence in input.sentences)
         
         return (

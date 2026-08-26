@@ -3,11 +3,10 @@ from pathlib import Path
 
 from langchain_core.embeddings import Embeddings
 
-from bot.models.doc_qa.retrieval import DocHit
+from bot.models.doc_qa.chunks import EmbeddedDocChunk
 
 
-class DocRepository(ABC):
-    
+class DocRepository(ABC):   
     @classmethod
     @abstractmethod
     def build_doc_store(cls, *,
@@ -20,5 +19,6 @@ class DocRepository(ABC):
         pass
 
     @abstractmethod
-    def get_top_k_chunks(self, query: str, *, top_k: int = 5) -> list[DocHit]:
+    def get_embedded_chunks(self) -> list[EmbeddedDocChunk]:
+        """Return the list of embedded document chunks."""
         pass
