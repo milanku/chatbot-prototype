@@ -33,23 +33,23 @@ def load_or_build_embeddings(
     )
     manifest = load_persisted_manifest(manifest_path)
     
-    rebuild_reason: str | None = None
+    rebuild_reason: list[str] = []
     if manifest is None:
-        rebuild_reason = "No existing manifest found"
+        rebuild_reason.append("No existing manifest found")
     elif manifest.embedding_model != embedding_model:
-        rebuild_reason = "Embedding model has changed"
+        rebuild_reason.append("Embedding model has changed")
     elif manifest.chunking_version != chunking_version:
-        rebuild_reason = "Chunking version has changed"
+        rebuild_reason.append("Chunking version has changed")
     elif manifest.docs_fingerprint != current_docs_fingerprint:
-        rebuild_reason = "Docs fingerprint has changed"
+        rebuild_reason.append("Docs fingerprint has changed")
         
-    if(rebuild_reason is None):
+    if not rebuild_reason:
         embedded_chunks = load_persisted_embeddings(input_path=embeddings_dir_path / "doc_chunks_embeddings.json")
     else:
         log_event(
             event="doc_qa.rebuild_doc_embeddings",
             payload={
-                "reason": rebuild_reason,
+                "reasons": "; ".join(rebuild_reason),
                 "embedding_model": embedding_model,
                 "chunking_version": chunking_version,
                 "docs_fingerprint": current_docs_fingerprint,
