@@ -27,19 +27,19 @@ PROMPT_CONFIGS = PromptConfigs(
         version="v001",
     ),
     claim_extractor=PromptConfig(
-        directory=Path("src/bot/prompts/claim_extraction_instructions"),
+        directory=Path("src/bot/prompts/claim_extractor_instructions"),
         version="v001",
     ),
     claim_verifier=PromptConfig(
-        directory=Path("src/bot/prompts/claim_verification_instructions"),
+        directory=Path("src/bot/prompts/claim_verificator_instructions"),
         version="v002",
     ),
     explain_summary_parse=PromptConfig(
-        directory=Path("src/bot/prompts/explain_parse_instructions"),
+        directory=Path("src/bot/prompts/explain_summary_parser_instructions"),
         version="v001",
     ),
     timeframe_parser=PromptConfig(
-        directory=Path("src/bot/prompts/timeframe_parse_instructions"),
+        directory=Path("src/bot/prompts/timeframe_parser_instructions"),
         version="v001",
     ),
     doc_answer_synthesizer=PromptConfig(
