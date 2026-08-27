@@ -1,8 +1,8 @@
 from __future__ import annotations
 
+from collections.abc import Generator
 from contextlib import contextmanager
 from contextvars import ContextVar
-from typing import Generator
 
 _CURRENT_TRACE_ID: ContextVar[str | None] = ContextVar("current_trace_id", default=None)
 _CURRENT_SESSION_ID: ContextVar[str | None] = ContextVar("current_session_id", default=None)
