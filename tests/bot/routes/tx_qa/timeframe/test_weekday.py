@@ -18,9 +18,9 @@ from bot.routes.tx_qa.timeframe.weekday import resolve_named_weekday
             1,
             -1,
             date(2026, 7, 30),
-            (
-                date(2026, 7, 27),
-                date(2026, 7, 27),
+            DateRange(
+                start_date=date(2026, 7, 27),
+                end_date=date(2026, 7, 27),
             ),
             id="named-weekday-offset-same-week",
         ),
@@ -28,9 +28,9 @@ from bot.routes.tx_qa.timeframe.weekday import resolve_named_weekday
             6,
             -1,
             date(2026, 7, 30),
-            (
-                date(2026, 7, 25),
-                date(2026, 7, 25),
+            DateRange(
+                start_date=date(2026, 7, 25),
+                end_date=date(2026, 7, 25),
             ),
             id="named-weekday-offset-previous-week",
         ),
@@ -38,9 +38,9 @@ from bot.routes.tx_qa.timeframe.weekday import resolve_named_weekday
             1,
             0,
             date(2026, 7, 30),
-            (
-                date(2026, 7, 27),
-                date(2026, 7, 27),
+            DateRange(
+                start_date=date(2026, 7, 27),
+                end_date=date(2026, 7, 27),
             ),
             id="named-weekday-offset-same-week-2",
         ),
@@ -48,9 +48,9 @@ from bot.routes.tx_qa.timeframe.weekday import resolve_named_weekday
             6,
             0,
             date(2026, 7, 30),
-            (
-                date(2026, 7, 25),
-                date(2026, 7, 25),
+            DateRange(
+                start_date=date(2026, 7, 25),
+                end_date=date(2026, 7, 25),
             ),
             id="named-weekday-offset-previous-week-2",
         ),       
@@ -58,9 +58,9 @@ from bot.routes.tx_qa.timeframe.weekday import resolve_named_weekday
             1,
             -2,
             date(2026, 7, 30),
-            (
-                date(2026, 7, 20),
-                date(2026, 7, 20),
+            DateRange(
+                start_date=date(2026, 7, 20),
+                end_date=date(2026, 7, 20),
             ),
             id="named-weekday-double-offset-previous-week",
         ),
@@ -68,9 +68,9 @@ from bot.routes.tx_qa.timeframe.weekday import resolve_named_weekday
             6,
             -2,
             date(2026, 7, 30),
-            (
-                date(2026, 7, 18),
-                date(2026, 7, 18),
+            DateRange(
+                start_date=date(2026, 7, 18),
+                end_date=date(2026, 7, 18),
             ),
             id="named-weekday-double-offset-previous-week-2",
         ),

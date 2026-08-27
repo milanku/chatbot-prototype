@@ -21,9 +21,9 @@ from bot.routes.tx_qa.timeframe.rolling import (
             RollingRangeUnit.DAY,
             5,
             date(2026, 1, 30),
-            (
-                date(2026, 1, 26),
-                date(2026, 1, 30),
+            DateRange(
+                start_date=date(2026, 1, 26),
+                end_date=date(2026, 1, 30),
             ),
             id="trailing-day-offset",
         ),
@@ -31,9 +31,9 @@ from bot.routes.tx_qa.timeframe.rolling import (
             RollingRangeUnit.DAY,
             6,
             date(2026, 1, 3),
-            (
-                date(2025, 12, 29),
-                date(2026, 1, 3),
+            DateRange(
+                start_date=date(2025, 12, 29),
+                end_date=date(2026, 1, 3),
             ),
             id="trailing-day-offset-previous-year",
         ),
@@ -41,9 +41,9 @@ from bot.routes.tx_qa.timeframe.rolling import (
             RollingRangeUnit.WEEK,
             2,
             date(2026, 1, 30),
-            (
-                date(2026, 1, 17),
-                date(2026, 1, 30),
+            DateRange(
+                start_date=date(2026, 1, 17),
+                end_date=date(2026, 1, 30),
             ),
             id="trailing-week-offset",
         ),
@@ -51,9 +51,9 @@ from bot.routes.tx_qa.timeframe.rolling import (
             RollingRangeUnit.WEEK,
             2,
             date(2026, 1, 3),
-            (
-                date(2025, 12, 21),
-                date(2026, 1, 3),
+            DateRange(
+                start_date=date(2025, 12, 21),
+                end_date=date(2026, 1, 3),
             ),
             id="trailing-week-offset-previous-year",
         ),        
@@ -61,9 +61,9 @@ from bot.routes.tx_qa.timeframe.rolling import (
             RollingRangeUnit.MONTH,
             2,
             date(2026, 6, 20),
-            (
-                date(2026, 4, 20),
-                date(2026, 6, 20),
+            DateRange(
+                start_date=date(2026, 4, 20),
+                end_date=date(2026, 6, 20),
             ),
             id="trailing-month-offset",
         ),
@@ -71,9 +71,9 @@ from bot.routes.tx_qa.timeframe.rolling import (
             RollingRangeUnit.MONTH,
             2,
             date(2026, 4, 30),
-            (
-                date(2026, 2, 28),
-                date(2026, 4, 30),
+            DateRange(
+                start_date=date(2026, 2, 28),
+                end_date=date(2026, 4, 30),
             ),
             id="trailing-month-offset-short-month",
         ),
@@ -81,9 +81,9 @@ from bot.routes.tx_qa.timeframe.rolling import (
             RollingRangeUnit.YEAR,
             2,
             date(2026, 4, 30),
-            (
-                date(2024, 4, 30),
-                date(2026, 4, 30),
+            DateRange(
+                start_date=date(2024, 4, 30),
+                end_date=date(2026, 4, 30),
             ),
             id="trailing-year-offset",
         ),
@@ -91,9 +91,9 @@ from bot.routes.tx_qa.timeframe.rolling import (
             RollingRangeUnit.YEAR,
             2,
             date(2028, 2, 29),
-            (
-                date(2026, 2, 28),
-                date(2028, 2, 29),
+            DateRange(
+                start_date=date(2026, 2, 28),
+                end_date=date(2028, 2, 29),
             ),
             id="trailing-year-offset-leap-year",
         ),
@@ -128,9 +128,9 @@ def test_range_from_trailing_rolling_range(
             RollingRangeUnit.DAY,
             5,
             date(2026, 1, 30),
-            (
-                date(2026, 1, 25),
-                date(2026, 1, 29),
+            DateRange(
+                start_date=date(2026, 1, 25),
+                end_date=date(2026, 1, 29),
             ),
             id="trailing-day-offset",
         ),
@@ -138,9 +138,9 @@ def test_range_from_trailing_rolling_range(
             RollingRangeUnit.DAY,
             6,
             date(2026, 1, 3),
-            (
-                date(2025, 12, 28),
-                date(2026, 1, 2),
+            DateRange(
+                start_date=date(2025, 12, 28),
+                end_date=date(2026, 1, 2),
             ),
             id="trailing-day-offset-previous-year",
         ),
@@ -148,9 +148,9 @@ def test_range_from_trailing_rolling_range(
             RollingRangeUnit.WEEK,
             2,
             date(2026, 1, 30),
-            (
-                date(2026, 1, 12),
-                date(2026, 1, 25),
+            DateRange(
+                start_date=date(2026, 1, 12),
+                end_date=date(2026, 1, 25),
             ),
             id="trailing-week-offset",
         ),
@@ -158,9 +158,9 @@ def test_range_from_trailing_rolling_range(
             RollingRangeUnit.WEEK,
             2,
             date(2026, 1, 3),
-            (
-                date(2025, 12, 15),
-                date(2025, 12, 28),
+            DateRange(
+                start_date=date(2025, 12, 15),
+                end_date=date(2025, 12, 28),
             ),
             id="trailing-week-offset-previous-year",
         ),        
@@ -168,9 +168,9 @@ def test_range_from_trailing_rolling_range(
             RollingRangeUnit.MONTH,
             2,
             date(2026, 6, 20),
-            (
-                date(2026, 4, 1),
-                date(2026, 5, 31),
+            DateRange(
+                start_date=date(2026, 4, 1),
+                end_date=date(2026, 5, 31),
             ),
             id="trailing-month-offset",
         ),
@@ -178,9 +178,9 @@ def test_range_from_trailing_rolling_range(
             RollingRangeUnit.MONTH,
             2,
             date(2026, 3, 30),
-            (
-                date(2026, 1, 1),
-                date(2026, 2, 28),
+            DateRange(
+                start_date=date(2026, 1, 1),
+                end_date=date(2026, 2, 28),
             ),
             id="trailing-month-offset-short-month",
         ),
@@ -188,9 +188,9 @@ def test_range_from_trailing_rolling_range(
             RollingRangeUnit.QUARTER,
             2,
             date(2026, 7, 20),
-            (
-                date(2026, 1, 1),
-                date(2026, 6, 30),
+            DateRange(
+                start_date=date(2026, 1, 1),
+                end_date=date(2026, 6, 30),
             ),
             id="trailing-quarter-offset",
         ),
@@ -198,9 +198,9 @@ def test_range_from_trailing_rolling_range(
             RollingRangeUnit.QUARTER,
             2,
             date(2026, 3, 30),
-            (
-                date(2025, 7, 1),
-                date(2025, 12, 31),
+            DateRange(
+                start_date=date(2025, 7, 1),
+                end_date=date(2025, 12, 31),
             ),
             id="trailing-quarter-offset-previous-year",
         ),
@@ -208,9 +208,9 @@ def test_range_from_trailing_rolling_range(
             RollingRangeUnit.YEAR,
             2,
             date(2026, 4, 30),
-            (
-                date(2024, 1, 1),
-                date(2025, 12, 31),
+            DateRange(
+                start_date=date(2024, 1, 1),
+                end_date=date(2025, 12, 31),
             ),
             id="trailing-year-offset",
         ),
@@ -218,9 +218,9 @@ def test_range_from_trailing_rolling_range(
             RollingRangeUnit.YEAR,
             2,
             date(2028, 2, 29),
-            (
-                date(2026, 1, 1),
-                date(2027, 12, 31),
+            DateRange(
+                start_date=date(2026, 1, 1),
+                end_date=date(2027, 12, 31),
             ),
             id="trailing-year-offset-leap-year",
         ),

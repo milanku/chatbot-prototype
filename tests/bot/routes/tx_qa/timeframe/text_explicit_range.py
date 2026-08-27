@@ -19,9 +19,9 @@ from bot.routes.tx_qa.timeframe.explicit_range import resolve_explicit_range
             RawRangeEndpoint(year=2021, month=7, day=15),
             RawRangeEndpoint(year=2021, month=7, day=28),
             date(2021, 7, 1),
-            (
-                date(2021, 7, 15),
-                date(2021, 7, 28),
+            DateRange(
+                start_date=date(2021, 7, 15),
+                end_date=date(2021, 7, 28),
             ),
             id="explicit-range-all-parts",
         ),        
@@ -29,9 +29,9 @@ from bot.routes.tx_qa.timeframe.explicit_range import resolve_explicit_range
             RawRangeEndpoint(month=7, day=15),
             RawRangeEndpoint(year=2021, month=7, day=28),
             date(2021, 7, 1),
-            (
-                date(2021, 7, 15),
-                date(2021, 7, 28),
+            DateRange(
+                start_date=date(2021, 7, 15),
+                end_date=date(2021, 7, 28),
             ),
             id="explicit-range-infer-year-from-start",
         ),
@@ -39,9 +39,9 @@ from bot.routes.tx_qa.timeframe.explicit_range import resolve_explicit_range
             RawRangeEndpoint(day=15),
             RawRangeEndpoint(year=2021, month=7, day=28),
             date(2021, 7, 1),
-            (
-                date(2021, 7, 15),
-                date(2021, 7, 28),
+            DateRange(
+                start_date=date(2021, 7, 15),
+                end_date=date(2021, 7, 28),
             ),
             id="explicit-range-infer-year-and-month-from-start",
         ),
@@ -49,9 +49,9 @@ from bot.routes.tx_qa.timeframe.explicit_range import resolve_explicit_range
             RawRangeEndpoint(year=2021, month=7, day=15),
             RawRangeEndpoint(month=7, day=28),
             date(2021, 7, 1),
-            (
-                date(2021, 7, 15),
-                date(2021, 7, 28),
+            DateRange(
+                start_date=date(2021, 7, 15),
+                end_date=date(2021, 7, 28),
             ),
             id="explicit-range-infer-year-from-end",
         ),
@@ -59,9 +59,9 @@ from bot.routes.tx_qa.timeframe.explicit_range import resolve_explicit_range
             RawRangeEndpoint(year=2021, month=7, day=15),
             RawRangeEndpoint(day=28),
             date(2021, 7, 1),
-            (
-                date(2021, 7, 15),
-                date(2021, 7, 28),
+            DateRange(
+                start_date=date(2021, 7, 15),
+                end_date=date(2021, 7, 28),
             ),
             id="explicit-range-infer-year-and-month-from-end",
         ),        
@@ -69,9 +69,9 @@ from bot.routes.tx_qa.timeframe.explicit_range import resolve_explicit_range
             RawRangeEndpoint(year=2021, quarter=1),
             RawRangeEndpoint(year=2021, quarter=3),
             date(2021, 7, 1),
-            (
-                date(2021, 1, 1),
-                date(2021, 9, 30),
+            DateRange(
+                start_date=date(2021, 1, 1),
+                end_date=date(2021, 9, 30),
             ),
             id="explicit-range-quarter-base",
         ),
@@ -79,9 +79,9 @@ from bot.routes.tx_qa.timeframe.explicit_range import resolve_explicit_range
             RawRangeEndpoint(quarter=1),
             RawRangeEndpoint(year=2021, quarter=3),
             date(2021, 7, 1),
-            (
-                date(2021, 1, 1),
-                date(2021, 9, 30),
+            DateRange(
+                start_date=date(2021, 1, 1),
+                end_date=date(2021, 9, 30),
             ),
             id="explicit-range-quarter-infer-start-year",
         ),
@@ -89,9 +89,9 @@ from bot.routes.tx_qa.timeframe.explicit_range import resolve_explicit_range
             RawRangeEndpoint(quarter=1),
             RawRangeEndpoint(quarter=3),
             date(2021, 7, 1),
-            (
-                date(2021, 1, 1),
-                date(2021, 9, 30),
+            DateRange(
+                start_date=date(2021, 1, 1),
+                end_date=date(2021, 9, 30),
             ),
             id="explicit-range-quarter-infer-current-year",
         ),

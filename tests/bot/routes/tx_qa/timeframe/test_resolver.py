@@ -10,7 +10,7 @@ from bot.models.tx_qa.query import (
     Timeframe,
     TimeframeType,
 )
-from bot.routes.tx_qa.timeframe.resolve import resolve_date_range_from_raw_query
+from bot.routes.tx_qa.timeframe.resolve import resolve_date_range
 
 TODAY = date(2025, 1, 3)
 SENTINEL_RANGE = (
@@ -30,7 +30,7 @@ RAW_RANGE_ENDPOINT_2025_05_10 = RawRangeEndpoint(
     day=10,
 )
 
-def make_raw_query(**overrides: object) -> Timeframe:
+def create_timeframe_query(**overrides: object) -> Timeframe:
     return Timeframe(
         timeframe_type=TimeframeType.UNKNOWN,
     ).model_copy(update=overrides)
@@ -173,17 +173,17 @@ def test_dispatches_to_correct_resolver_with_expected_arguments(
     expected_call: object,
 ) -> None:
 
-    raw = make_raw_query(
+    raw = create_timeframe_query(
         timeframe_type=timeframe_type,
         **raw_overrides
     )
 
     with patch(
-        f"bot.routes.tx_qa.timeframe.resolver.{resolver_name}",
+        f"bot.routes.tx_qa.timeframe.resolve.{resolver_name}",
         autospec=True,
         return_value=SENTINEL_RANGE,
     ) as resolver:
-        result = resolve_date_range_from_raw_query(
+        result = resolve_date_range(
             raw,
             today=TODAY,
         )
@@ -345,22 +345,18 @@ def test_does_not_dispatch_when_required_data_is_missing(
     raw_overrides: dict[str, object],
     resolver_name: str,
 ) -> None:
-    raw = make_raw_query(
+    raw = create_timeframe_query(
         timeframe_type=timeframe_type,
         **raw_overrides,
     )
 
     with (
         patch(
-            f"bot.routes.tx_qa.timeframe.resolver.{resolver_name}",
+            f"bot.routes.tx_qa.timeframe.resolve.{resolver_name}",
             autospec=True,
         ) as resolver,
-            patch(
-            "bot.routes.tx_qa.timeframe.resolver.log_event",
-            autospec=True,
-        ),
     ):
-        result = resolve_date_range_from_raw_query(
+        result = resolve_date_range(
             raw,
             today=TODAY,
         )
@@ -369,39 +365,31 @@ def test_does_not_dispatch_when_required_data_is_missing(
     resolver.assert_not_called()
     
 def test_returns_none_for_unknown_timeframe() -> None:
-    raw = make_raw_query(
+    raw = create_timeframe_query(
         timeframe_type=TimeframeType.UNKNOWN,
     )
 
-    with patch(
-        "bot.routes.tx_qa.timeframe.resolver.log_event",
-        autospec=True,
-    ):
-        result = resolve_date_range_from_raw_query(
-            raw,
-            today=TODAY,
-        )
+    result = resolve_date_range(
+        raw,
+        today=TODAY,
+    )
 
     assert result is None
     
 def test_propagates_none_from_resolver() -> None:
-    raw = make_raw_query(
+    raw = create_timeframe_query(
         timeframe_type=TimeframeType.NAMED_MONTH,
         month=5,
     )
 
     with (
         patch(
-            "bot.routes.tx_qa.timeframe.resolver.resolve_named_month",
+            "bot.routes.tx_qa.timeframe.resolve.resolve_named_month",
             autospec=True,
             return_value=None,
         ) as resolver,
-        patch(
-            "bot.routes.tx_qa.timeframe.resolver.log_event",
-            autospec=True,
-        ),
     ):
-        result = resolve_date_range_from_raw_query(
+        result = resolve_date_range(
             raw,
             today=TODAY,
         )
@@ -412,36 +400,4 @@ def test_propagates_none_from_resolver() -> None:
         year=None,
         month=5,
         today=TODAY,
-    )
-    
-def test_logs_resolved_range() -> None:
-    raw = make_raw_query(
-        timeframe_type=TimeframeType.NAMED_YEAR,
-        year=2025,
-    )
-
-    with (
-        patch(
-            "bot.routes.tx_qa.timeframe.resolver.resolve_named_year",
-            autospec=True,
-            return_value=SENTINEL_RANGE,
-        ),
-        patch(
-            "bot.routes.tx_qa.timeframe.resolver.log_event",
-            autospec=True,
-        ) as log_event,
-    ):
-        result = resolve_date_range_from_raw_query(
-            raw,
-            today=TODAY,
-        )
-
-    assert result == SENTINEL_RANGE
-
-    log_event.assert_called_once_with(
-        event="tx_qa.resolve_date_range_from_raw_query",
-        payload={
-            "raw_query_data": raw,
-            "range": SENTINEL_RANGE,
-        },
     )

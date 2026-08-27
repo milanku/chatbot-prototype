@@ -19,9 +19,9 @@ from bot.routes.tx_qa.timeframe.calendar_utils import (
     [
         pytest.param(
             2025,
-            (
-                date(2025, 1, 1),
-                date(2025, 12, 31),
+            DateRange(
+                start_date=date(2025, 1, 1),
+                end_date=date(2025, 12, 31),
             ),
             id="year-range-2025",
         ),
@@ -47,9 +47,9 @@ def test_year_range(
         pytest.param(
             2025,
             2,
-            (
-                date(2025, 4, 1),
-                date(2025, 6, 30),
+            DateRange(
+                start_date=date(2025, 4, 1),
+                end_date=date(2025, 6, 30),
             ),
             id="quarter-2-2025",
         ),
@@ -77,18 +77,18 @@ def test_quarter_range(
         pytest.param(
             2025,
             4,
-            (
-                date(2025, 4, 1),
-                date(2025, 4, 30),
+            DateRange(
+                start_date=date(2025, 4, 1),
+                end_date=date(2025, 4, 30),
             ),
             id="month-4-2025",
         ),
         pytest.param(
             2024,
             2,
-            (
-                date(2024, 2, 1),
-                date(2024, 2, 29),
+            DateRange(
+                start_date=date(2024, 2, 1),
+                end_date=date(2024, 2, 29),
             ),
             id="month-leap-year-2-2024",
         ),
@@ -118,9 +118,9 @@ def test_month_range(
             2025,
             4,
             15,
-            (
-                date(2025, 4, 15),
-                date(2025, 4, 15),
+            DateRange(
+                start_date=date(2025, 4, 15),
+                end_date=date(2025, 4, 15),
             ),
             id="day-15-4-2025",
         ),
@@ -128,9 +128,9 @@ def test_month_range(
             2024,
             2,
             29,
-            (
-                date(2024, 2, 29),
-                date(2024, 2, 29),
+            DateRange(
+                start_date=date(2024, 2, 29),
+                end_date=date(2024, 2, 29),
             ),
             id="day-29-2-2024",
         ),

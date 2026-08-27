@@ -21,18 +21,18 @@ from bot.routes.tx_qa.timeframe.relative import (
         pytest.param(
             5,
             date(2030, 6, 20),
-            (
-                date(2035, 1, 1),
-                date(2035, 12, 31),
+            DateRange(
+                start_date=date(2035, 1, 1),
+                end_date=date(2035, 12, 31),
             ),
             id="relative-year-offset",
         ),
         pytest.param(
             -3,
             date(2025, 1, 15),
-            (
-                date(2022, 1, 1),
-                date(2022, 12, 31),
+            DateRange(
+                start_date=date(2022, 1, 1),
+                end_date=date(2022, 12, 31),
             ),
             id="relative-year-negative-offset",
         ),
@@ -61,27 +61,27 @@ def test_range_from_relative_year(
         pytest.param(
             5,
             date(2030, 6, 20),
-            (
-                date(2030, 11, 1),
-                date(2030, 11, 30),
+            DateRange(
+                start_date=date(2030, 11, 1),
+                end_date=date(2030, 11, 30),
             ),
             id="relative-month-offset",
         ),
         pytest.param(
             -3,
             date(2025, 1, 15),
-            (
-                date(2024, 10, 1),
-                date(2024, 10, 31),
+            DateRange(
+                start_date=date(2024, 10, 1),
+                end_date=date(2024, 10, 31),
             ),
             id="relative-month-negative-offset-previous-year",
         ),
         pytest.param(
             7,
             date(2025, 6, 15),
-            (
-                date(2026, 1, 1),
-                date(2026, 1, 31),
+            DateRange(
+                start_date=date(2026, 1, 1),
+                end_date=date(2026, 1, 31),
             ),
             id="relative-month-positive-offset-next-year",
         ),
@@ -109,27 +109,27 @@ def test_range_from_relative_month(
         pytest.param(
             2,
             date(2030, 6, 20),
-            (
-                date(2030, 7, 1),
-                date(2030, 7, 7),
+            DateRange(
+                start_date=date(2030, 7, 1),
+                end_date=date(2030, 7, 7),
             ),
             id="relative-week-offset",
         ),
         pytest.param(
             -3,
             date(2025, 1, 15),
-            (
-                date(2024, 12, 23),
-                date(2024, 12, 29),
+            DateRange(
+                start_date=date(2024, 12, 23),
+                end_date=date(2024, 12, 29),
             ),
             id="relative-week-negative-offset-previous-year",
         ),
         pytest.param(
             7,
             date(2025, 12, 15),
-            (
-                date(2026, 2, 2),
-                date(2026, 2, 8),
+            DateRange(
+                start_date=date(2026, 2, 2),
+                end_date=date(2026, 2, 8),
             ),
             id="relative-week-positive-offset-next-year",
         ),
@@ -157,27 +157,27 @@ def test_range_from_relative_week(
         pytest.param(
             2,
             date(2025, 7, 20),
-            (
-                date(2025, 7, 22),
-                date(2025, 7, 22),
+            DateRange(
+                start_date=date(2025, 7, 22),
+                end_date=date(2025, 7, 22),
             ),
             id="relative-day-offset",
         ),
         pytest.param(
             -3,
             date(2025, 1, 3),
-            (
-                date(2024, 12, 31),
-                date(2024, 12, 31),
+            DateRange(
+                start_date=date(2024, 12, 31),
+                end_date=date(2024, 12, 31),
             ),
             id="relative-day-negative-offset-previous-year",
         ),
         pytest.param(
             7,
             date(2025, 12, 30),
-            (
-                date(2026, 1, 6),
-                date(2026, 1, 6),
+            DateRange(
+                start_date=date(2026, 1, 6),
+                end_date=date(2026, 1, 6),
             ),
             id="relative-day-positive-offset-next-year",
         ),
