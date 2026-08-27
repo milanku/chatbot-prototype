@@ -113,5 +113,4 @@ def resolve_explicit_range(
         }
     )
 
-
-    return (resolved_start_date, resolved_end_date) if resolved_start_date is not None and resolved_end_date is not None else None
+    return DateRange(start_date=resolved_start_date, end_date=resolved_end_date) if resolved_start_date is not None and resolved_end_date is not None else None

@@ -26,11 +26,10 @@ class TxListCoordinator:
                 answer="Sorry, I could not determine the date range for your query. Please make sure to specify a valid timeframe (e.g., 'last month', 'from January 1st to January 31st').\n",
             )
         
-        start_date, end_date = date_range
         tx_query = TxQuery(
             label=extraction.label,
-            start_date=start_date,
-            end_date=end_date,
+            start_date=date_range.start_date,
+            end_date=date_range.end_date,
             direction=extraction.direction,
         )
         txs = self._tx_repository.list_transactions(tx_query)

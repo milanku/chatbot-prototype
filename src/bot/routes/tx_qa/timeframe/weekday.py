@@ -13,12 +13,12 @@ def resolve_named_weekday(
         current_weekday = today.isoweekday()
         days_difference = (current_weekday - weekday) % 7
         target_date = today - timedelta(days=days_difference)
-        return target_date, target_date
+        return DateRange(start_date=target_date, end_date=target_date)
     elif(offset == -2):
         # Most recent occurrence of the weekday in the week before the previous week
         current_weekday = today.isoweekday()
         days_difference = (current_weekday - weekday) % 7
         target_date = today - timedelta(days=days_difference + 7)
-        return target_date, target_date
+        return DateRange(start_date=target_date, end_date=target_date)
     else:
         return None  # If the offset is not recognized, return None

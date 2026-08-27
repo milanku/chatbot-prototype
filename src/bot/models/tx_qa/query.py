@@ -15,7 +15,10 @@ class TxQuery:
     end_date: date
     direction: Direction | None
     
-DateRange = tuple[date, date]
+@dataclass(frozen=True)
+class DateRange:
+    start_date: date
+    end_date: date
 
 class TimeframeType(Enum):
     RELATIVE_DAY = "RELATIVE_DAY"
