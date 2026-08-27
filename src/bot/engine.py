@@ -85,7 +85,6 @@ class ChatbotEngine:
         trace_id = uuid4().hex
         session_id = get_current_session_id()
         
-        new_state = session_state  # By default, the state doesn't change. Routes can override this if needed.
         with bind_trace_id(trace_id):
             log_event(
                 event="engine.start",
