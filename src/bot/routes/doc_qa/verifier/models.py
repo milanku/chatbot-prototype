@@ -12,7 +12,7 @@ class ExtractedClaim(BaseModel):
     source_text: str | None = None
     
 class ExtractionResult(BaseModel):
-    claims: list[ExtractedClaim] | None = None
+    claims: list[ExtractedClaim]
     
 class SentenceForExtraction(BaseModel):
     chunk_id: str

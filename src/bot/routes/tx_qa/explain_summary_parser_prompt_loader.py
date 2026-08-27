@@ -4,11 +4,11 @@ from bot.models.prompts import PromptLoader
 
 
 @dataclass(frozen=True)
-class TXExplainParserPromptInput:
+class TXExplainSummaryParserPromptInput:
     message: str
     
-class TXExplainParserPromptLoader(PromptLoader[TXExplainParserPromptInput]):
-    def build_user_prompt(self, input: TXExplainParserPromptInput) -> str:
+class TXExplainSummaryParserPromptLoader(PromptLoader[TXExplainSummaryParserPromptInput]):
+    def build_user_prompt(self, input: TXExplainSummaryParserPromptInput) -> str:
         return (
             "Parse the user's transaction-explain reference.\n\n"
             f"User Message: {input.message!r}\n"

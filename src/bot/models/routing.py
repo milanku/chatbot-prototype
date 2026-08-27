@@ -12,7 +12,6 @@ class Route(Enum):
     DOCS_ANSWER = "DOCS_ANSWER" # Answer questions based on documentation
     OUT_OF_SCOPE = "OUT_OF_SCOPE" # Messages that do not fit any of the above routes
 
-
 class RouterDecisionExtraction(BaseModel):
     decision: RouterDecision
     reason: str | None = None

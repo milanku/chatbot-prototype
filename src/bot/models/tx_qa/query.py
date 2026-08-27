@@ -9,7 +9,7 @@ from bot.models.tx_qa.domain import Direction, Label
 
 
 @dataclass(frozen=True)
-class TxQAQuery:
+class TxQuery:
     label: Label | None
     start_date: date
     end_date: date
@@ -78,7 +78,7 @@ class RollingRangeMode(Enum):
     TRAILING = "trailing"
     PREVIOUS_COMPLETE = "previous_complete"
  
-class TXQARawQuery(BaseModel):
+class Timeframe(BaseModel):
     label: Label | None = None
     direction: Direction | None = None
     timeframe_type: TimeframeType | None = None
@@ -104,8 +104,8 @@ class TXQARawQuery(BaseModel):
     # For ROLLING_RANGE timeframes, e.g., "last 3 months" -> unit_amount = 3
     unit_amount: int | None = None
 
-class TXQAQueryExtraction(BaseModel):
-    raw_query_data: TXQARawQuery
+class TimeframeExtraction(BaseModel):
+    timeframe: Timeframe
     # Optional reason or explanation for the parsed timeframe information, can be used for debugging or logging purposes
     reason: str | None = None
     
@@ -115,6 +115,6 @@ class TXExplainQuery(BaseModel):
     # Number of related references (1 = that sum, 2 = previous two sums...)
     reference_count: int | None = None
     
-class TXExplainQueryExtraction(BaseModel):
-    raw_query_data: TXExplainQuery
+class TXExplainSummaryQueryExtraction(BaseModel):
+    query: TXExplainQuery
     reason: str | None = None

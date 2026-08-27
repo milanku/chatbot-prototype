@@ -4,7 +4,8 @@ from pathlib import Path
 from pydantic import ValidationError
 
 from bot.models.tx_qa.domain import Transaction
-from bot.models.tx_qa.repository import TransactionsRepository, TxFilter
+from bot.models.tx_qa.query import TxQuery
+from bot.models.tx_qa.repository import TransactionsRepository
 
 
 class TransactionsRepositoryFromJsonMock(TransactionsRepository):
@@ -42,14 +43,14 @@ class TransactionsRepositoryFromJsonMock(TransactionsRepository):
         ]
         return cls(_transactions=transactions)
 
-    def list_transactions(self, tx_filter: TxFilter) -> list[Transaction]:
+    def list_transactions(self, tx_query: TxQuery) -> list[Transaction]:
         return [
             tx
             for tx in self._transactions
-            if tx_filter.start_date <= tx.date <= tx_filter.end_date
-            and tx.direction == tx_filter.direction
-            and tx.label == tx_filter.label
+            if tx_query.start_date <= tx.date <= tx_query.end_date
+            and tx.direction == tx_query.direction
+            and tx.label == tx_query.label
         ]
 
-    def list_transaction_ids(self, tx_filter: TxFilter) -> list[str]:
-        return [tx.id for tx in self.list_transactions(tx_filter)]
+    def list_transaction_ids(self, tx_query: TxQuery) -> list[str]:
+        return [tx.id for tx in self.list_transactions(tx_query)]
