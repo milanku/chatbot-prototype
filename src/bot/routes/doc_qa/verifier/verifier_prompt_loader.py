@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from bot.models.doc_qa.retrieval import DocHit
 from bot.models.prompts import PromptLoader
-from bot.routes.doc_qa.verifier.claim_extractor import ExtractedClaim
+from bot.routes.doc_qa.verifier.models import ExtractedClaim
 
 
 @dataclass(frozen=True)
