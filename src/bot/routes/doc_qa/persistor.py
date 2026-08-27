@@ -56,12 +56,12 @@ def load_persisted_embeddings(input_path: Path) -> list[EmbeddedDocChunk]:
             for item in raw
         ]
         return doc_chunks
-    except FileNotFoundError:
-        raise FileNotFoundError(f"JSON file not found at {input_path}")
+    except FileNotFoundError as e:
+        raise FileNotFoundError(f"JSON file not found at {input_path}") from e
     except json.JSONDecodeError as e:
-        raise ValueError(f"Invalid JSON format in file at {input_path}:\n {e}")
+        raise ValueError(f"Invalid JSON format in file at {input_path}:\n {e}") from e
     except ValidationError as e:
-        raise ValueError(f"Invalid transaction data in JSON file at {input_path}:\n {e}")
+        raise ValueError(f"Invalid document chunk data in JSON file at {input_path}:\n {e}") from e
     
 def persist_manifest(*, manifest_path: Path, manifest: EmbeddingsManifest) -> None:
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
@@ -78,6 +78,6 @@ def load_persisted_manifest(manifest_path: Path) -> EmbeddingsManifest | None:
     except FileNotFoundError:
         return None
     except json.JSONDecodeError as e:
-        raise ValueError(f"Invalid JSON format in file at {manifest_path}:\n {e}")
+        raise ValueError(f"Invalid JSON format in file at {manifest_path}:\n {e}") from e
     except ValidationError as e:
-        raise ValueError(f"Invalid transaction data in JSON file at {manifest_path}:\n {e}")
+        raise ValueError(f"Invalid manifest data in JSON file at {manifest_path}:\n {e}") from e

@@ -21,12 +21,12 @@ class TransactionsRepositoryFromJsonMock(TransactionsRepository):
             transactions_data = [
                 Transaction.model_validate(tx) for tx in raw_data
             ]
-        except FileNotFoundError:
-            raise FileNotFoundError(f"JSON file not found at {file_path}")
+        except FileNotFoundError as e:
+            raise FileNotFoundError(f"JSON file not found at {file_path}") from e
         except json.JSONDecodeError as e:
-            raise ValueError(f"Invalid JSON format in file at {file_path}:\n {e}")
+            raise ValueError(f"Invalid JSON format in file at {file_path}:\n {e}") from e
         except ValidationError as e:
-            raise ValueError(f"Invalid transaction data in JSON file at {file_path}:\n {e}")
+            raise ValueError(f"Invalid transaction data in JSON file at {file_path}:\n {e}") from e
         
         transactions: list[Transaction] = [
             Transaction(
