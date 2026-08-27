@@ -68,6 +68,7 @@ version = "0.1.0"
 line-length = 100
 target-version = "py310"
 src = ["src", "tests"]
+ignore = ["SIM108"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "SIM", "Q"]
