@@ -33,10 +33,10 @@ class TxSummaryCoordinator:
         start_date, end_date = date_range
         
         query = TxQuery(
-            label=extraction.timeframe.label,
+            label=extraction.label,
             start_date=start_date,
             end_date=end_date,
-            direction=extraction.timeframe.direction,
+            direction=extraction.direction,
         )
         txs = self._tx_repository.list_transactions(query)
         total_amount = compute_total_amount(txs)

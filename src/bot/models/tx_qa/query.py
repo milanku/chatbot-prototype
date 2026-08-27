@@ -79,9 +79,7 @@ class RollingRangeMode(Enum):
     PREVIOUS_COMPLETE = "previous_complete"
  
 class Timeframe(BaseModel):
-    label: Label | None = None
-    direction: Direction | None = None
-    timeframe_type: TimeframeType | None = None
+    timeframe_type: TimeframeType
     
     # For relative timeframes, e.g., "last month" -> relative_offset = -1, "next month" -> relative_offset = 1
     relative_offset: int | None = None
@@ -104,8 +102,10 @@ class Timeframe(BaseModel):
     # For ROLLING_RANGE timeframes, e.g., "last 3 months" -> unit_amount = 3
     unit_amount: int | None = None
 
-class TimeframeExtraction(BaseModel):
+class TxQueryExtraction(BaseModel):
     timeframe: Timeframe
+    label: Label | None = None
+    direction: Direction | None = None
     # Optional reason or explanation for the parsed timeframe information, can be used for debugging or logging purposes
     reason: str | None = None
     

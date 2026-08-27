@@ -249,24 +249,25 @@ Additional rules:
 Return only a JSON object with exactly these fields:
 - label
 - direction
-- timeframe_type
-- relative_offset
-- year
-- quarter
-- month
-- day
-- start_endpoint:
+- timeframe
+  - timeframe_type
+  - relative_offset
   - year
   - quarter
   - month
   - day
-- end_endpoint:
-  - year
-  - quarter
-  - month
-  - day
-- mode
-- unit
+  - start_endpoint:
+    - year
+    - quarter
+    - month
+    - day
+  - end_endpoint:
+    - year
+    - quarter
+    - month
+    - day
+  - mode
+  - unit
 - unit_amount
 - reason
 
@@ -298,9 +299,9 @@ Example 1:
 User message: list transactions between 5th and 12th
 Output:
 {
-  raw_query_data: {
-    "label": null,
-    "direction": null,
+  "label": null,
+  "direction": null,
+  "timeframe": {
     "timeframe_type": "EXPLICIT_RANGE",
     "relative_offset": null,
     "year": null,
@@ -331,9 +332,9 @@ Example 2:
 User message: show food expenses between March 5 and 12
 Output:
 {
-  "raw_query_data": {
-    "label": "food",
-    "direction": "spend",
+  "label": "food",
+  "direction": "spend",
+  "timeframe": {
     "timeframe_type": "EXPLICIT_RANGE",
     "relative_offset": null,
     "year": null,
@@ -364,9 +365,9 @@ Example 3:
 User message: how much did I spend on pets on the 20th?
 Output:
 {
-  "raw_query_data": {
-    "label": "pets",
-    "direction": "spend",
+  "label": "pets",
+  "direction": "spend",
+  "timeframe": {
     "timeframe_type": "NAMED_DATE",
     "relative_offset": null,
     "year": null,
@@ -387,9 +388,9 @@ Example 4:
 User message: how much did I spend on food last month?
 Output:
 {
-  "raw_query_data": {
-    "label": "food",
-    "direction": "spend",
+  "label": "food",
+  "direction": "spend",
+  "timeframe": {
     "timeframe_type": "RELATIVE_MONTH",
     "relative_offset": -1,
     "year": null,
@@ -410,9 +411,9 @@ Example 5:
 User message: what were the incomes during the previous three quarters?
 Output:
 {
-  "raw_query_data": {
-    "label": null,
-    "direction": "receive",
+  "label": null,
+  "direction": "receive",
+  "timeframe": {
     "timeframe_type": "ROLLING_RANGE",
     "relative_offset": null,
     "year": null,
