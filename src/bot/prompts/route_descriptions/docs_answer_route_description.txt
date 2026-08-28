@@ -1,8 +1,9 @@
 DOCS_ANSWER
-Choose this when the user is asking an informational question that should be answered from markdown documentation.
+Choose this when the user is asking an informational question that should be answered from the documentation, policies, terms and conditions.
 Typical examples:
 - "How do refunds work?"
 - "What is the return policy?"
 - "How can I reset my password?"
 - "What are the supported payment methods?"
-Choose this only when the message looks like a documentation question.
+- "What do I need to open an account?"
+Choose this only when the message looks like a documentation question, asks for policy details, requirements, processes, terms.
