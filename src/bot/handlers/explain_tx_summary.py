@@ -1,10 +1,10 @@
 from bot.handlers.models import RouteHandler, RouteHandlerResult
 from bot.models.memory import SessionState
-from bot.routes.tx_qa.tx_explain_summary_coordinator import TxExplainSummaryCoordinator
+from bot.routes.tx_qa.explain_tx_summary_coordinator import ExplainTxSummaryCoordinator
 
 
-class TxExplainSummaryHandler(RouteHandler):
-    def __init__(self, *, coordinator: TxExplainSummaryCoordinator) -> None:
+class ExplainTxSummaryHandler(RouteHandler):
+    def __init__(self, *, coordinator: ExplainTxSummaryCoordinator) -> None:
         self._coordinator = coordinator
     
     def handle(self, *, message: str, session_state: SessionState)  -> RouteHandlerResult:

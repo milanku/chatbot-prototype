@@ -6,7 +6,7 @@ from uuid import uuid4
 from langchain_core.embeddings import Embeddings
 
 from bot.composer.handlers.doc_qa import create_docs_answer_handler
-from bot.composer.handlers.tx_explain_summary import create_tx_explain_summary_handler
+from bot.composer.handlers.explain_tx_summary import create_explain_tx_summary_handler
 from bot.composer.handlers.tx_list import create_tx_list_handler
 from bot.composer.handlers.tx_summary import create_tx_summary_handler
 from bot.config.prompts_config import PromptConfigs
@@ -59,9 +59,9 @@ class ChatbotEngine:
             tx_repository=deps.tx_repository,
             timeframe_parser_prompt_config=self._deps.prompt_configs.timeframe_parser
         )
-        self._tx_explain_handler: RouteHandler = create_tx_explain_summary_handler(
+        self._explain_tx_summary_handler: RouteHandler = create_explain_tx_summary_handler(
             llm_client=deps.llm_client,
-            explain_summary_parser_prompt_config=self._deps.prompt_configs.explain_summary_parse
+            explain_summary_parser_prompt_config=self._deps.prompt_configs.explain_tx_summary_parser
         )
         self._docs_answer_handler: RouteHandler = create_docs_answer_handler(
             llm_client=deps.llm_client,
@@ -111,8 +111,8 @@ class ChatbotEngine:
                     result: RouteHandlerResult = self._tx_summary_handler.handle(message=message, session_state=session_state)
                 case Route.TX_LIST:
                     result = self._tx_list_handler.handle(message=message, session_state=session_state)
-                case Route.TX_EXPLAIN:
-                    result = self._tx_explain_handler.handle(message=message, session_state=session_state)
+                case Route.EXPLAIN_TX_SUMMARY:
+                    result = self._explain_tx_summary_handler.handle(message=message, session_state=session_state)
                 case Route.DOCS_ANSWER:
                     result = self._docs_answer_handler.handle(message=message, session_state=session_state)
                 case Route.OUT_OF_SCOPE:

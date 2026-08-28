@@ -17,7 +17,7 @@ class PromptConfigs:
     router: PromptConfig
     claim_extractor: PromptConfig
     claim_verifier: PromptConfig
-    explain_summary_parse: PromptConfig
+    explain_tx_summary_parser: PromptConfig
     timeframe_parser: PromptConfig
     doc_answer_synthesizer: PromptConfig
 
@@ -34,8 +34,8 @@ PROMPT_CONFIGS = PromptConfigs(
         directory=Path("src/bot/prompts/claim_verificator_instructions"),
         version="v002",
     ),
-    explain_summary_parse=PromptConfig(
-        directory=Path("src/bot/prompts/explain_summary_parser_instructions"),
+    explain_tx_summary_parser=PromptConfig(
+        directory=Path("src/bot/prompts/explain_tx_summary_parser_instructions"),
         version="v001",
     ),
     timeframe_parser=PromptConfig(
