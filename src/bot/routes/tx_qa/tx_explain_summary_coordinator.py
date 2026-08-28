@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from bot.models.memory import SessionState
+from bot.models.tx_qa.results import SummaryQueryResult
 from bot.routes.tx_qa.explain_summary_parser import TXExplainSummaryParser
 from bot.routes.tx_qa.tx_explain_summary_formatter import format_tx_explain_summary
 
@@ -12,6 +13,11 @@ class TxExplainSummaryResult:
 class TxExplainSummaryCoordinator:
     def __init__(self, *, explain_summary_parser: TXExplainSummaryParser):
         self._explain_summary_parser = explain_summary_parser
+        
+    def _select_related_summaries(self, *, tx_summaries: tuple[SummaryQueryResult, ...], reference_offset: int, reference_count: int) -> list[SummaryQueryResult]:
+        return list(
+            tx_summaries[max(0, len(tx_summaries) - reference_offset - reference_count):len(tx_summaries) - reference_offset]
+        )
     
     def answer(self, *, question: str, session_state: SessionState) -> TxExplainSummaryResult:
         parse_query_extraction = self._explain_summary_parser.parse(msg=question)
@@ -26,8 +32,10 @@ class TxExplainSummaryCoordinator:
             )
         
         tx_summaries = session_state.tx_summaries
-        related_summaries = list(
-            tx_summaries[max(0, len(tx_summaries) - reference_offset - reference_count):len(tx_summaries) - reference_offset]
+        related_summaries = self._select_related_summaries(
+            tx_summaries=tx_summaries,
+            reference_offset=reference_offset,
+            reference_count=reference_count
         )
 
         if not related_summaries:
