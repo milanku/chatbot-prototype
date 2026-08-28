@@ -9,7 +9,9 @@ from bot.models.doc_qa.chunks import EmbeddedDocChunk
 class DocRepository(ABC):   
     @classmethod
     @abstractmethod
-    def build_doc_store(cls, *,
+    def build_doc_store(
+            cls,
+            *,
             embedder: Embeddings,
             embedding_model: str,
             embeddings_dir: Path,
