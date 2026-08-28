@@ -1,4 +1,4 @@
-TX_EXPLAIN
+EXPLAIN_TX_SUMMARY
 Choose this when the user is asking to see the transactions that make up a previously discussed spending sum.
 Typical examples:
 - "Show me the transactions that built up this sum"

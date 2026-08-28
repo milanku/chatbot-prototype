@@ -12,7 +12,7 @@ class RouterPromptInput:
 ROUTE_DESCRIPTIONS_PATHS: dict[Route, Path] = {
     Route.TX_SUMMARY: Path("src/bot/prompts/route_descriptions/tx_summary_route_description.txt"),
     Route.TX_LIST: Path("src/bot/prompts/route_descriptions/tx_list_route_description.txt"),
-    Route.TX_EXPLAIN: Path("src/bot/prompts/route_descriptions/tx_explain_summary_route_description.txt"),
+    Route.EXPLAIN_TX_SUMMARY: Path("src/bot/prompts/route_descriptions/explain_tx_summary_route_description.txt"),
     Route.DOCS_ANSWER: Path("src/bot/prompts/route_descriptions/docs_answer_route_description.txt"),
     Route.OUT_OF_SCOPE: Path("src/bot/prompts/route_descriptions/out_of_scope_route_description.txt"),
 }
