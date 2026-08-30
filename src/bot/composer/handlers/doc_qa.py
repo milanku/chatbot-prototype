@@ -1,3 +1,4 @@
+from FlagEmbedding import FlagReranker
 from langchain.embeddings import Embeddings
 
 from bot.config.prompts_config import PromptConfig
@@ -8,6 +9,7 @@ from bot.routes.doc_qa.doc_answer_synthesizer_prompt_loader import (
     SynthesizerPromptLoader,
 )
 from bot.routes.doc_qa.doc_store import DocStore
+from bot.routes.doc_qa.reranker import CrossEncoderReranker
 from bot.routes.doc_qa.retriever import DocHitsRetriever, DocRetrievalConfig
 from bot.routes.doc_qa.synthesizer import AnswerSynthesizer
 from bot.routes.doc_qa.verifier.answer_verifier import AnswerVerifier
@@ -53,17 +55,21 @@ def create_docs_answer_handler(
     retriever = DocHitsRetriever(
         embedder=embedder,
         doc_store=doc_store,
-        config=DocRetrievalConfig(
-            top_k=5,
-            absolute_relevance_threshold=0.4,
-            relative_relevance_threshold=0.85,
-        ),
+        config=DocRetrievalConfig(top_k=5),
+    )
+    
+    reranker = CrossEncoderReranker(
+        reranker=FlagReranker(
+            "BAAI/bge-reranker-v2-m3",
+            use_fp16=True,
+        )
     )
 
     coordinator = DocsAnswerCoordinator(
         retriever=retriever,
         synthesizer=synthesizer,
         verifier=answer_verifier,
+        reranker=reranker,
     )
 
     return DocsAnswerHandler(

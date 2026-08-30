@@ -3,9 +3,10 @@ from dataclasses import dataclass
 from bot.models.doc_qa.references import DocReference
 
 
-@dataclass(frozen=True) 
+@dataclass
 class DocHit:
     id: str
-    score: float
-    doc_reference: DocReference
     content: str
+    doc_reference: DocReference
+    retrieval_score: float
+    reranker_score: float | None = None
