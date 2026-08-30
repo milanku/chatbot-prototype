@@ -16,6 +16,7 @@ from bot.logging import setup_logging
 from bot.memory.models import SessionStore
 from bot.memory.session_store import InMemorySessionStore
 from bot.routes.doc_qa.doc_store import DocStore
+from bot.routes.doc_qa.jina_embeddings import JinaEmbeddings
 from bot.routes.tx_qa.transactions_repository_mock import (
     TransactionsRepositoryFromJsonMock,
 )
@@ -35,10 +36,11 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
         api_key=settings.OPENAI_API_KEY,
         model=settings.OPENAI_LLM_MODEL,
     )
-    embedder: Embeddings = OpenAIEmbeddings(
-        model=settings.EMBEDDINGS_MODEL,
-        api_key=settings.OPENAI_API_KEY,
-    )
+    # embedder: Embeddings = OpenAIEmbeddings(
+    #    model=settings.EMBEDDINGS_MODEL,
+    #    api_key=settings.OPENAI_API_KEY,
+    # )
+    embedder: Embeddings = JinaEmbeddings()
     tx_repository = TransactionsRepositoryFromJsonMock.from_json_file(
         Path(settings.TRANSACTIONS_MOCK_PATH)
     )

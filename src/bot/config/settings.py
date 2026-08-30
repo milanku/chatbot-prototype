@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: SecretStr = SecretStr("sk-proj-XXX") # Gets overridden by environment variable OPENAI_API_KEY
     
     # Embeddings
-    EMBEDDINGS_MODEL: str = "text-embedding-3-small"
+    EMBEDDINGS_MODEL: str = "jinaai/jina-embeddings-v3"
     CHUNKING_VERSION: str = "v1.0.0"
     
     # Paths
