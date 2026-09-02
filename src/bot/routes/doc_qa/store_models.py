@@ -13,6 +13,6 @@ class ChunkEmbedding(BaseModel):
     embedding: list[float]
     
 class EmbeddingsStoreData(BaseModel):
-    manifest: EmbeddingsStoreManifest
+    manifest: EmbeddingsStoreManifest | None = None
     chunks: dict[str, DocChunk]
     chunk_embeddings: dict[str, ChunkEmbedding]

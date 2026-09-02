@@ -19,7 +19,7 @@ class EmbeddingsStore:
         *,
         chunks: dict[str, DocChunk],
         chunk_embeddings: dict[str, ChunkEmbedding],
-        manifest: EmbeddingsStoreManifest,
+        manifest: EmbeddingsStoreManifest | None = None,
     ) -> None:
         self._chunks = chunks
         self._chunk_embeddings = chunk_embeddings
@@ -31,7 +31,7 @@ class EmbeddingsStore:
         *,
         embedder: Embeddings,
         md_docs_dir: Path,
-        manifest: EmbeddingsStoreManifest,
+        manifest: EmbeddingsStoreManifest | None = None,
         chunker: Chunker
     ) -> "EmbeddingsStore":
         md_documents = read_markdown_docs(md_docs_dir)
@@ -66,7 +66,7 @@ class EmbeddingsStore:
             chunk_embeddings={ce_id: ce for ce_id, ce in self._chunk_embeddings.items()},
         )
         
-    def get_manifest(self) -> EmbeddingsStoreManifest:
+    def get_manifest(self) -> EmbeddingsStoreManifest | None:
         return self._manifest
         
     def get_doc_chunks(self) -> list[DocChunk]:
