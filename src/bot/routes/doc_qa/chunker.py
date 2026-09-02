@@ -3,6 +3,17 @@ from bot.models.doc_qa.references import DocReference
 
 
 def split_markdown_into_chunks(file_name: str, content: str) -> list[DocChunk]:
+    """
+    Splits markdown into chunks by paragraphs. Prepends title "breadcrumb" to the chunk.
+
+    Args:
+        file_name (str): file_name
+        content (str): markdown content
+
+    Returns:
+        list[DocChunk]: List of retrieved chunks
+    """
+    
     new_chunks: list[DocChunk] = []
     # Splits markdown content into chunks by newlines, and assigns a chunk_id to each chunk
     title_stack: list[str] = []
