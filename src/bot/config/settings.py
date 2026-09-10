@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     
     # Embeddings
     EMBEDDINGS_MODEL: str = "jinaai/jina-embeddings-v3"
+    #EMBEDDINGS_MODEL: str = "tencent/WeMM-Embedding-2B"
     CHUNKING_VERSION: str = "v1.0.0"
     
     # Paths

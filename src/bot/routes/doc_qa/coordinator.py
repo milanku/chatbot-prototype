@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from bot.logging import log_event
 from bot.models.doc_qa.references import DocReference
 from bot.routes.doc_qa.reranker import Reranker
-from bot.routes.doc_qa.retriever import DocHitsRetriever
+from bot.routes.doc_qa.retriever import ChunksRetriever
 from bot.routes.doc_qa.synthesizer import AnswerSynthesizer
 from bot.routes.doc_qa.verifier.answer_verifier import AnswerVerifier
 
@@ -17,7 +17,7 @@ class DocsAnswerCoordinator:
     def __init__(
         self,
         *,
-        retriever: DocHitsRetriever,
+        retriever: ChunksRetriever,
         synthesizer: AnswerSynthesizer,
         verifier: AnswerVerifier,
         reranker: Reranker

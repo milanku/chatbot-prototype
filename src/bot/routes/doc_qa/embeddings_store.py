@@ -68,9 +68,15 @@ class EmbeddingsStore:
         
     def get_manifest(self) -> EmbeddingsStoreManifest | None:
         return self._manifest
+    
+    def get_doc_chunks_dict(self) -> dict[str, DocChunk]:
+        return {chunk_id: chunk for chunk_id, chunk in self._chunks.items()}
         
     def get_doc_chunks(self) -> list[DocChunk]:
         return list(self._chunks.values())
+    
+    def get_doc_chunk_by_id(self, chunk_id: str) -> DocChunk | None:
+        return self._chunks.get(chunk_id)
 
     def get_chunks_with_embeddings(self) -> list[tuple[DocChunk, ChunkEmbedding]]:
         return [

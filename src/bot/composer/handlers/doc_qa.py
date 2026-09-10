@@ -10,7 +10,7 @@ from bot.routes.doc_qa.doc_answer_synthesizer_prompt_loader import (
 )
 from bot.routes.doc_qa.doc_store import DocStore
 from bot.routes.doc_qa.reranker import CrossEncoderReranker
-from bot.routes.doc_qa.retriever import DocHitsRetriever, DocRetrievalConfig
+from bot.routes.doc_qa.retriever import ChunksRetriever, RetrievalConfig
 from bot.routes.doc_qa.synthesizer import AnswerSynthesizer
 from bot.routes.doc_qa.verifier.answer_verifier import AnswerVerifier
 from bot.routes.doc_qa.verifier.claim_extractor import ClaimExtractor
@@ -52,10 +52,10 @@ def create_docs_answer_handler(
         claim_verifier=claims_verifier,
     )
 
-    retriever = DocHitsRetriever(
+    retriever = ChunksRetriever(
         embedder=embedder,
         doc_store=doc_store,
-        config=DocRetrievalConfig(top_k=5),
+        config=RetrievalConfig(top_k=5),
     )
     
     reranker = CrossEncoderReranker(

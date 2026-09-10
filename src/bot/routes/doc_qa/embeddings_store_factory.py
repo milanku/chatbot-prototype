@@ -3,11 +3,11 @@ from pathlib import Path
 from langchain.embeddings import Embeddings
 
 from bot.routes.doc_qa.embeddings_store import Chunker, EmbeddingsStore
-from bot.routes.doc_qa.utils import calculate_docs_fingerprint
 from bot.routes.doc_qa.store_models import EmbeddingsStoreManifest
 from bot.routes.doc_qa.store_persistor import (
     EmbeddingsStoreRepository,
 )
+from bot.routes.doc_qa.utils import calculate_dir_fingerprint
 
 
 class EmbeddingsStoreFactory:
@@ -29,7 +29,7 @@ class EmbeddingsStoreFactory:
         self._chunking_version = chunking_version
 
     def load_or_create(self) -> EmbeddingsStore:
-        docs_fingerprint = calculate_docs_fingerprint(dir_path=self._md_docs_dir)
+        docs_fingerprint = calculate_dir_fingerprint(dir_path=self._md_docs_dir)
 
         manifest = EmbeddingsStoreManifest(
             embedding_model=self._embeddings_model,

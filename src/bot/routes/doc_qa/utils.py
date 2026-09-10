@@ -7,7 +7,7 @@ from typing import Any
 def hash_file(file_path: Path) -> str:
     return hashlib.sha256(file_path.read_bytes()).hexdigest()
 
-def calculate_docs_fingerprint(*, dir_path: Path) -> str:
+def calculate_dir_fingerprint(*, dir_path: Path) -> str:
     payload: dict[str, Any] = {
         "files": [
             {

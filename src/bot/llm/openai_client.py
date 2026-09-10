@@ -4,7 +4,7 @@ from langchain.chat_models import BaseChatModel
 from langchain.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_core.messages.base import BaseMessage
 from langchain_openai import ChatOpenAI
-from pydantic import BaseModel, SecretStr
+from pydantic import BaseModel
 
 from bot.llm.client import LLMClient
 from bot.logging import log_event
@@ -19,13 +19,11 @@ class OpenAIClient(LLMClient):
     def create(
         cls,
         *,
-        api_key: SecretStr,
         model: str = "gpt-4.1-mini",
     ) -> "OpenAIClient":
         return cls(
             ChatOpenAI(
                 model=model,
-                api_key=api_key,
             )
         )
     
