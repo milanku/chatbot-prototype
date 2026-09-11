@@ -177,7 +177,7 @@ def create_pipeline_config() -> PipelineConfig:
             ),
         ),
         evaluation=EvaluationConfig(
-            version="v01",
+            version="v10-with-bm25",
             metrics=["accuracy"],
             k_configs=[
                 EvalConfig(retriever_top_k=rtk, reranker_top_k=rrk, bm25_top_k=bm25k)

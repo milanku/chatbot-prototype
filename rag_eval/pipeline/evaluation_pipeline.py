@@ -9,7 +9,6 @@ from rag_eval.artifacts.ArtifactLineage import (
     ArtifactType,
 )
 from rag_eval.artifacts.steps.embed_doc_chunks import embed_doc_chunks
-from rag_eval.artifacts.steps.evaluate import evaluate_pipeline
 from rag_eval.artifacts.steps.filter_judged_question_collection import (
     filter_judged_question_collection,
 )
@@ -26,6 +25,7 @@ from rag_eval.artifacts.steps.retrieve import retrieve
 from rag_eval.artifacts.steps.split_md_docs_to_chunks import split_md_docs_to_chunks
 from rag_eval.artifacts.steps.summarize_results import summarize_results
 from rag_eval.config import EmbeddingsConfig, PipelineConfig
+from rag_eval.evaluator.evaluate_test_suite import evaluate_test_suite
 from rag_eval.factories.embeddings import get_embeddings
 from rag_eval.test_runner import create_retrieval_runner
 
@@ -144,11 +144,10 @@ class EvaluationPipeline:
         )
         
         print("Evaluating the pipeline...")
-        evaluation = evaluate_pipeline(
-            test_suite=tests,
-            retrievals=retrievals,
-            config=self._config.evaluation,
-            runner=self._runner
+        evaluation = evaluate_test_suite(
+            test_suite=tests.data,
+            retrievals=retrievals.data,
+            configs=self._config.evaluation.k_configs,
         )      
         
         date_now_str = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')

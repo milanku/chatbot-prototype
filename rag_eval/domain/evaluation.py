@@ -17,6 +17,21 @@ class MetricAccumulator(BaseModel):
         if self.count == 0:
             return None
         return self.total / self.count
+    
+class CountMetricAccumulator(BaseModel):
+    count: int = 0
+    total: int = 0
+
+    def add(self, value: bool) -> None:
+        if value:
+            self.count += 1
+        self.total += 1
+        
+    @property
+    def average(self) -> float | None:
+        if self.total == 0:
+            return None
+        return self.count / self.total
 
 class TestCaseEvaluationResult(BaseModel):
     config: EvalConfig
@@ -33,6 +48,9 @@ class TestCaseEvaluationResult(BaseModel):
     retrieval_relevant_precision: MetricAccumulator = Field(
         default_factory=MetricAccumulator
     )
+    retrieval_complete_required_recall: CountMetricAccumulator = Field(
+        default_factory=CountMetricAccumulator
+    )
 
     reranking_required_recall: MetricAccumulator = Field(
         default_factory=MetricAccumulator
@@ -46,9 +64,25 @@ class TestCaseEvaluationResult(BaseModel):
     reranking_relevant_precision: MetricAccumulator = Field(
         default_factory=MetricAccumulator
     )
+    reranking_complete_required_recall: CountMetricAccumulator = Field(
+        default_factory=CountMetricAccumulator
+    )
     
-    retrieval_complete_required_recall: int = 0
-    reranking_complete_required_recall: int = 0
+    judge_required_recall: MetricAccumulator = Field(
+        default_factory=MetricAccumulator
+    )
+    judge_relevant_recall: MetricAccumulator = Field(
+        default_factory=MetricAccumulator
+    )
+    judge_required_precision: MetricAccumulator = Field(
+        default_factory=MetricAccumulator
+    )
+    judge_relevant_precision: MetricAccumulator = Field(
+        default_factory=MetricAccumulator
+    )
+    judge_complete_required_recall: CountMetricAccumulator = Field(
+        default_factory=CountMetricAccumulator
+    )
     
 class TestSuiteEvaluationResult(BaseModel):
     test_case_results: list[TestCaseEvaluationResult]
