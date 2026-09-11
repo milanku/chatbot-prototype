@@ -12,3 +12,9 @@ class LLMClient(Protocol):
     
     def generate_with_structured_output(self, *, prompt: str, output_format: type[T], system_instructions: str | None = None) -> T:
         ...
+        
+    async def agenerate_with_structured_output(self, *, prompt: str, output_format: type[T], system_instructions: str | None = None) -> T:
+        ...
+        
+    async def agenerate_with_structured_output_batch(self, *, prompts: list[str], output_format: type[T], system_instructions: str | None = None) -> list[T]:
+        ...
