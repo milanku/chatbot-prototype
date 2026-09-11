@@ -55,8 +55,16 @@ class EvalConfig(BaseModel):
     bm25_top_k: int
     
 class EvaluationConfig(BaseModel):
+    version: str
     metrics: list[str]
     k_configs: list[EvalConfig]
+    
+class EvalRetrievalConfig(BaseModel):
+    version: str
+    
+class RunnerConfig(BaseModel):
+    llm_model: str
+    relevance_judge_prompt_config: PromptConfig
 
 class PipelineConfig(BaseModel):
     md_docs: MdDocsConfig
@@ -68,7 +76,9 @@ class PipelineConfig(BaseModel):
     test_preparation: TestPreparationConfig
     judge: JudgeConfig
     question_quality_judge: JudgeConfig
+    eval_retrieval: EvalRetrievalConfig
     evaluation: EvaluationConfig
+    runner: RunnerConfig
     
 persona_list = [
     Persona(
@@ -156,12 +166,23 @@ def create_pipeline_config() -> PipelineConfig:
             ),
             llm_model="gpt-5.4-mini"
         ),
+        eval_retrieval=EvalRetrievalConfig(
+            version="v01",
+        ),
+        runner=RunnerConfig(
+            llm_model="gpt-5-mini",
+            relevance_judge_prompt_config=PromptConfig(
+                directory=Path("rag_eval/prompts"),
+                version="two-way-judge-v1",
+            ),
+        ),
         evaluation=EvaluationConfig(
+            version="v01",
             metrics=["accuracy"],
             k_configs=[
                 EvalConfig(retriever_top_k=rtk, reranker_top_k=rrk, bm25_top_k=bm25k)
                 for rtk in [5, 10, 15]
-                for rrk in [3, 5, 7, 10, 12]
+                for rrk in [5, 7, 10, 12]
                 for bm25k in [5, 10, 15]
                 if rtk >= rrk and rtk >= bm25k
             ]

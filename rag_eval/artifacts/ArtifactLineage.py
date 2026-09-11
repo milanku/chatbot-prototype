@@ -22,6 +22,7 @@ class ArtifactType(StrEnum):
     RESULTS = "results"
     SUMMARIES = "summaries"
     JUDGMENTS = "judgments" 
+    EVAL_RETRIEVALS = "eval_retrievals"
 
 
 ConfigT = TypeVar("ConfigT", bound=BaseModel)

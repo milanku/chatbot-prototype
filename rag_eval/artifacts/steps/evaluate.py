@@ -7,13 +7,13 @@ from rag_eval.domain.evaluation import (
 )
 from rag_eval.domain.tests import RetrievalTestSuite
 from rag_eval.evaluate_test_case import evaluate_test_suite
-from rag_eval.test_runner import TestRunner
+from rag_eval.test_runner import TestRunnerResults
 
 
 def evaluate_pipeline(
     *,
     test_suite: ArtifactRef[RetrievalTestSuite],
-    test_runner: TestRunner,
+    retrievals: ArtifactRef[TestRunnerResults],
     config: EvaluationConfig,
     runner: ArtifactStepExecutor,
 ) -> ArtifactRef[TestSuiteEvaluationResult]:
@@ -22,7 +22,7 @@ def evaluate_pipeline(
         results: list[TestCaseEvaluationResult] = evaluate_test_suite(
             test_suite=test_suite.data,
             configs=config.k_configs,
-            test_runner=test_runner,
+            retrievals=retrievals.data,
             max_rtk=max(config.retriever_top_k for config in config.k_configs),
         )
         evaluation_results = TestSuiteEvaluationResult(test_case_results=results)
@@ -32,7 +32,7 @@ def evaluate_pipeline(
     return runner.execute(
         artifact_type=ArtifactType.EVALUATION_RESULTS,
         artifact_class=TestSuiteEvaluationResult,
-        parents=[test_suite],
+        parents=[test_suite, retrievals],
         config=config,
         compute=run,
     )

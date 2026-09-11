@@ -22,13 +22,12 @@ from rag_eval.artifacts.steps.judge_question_collection import judge_question_co
 from rag_eval.artifacts.steps.persist_run_config import persist_run_config
 from rag_eval.artifacts.steps.prepare_tests import prepare_tests
 from rag_eval.artifacts.steps.read_md_docs import read_md_docs
+from rag_eval.artifacts.steps.retrieve import retrieve
 from rag_eval.artifacts.steps.split_md_docs_to_chunks import split_md_docs_to_chunks
 from rag_eval.artifacts.steps.summarize_results import summarize_results
 from rag_eval.config import EmbeddingsConfig, PipelineConfig
 from rag_eval.factories.embeddings import get_embeddings
-from rag_eval.test_runner import (
-    create_test_runner,
-)
+from rag_eval.test_runner import create_retrieval_runner
 
 
 class EvaluationPipeline:
@@ -130,16 +129,24 @@ class EvaluationPipeline:
             runner=self._runner,
             config=self._config.test_preparation,
         )
-        test_runner = create_test_runner(
+        
+        retrievals_runner = create_retrieval_runner(
+            config=self._config.runner,
             embedder=get_embeddings(self._config.docs_embeddings.embeddings_model),
             embedded_doc_chunks=embeddings_art.data.embedded_chunks,
             max_top_k=max(config.retriever_top_k for config in self._config.evaluation.k_configs),
+        )       
+        retrievals = retrieve(
+            test_suite=tests,
+            retrieval_runner=retrievals_runner,
+            config=self._config.eval_retrieval,
+            runner=self._runner
         )
         
         print("Evaluating the pipeline...")
         evaluation = evaluate_pipeline(
             test_suite=tests,
-            test_runner=test_runner,
+            retrievals=retrievals,
             config=self._config.evaluation,
             runner=self._runner
         )      
