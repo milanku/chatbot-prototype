@@ -2,7 +2,7 @@ from enum import Enum
 
 from pydantic import BaseModel
 
-from bot.models.doc_qa.retrieval import DocHit
+from bot.models.doc_qa.chunks import DocChunk
 
 
 class ExtractedClaim(BaseModel):
@@ -30,7 +30,7 @@ class ClaimVerificationResult(BaseModel):
     
 class VerifiedClaim(BaseModel):
     extracted_claim: ExtractedClaim
-    evidence_chunks: list[DocHit]
+    evidence_chunks: list[DocChunk]
     verification_status: ClaimVerificationStatus
     reason: str
     

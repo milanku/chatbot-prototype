@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from bot.models.doc_qa.retrieval import DocHit
+from bot.models.doc_qa.chunks import DocChunk
 from bot.models.prompts import PromptLoader
 from bot.routes.doc_qa.verifier.models import ExtractedClaim
 
@@ -8,13 +8,13 @@ from bot.routes.doc_qa.verifier.models import ExtractedClaim
 @dataclass(frozen=True)
 class ClaimVerifierPromptInput:
     user_query: str
-    retrieved_evidence_chunks: list[DocHit]
+    retrieved_evidence_chunks: list[DocChunk]
     claims: list[ExtractedClaim]
     
 class ClaimVerifierPromptLoader(PromptLoader[ClaimVerifierPromptInput]):
     def build_user_prompt(self, input: ClaimVerifierPromptInput) -> str:
         claims_segment = "\n\n".join(f"Claim ID: [{claim.claim_id}]\nContent: {claim.claim}" for claim in input.claims)
-        evidence_segment = "\n\n".join(f"Evidence ID: [{chunk.id}]\nContent: {chunk.content}" for chunk in input.retrieved_evidence_chunks)
+        evidence_segment = "\n\n".join(f"Evidence ID: [{chunk.chunk_id}]\nContent: {chunk.content}" for chunk in input.retrieved_evidence_chunks)
 
         return (
             "Verify the following claims based on the retrieved evidence chunks.\n\n"

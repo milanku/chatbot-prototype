@@ -4,13 +4,16 @@ from langchain.embeddings import Embeddings
 from bot.config.prompts_config import PromptConfig
 from bot.handlers.docs_answer import DocsAnswerHandler
 from bot.llm.client import LLMClient
+from bot.models.doc_qa.chunks import EmbeddedDocChunk
 from bot.routes.doc_qa.coordinator import DocsAnswerCoordinator
 from bot.routes.doc_qa.doc_answer_synthesizer_prompt_loader import (
     SynthesizerPromptLoader,
 )
-from bot.routes.doc_qa.doc_store import DocStore
 from bot.routes.doc_qa.reranker import CrossEncoderReranker
-from bot.routes.doc_qa.retriever import ChunksRetriever, RetrievalConfig
+from bot.routes.doc_qa.retriever import (
+    EmbeddingsChunksRetriever,
+    RetrievalConfig,
+)
 from bot.routes.doc_qa.synthesizer import AnswerSynthesizer
 from bot.routes.doc_qa.verifier.answer_verifier import AnswerVerifier
 from bot.routes.doc_qa.verifier.claim_extractor import ClaimExtractor
@@ -25,7 +28,7 @@ def create_docs_answer_handler(
     *,
     llm_client: LLMClient,
     embedder: Embeddings,
-    doc_store: DocStore,
+    embedded_doc_chunks: list[EmbeddedDocChunk],
     answer_synthesizer_prompt_config: PromptConfig,
     claim_extractor_prompt_config: PromptConfig,
     claim_verifier_prompt_config: PromptConfig,
@@ -52,9 +55,9 @@ def create_docs_answer_handler(
         claim_verifier=claims_verifier,
     )
 
-    retriever = ChunksRetriever(
+    retriever = EmbeddingsChunksRetriever(
         embedder=embedder,
-        doc_store=doc_store,
+        embedded_doc_chunks=embedded_doc_chunks,
         config=RetrievalConfig(top_k=5),
     )
     

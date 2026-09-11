@@ -29,8 +29,8 @@ class DocsAnswerCoordinator:
     
     def answer(self, question: str) -> DocsAnswerResult:
         doc_hits = self._retriever.retrieve(question=question)
-
         reranked_doc_hits = self._reranker.rerank(question, doc_hits)
+        
         
         log_event(
             event="reranked_doc_hits",
