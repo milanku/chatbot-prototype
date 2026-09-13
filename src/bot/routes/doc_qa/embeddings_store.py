@@ -3,7 +3,7 @@ from pathlib import Path
 
 from langchain.embeddings import Embeddings
 
-from bot.models.doc_qa.chunks import DocChunk
+from bot.models.doc_qa.chunks import DocChunk, EmbeddedDocChunk
 from bot.routes.doc_qa.read_markdown_docs import read_markdown_docs
 from bot.routes.doc_qa.store_models import (
     ChunkEmbedding,
@@ -78,9 +78,9 @@ class EmbeddingsStore:
     def get_doc_chunk_by_id(self, chunk_id: str) -> DocChunk | None:
         return self._chunks.get(chunk_id)
 
-    def get_chunks_with_embeddings(self) -> list[tuple[DocChunk, ChunkEmbedding]]:
+    def get_embedded_chunks(self) -> list[EmbeddedDocChunk]:
         return [
-            (self._chunks[chunk_id], ce)
+            EmbeddedDocChunk(**self._chunks[chunk_id].model_dump(), embedding=ce.embedding)
             for chunk_id, ce in self._chunk_embeddings.items()
         ]
 

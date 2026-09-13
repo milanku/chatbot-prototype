@@ -4,17 +4,17 @@ from pydantic import BaseModel
 
 from bot.llm.client import LLMClient
 from bot.models.doc_qa.chunks import DocChunk
+from bot.routes.doc_qa.chunk_relevance_prompt_loader import (
+    ChunkRelevanceJudgePromptLoader,
+    RelevanceJudgePromptInput,
+)
 from rag_eval.domain.judgement import (
     ChunkRelevance,
     JudgedChunk,
     QuestionChunkJudgments,
 )
-from rag_eval.domain.question import Question, QuestionCollection
+from rag_eval.domain.question import QuestionCollection
 from rag_eval.domain.retrieval import CandidateRetrieval
-from rag_eval.judges.chunk_relevance_prompt_loader import (
-    RelevanceJudgePromptInput,
-    RelevanceJudgePromptLoader,
-)
 
 
 class JudgedChunkOutput(BaseModel):
@@ -29,16 +29,16 @@ class ChunkRelevanceJudge:
     def __init__(
         self,
         llm_client: LLMClient,
-        relevance_judge_prompt_loader: RelevanceJudgePromptLoader
+        relevance_judge_prompt_loader: ChunkRelevanceJudgePromptLoader
     ):
         self._llm_client = llm_client
         self._relevance_judge_prompt_loader = relevance_judge_prompt_loader
         
     def judge_candidates_for_single_question(
         self,
-        question: Question,
+        question: str,
         candidate_chunks: list[DocChunk],
-    ) -> QuestionChunkJudgments:
+    ) -> list[JudgedChunk]:
         system_prompt = self._relevance_judge_prompt_loader.load_system_instructions()
         prompt_input = RelevanceJudgePromptInput(
             candidate_chunks=candidate_chunks,
@@ -63,17 +63,14 @@ class ChunkRelevanceJudge:
         judges = {output.chunk_id: output for output in judge_output.results}
         
         
-        return QuestionChunkJudgments(
-            question_id=question.id,
-            chunk_judgements=[
-                JudgedChunk(
-                    chunk=chunk,
-                    relevance=judges[chunk.chunk_id].relevance,
-                    reason=judges[chunk.chunk_id].reason,
-                )
-                for chunk in candidate_chunks
-            ]
-        )
+        return [
+            JudgedChunk(
+                chunk=chunk,
+                relevance=judges[chunk.chunk_id].relevance,
+                reason=judges[chunk.chunk_id].reason,
+            )
+            for chunk in candidate_chunks
+        ]
         
         
     def judge_candidates(
@@ -90,8 +87,13 @@ class ChunkRelevanceJudge:
         for question in question_collection.questions:
             candidate_chunks = candidate_chunks_by_question_id[question.id]
             question_judgement = self.judge_candidates_for_single_question(
-                question=question,
+                question=question.content,
                 candidate_chunks=candidate_chunks.chunks,
             )
-            judgements.append(question_judgement)
+            judgements.append(
+                QuestionChunkJudgments(
+                    question_id=question.id,
+                    chunk_judgements=question_judgement
+                )
+            )
         return judgements

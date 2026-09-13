@@ -5,6 +5,10 @@ from bot.config.prompts_config import PromptConfig
 from bot.handlers.docs_answer import DocsAnswerHandler
 from bot.llm.client import LLMClient
 from bot.models.doc_qa.chunks import EmbeddedDocChunk
+from bot.routes.doc_qa.chunk_relevance_judge import ChunkRelevanceJudge
+from bot.routes.doc_qa.chunk_relevance_prompt_loader import (
+    ChunkRelevanceJudgePromptLoader,
+)
 from bot.routes.doc_qa.coordinator import DocsAnswerCoordinator
 from bot.routes.doc_qa.doc_answer_synthesizer_prompt_loader import (
     SynthesizerPromptLoader,
@@ -32,6 +36,7 @@ def create_docs_answer_handler(
     answer_synthesizer_prompt_config: PromptConfig,
     claim_extractor_prompt_config: PromptConfig,
     claim_verifier_prompt_config: PromptConfig,
+    chunk_relevance_judge_prompt_config: PromptConfig,
 ) -> DocsAnswerHandler:
 
     synthesizer = AnswerSynthesizer(
@@ -67,11 +72,18 @@ def create_docs_answer_handler(
             use_fp16=True,
         )
     )
+    chunk_relevance_judge = ChunkRelevanceJudge(
+        llm_client=llm_client,
+        relevance_judge_prompt_loader=ChunkRelevanceJudgePromptLoader(
+            prompt_config=chunk_relevance_judge_prompt_config,
+        )
+    )
 
     coordinator = DocsAnswerCoordinator(
         retriever=retriever,
         synthesizer=synthesizer,
         verifier=answer_verifier,
+        judge=chunk_relevance_judge,
         reranker=reranker,
     )
 
