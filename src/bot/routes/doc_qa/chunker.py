@@ -2,15 +2,26 @@ from bot.models.doc_qa.chunks import DocChunk
 from bot.models.doc_qa.references import DocReference
 
 
-def split_markdown_into_chunks(file_name: str, content: str) -> list[DocChunk]:
+def split_md_to_chunks_by_paragraphs(file_name: str, content: str) -> list[DocChunk]:
+    """
+    Splits markdown into chunks by paragraphs. Prepends title "breadcrumb" to the chunk.
+
+    Args:
+        file_name (str): file_name
+        content (str): markdown content
+
+    Returns:
+        list[DocChunk]: List of retrieved chunks
+    """
+    
     new_chunks: list[DocChunk] = []
     # Splits markdown content into chunks by newlines, and assigns a chunk_id to each chunk
     title_stack: list[str] = []
-    chunk_id = 0
+    chunk_index = 0
     current_chunk_lines: list[str] = []
     
     def flush_chunk() -> None:
-        nonlocal chunk_id
+        nonlocal chunk_index
         if(current_chunk_lines):
             # Prepend the current titles stack to the chunk content
             chunk_content = "\n".join(title_stack) + "\n" + "\n".join(current_chunk_lines)
@@ -21,10 +32,10 @@ def split_markdown_into_chunks(file_name: str, content: str) -> list[DocChunk]:
                         heading_path=title_stack.copy()
                     ),
                     content=chunk_content,
-                    chunk_id=chunk_id
+                    chunk_id=f"{file_name}_{chunk_index}"
                 )
             )
-            chunk_id += 1
+            chunk_index += 1
             current_chunk_lines.clear()
 
     for line in content.splitlines():

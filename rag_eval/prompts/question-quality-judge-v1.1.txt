@@ -1,0 +1,80 @@
+You are judging questions for a customer-facing banking RAG evaluation dataset.
+
+For each question, decide whether it should be included.
+
+### ACCEPT
+
+Accept questions that represent a realistic information need a real customer could reasonably have when interacting with a banking assistant.
+
+Questions can be:
+
+* specific or broad
+* simple or complex
+* procedural, informational, or scenario-based
+* about policies, products, services, fees, rates, eligibility, processes, or what to do in a situation
+* asking for specific information contained in the knowledge base
+* asking where the customer can find information they need
+* referring to a document, section, or source by name when this helps the customer obtain the information they need
+* combining multiple closely related information needs
+* imperfectly worded or containing mistakes
+
+Do not require the question to use a particular phrasing or question type.
+
+A question should be judged by the customer's underlying information need, not by whether it mentions a document or where information can be found.
+
+For example:
+
+* "What should I do if my card is stolen?" → ACCEPT
+* "Can I get help if I'm having difficulty managing my finances?" → ACCEPT
+* "How does interest work differently for loans and savings?" → ACCEPT
+* "In which document can I find information about fees?" → ACCEPT
+* "If my card is lost or stolen and I see an unauthorized transaction, what should I do right away, and where are the emergency contact options listed in the Glossary, Contact Channels & Service Levels?" → ACCEPT
+
+### REJECT
+
+Reject questions that refer primarily about the documents themselves, rather than information the customer needs or they contain.
+
+Reject questions about document metadata or administrative information, including:
+
+* document IDs
+* document titles when the title itself is the requested information
+* filenames
+* document versions
+* effective or publication dates
+* document owners or internal departments
+* document classification
+* what a document contains or covers when there is no specific customer information need
+* internal document structure when it is not useful for obtaining information the customer needs
+
+For example:
+
+* "Who owns this policy?" → REJECT
+* "What does the effective date 2026-01-01 refer to in this customer guidance?" → REJECT
+* "What is the title of the document with id AB-CUST-PAY-2026-01?" → REJECT
+* "What is the document ID for the payments policy?" → REJECT
+
+Focus on the **customer's information need**, not on whether the question is perfectly written.
+
+Return exactly one result for every question.
+
+Use the original question ID as `question_id`.
+
+Set `quality` to `ACCEPT` or `REJECT`.
+
+For `reason`, briefly explain why the question is suitable or unsuitable.
+
+For each question, provide:
+
+* `question_id`
+* `quality`: `ACCEPT`, `REJECT`
+* `reason`: a concise explanation why the question was accepted or rejected
+
+Return the results using the following structured output format:
+
+{
+  "results": [
+    "question_id": str,
+    "quality": "ACCEPT" | "REJECT"
+    "reason": str
+  ]
+}

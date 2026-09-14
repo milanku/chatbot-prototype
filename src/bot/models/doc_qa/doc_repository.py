@@ -3,7 +3,7 @@ from pathlib import Path
 
 from langchain_core.embeddings import Embeddings
 
-from bot.models.doc_qa.chunks import EmbeddedDocChunk
+from bot.models.doc_qa.chunks import DocChunkWithEmbedding
 
 
 class DocRepository(ABC):   
@@ -21,6 +21,6 @@ class DocRepository(ABC):
         pass
 
     @abstractmethod
-    def get_embedded_chunks(self) -> list[EmbeddedDocChunk]:
+    def get_embedded_chunks(self) -> list[DocChunkWithEmbedding]:
         """Return the list of embedded document chunks."""
         pass

@@ -14,14 +14,15 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: SecretStr = SecretStr("sk-proj-XXX") # Gets overridden by environment variable OPENAI_API_KEY
     
     # Embeddings
-    EMBEDDINGS_MODEL: str = "text-embedding-3-small"
+    EMBEDDINGS_MODEL: str = "jinaai/jina-embeddings-v3"
+    #EMBEDDINGS_MODEL: str = "tencent/WeMM-Embedding-2B"
     CHUNKING_VERSION: str = "v1.0.0"
     
     # Paths
     DOCS_PATH: str = "data/docs"
     EMBEDDINGS_PATH: str = "data/embeddings"
     EMBEDDINGS_MANIFEST_PATH: str = "data/embeddings/manifest.json"
-    TRANSACTIONS_MOCK_PATH: str = "data/mocks/transactions_mock.json"
+    TRANSACTIONS_MOCK_PATH: str = "data/mocks/transactions_mock_jan2025_sep2026.json"
     TRACES_PATH: str = "traces"
     
 settings = Settings()

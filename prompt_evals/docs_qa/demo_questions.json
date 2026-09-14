@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What documents are required from employed and self-employed customers when applying for a loan, and how does Aurora Bank assess the stability and verification of their income during credit assessment?",
+    "required_chunk_contributions": [
+      {
+        "chunk_id": "05_loans_overdrafts_and_credit_assessment.md_5",
+        "contribution": "Lists documents required for employed customers including payslips, employment contract, and income verification."
+      },
+      {
+        "chunk_id": "05_loans_overdrafts_and_credit_assessment.md_6",
+        "contribution": "Lists documents required for self-employed customers and notes importance of income stability and verification."
+      },
+      {
+        "chunk_id": "05_loans_overdrafts_and_credit_assessment.md_7",
+        "contribution": "Describes credit assessment factors including verified income, income stability, and source."
+      }
+    ],
+    "answer": "Employed customers must provide documents such as recent payslips, employment contract or employer confirmation, bank statements showing salary credits, tax certificate or annual income statement, proof of address, and details of other credit commitments. Self-employed customers must provide documents like recent tax returns, business and personal bank statements, invoices or contracts, accountant confirmation, trade registration or company register extract, profit and loss statement, and evidence of recurring customer income. Aurora Bank assesses credit applications by verifying income and disposable income, considering the stability and source of income. They may average self-employed income over periods and require explanations for seasonal or irregular income, declining loans if income cannot be verified or appears unstable."
+  },
+  {
+    "question": "What are the general eligibility criteria to request credit at Aurora Bank, and what documentation related to source of funds might the bank request during this process?",
+    "required_chunk_contributions": [
+      {
+        "chunk_id": "05_loans_overdrafts_and_credit_assessment.md_3",
+        "contribution": "Details general eligibility criteria including identity, income, credit checks, and legal restrictions."
+      },
+      {
+        "chunk_id": "01_account_opening_and_kyc.md_7",
+        "contribution": "Explains that Aurora Bank may request source of funds/wealth documents to satisfy financial crime controls, listing examples."
+      }
+    ],
+    "answer": "To request credit at Aurora Bank, a customer must be at least 18 years old, hold or be eligible for an Aurora Bank current account, have verified identity and address, provide income and employment information, pass credit, affordability, fraud, and regulatory checks, not be bankrupt or in unresolved serious arrears, and use the credit for lawful personal purposes. Additionally, for financial-crime control, the bank may request documents evidencing source of funds or wealth, such as payslips, employment contracts, tax returns, sale agreements, inheritance documents, dividend statements, grant letters, or business invoices especially if large or unusual transactions occur."
+  },
+  {
+    "question": "How does Aurora Bank handle credit assessments for customers with irregular income or those who are self-employed, and which documents and factors are particularly important for their loan application evaluations?",
+    "required_chunk_contributions": [
+      {
+        "chunk_id": "05_loans_overdrafts_and_credit_assessment.md_6",
+        "contribution": "Explains documentation and income verification challenges for self-employed and irregular income customers."
+      },
+      {
+        "chunk_id": "05_loans_overdrafts_and_credit_assessment.md_7",
+        "contribution": "Describes credit assessment factors including income stability, affordability, and repayment history."
+      },
+      {
+        "chunk_id": "05_loans_overdrafts_and_credit_assessment.md_3",
+        "contribution": "Notes that stricter rules may apply for self-employed or customers with irregular income."
+      }
+    ],
+    "answer": "Aurora Bank requires self-employed customers to submit documents such as recent tax returns, business and personal bank statements, invoices, accountant confirmations, trade registrations, profit and loss statements, and evidence of recurring customer income. Since self-employed or irregular income may be seasonal or unstable, Aurora Bank may average income over a period and require additional explanation. The bank applies stricter criteria for these customers, assessing income stability and verification during credit assessments, including considerations of affordability, disposable income, existing debts, repayment history, and credit bureau records. If income cannot be verified or appears unstable, the bank may decline the loan."
+  }
+]

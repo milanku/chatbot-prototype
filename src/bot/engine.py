@@ -20,7 +20,7 @@ from bot.models.memory import SessionState
 from bot.models.responses import BotResponse
 from bot.models.routing import Route, RouterDecision
 from bot.models.tx_qa.repository import TransactionsRepository
-from bot.routes.doc_qa.doc_store import DocStore
+from bot.routes.doc_qa.embeddings_store import EmbeddingsStore
 from bot.routing.router import RouteSelector
 from bot.routing.router_prompt_loader import RouterPromptLoader
 from bot.trace_context import bind_trace_id, get_current_session_id
@@ -34,7 +34,7 @@ class EngineConfig:
 @dataclass(frozen=True)
 class EngineDeps:
     tx_repository: TransactionsRepository
-    doc_repository: DocStore
+    embeddings_store: EmbeddingsStore
     embedder: Embeddings
     llm_client: client.LLMClient
     prompt_configs: PromptConfigs
@@ -48,7 +48,7 @@ class ChatbotEngine:
     def __init__(self, config: EngineConfig, deps: EngineDeps) -> None:
         self._config = config
         self._deps = deps
-        self._docs = deps.doc_repository
+        self._embeddings_store = deps.embeddings_store
         self._tx_summary_handler: RouteHandler = create_tx_summary_handler(
             llm_client=deps.llm_client,
             tx_repository=deps.tx_repository,
@@ -65,11 +65,12 @@ class ChatbotEngine:
         )
         self._docs_answer_handler: RouteHandler = create_docs_answer_handler(
             llm_client=deps.llm_client,
-            doc_store=deps.doc_repository,
+            embedded_doc_chunks=deps.embeddings_store.get_embedded_chunks(),
             embedder=deps.embedder,
             answer_synthesizer_prompt_config=deps.prompt_configs.doc_answer_synthesizer,
             claim_extractor_prompt_config=deps.prompt_configs.claim_extractor,
             claim_verifier_prompt_config=deps.prompt_configs.claim_verifier,
+            chunk_relevance_judge_prompt_config=deps.prompt_configs.chunk_relevance_judge,
         )
         self._out_of_scope_handler: RouteHandler = OutOfScopeHandler()
         self._unknown_route_handler: RouteHandler = UnknownRouteHandler()

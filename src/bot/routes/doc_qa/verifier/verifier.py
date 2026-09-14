@@ -1,6 +1,6 @@
 from bot.llm.client import LLMClient
 from bot.logging import log_event
-from bot.models.doc_qa.retrieval import DocHit
+from bot.models.doc_qa.chunks import DocChunk
 from bot.routes.doc_qa.verifier.models import (
     ClaimVerificationResult,
     ExtractedClaim,
@@ -28,7 +28,7 @@ class ClaimsVerifier:
         *,
         claims: list[ExtractedClaim],
         verification_results: list[ClaimVerificationResult],
-        evidence_chunks: list[DocHit]
+        evidence_chunks: list[DocChunk]
     ) -> list[VerifiedClaim]:
         """
         Merges extracted claims with their corresponding verification results.
@@ -36,7 +36,7 @@ class ClaimsVerifier:
         Args:
             claims (list[ExtractedClaim]): The list of extracted claims.
             verification_results (list[ClaimVerificationResult]): The list of claim verification results.
-            evidence_chunks (list[DocHit]): The list of evidence chunks.
+            evidence_chunks (list[DocChunk]): The list of evidence chunks.
 
         Returns:
             list[VerifiedClaim]: A list of verified claims with their verification status and evidence.
@@ -63,7 +63,7 @@ class ClaimsVerifier:
         *,
         user_query: str,
         claims: list[ExtractedClaim],
-        evidence_chunks: list[DocHit],
+        evidence_chunks: list[DocChunk],
     ) -> list[VerifiedClaim]:
         """
         Verifies claims against evidence chunks.
@@ -71,7 +71,7 @@ class ClaimsVerifier:
         Args:
             user_query (str): The user's original query.
             claims (list[ExtractedClaim]): The claims to verify.
-            evidence_chunks (list[DocHit]): The evidence chunks to verify against.
+            evidence_chunks (list[DocChunk]): The evidence chunks to verify against.
 
         Returns:
             list[VerifiedClaim]: A list of verified claims.

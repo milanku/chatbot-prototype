@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 from bot.llm.client import LLMClient
-from bot.models.doc_qa.retrieval import DocHit
+from bot.models.doc_qa.chunks import DocChunk
 from bot.routes.doc_qa.verifier.claim_extractor import (
     ClaimExtractor,
 )
@@ -31,7 +31,7 @@ class AnswerVerifier:
         *,
         question: str,
         draft_answer: str,
-        source_evidence: list[DocHit],
+        source_evidence: list[DocChunk],
     ) -> AnswerVerification:
         extracted_claims_from_draft_answer = self._claim_extractor.extract_claims_from_text(
             text=draft_answer
