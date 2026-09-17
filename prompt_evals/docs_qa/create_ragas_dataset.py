@@ -32,7 +32,7 @@ def main() -> None:
     
     # llm_client: LLMClient = OpenAIClient.create(
     #     api_key=settings.OPENAI_API_KEY,
-    #     model=settings.OPENAI_LLM_MODEL,
+    #     model=settings.DEFAULT_OPENAI_LLM_MODEL,
     # )
     embedder: Embeddings = JinaEmbeddings()
     doc_store = DocStore.build_doc_store(
@@ -46,7 +46,7 @@ def main() -> None:
     
     generator_llm = ChatOpenAI(
         api_key=settings.OPENAI_API_KEY,
-        model=settings.OPENAI_LLM_MODEL,
+        model=settings.DEFAULT_OPENAI_LLM_MODEL,
     )
     
     loan_chunks = [chunk for chunk in doc_store.get_embedded_chunks() if "05_loans_overdrafts_and_credit_assessment.md" in chunk.doc_reference.file_name]

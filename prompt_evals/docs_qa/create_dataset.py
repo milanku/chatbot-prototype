@@ -128,7 +128,7 @@ def main() -> None:
     
     llm_client: LLMClient = OpenAIClient.create(
         api_key=settings.OPENAI_API_KEY,
-        model=settings.OPENAI_LLM_MODEL,
+        model=settings.DEFAULT_OPENAI_LLM_MODEL,
     )
     embedder: Embeddings = JinaEmbeddings()
     doc_store = DocStore.build_doc_store(

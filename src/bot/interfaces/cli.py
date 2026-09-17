@@ -37,7 +37,7 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
     session_store: SessionStore = InMemorySessionStore()
     settings = Settings()  # Load settings (e.g., API keys) from environment variables or config files
     llm_client: LLMClient = OpenAIClient.create(
-        model=settings.OPENAI_LLM_MODEL,
+        model=settings.DEFAULT_OPENAI_LLM_MODEL,
     )
     # embedder: Embeddings = OpenAIEmbeddings(
     #    model=settings.EMBEDDINGS_MODEL,

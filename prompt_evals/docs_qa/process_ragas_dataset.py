@@ -73,7 +73,7 @@ def main() -> None:
     
     # llm_client: LLMClient = OpenAIClient.create(
     #     api_key=settings.OPENAI_API_KEY,
-    #     model=settings.OPENAI_LLM_MODEL,
+    #     model=settings.DEFAULT_OPENAI_LLM_MODEL,
     # )
     embedder: Embeddings = JinaEmbeddings()
     qwen_embedder: Embeddings = Qwen3Embeddings()
@@ -101,7 +101,7 @@ def main() -> None:
     
     generator_llm = ChatOpenAI(
         api_key=settings.OPENAI_API_KEY,
-        model=settings.OPENAI_LLM_MODEL,
+        model=settings.DEFAULT_OPENAI_LLM_MODEL,
     )
 
     testset: Testset = Testset.from_jsonl(Path("prompt_evals/docs_qa/ragas_dataset.jsonl"))

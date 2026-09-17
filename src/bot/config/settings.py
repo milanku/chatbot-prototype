@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     
     # LLM configuration
     OPENAI_LLM_PROVIDER: str = "openai"
-    OPENAI_LLM_MODEL: str = "gpt-4.1-mini"
+    DEFAULT_OPENAI_LLM_MODEL: str = "gpt-4.1-mini"
     OPENAI_API_KEY: SecretStr = SecretStr("sk-proj-XXX") # Gets overridden by environment variable OPENAI_API_KEY
     
     # Embeddings
