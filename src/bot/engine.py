@@ -1,67 +1,41 @@
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import asdict
 from uuid import uuid4
-
-from langchain_core.embeddings import Embeddings
 
 from bot.composer.handlers.doc_qa import create_docs_answer_handler
 from bot.composer.handlers.explain_tx_summary import create_explain_tx_summary_handler
 from bot.composer.handlers.tx_list import create_tx_list_handler
 from bot.composer.handlers.tx_summary import create_tx_summary_handler
-from bot.config.prompts_config import PromptConfigs
+from bot.engine_model import EngineDeps, EngineResponse
 from bot.handlers.models import RouteHandler, RouteHandlerResult
 from bot.handlers.out_of_scope import OutOfScopeHandler
 from bot.handlers.unknown_route import UnknownRouteHandler
-from bot.llm import client
 from bot.logging import log_event
-from bot.models.doc_qa.references import DocReference
 from bot.models.memory import SessionState
 from bot.models.responses import BotResponse
 from bot.models.routing import Route, RouterDecision
-from bot.models.tx_qa.repository import TransactionsRepository
-from bot.routes.doc_qa.embeddings_store import EmbeddingsStore
 from bot.routing.router import RouteSelector
 from bot.routing.router_prompt_loader import RouterPromptLoader
 from bot.trace_context import bind_trace_id, get_current_session_id
 
 
-class EngineConfig:
-    # TODO add: docs path, model names, retrieval parameters, etc.
-    app_name: str = "Chatbot Prototype"
-
-
-@dataclass(frozen=True)
-class EngineDeps:
-    tx_repository: TransactionsRepository
-    embeddings_store: EmbeddingsStore
-    embedder: Embeddings
-    llm_client: client.LLMClient
-    prompt_configs: PromptConfigs
-    
-@dataclass(frozen=True)
-class EngineAnswerResult:
-    response: BotResponse
-    new_state: SessionState | None
-
 class ChatbotEngine:
-    def __init__(self, config: EngineConfig, deps: EngineDeps) -> None:
-        self._config = config
-        self._deps = deps
+    def __init__(self, deps: EngineDeps) -> None:
         self._embeddings_store = deps.embeddings_store
         self._tx_summary_handler: RouteHandler = create_tx_summary_handler(
             llm_client=deps.llm_client,
             tx_repository=deps.tx_repository,
-            timeframe_parser_prompt_config=self._deps.prompt_configs.timeframe_parser,
+            timeframe_parser_prompt_config=deps.prompt_configs.timeframe_parser,
         )
         self._tx_list_handler: RouteHandler = create_tx_list_handler(
             llm_client=deps.llm_client,
             tx_repository=deps.tx_repository,
-            timeframe_parser_prompt_config=self._deps.prompt_configs.timeframe_parser
+            timeframe_parser_prompt_config=deps.prompt_configs.timeframe_parser
         )
         self._explain_tx_summary_handler: RouteHandler = create_explain_tx_summary_handler(
             llm_client=deps.llm_client,
-            explain_summary_parser_prompt_config=self._deps.prompt_configs.explain_tx_summary_parser
+            explain_summary_parser_prompt_config=deps.prompt_configs.explain_tx_summary_parser
         )
         self._docs_answer_handler: RouteHandler = create_docs_answer_handler(
             llm_client=deps.llm_client,
@@ -71,18 +45,23 @@ class ChatbotEngine:
             claim_extractor_prompt_config=deps.prompt_configs.claim_extractor,
             claim_verifier_prompt_config=deps.prompt_configs.claim_verifier,
             chunk_relevance_judge_prompt_config=deps.prompt_configs.chunk_relevance_judge,
+            retriever_configs=deps.retriever_configs,
+            reranker_config=deps.reranker_config,
         )
         self._out_of_scope_handler: RouteHandler = OutOfScopeHandler()
         self._unknown_route_handler: RouteHandler = UnknownRouteHandler()
         
         self._route_selector = RouteSelector(
             llm_client=deps.llm_client,
-            prompt_loader=RouterPromptLoader(prompt_config=self._deps.prompt_configs.router)
+            prompt_loader=RouterPromptLoader(prompt_config=deps.prompt_configs.router)
         )
         
     def answer(
-        self, message: str, *, session_state: SessionState
-    ) -> EngineAnswerResult:
+        self,
+        message: str,
+        *,
+        session_state: SessionState
+    ) -> EngineResponse:
         trace_id = uuid4().hex
         session_id = get_current_session_id()
         
@@ -95,6 +74,7 @@ class ChatbotEngine:
                 }
             )
 
+            # Main router logic
             router_decision: RouterDecision = self._route_selector.select(
                 message=message
             )
@@ -105,7 +85,6 @@ class ChatbotEngine:
                     "route": router_decision.route.value,
                 }
             )
-            references: list[DocReference] = []
 
             match router_decision.route:
                 case Route.TX_SUMMARY:
@@ -121,15 +100,11 @@ class ChatbotEngine:
                 case _:
                     result = self._unknown_route_handler.handle(message=message, session_state=session_state)
 
-            new_state = result.new_state
-            answer_text = result.answer_text
-            references = result.references
-
             log_event(
                 event="engine.finish",
-                payload={"doc_references": [asdict(ref) for ref in references]},
+                payload={"doc_references": [asdict(ref) for ref in result.references]},
             )
 
-        bot_response = BotResponse(answer=answer_text, doc_references=references, trace_id=trace_id)
+        bot_response = BotResponse(answer=result.answer_text, doc_references=result.references, trace_id=trace_id)
 
-        return EngineAnswerResult(response=bot_response, new_state=new_state)
+        return EngineResponse(response=bot_response, new_state=result.new_state)
