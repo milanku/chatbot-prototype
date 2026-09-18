@@ -44,7 +44,7 @@ class ChatbotEngine:
             answer_synthesizer_prompt_config=deps.prompt_configs.doc_answer_synthesizer,
             claim_extractor_prompt_config=deps.prompt_configs.claim_extractor,
             claim_verifier_prompt_config=deps.prompt_configs.claim_verifier,
-            chunk_relevance_judge_prompt_config=deps.prompt_configs.chunk_relevance_judge,
+            chunk_judge_prompt_config=deps.prompt_configs.chunk_judge,
             retriever_configs=deps.retriever_configs,
             reranker_config=deps.reranker_config,
         )

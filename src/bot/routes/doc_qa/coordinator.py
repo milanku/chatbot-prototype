@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 
+from bot.judges.models import ChunkFilter
 from bot.logging import log_event
 from bot.models.doc_qa.chunks import DocChunk
 from bot.models.doc_qa.references import DocReference
 from bot.retrievers.models import ChunksRetriever
-from bot.routes.doc_qa.chunk_relevance_judge import ChunkRelevanceJudge
 from bot.routes.doc_qa.reranker import Reranker
 from bot.routes.doc_qa.synthesizer import AnswerSynthesizer
 from bot.routes.doc_qa.verifier.answer_verifier import AnswerVerifier
@@ -22,7 +22,7 @@ class DocsAnswerCoordinator:
         retrievers: list[ChunksRetriever],
         synthesizer: AnswerSynthesizer,
         verifier: AnswerVerifier,
-        judge: ChunkRelevanceJudge,
+        judge: ChunkFilter,
         reranker: Reranker,
     ):
         self._retrievers = retrievers
@@ -32,14 +32,19 @@ class DocsAnswerCoordinator:
         self._reranker = reranker
     
     def answer(self, question: str) -> DocsAnswerResult:
+        # Agreggate chunks from all retrievers
         chunks: dict[str, DocChunk] = {}
         for retriever in self._retrievers:
             for chunk in retriever.retrieve(question=question):
                 chunks[chunk.chunk_id] = chunk
+                
+        # Rerank all retrieved chunks
         reranked_chunks = self._reranker.rerank(question, list(chunks.values()))
-        chunks_judged_as_required = self._judge.judge_candidates_for_single_question(
+        
+        # Pick only chunks with correct tag according to the judge
+        chunks_judged_as_required = self._judge.filter_chunks(
             question=question,
-            candidate_chunks=reranked_chunks
+            candidate_chunks=reranked_chunks,
         )
         
         #log_event(
@@ -52,18 +57,18 @@ class DocsAnswerCoordinator:
         
         draft_answer = self._synthesizer.synthesize(
             question=question,
-            chunks_for_synthesis=[hit.chunk.content for hit in chunks_judged_as_required],
+            chunks_for_synthesis=[hit.content for hit in chunks_judged_as_required],
         )
         draft_verification = self._verifier.verify_answer(
             question=question,
             draft_answer=draft_answer,
-            source_evidence=[hit.chunk for hit in chunks_judged_as_required],
+            source_evidence=[hit for hit in chunks_judged_as_required],
         )
         
         if(draft_verification.is_supported):
             return DocsAnswerResult(
                 answer_text=draft_answer,
-                references=[hit.chunk.doc_reference for hit in chunks_judged_as_required]
+                references=[hit.doc_reference for hit in chunks_judged_as_required]
             )
         else:
             unverified_claims = draft_verification.verified_claims

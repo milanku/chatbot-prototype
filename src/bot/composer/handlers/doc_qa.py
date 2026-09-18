@@ -6,12 +6,13 @@ from bot.config.retriever import RetrieverConfig
 from bot.factories.reranker import create_reranker
 from bot.factories.retriever import create_retriever
 from bot.handlers.docs_answer import DocsAnswerHandler
+from bot.judges.chunk_judge import ChunkJudge
+from bot.judges.chunk_judge_prompt_loader import (
+    ChunkJudgePromptLoader,
+)
+from bot.judges.models import TwoWayChunkRequirement, TwoWayJudgeOutputFormat
 from bot.llm.client import LLMClient
 from bot.models.doc_qa.chunks import EmbeddedDocChunk
-from bot.routes.doc_qa.chunk_relevance_judge import ChunkRelevanceJudge
-from bot.routes.doc_qa.chunk_relevance_prompt_loader import (
-    ChunkRelevanceJudgePromptLoader,
-)
 from bot.routes.doc_qa.coordinator import DocsAnswerCoordinator
 from bot.routes.doc_qa.doc_answer_synthesizer_prompt_loader import (
     SynthesizerPromptLoader,
@@ -34,9 +35,9 @@ def create_docs_answer_handler(
     answer_synthesizer_prompt_config: PromptConfig,
     claim_extractor_prompt_config: PromptConfig,
     claim_verifier_prompt_config: PromptConfig,
-    chunk_relevance_judge_prompt_config: PromptConfig,
+    chunk_judge_prompt_config: PromptConfig,
     retriever_configs: list[RetrieverConfig],
-    reranker_config: RerankerConfig
+    reranker_config: RerankerConfig,
 ) -> DocsAnswerHandler:
 
     retrievers = [create_retriever(
@@ -47,11 +48,13 @@ def create_docs_answer_handler(
     
     reranker = create_reranker(reranker_config)
     
-    chunk_relevance_judge = ChunkRelevanceJudge(
+    required_chunk_judge = ChunkJudge[TwoWayChunkRequirement](
         llm_client=llm_client,
-        relevance_judge_prompt_loader=ChunkRelevanceJudgePromptLoader(
-            prompt_config=chunk_relevance_judge_prompt_config,
-        )
+        relevance_judge_prompt_loader=ChunkJudgePromptLoader(
+            prompt_config=chunk_judge_prompt_config,
+        ),
+        pass_filter=lambda hit: hit.relevance == TwoWayChunkRequirement.REQUIRED,
+        output_format=TwoWayJudgeOutputFormat,
     )
     
     synthesizer = AnswerSynthesizer(
@@ -79,7 +82,7 @@ def create_docs_answer_handler(
         retrievers=retrievers,
         synthesizer=synthesizer,
         verifier=answer_verifier,
-        judge=chunk_relevance_judge,
+        judge=required_chunk_judge,
         reranker=reranker,
     )
 

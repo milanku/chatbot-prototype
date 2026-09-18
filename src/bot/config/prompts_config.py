@@ -20,7 +20,7 @@ class PromptConfigs:
     explain_tx_summary_parser: PromptConfig
     timeframe_parser: PromptConfig
     doc_answer_synthesizer: PromptConfig
-    chunk_relevance_judge: PromptConfig
+    chunk_judge: PromptConfig
 
 PROMPT_CONFIGS = PromptConfigs(
     router=PromptConfig(
@@ -47,8 +47,8 @@ PROMPT_CONFIGS = PromptConfigs(
         directory=Path("src/bot/prompts/doc_answer_synthesizer_instructions"),
         version="v001",
     ),
-    chunk_relevance_judge=PromptConfig(
-        directory=Path("src/bot/prompts/chunk_relevance_judge"),
+    chunk_judge=PromptConfig(
+        directory=Path("src/bot/prompts/chunk_judge"),
         version="two-way-judge-v1",
     ),
 )
