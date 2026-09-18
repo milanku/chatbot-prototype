@@ -8,6 +8,7 @@ from bot.retrievers.models import ChunksRetriever
 from bot.routes.doc_qa.reranker import Reranker
 from bot.routes.doc_qa.synthesizer import AnswerSynthesizer
 from bot.routes.doc_qa.verifier.answer_verifier import AnswerVerifier
+from bot.routes.doc_qa.verifier.models import ClaimVerificationStatus
 
 
 @dataclass
@@ -71,16 +72,16 @@ class DocsAnswerCoordinator:
                 references=[hit.doc_reference for hit in chunks_judged_as_required]
             )
         else:
-            unverified_claims = draft_verification.verified_claims
-            for claim in unverified_claims:
-                log_event(
-                    event="UNVERIFIED_CLAIM",
-                    payload={
-                        "question": question,
-                        "draft_answer": draft_answer,
-                        "unverified_claim": claim,
-                    }
-                )
+            for claim in draft_verification.verified_claims:
+                if claim.verification_status != ClaimVerificationStatus.SUPPORTED:
+                    log_event(
+                        event="UNVERIFIED_CLAIM",
+                        payload={
+                            "question": question,
+                            "draft_answer": draft_answer,
+                            "unverified_claim": claim,
+                        }
+                    )
             return DocsAnswerResult(
                 answer_text="The answer could not be verified against the provided evidence.",
                 references=[]
