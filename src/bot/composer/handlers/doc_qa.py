@@ -1,7 +1,10 @@
-from FlagEmbedding import FlagReranker
 from langchain.embeddings import Embeddings
 
 from bot.config.prompts_config import PromptConfig
+from bot.config.reranker import RerankerConfig
+from bot.config.retriever import RetrieverConfig
+from bot.factories.reranker import create_reranker
+from bot.factories.retriever import create_retriever
 from bot.handlers.docs_answer import DocsAnswerHandler
 from bot.llm.client import LLMClient
 from bot.models.doc_qa.chunks import EmbeddedDocChunk
@@ -12,11 +15,6 @@ from bot.routes.doc_qa.chunk_relevance_prompt_loader import (
 from bot.routes.doc_qa.coordinator import DocsAnswerCoordinator
 from bot.routes.doc_qa.doc_answer_synthesizer_prompt_loader import (
     SynthesizerPromptLoader,
-)
-from bot.routes.doc_qa.reranker import CrossEncoderReranker
-from bot.routes.doc_qa.retriever import (
-    EmbeddingsChunksRetriever,
-    RetrievalConfig,
 )
 from bot.routes.doc_qa.synthesizer import AnswerSynthesizer
 from bot.routes.doc_qa.verifier.answer_verifier import AnswerVerifier
@@ -37,8 +35,25 @@ def create_docs_answer_handler(
     claim_extractor_prompt_config: PromptConfig,
     claim_verifier_prompt_config: PromptConfig,
     chunk_relevance_judge_prompt_config: PromptConfig,
+    retriever_configs: list[RetrieverConfig],
+    reranker_config: RerankerConfig
 ) -> DocsAnswerHandler:
 
+    retrievers = [create_retriever(
+        config=config,
+        embedder=embedder,
+        embedded_doc_chunks=embedded_doc_chunks,
+    ) for config in retriever_configs]
+    
+    reranker = create_reranker(reranker_config)
+    
+    chunk_relevance_judge = ChunkRelevanceJudge(
+        llm_client=llm_client,
+        relevance_judge_prompt_loader=ChunkRelevanceJudgePromptLoader(
+            prompt_config=chunk_relevance_judge_prompt_config,
+        )
+    )
+    
     synthesizer = AnswerSynthesizer(
         llm_client=llm_client,
         prompt_loader=SynthesizerPromptLoader(prompt_config=answer_synthesizer_prompt_config),
@@ -59,28 +74,9 @@ def create_docs_answer_handler(
         claim_extractor=claim_extractor,
         claim_verifier=claims_verifier,
     )
-
-    retriever = EmbeddingsChunksRetriever(
-        embedder=embedder,
-        embedded_doc_chunks=embedded_doc_chunks,
-        config=RetrievalConfig(top_k=5),
-    )
     
-    reranker = CrossEncoderReranker(
-        reranker=FlagReranker(
-            "BAAI/bge-reranker-v2-m3",
-            use_fp16=True,
-        )
-    )
-    chunk_relevance_judge = ChunkRelevanceJudge(
-        llm_client=llm_client,
-        relevance_judge_prompt_loader=ChunkRelevanceJudgePromptLoader(
-            prompt_config=chunk_relevance_judge_prompt_config,
-        )
-    )
-
     coordinator = DocsAnswerCoordinator(
-        retriever=retriever,
+        retrievers=retrievers,
         synthesizer=synthesizer,
         verifier=answer_verifier,
         judge=chunk_relevance_judge,
