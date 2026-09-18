@@ -5,6 +5,7 @@ from FlagEmbedding import FlagReranker  # pyright: ignore[reportMissingTypeStubs
 from numpy.typing import NDArray
 from transformers import AutoModel
 
+from bot.config.reranker import LocalRerankerConfig
 from bot.models.doc_qa.chunks import DocChunk
 
 
@@ -12,8 +13,9 @@ class Reranker(Protocol):
     def rerank(self, query: str, documents: list[DocChunk]) -> list[DocChunk]: ...
     
 class CrossEncoderReranker(Reranker):
-    def __init__(self, reranker: FlagReranker):
+    def __init__(self, reranker: FlagReranker, config: LocalRerankerConfig):
         self._reranker = reranker
+        self._config = config
     
     def _compute_scores(
         self,
@@ -37,7 +39,7 @@ class CrossEncoderReranker(Reranker):
         for doc, score in zip(documents, scores):
             doc.reranker_score = float(score)
         
-        return sorted(documents, key=lambda doc: doc.reranker_score or 0, reverse=True)
+        return sorted(documents, key=lambda doc: doc.reranker_score or 0, reverse=True)[:self._config.top_k]
 
 class JinaRerankerModel(Protocol):
     def rerank(
