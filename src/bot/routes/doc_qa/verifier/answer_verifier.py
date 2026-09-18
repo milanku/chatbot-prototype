@@ -5,7 +5,10 @@ from bot.models.doc_qa.chunks import DocChunk
 from bot.routes.doc_qa.verifier.claim_extractor import (
     ClaimExtractor,
 )
-from bot.routes.doc_qa.verifier.models import ClaimVerificationStatus, VerifiedClaim
+from bot.routes.doc_qa.verifier.models import (
+    ClaimVerificationStatus,
+    VerifiedClaim,
+)
 from bot.routes.doc_qa.verifier.verifier import ClaimsVerifier
 
 
@@ -45,5 +48,5 @@ class AnswerVerifier:
         is_supported = all(claim.verification_status == ClaimVerificationStatus.SUPPORTED for claim in verified_claims)
         return AnswerVerification(
             is_supported=is_supported,
-            verified_claims=verified_claims
+            verified_claims=verified_claims,
         )

@@ -5,8 +5,8 @@ from bot.routes.doc_qa.store_models import EmbeddingsStoreData
 
 
 class EmbeddingsStoreRepository:
-    def __init__(self, dir_path: Path):
-        self._dir_path = dir_path
+    def __init__(self, embeddings_dir_path: Path):
+        self._dir_path = embeddings_dir_path
     
     def save(self, embeddings_store: EmbeddingsStore) -> None:
         persistable_model = embeddings_store.to_persistable_model()

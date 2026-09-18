@@ -1,5 +1,3 @@
-
-
 from pydantic import BaseModel
 
 from bot.llm.client import LLMClient
