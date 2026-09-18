@@ -6,11 +6,11 @@ from pydantic import BaseModel
 from bot.config.prompts_config import PromptConfigs
 from bot.config.reranker import RerankerConfig
 from bot.config.retriever import RetrieverConfig
+from bot.doc_qa.indexing.embeddings_store import EmbeddingsStore
 from bot.llm.client import LLMClient
-from bot.models.memory import SessionState
 from bot.models.responses import BotResponse
-from bot.models.tx_qa.repository import TransactionsRepository
-from bot.routes.doc_qa.embeddings_store import EmbeddingsStore
+from bot.tx_qa.indexing.models import TransactionsRepository
+from bot.tx_qa.memory.models import SessionState
 
 
 @dataclass

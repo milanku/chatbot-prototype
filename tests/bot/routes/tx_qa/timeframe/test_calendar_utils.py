@@ -3,7 +3,7 @@ from datetime import date
 import pytest
 
 from bot.models.tx_qa.query import DateRange
-from bot.routes.tx_qa.timeframe.calendar_utils import (
+from bot.tx_qa.timeframe.calendar_utils import (
     day_range,
     month_range,
     quarter_range,

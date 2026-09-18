@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 from bot.models.doc_qa.chunks import DocChunk
-from bot.routes.doc_qa.verifier.models import (
+from bot.doc_qa.verifier.models import (
     ClaimVerificationStatus,
     ExtractedClaim,
 )

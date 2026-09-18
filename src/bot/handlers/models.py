@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
-from bot.models.doc_qa.references import DocReference
-from bot.models.memory import SessionState
+from bot.doc_qa.indexing.models import DocReference
+from bot.tx_qa.memory.models import SessionState
 
 
 @dataclass(frozen=True)

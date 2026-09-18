@@ -1,8 +1,8 @@
 from datetime import date
 
 from bot.handlers.models import RouteHandler, RouteHandlerResult
-from bot.models.memory import SessionState
-from bot.routes.tx_qa.tx_list_coordinator import TxListCoordinator
+from bot.tx_qa.memory.models import SessionState
+from bot.tx_qa.tx_list.coordinator import TxListCoordinator
 
 
 class TxListHandler(RouteHandler):    

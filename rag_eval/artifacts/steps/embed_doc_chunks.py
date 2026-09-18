@@ -1,5 +1,5 @@
 from bot.config.embedder import EmbedderConfig
-from bot.factories.embedder import create_embedder
+from bot.doc_qa.retrieval.embedders.factory import create_embedder
 from bot.models.doc_qa.chunks import DocChunk, EmbeddedDocChunk
 from rag_eval.artifacts.artifact_step_executor import ArtifactStepExecutor
 from rag_eval.artifacts.ArtifactLineage import ArtifactRef, ArtifactType

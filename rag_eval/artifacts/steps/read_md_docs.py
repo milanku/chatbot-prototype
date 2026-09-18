@@ -1,5 +1,5 @@
-from bot.routes.doc_qa.read_markdown_docs import MarkdownDocument, read_markdown_docs
-from bot.routes.doc_qa.utils import calculate_dir_fingerprint
+from bot.doc_qa.indexing.markdown import MarkdownDocument, read_markdown_docs
+from bot.doc_qa.indexing.utils import calculate_dir_fingerprint
 from rag_eval.config import MdDocsConfig
 from rag_eval.artifacts.ArtifactLineage import ArtifactRef, ArtifactType, TypedArtifactNode
 

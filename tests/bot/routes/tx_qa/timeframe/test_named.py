@@ -3,7 +3,7 @@ from datetime import date
 import pytest
 
 from bot.models.tx_qa.query import DateRange
-from bot.routes.tx_qa.timeframe.named import (
+from bot.tx_qa.timeframe.named import (
     resolve_named_date,
     resolve_named_month,
     resolve_named_quarter,

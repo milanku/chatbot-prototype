@@ -4,23 +4,23 @@ from FlagEmbedding.inference import FlagReranker
 from langchain.embeddings import Embeddings
 from pydantic import BaseModel
 
+from bot.doc_qa.retrieval.judges.chunk_judge import (
+    ChunkJudgePromptLoader,
+    JudgedChunkOutput,
+    TwoWayChunkRelevance,
+    TwoWayChunkRequiredJudge,
+)
+from bot.llm.factory import get_llm
 from bot.models.doc_qa.chunks import DocChunk, EmbeddedDocChunk
-from bot.routes.doc_qa.reranker import CrossEncoderReranker, Reranker
-from bot.routes.doc_qa.retriever import (
+from bot.doc_qa.retrieval.retrievers.factory import (
     ChunksRetriever,
     EmbeddingsChunksRetriever,
     RetrievalConfig,
 )
+from bot.doc_qa.retrieval.rerankers.cross_encoder_reranker import CrossEncoderReranker, Reranker
 from rag_eval.config import RunnerConfig
 from rag_eval.domain.question import Question
-from rag_eval.factories.llms import get_llm
 from rag_eval.factories.retrievers import get_retriever
-from rag_eval.judges.two_way_chunk_relevance_judge import (
-    JudgedChunkOutput,
-    TwoWayChunkRelevance,
-    TwoWayChunkRelevanceJudge,
-    TwoWayRelevanceJudgePromptLoader,
-)
 
 
 class TestRunnerResult(BaseModel):
@@ -39,7 +39,7 @@ class RetrievalRunner:
         retriever: ChunksRetriever,
         bm25_retriever: ChunksRetriever,
         reranker: Reranker,
-        two_way_chunk_relevance_judge: TwoWayChunkRelevanceJudge
+        two_way_chunk_relevance_judge: TwoWayChunkRequiredJudge
     ):
         self._retriever = retriever
         self._bm25_retriever = bm25_retriever
@@ -148,11 +148,11 @@ def create_retrieval_runner(
         config=RetrievalConfig(top_k=max_top_k)
     )
     
-    llm_model = get_llm(config.llm_model)
+    llm_model = get_llm(config.llm_config)
     
-    judge = TwoWayChunkRelevanceJudge(
+    judge = TwoWayChunkRequiredJudge(
         llm_client=llm_model,
-        relevance_judge_prompt_loader=TwoWayRelevanceJudgePromptLoader(
+        relevance_judge_prompt_loader=ChunkJudgePromptLoader(
             prompt_config=config.relevance_judge_prompt_config
         )
     )

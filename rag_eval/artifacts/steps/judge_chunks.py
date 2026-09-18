@@ -1,8 +1,7 @@
+from bot.doc_qa.retrieval.judges.chunk_judge import ChunkJudge
+from bot.doc_qa.retrieval.judges.chunk_judge_prompt_loader import ChunkJudgePromptLoader
+from bot.doc_qa.retrieval.judges.models import ThreeWayChunkRelevance
 from bot.llm.factory import get_llm
-from bot.routes.doc_qa.chunk_relevance_judge import ChunkRelevanceJudge
-from bot.routes.doc_qa.chunk_relevance_prompt_loader import (
-    ChunkRelevanceJudgePromptLoader,
-)
 from rag_eval.artifacts.artifact_step_executor import ArtifactStepExecutor
 from rag_eval.artifacts.ArtifactLineage import ArtifactRef, ArtifactType
 from rag_eval.config import JudgeConfig
@@ -23,10 +22,10 @@ def judge_candidates(
         llm_model = get_llm(
             llm_config=config.llm_config,
         )
-        relevance_judge_prompt_loader = ChunkRelevanceJudgePromptLoader(
+        relevance_judge_prompt_loader = ChunkJudgePromptLoader(
             prompt_config=config.prompt_config
         )
-        judge = ChunkRelevanceJudge(
+        judge = ChunkJudge[ThreeWayChunkRelevance](
             llm_client=llm_model,
             relevance_judge_prompt_loader=relevance_judge_prompt_loader
         )

@@ -1,4 +1,4 @@
-from bot.routes.doc_qa.read_markdown_docs import MarkdownDocument
+from bot.doc_qa.indexing.markdown import MarkdownDocument
 from rag_eval.artifacts.artifact_step_executor import ArtifactStepExecutor
 from rag_eval.artifacts.ArtifactLineage import ArtifactRef, ArtifactType
 from rag_eval.config import ChunkingConfig

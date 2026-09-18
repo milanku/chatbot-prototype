@@ -3,7 +3,7 @@ from datetime import date
 import pytest
 
 from bot.models.tx_qa.query import DateRange
-from bot.routes.tx_qa.timeframe.weekday import resolve_named_weekday
+from bot.tx_qa.timeframe.weekday import resolve_named_weekday
 
 
 @pytest.mark.parametrize(

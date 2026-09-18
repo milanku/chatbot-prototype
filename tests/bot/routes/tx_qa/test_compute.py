@@ -3,8 +3,8 @@ from decimal import Decimal
 
 import pytest
 
-from bot.models.tx_qa.domain import Direction, Transaction
-from bot.routes.tx_qa.compute import compute_total_amount
+from bot.tx_qa.domain import Direction, Transaction
+from bot.tx_qa.compute import compute_total_amount
 
 
 def get_transaction(amount: str) -> Transaction:

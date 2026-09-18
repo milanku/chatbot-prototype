@@ -1,6 +1,8 @@
 from bot.handlers.models import RouteHandler, RouteHandlerResult
-from bot.models.memory import SessionState
-from bot.routes.tx_qa.explain_tx_summary_coordinator import ExplainTxSummaryCoordinator
+from bot.tx_qa.memory.models import SessionState
+from bot.tx_qa.tx_summary.explain_tx_summary_coordinator import (
+    ExplainTxSummaryCoordinator,
+)
 
 
 class ExplainTxSummaryHandler(RouteHandler):

@@ -7,7 +7,7 @@ from ragas.testset.graph import KnowledgeGraph, Node, NodeType
 from ragas.testset.persona import Persona
 from ragas.testset.transforms import apply_transforms, default_transforms
 
-from bot.factories.embedder import create_embedder
+from bot.doc_qa.retrieval.embedders.factory import create_embedder
 from bot.models.doc_qa.chunks import DocChunk
 from rag_eval.config import QuestionGeneratorConfig
 

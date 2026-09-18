@@ -6,24 +6,24 @@ import typer
 from dotenv import load_dotenv
 from langchain_core.embeddings import Embeddings
 
-from bot.chunker.model import Chunker
 from bot.config.bot import BOT_CONFIG
 from bot.config.prompts_config import PROMPT_CONFIGS
+from bot.doc_qa.indexing.chunkers.factory import create_chunker
+from bot.doc_qa.indexing.embeddings_store_factory import EmbeddingsStoreFactory
+from bot.doc_qa.indexing.models import Chunker
+from bot.doc_qa.indexing.store_persistor import EmbeddingsStoreRepository
+from bot.doc_qa.retrieval.embedders.factory import create_embedder
 from bot.engine import ChatbotEngine, EngineDeps
 from bot.engine_model import EngineResponse
-from bot.factories.chunker import create_chunker
-from bot.factories.embedder import create_embedder
-from bot.factories.llm import create_llm
 from bot.llm.client import LLMClient
+from bot.llm.factory import create_llm
 from bot.logging import setup_logging
-from bot.memory.models import SessionStore
-from bot.memory.session_store import InMemorySessionStore
-from bot.routes.doc_qa.embeddings_store_factory import EmbeddingsStoreFactory
-from bot.routes.doc_qa.store_persistor import EmbeddingsStoreRepository
-from bot.routes.tx_qa.transactions_repository_mock import (
+from bot.trace_context import bind_session_id, get_current_session_id
+from bot.tx_qa.indexing.transactions_repository import (
     TransactionsRepositoryFromJsonMock,
 )
-from bot.trace_context import bind_session_id, get_current_session_id
+from bot.tx_qa.memory.models import SessionStore
+from bot.tx_qa.memory.session_store import InMemorySessionStore
 
 app = typer.Typer(add_completion=False)
 

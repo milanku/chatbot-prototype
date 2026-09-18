@@ -10,7 +10,7 @@ from bot.models.tx_qa.query import (
     Timeframe,
     TimeframeType,
 )
-from bot.routes.tx_qa.timeframe.resolve import resolve_date_range
+from bot.tx_qa.timeframe.resolve import resolve_date_range
 
 TODAY = date(2025, 1, 3)
 SENTINEL_RANGE = (

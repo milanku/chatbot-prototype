@@ -1,5 +1,5 @@
 from bot.handlers.models import RouteHandler, RouteHandlerResult
-from bot.models.memory import SessionState
+from bot.tx_qa.memory.models import SessionState
 
 
 class OutOfScopeHandler(RouteHandler):

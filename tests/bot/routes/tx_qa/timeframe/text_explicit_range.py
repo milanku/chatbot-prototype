@@ -3,7 +3,7 @@ from datetime import date
 import pytest
 
 from bot.models.tx_qa.query import DateRange, RawRangeEndpoint
-from bot.routes.tx_qa.timeframe.explicit_range import resolve_explicit_range
+from bot.tx_qa.timeframe.explicit_range import resolve_explicit_range
 
 
 # TODO: Update the test when main function is refactored

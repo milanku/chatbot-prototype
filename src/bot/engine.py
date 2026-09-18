@@ -3,21 +3,21 @@ from __future__ import annotations
 from dataclasses import asdict
 from uuid import uuid4
 
-from bot.composer.handlers.doc_qa import create_docs_answer_handler
-from bot.composer.handlers.explain_tx_summary import create_explain_tx_summary_handler
-from bot.composer.handlers.tx_list import create_tx_list_handler
-from bot.composer.handlers.tx_summary import create_tx_summary_handler
+from bot.composition.doc_qa import create_docs_answer_handler
+from bot.composition.explain_tx_summary import create_explain_tx_summary_handler
+from bot.composition.tx_list import create_tx_list_handler
+from bot.composition.tx_summary import create_tx_summary_handler
 from bot.engine_model import EngineDeps, EngineResponse
 from bot.handlers.models import RouteHandler, RouteHandlerResult
 from bot.handlers.out_of_scope import OutOfScopeHandler
 from bot.handlers.unknown_route import UnknownRouteHandler
 from bot.logging import log_event
-from bot.models.memory import SessionState
 from bot.models.responses import BotResponse
-from bot.models.routing import Route, RouterDecision
+from bot.routing.models import Route, RouterDecision
 from bot.routing.router import RouteSelector
 from bot.routing.router_prompt_loader import RouterPromptLoader
 from bot.trace_context import bind_trace_id, get_current_session_id
+from bot.tx_qa.memory.models import SessionState
 
 
 class ChatbotEngine:

@@ -3,7 +3,7 @@ from datetime import date
 import pytest
 
 from bot.models.tx_qa.query import DateRange, RollingRangeUnit
-from bot.routes.tx_qa.timeframe.rolling import (
+from bot.tx_qa.timeframe.rolling import (
     resolve_previous_complete_range,
     resolve_trailing_range,
 )

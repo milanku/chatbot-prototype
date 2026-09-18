@@ -1,5 +1,5 @@
-from bot.routes.doc_qa.retriever import ChunksRetriever
-from bot.routes.doc_qa.store_models import DocChunk
+from bot.doc_qa.retrieval.retrievers.factory import ChunksRetriever
+from bot.doc_qa.indexing.store_models import DocChunk
 from rag_eval.domain.question import (
     Question,
     QuestionCollection,

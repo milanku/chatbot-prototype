@@ -2,7 +2,7 @@
 from datetime import datetime
 
 from bot.config.embedder import LocalEmbedderConfig, SupportedLocalEmbedder
-from bot.factories.embedder import create_embedder
+from bot.doc_qa.retrieval.embedders.factory import create_embedder
 from rag_eval.artifacts.artifact_step_executor import ArtifactStepExecutor
 from rag_eval.artifacts.artifact_store import ArtifactStore
 from rag_eval.artifacts.ArtifactLineage import (

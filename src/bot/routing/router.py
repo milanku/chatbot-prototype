@@ -1,5 +1,5 @@
 from bot.llm.client import LLMClient
-from bot.models.routing import Route, RouterDecision, RouterDecisionExtraction
+from bot.routing.models import Route, RouterDecision, RouterDecisionExtraction
 from bot.routing.router_prompt_loader import (
     RouterPromptInput,
     RouterPromptLoader,

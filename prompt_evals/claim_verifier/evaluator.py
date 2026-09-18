@@ -1,8 +1,8 @@
 from bot.llm.client import LLMClient
 from bot.logging import log_event
-from bot.routes.doc_qa.verifier.models import ExtractedClaim, VerifiedClaim
-from bot.routes.doc_qa.verifier.verifier import verify_claims_against_evidence
-from bot.routes.doc_qa.verifier.verifier_prompt_loader import (
+from bot.doc_qa.verifier.models import ExtractedClaim, VerifiedClaim
+from bot.doc_qa.verifier.verifier import verify_claims_against_evidence
+from bot.doc_qa.verifier.verifier_prompt_loader import (
     ClaimVerifierPromptLoader,
 )
 from prompt_evals.claim_verifier.models import (

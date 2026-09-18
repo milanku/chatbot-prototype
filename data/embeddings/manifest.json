@@ -1,6 +1,0 @@
-{
-  "embedding_model": "jinaai/jina-embeddings-v3",
-  "chunking_version": "v1.0.0",
-  "docs_fingerprint": "abb7f571f1c94fde7dd8261e91cc4c0ad05c2c14eaadc07a39207651462a71f0",
-  "chunk_count": 219
-}

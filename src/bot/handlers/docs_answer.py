@@ -1,6 +1,6 @@
+from bot.doc_qa.coordinator import DocsAnswerCoordinator, DocsAnswerResult
 from bot.handlers.models import RouteHandler, RouteHandlerResult
-from bot.models.memory import SessionState
-from bot.routes.doc_qa.coordinator import DocsAnswerCoordinator, DocsAnswerResult
+from bot.tx_qa.memory.models import SessionState
 
 
 class DocsAnswerHandler(RouteHandler):

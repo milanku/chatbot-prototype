@@ -5,7 +5,7 @@ from bot.config.prompts_config import PromptConfig
 from bot.config.settings import Settings
 from bot.llm import openai_client
 from bot.logging import setup_logging
-from bot.routes.doc_qa.verifier.verifier_prompt_loader import (
+from bot.doc_qa.verifier.verifier_prompt_loader import (
     ClaimVerifierPromptLoader,
 )
 from prompt_evals.claim_verifier.config import (

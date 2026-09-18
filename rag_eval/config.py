@@ -3,7 +3,9 @@ from pathlib import Path
 from pydantic import BaseModel
 from ragas.testset.persona import Persona
 
+from bot.config.embedder import EmbedderConfig, LocalEmbedderConfig
 from bot.config.prompts_config import PromptConfig
+from bot.llm.config import LLMConfig
 
 
 class MdDocsConfig(BaseModel):
@@ -17,11 +19,11 @@ class ChunkingConfig(BaseModel):
 class DocStoreConfig(BaseModel):
     docs_set: MdDocsConfig
     embeddings_dir: str
-    embeddings_model: str
+    embedder: EmbedderConfig
     chunking_version: str
 
 class EmbeddingsConfig(BaseModel):
-    embeddings_model: str
+    embedder: EmbedderConfig
     
 class FilterConfig(BaseModel):
     quality_threshold: str = "ACCEPT"
@@ -31,8 +33,8 @@ class TestPreparationConfig(BaseModel):
     
 class QuestionGeneratorConfig(BaseModel):
     question_set: str
-    embeddings_model: str
-    llm_model: str
+    embedder: EmbedderConfig
+    llm_config: LLMConfig
     num_questions: int
     persona_list: list[Persona]
     
@@ -46,7 +48,7 @@ class CandidateChunksRetrieverConfig(BaseModel):
     
 class JudgeConfig(BaseModel):
     prompt_config: PromptConfig
-    llm_model: str
+    llm_config: LLMConfig
     
     
 class EvalConfig(BaseModel):
@@ -63,13 +65,13 @@ class EvalRetrievalConfig(BaseModel):
     version: str
     
 class RunnerConfig(BaseModel):
-    llm_model: str
+    llm_config: LLMConfig
     relevance_judge_prompt_config: PromptConfig
 
 class PipelineConfig(BaseModel):
     md_docs: MdDocsConfig
     chunking_config: ChunkingConfig
-    docs_embeddings: EmbeddingsConfig
+    docs_embeddings: EmbedderConfig
     question_generator: QuestionGeneratorConfig
     candidate_answers_generator: CandidateChunksRetrieverConfig
     filter_quality_config: FilterConfig
@@ -125,13 +127,18 @@ def create_pipeline_config() -> PipelineConfig:
         chunking_config=ChunkingConfig(
             chunking_version="paragraph_with_breadcrumb_chunker_v01"
         ),
-        docs_embeddings=EmbeddingsConfig(
-            embeddings_model="jinaai/jina-embeddings-v3",
+        docs_embeddings=LocalEmbedderConfig(
+            model="jinaai/jina-embeddings-v3"
         ),
         question_generator=QuestionGeneratorConfig(
             question_set="question_set_001",
-            embeddings_model="qwen/Qwen3-Embedding-4B",
-            llm_model="gpt-5.4-mini",
+            embedder=LocalEmbedderConfig(
+                model="qwen/Qwen3-Embedding-4B"
+            ),
+            llm_config=LLMConfig(
+                llm_provider="openai",
+                llm_model="gpt-5.4-mini",
+            ),
             persona_list=persona_list,
             num_questions=100,
         ),
@@ -157,20 +164,29 @@ def create_pipeline_config() -> PipelineConfig:
                 directory=Path("rag_eval/prompts"),
                 version="three-way-judge-v1",
             ),
-            llm_model="gpt-5.4-mini"
+            llm_config=LLMConfig(
+                llm_provider="openai",
+                llm_model="gpt-5.4-mini",
+            )
         ),
         question_quality_judge=JudgeConfig(
             prompt_config=PromptConfig(
                 directory=Path("rag_eval/prompts"),
                 version="question-quality-judge-v1.1",
             ),
-            llm_model="gpt-5.4-mini"
+            llm_config=LLMConfig(
+                llm_provider="openai",
+                llm_model="gpt-5.4-mini",
+            )
         ),
         eval_retrieval=EvalRetrievalConfig(
             version="v01",
         ),
         runner=RunnerConfig(
-            llm_model="gpt-5-mini",
+            llm_config=LLMConfig(
+                llm_provider="openai",
+                llm_model="gpt-5-mini",
+            ),
             relevance_judge_prompt_config=PromptConfig(
                 directory=Path("rag_eval/prompts"),
                 version="two-way-judge-v1",

@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from bot.models.prompts import PromptLoader
-from bot.models.routing import Route
+from bot.routing.models import Route
 
 
 @dataclass(frozen=True)

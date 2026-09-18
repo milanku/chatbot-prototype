@@ -1,4 +1,4 @@
-from bot.routes.doc_qa.retriever import ChunksRetriever, RetrievalConfig
+from bot.doc_qa.retrieval.retrievers.factory import ChunksRetriever, RetrievalConfig
 from rag_eval.artifacts.artifact_step_executor import ArtifactStepExecutor
 from rag_eval.artifacts.ArtifactLineage import ArtifactRef, ArtifactType
 from rag_eval.config import CandidateChunksRetrieverConfig
