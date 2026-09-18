@@ -33,7 +33,7 @@ PROMPT_CONFIGS = PromptConfigs(
     ),
     claim_verifier=PromptConfig(
         directory=Path("src/bot/prompts/claim_verificator_instructions"),
-        version="v002",
+        version="v003",
     ),
     explain_tx_summary_parser=PromptConfig(
         directory=Path("src/bot/prompts/explain_tx_summary_parser_instructions"),
