@@ -7,9 +7,9 @@ from ragas.testset.graph import KnowledgeGraph, Node, NodeType
 from ragas.testset.persona import Persona
 from ragas.testset.transforms import apply_transforms, default_transforms
 
+from bot.factories.embedder import create_embedder
 from bot.models.doc_qa.chunks import DocChunk
 from rag_eval.config import QuestionGeneratorConfig
-from rag_eval.factories.embeddings import get_embeddings
 
 
 def get_testset_generator(config: QuestionGeneratorConfig, *, doc_chunks: list[DocChunk]) -> TestsetGenerator:
@@ -36,9 +36,9 @@ def get_testset_generator(config: QuestionGeneratorConfig, *, doc_chunks: list[D
             )
         )
     generator_llm = ChatOpenAI(
-        model=config.llm_model,
+        model=config.llm_config.llm_model,
     )
-    embeddings = get_embeddings(config.embeddings_model)
+    embeddings = create_embedder(config.embedder)
     transformer_llm = LangchainLLMWrapper(generator_llm)
     ragas_embedding = LangchainEmbeddingsWrapper(embeddings)
     trans = default_transforms(documents=docs, llm=transformer_llm, embedding_model=ragas_embedding)

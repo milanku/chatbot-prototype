@@ -1,6 +1,8 @@
 
 from datetime import datetime
 
+from bot.config.embedder import LocalEmbedderConfig, SupportedLocalEmbedder
+from bot.factories.embedder import create_embedder
 from rag_eval.artifacts.artifact_step_executor import ArtifactStepExecutor
 from rag_eval.artifacts.artifact_store import ArtifactStore
 from rag_eval.artifacts.ArtifactLineage import (
@@ -24,9 +26,8 @@ from rag_eval.artifacts.steps.read_md_docs import read_md_docs
 from rag_eval.artifacts.steps.retrieve import retrieve
 from rag_eval.artifacts.steps.split_md_docs_to_chunks import split_md_docs_to_chunks
 from rag_eval.artifacts.steps.summarize_results import summarize_results
-from rag_eval.config import EmbeddingsConfig, PipelineConfig
+from rag_eval.config import PipelineConfig
 from rag_eval.evaluator.evaluate_test_suite import evaluate_test_suite
-from rag_eval.factories.embeddings import get_embeddings
 from rag_eval.test_runner import create_retrieval_runner
 
 
@@ -89,8 +90,8 @@ class EvaluationPipeline:
         print("Embedding document chunks with Jina embeddings...")
         jina_embeddings_art = embed_doc_chunks(
             doc_chunks=splitter_art,
-            config=EmbeddingsConfig(
-                embeddings_model="jinaai/jina-embeddings-v3"
+            config=LocalEmbedderConfig(
+                model=SupportedLocalEmbedder.JINA_EMBEDDINGS_V3
             ),
             runner=self._runner
         )
@@ -98,8 +99,8 @@ class EvaluationPipeline:
         print("Embedding document chunks with Qwen embeddings...")
         qwen_embeddings_art = embed_doc_chunks(
             doc_chunks=splitter_art,
-            config=EmbeddingsConfig(
-                embeddings_model="qwen/Qwen3-Embedding-4B"
+            config=LocalEmbedderConfig(
+                model=SupportedLocalEmbedder.QWEN3_EMBEDDING_4B
             ),
             runner=self._runner
         )
@@ -132,7 +133,7 @@ class EvaluationPipeline:
         
         retrievals_runner = create_retrieval_runner(
             config=self._config.runner,
-            embedder=get_embeddings(self._config.docs_embeddings.embeddings_model),
+            embedder=create_embedder(self._config.docs_embeddings),
             embedded_doc_chunks=embeddings_art.data.embedded_chunks,
             max_top_k=max(config.retriever_top_k for config in self._config.evaluation.k_configs),
         )       

@@ -1,8 +1,8 @@
-from collections.abc import Callable
 from pathlib import Path
 
 from langchain.embeddings import Embeddings
 
+from bot.chunker.model import Chunker
 from bot.models.doc_qa.chunks import DocChunk, EmbeddedDocChunk
 from bot.routes.doc_qa.read_markdown_docs import read_markdown_docs
 from bot.routes.doc_qa.store_models import (
@@ -11,7 +11,6 @@ from bot.routes.doc_qa.store_models import (
     EmbeddingsStoreManifest,
 )
 
-Chunker = Callable[[str, str], list[DocChunk]]
 
 class EmbeddingsStore:    
     def __init__(
@@ -38,7 +37,7 @@ class EmbeddingsStore:
         all_chunks: list[DocChunk] = [
             chunk
             for md_document in md_documents
-            for chunk in chunker(str(md_document.file_path), md_document.content)
+            for chunk in chunker.split(md_document.content, str(md_document.file_path))
         ]
         embedded_vectors = embedder.embed_documents([chunk.content for chunk in all_chunks])
         all_chunk_embeddings: list[ChunkEmbedding] = [

@@ -1,3 +1,4 @@
+from bot.llm.factory import get_llm
 from bot.routes.doc_qa.chunk_relevance_judge import ChunkRelevanceJudge
 from bot.routes.doc_qa.chunk_relevance_prompt_loader import (
     ChunkRelevanceJudgePromptLoader,
@@ -8,7 +9,6 @@ from rag_eval.config import JudgeConfig
 from rag_eval.domain.judgement import CandidateRetrievalJudgments
 from rag_eval.domain.question import QuestionCollection
 from rag_eval.domain.retrieval import CandidateRetrieval
-from rag_eval.factories.llms import get_llm
 
 
 def judge_candidates(
@@ -20,7 +20,9 @@ def judge_candidates(
 ) -> ArtifactRef[CandidateRetrievalJudgments]:
     
     def run() -> CandidateRetrievalJudgments:
-        llm_model = get_llm(config.llm_model)
+        llm_model = get_llm(
+            llm_config=config.llm_config,
+        )
         relevance_judge_prompt_loader = ChunkRelevanceJudgePromptLoader(
             prompt_config=config.prompt_config
         )
