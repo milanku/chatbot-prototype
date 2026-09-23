@@ -71,14 +71,31 @@ class OpenAIClient(LLMClient):
                 )
                 if check_is_output_valid is None or check_is_output_valid(cast(T, result)):
                     break
+                
+                log_event(
+                    event="llm_client.generate_with_structured_output.invalid_output",
+                    payload={
+                        "prompt": prompt,
+                        "system_instructions": system_instructions,
+                        "result": str(result) if "result" in locals() else None,
+                    }
+                )
             except Exception as e:
+                log_event(
+                    event="llm_client.generate_with_structured_output.error",
+                    payload={
+                        "prompt": prompt,
+                        "system_instructions": system_instructions,
+                        "error": str(e),
+                    }
+                )
                 if attempt == retries - 1:
                     raise e
         else:
             raise ValueError("Failed to generate valid output after retries")
         
         log_event(
-            event="llm_client.generate_with_structured_output",
+            event="llm_client.generate_with_structured_output.success",
             payload={
                 "prompt": prompt,
                 "system_instructions": system_instructions,

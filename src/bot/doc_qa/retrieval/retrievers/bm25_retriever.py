@@ -35,7 +35,7 @@ class BM25ChunksRetriever(ChunksRetriever):
         candidate_chunks_from_bm25 = bm25retriever.invoke(question)
         return [
             DocChunk(
-                chunk_id=chunk.metadata['chunk_id'],
+                chunk_id=chunk.metadata["chunk_id"],
                 content=chunk.page_content,
                 doc_reference=doc_chunks_by_content[chunk.page_content].doc_reference
             )
