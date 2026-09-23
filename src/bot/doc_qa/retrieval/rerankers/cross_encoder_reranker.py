@@ -33,7 +33,7 @@ class CrossEncoderReranker(Reranker):
         
         scores = self._compute_scores(pairs)
         
-        for doc, score in zip(documents, scores):
+        for doc, score in zip(documents, scores, strict=True):
             doc.reranker_score = float(score)
         
         return sorted(documents, key=lambda doc: doc.reranker_score or 0, reverse=True)[:self._config.top_k]
