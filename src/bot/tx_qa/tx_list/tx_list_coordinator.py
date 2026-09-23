@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 from datetime import date
 
-from bot.models.tx_qa.query import TxQuery
-from bot.models.tx_qa.repository import TransactionsRepository
-from bot.tx_qa.timeframe.resolve import resolve_date_range
+from bot.tx_qa.indexing.models import TransactionsRepository
+from bot.tx_qa.parsing.models import TxQuery
 from bot.tx_qa.parsing.timeframe_parser import TimeframeParser
+from bot.tx_qa.timeframe.resolve import resolve_date_range
 from bot.tx_qa.tx_list.formatter import format_transactions
 
 

@@ -1,4 +1,5 @@
-from typing import Callable, TypeVar, cast
+from collections.abc import Callable
+from typing import TypeVar, cast
 
 from langchain.chat_models import BaseChatModel
 from langchain.messages import AIMessage, HumanMessage, SystemMessage
