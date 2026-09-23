@@ -1,5 +1,3 @@
-from typing import List
-
 import numpy as np
 from langchain_core.embeddings import Embeddings
 from numpy.typing import NDArray
@@ -27,8 +25,8 @@ class LocalEmbeddings(BaseRagasEmbeddings, Embeddings):
         )  # pyright: ignore[reportUnknownMemberType]
         return document_embeddings.tolist()
     
-    async def aembed_query(self, text: str) -> List[float]:
+    async def aembed_query(self, text: str) -> list[float]:
         return self.embed_query(text)
 
-    async def aembed_documents(self, texts: List[str]) -> List[List[float]]:
+    async def aembed_documents(self, texts: list[str]) -> list[list[float]]:
         return self.embed_documents(texts)
