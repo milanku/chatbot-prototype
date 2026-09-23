@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date
 
 from bot.handlers.models import RouteHandler, RouteHandlerResult
 from bot.tx_qa.memory.models import SessionState
@@ -10,7 +10,7 @@ class TxSummaryHandler(RouteHandler):
         self._coordinator = coordinator
         
     def handle(self, *, message: str, session_state: SessionState) -> RouteHandlerResult:
-        coordinator_result = self._coordinator.answer(message, session_state=session_state, today=datetime.now())
+        coordinator_result = self._coordinator.answer(message, session_state=session_state, today=date.today())
 
         return RouteHandlerResult(
             answer_text=coordinator_result.answer_text,
