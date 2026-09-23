@@ -5,7 +5,8 @@ from dotenv import load_dotenv
 
 from bot.logging import setup_logging
 from rag_eval.artifacts.artifact_step_executor import ArtifactStepExecutor
-from rag_eval.artifacts.artifact_store import ArtifactStore, LocalArtifactStore
+from rag_eval.artifacts.artifact_store import ArtifactStore
+from rag_eval.artifacts.local_artifact_store import LocalArtifactStore
 from rag_eval.config import (
     create_pipeline_config,
 )
@@ -20,8 +21,8 @@ def main():
         help="Enable verbose logging",
     )
     args = parser.parse_args()
-    load_dotenv()
     setup_logging(verbose=args.verbose)
+    load_dotenv()
      
     config = create_pipeline_config()    
     artifact_store: ArtifactStore = LocalArtifactStore(

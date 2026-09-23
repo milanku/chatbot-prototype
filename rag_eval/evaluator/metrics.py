@@ -1,10 +1,11 @@
-from rag_eval.domain.evaluation import (
+from rag_eval.evaluator.calc import calc_precision, calc_recall
+from rag_eval.evaluator.models import (
     CountMetricAccumulator,
     MetricAccumulator,
+    ReferenceChunkIds,
+    SimulatedPipelineResult,
     TestCaseEvaluationResult,
 )
-from rag_eval.evaluator.models import ReferenceChunkIds, SimulatedPipelineResult
-from rag_eval.utils.calc import calc_precision, calc_recall
 
 
 def _add_stage_metrics(

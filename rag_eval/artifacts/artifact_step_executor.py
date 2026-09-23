@@ -3,15 +3,14 @@ from typing import Any, Callable, TypeVar
 from pydantic import BaseModel
 
 from rag_eval.artifacts.artifact_id_generator import make_artifact_id
-from rag_eval.artifacts.artifact_store import ArtifactStore
-from rag_eval.artifacts.ArtifactLineage import (
+from rag_eval.artifacts.artifact_lineage import (
     ArtifactRef,
     ArtifactType,
     TypedArtifactNode,
 )
+from rag_eval.artifacts.artifact_store import ArtifactStore
 
-ConfigT = TypeVar("ConfigT", bound=BaseModel)
-DataT = TypeVar("DataT", bound=BaseModel)
+DataT = TypeVar("DataT")
 
 class ArtifactStepExecutor:
     def __init__(
@@ -25,7 +24,7 @@ class ArtifactStepExecutor:
         self,
         *,
         artifact_type: ArtifactType,
-        artifact_class: type[DataT],
+        artifact_data_type: type[DataT],
         config: BaseModel,
         parents: list[ArtifactRef[Any]],
         compute: Callable[[], DataT],
@@ -36,7 +35,7 @@ class ArtifactStepExecutor:
             config=config
         )
         should_run = (
-            not self._artifact_store.exists(artifact_type=artifact_type, artifact_id=artifact_id)
+            not self._artifact_store.exists(artifact_type=artifact_type, artifact_id=artifact_id, artifact_data_type=artifact_data_type)
             or any(parent.rerun_downstream for parent in parents)
         )
         if should_run:
@@ -44,13 +43,14 @@ class ArtifactStepExecutor:
             self._artifact_store.save(
                 artifact_type=artifact_type,
                 artifact_id=artifact_id,
-                artifact=data
+                artifact=data,
+                artifact_data_type=artifact_data_type,
             )
         else:
             data = self._artifact_store.load(
                 artifact_type=artifact_type,
                 artifact_id=artifact_id,
-                artifact_class=artifact_class
+                artifact_data_type=artifact_data_type
             )
         current_node = TypedArtifactNode(
             artifact_id=artifact_id,

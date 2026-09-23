@@ -3,7 +3,7 @@ import json
 
 from pydantic import BaseModel
 
-from rag_eval.artifacts.ArtifactLineage import ArtifactType
+from rag_eval.artifacts.artifact_lineage import ArtifactType
 
 
 def make_artifact_id(
