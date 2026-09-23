@@ -5,13 +5,13 @@ from bot.config.reranker import RerankerConfig
 from bot.config.retriever import RetrieverConfig
 from bot.doc_qa.coordinator import DocsAnswerCoordinator
 from bot.doc_qa.indexing.models import EmbeddedDocChunk
-from bot.doc_qa.retrieval.judges.chunk_judge import ChunkJudge
 from bot.doc_qa.retrieval.judges.chunk_judge_prompt_loader import (
     ChunkJudgePromptLoader,
 )
+from bot.doc_qa.retrieval.judges.chunk_requirement_judge import ChunkRequirementJudge
 from bot.doc_qa.retrieval.judges.models import (
-    TwoWayChunkRequirement,
-    TwoWayJudgeOutputFormat,
+    ChunkRequirement,
+    ChunkRequirementJudgeOutputFormat,
 )
 from bot.doc_qa.retrieval.rerankers.factory import create_reranker
 from bot.doc_qa.retrieval.retrievers.factory import create_retriever
@@ -49,13 +49,13 @@ def create_docs_answer_handler(
     
     reranker = create_reranker(reranker_config)
     
-    required_chunk_judge = ChunkJudge[TwoWayChunkRequirement](
+    required_chunk_judge = ChunkRequirementJudge(
         llm_client=llm_client,
         relevance_judge_prompt_loader=ChunkJudgePromptLoader(
             prompt_config=chunk_judge_prompt_config,
         ),
-        pass_filter=lambda hit: hit.relevance == TwoWayChunkRequirement.REQUIRED,
-        output_format=TwoWayJudgeOutputFormat,
+        allow_judgement=frozenset([ChunkRequirement.REQUIRED]),
+        output_format=ChunkRequirementJudgeOutputFormat,
     )
     
     synthesizer = AnswerSynthesizer(

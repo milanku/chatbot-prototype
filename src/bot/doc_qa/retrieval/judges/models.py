@@ -7,33 +7,37 @@ from bot.doc_qa.indexing.models import DocChunk
 
 T = TypeVar("T", bound=StrEnum)
 
-class TwoWayChunkRequirement(StrEnum):
+class ChunkRequirement(StrEnum):
     REQUIRED = "REQUIRED"
     NOT_REQUIRED = "NOT_REQUIRED"
     
-class ThreeWayChunkRelevance(StrEnum):
+class ChunkRelevance(StrEnum):
     REQUIRED = "REQUIRED"
-    NOT_REQUIRED = "RELEVANT"
+    RELEVANT = "RELEVANT"
     IRRELEVANT = "IRRELEVANT"
 
-class JudgedChunkOutput(BaseModel, Generic[T]):
+class ChunkJudgement(BaseModel, Generic[T]):
     chunk_id: str
     relevance: T
     reason: str
 
 class JudgeOutputFormat(BaseModel, Generic[T]):
-    results: list[JudgedChunkOutput[T]]
+    results: list[ChunkJudgement[T]]
     
+class JudgedChunk(BaseModel, Generic[T]):
+    chunk: DocChunk
+    relevance: T
+    reason: str
     
 # Generate_structured_output can't depend on generics
-class TwoWayJudgeOutputFormat(
-    JudgeOutputFormat[TwoWayChunkRequirement]
+class ChunkRequirementJudgeOutputFormat(
+    JudgeOutputFormat[ChunkRequirement]
 ):
     pass
 
 
-class ThreeWayJudgeOutputFormat(
-    JudgeOutputFormat[ThreeWayChunkRelevance]
+class ChunkRelevanceJudgeOutputFormat(
+    JudgeOutputFormat[ChunkRelevance]
 ):
     pass
     

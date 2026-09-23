@@ -1,5 +1,6 @@
+from abc import ABC
 from enum import StrEnum
-from typing import Callable, Generic, TypeVar
+from typing import Generic, TypeVar
 
 from bot.doc_qa.indexing.models import DocChunk
 from bot.doc_qa.retrieval.judges.chunk_judge_prompt_loader import (
@@ -8,26 +9,27 @@ from bot.doc_qa.retrieval.judges.chunk_judge_prompt_loader import (
 )
 from bot.doc_qa.retrieval.judges.models import (
     ChunkFilter,
-    JudgedChunkOutput,
+    JudgedChunk,
     JudgeOutputFormat,
 )
 from bot.llm.client import LLMClient
+from bot.logging import log_event
 
 T = TypeVar("T", bound=StrEnum)
 
-class ChunkJudge(ChunkFilter, Generic[T]):
+class ChunkJudge(ChunkFilter, Generic[T], ABC):
     def __init__(
         self,
         llm_client: LLMClient,
         relevance_judge_prompt_loader: ChunkJudgePromptLoader,
-        pass_filter: Callable[[JudgedChunkOutput[T]], bool],
+        allow_judgement: frozenset[str],
         output_format: type[JudgeOutputFormat[T]],
         retries: int = 3
     ):
         self._llm_client = llm_client
         self._relevance_judge_prompt_loader = relevance_judge_prompt_loader
         self._retries = retries
-        self._pass_filter = pass_filter
+        self._allow_judgement = allow_judgement
         self._output_format = output_format
     
     def _check_output_validity(
@@ -44,22 +46,31 @@ class ChunkJudge(ChunkFilter, Generic[T]):
             for output in judge_output.results
         }
         # There may be duplicates -> Check also the lengths
-        return (
-            len(candidate_chunks) == len(judge_output.results)
-            and expected_ids == output_ids
-        )
-    
+        if len(candidate_chunks) != len(judge_output.results) or expected_ids != output_ids:
+            log_event(
+                event="judge_output_invalid",
+                payload={
+                    "expected_ids": expected_ids,
+                    "output_ids": output_ids,
+                    "candidate_chunks_count": len(candidate_chunks),
+                    "judge_output_count": len(judge_output.results),
+                }
+            )
+            return False
+        
+        return True
+        
     def _prepare_chunks_for_judge(
         self,
         chunks: list[DocChunk],
-    ) -> tuple[list[DocChunk], dict[str, str]]:
-        simple_to_original: dict[str, str] = {}
+    ) -> tuple[list[DocChunk], dict[str, DocChunk]]:
+        simple_to_original: dict[str, DocChunk] = {}
         judge_chunks: list[DocChunk] = []
 
         for index, chunk in enumerate(chunks, start=1):
             simple_id = f"CHUNK_{index:03}"
 
-            simple_to_original[simple_id] = chunk.chunk_id
+            simple_to_original[simple_id] = chunk
 
             judge_chunks.append(
                 chunk.model_copy(
@@ -73,7 +84,7 @@ class ChunkJudge(ChunkFilter, Generic[T]):
         self,
         question: str,
         candidate_chunks: list[DocChunk],
-    ) -> list[JudgedChunkOutput[T]]:
+    ) -> list[JudgedChunk[T]]:
         # To prevent errors in copying complex ids
         # LLM Judge should see only simple ids (CHUNK_001 etc.)
         # The mapping from simple ids to original ids will be used to translate the judge's output back to the original ids.
@@ -100,8 +111,8 @@ class ChunkJudge(ChunkFilter, Generic[T]):
         )
    
         return [
-            JudgedChunkOutput(
-                chunk_id=simple_to_original[output.chunk_id],
+            JudgedChunk(
+                chunk=simple_to_original[output.chunk_id],
                 relevance=output.relevance,
                 reason=output.reason,
             )
@@ -120,4 +131,7 @@ class ChunkJudge(ChunkFilter, Generic[T]):
             question=question,
             candidate_chunks=candidate_chunks
         )
-        return [candidates[hit.chunk_id] for hit in judged_candidates if self._pass_filter(hit)]
+        return [
+            candidates[hit.chunk.chunk_id]
+            for hit in judged_candidates
+            if hit.relevance in self._allow_judgement]
