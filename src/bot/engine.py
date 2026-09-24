@@ -2,8 +2,6 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from attr import asdict
-
 from bot.bot_models import BotResponse
 from bot.composition.doc_qa import create_docs_answer_handler
 from bot.composition.explain_tx_summary import create_explain_tx_summary_handler
@@ -104,7 +102,7 @@ class ChatbotEngine:
                 event="engine.finish",
                 payload={
                     "answer": result.answer_text,
-                    "doc_references": [asdict(ref) for ref in result.references]
+                    "doc_references": result.references,
                 },
             )
 
