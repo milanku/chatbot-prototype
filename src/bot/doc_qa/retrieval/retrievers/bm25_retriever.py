@@ -6,7 +6,6 @@ from langchain_core.documents import Document
 from bot.config.retriever import BM25RetrieverConfig
 from bot.doc_qa.indexing.models import DocChunk
 from bot.doc_qa.retrieval.retrievers.models import ChunksRetriever
-from bot.logging import log_event
 
 
 class BM25ChunksRetriever(ChunksRetriever):
