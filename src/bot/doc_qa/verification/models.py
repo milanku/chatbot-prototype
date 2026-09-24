@@ -5,14 +5,16 @@ from pydantic import BaseModel
 from bot.doc_qa.indexing.models import DocChunk
 
 
-class ExtractedClaim(BaseModel):
-    claim_id: str | None
+class LLMExtractedClaim(BaseModel):
     claim: str
     source_sentence_ids: list[str] | None = None
     source_text: str | None = None
-    
+
 class ExtractionResult(BaseModel):
-    claims: list[ExtractedClaim]
+    claims: list[LLMExtractedClaim]
+    
+class ExtractedClaim(LLMExtractedClaim):
+    claim_id: str | None = None
     
 class SentenceForExtraction(BaseModel):
     chunk_id: str

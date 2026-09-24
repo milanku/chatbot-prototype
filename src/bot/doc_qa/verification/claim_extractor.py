@@ -61,10 +61,8 @@ class ClaimExtractor:
         
         return [
             ExtractedClaim(
+                **claim.model_dump(),
                 claim_id=f"CLAIM_{i:03d}",
-                claim=claim.claim,
-                source_sentence_ids=claim.source_sentence_ids,
-                source_text=claim.source_text
             )
             for i, claim in enumerate(llm_structured_response.claims)
         ]
