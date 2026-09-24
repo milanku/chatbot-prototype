@@ -1,11 +1,10 @@
 import numpy as np
-from langchain_core.embeddings import Embeddings
 from numpy.typing import NDArray
 from ragas.embeddings import BaseRagasEmbeddings
 from sentence_transformers import SentenceTransformer
 
 
-class LocalEmbeddings(BaseRagasEmbeddings, Embeddings):
+class LocalEmbeddings(BaseRagasEmbeddings):
     def __init__(self, sentence_transformer: SentenceTransformer):
         self._model = sentence_transformer
         
