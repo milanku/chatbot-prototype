@@ -16,9 +16,8 @@
     ],
     "evidence_chunks": [
       {
-        "id": "E001",
+        "chunk_id": "E001",
         "content": "If a card is lost, the customer should immediately freeze the card in the app.",
-        "score": 0.95,
         "doc_reference": {
           "heading_path": ["Mock Title", "Mock Title 2"],
           "file_name": "mock.md"
@@ -48,9 +47,8 @@
     ],
     "evidence_chunks": [
       {
-        "id": "E001",
+        "chunk_id": "E001",
         "content": "A replacement-card fee may apply unless the loss was caused by bank error, fraud, expiry, or another fee-waiver circumstance.",
-        "score": 0.95,
         "doc_reference": {
           "heading_path": ["Mock Title", "Mock Title 2"],
           "file_name": "mock.md"

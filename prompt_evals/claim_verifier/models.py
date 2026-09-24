@@ -1,10 +1,7 @@
 from pydantic import BaseModel
 
-from bot.models.doc_qa.chunks import DocChunk
-from bot.doc_qa.verifier.models import (
-    ClaimVerificationStatus,
-    ExtractedClaim,
-)
+from bot.doc_qa.indexing.models import DocChunk
+from bot.doc_qa.verification.models import ClaimVerificationStatus, ExtractedClaim
 
 
 class ClaimVerifierTestClaim(ExtractedClaim, BaseModel):

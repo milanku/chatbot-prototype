@@ -12,13 +12,14 @@
         },
         "evidence_chunks": [
           {
-            "id": "E001",
-            "score": 0.95,
             "doc_reference": {
               "file_name": "mock.md",
               "heading_path": ["Mock Title", "Mock Title 2"]
             },
-            "content": "If a card is lost, the customer should immediately freeze the card in the app."
+            "content": "If a card is lost, the customer should immediately freeze the card in the app.",
+            "chunk_id": "E001",
+            "retrieval_score": null,
+            "reranker_score": null
           }
         ],
         "reason": "The evidence explicitly states that a lost card should be immediately frozen in the app.",
@@ -35,16 +36,17 @@
         },
         "evidence_chunks": [
           {
-            "id": "E001",
-            "score": 0.95,
             "doc_reference": {
               "file_name": "mock.md",
               "heading_path": ["Mock Title", "Mock Title 2"]
             },
-            "content": "If a card is lost, the customer should immediately freeze the card in the app."
+            "content": "If a card is lost, the customer should immediately freeze the card in the app.",
+            "chunk_id": "E001",
+            "retrieval_score": null,
+            "reranker_score": null
           }
         ],
-        "reason": "The evidence explicitly states that the card should be immediately frozen, contradicting a wait of 24 hours.",
+        "reason": "The evidence states the card should be immediately frozen, contradicting a 24-hour wait.",
         "actual_verification_status": "CONTRADICTED",
         "correct": true
       }
@@ -64,16 +66,17 @@
         },
         "evidence_chunks": [
           {
-            "id": "E001",
-            "score": 0.95,
             "doc_reference": {
               "file_name": "mock.md",
               "heading_path": ["Mock Title", "Mock Title 2"]
             },
-            "content": "A replacement-card fee may apply unless the loss was caused by bank error, fraud, expiry, or another fee-waiver circumstance."
+            "content": "A replacement-card fee may apply unless the loss was caused by bank error, fraud, expiry, or another fee-waiver circumstance.",
+            "chunk_id": "E001",
+            "retrieval_score": null,
+            "reranker_score": null
           }
         ],
-        "reason": "The evidence says a fee may apply but does not establish that it will definitely apply.",
+        "reason": "The evidence states a replacement-card fee may apply, not that it will apply.",
         "actual_verification_status": "NOT_SUPPORTED",
         "correct": true
       },
@@ -87,16 +90,17 @@
         },
         "evidence_chunks": [
           {
-            "id": "E001",
-            "score": 0.95,
             "doc_reference": {
               "file_name": "mock.md",
               "heading_path": ["Mock Title", "Mock Title 2"]
             },
-            "content": "A replacement-card fee may apply unless the loss was caused by bank error, fraud, expiry, or another fee-waiver circumstance."
+            "content": "A replacement-card fee may apply unless the loss was caused by bank error, fraud, expiry, or another fee-waiver circumstance.",
+            "chunk_id": "E001",
+            "retrieval_score": null,
+            "reranker_score": null
           }
         ],
-        "reason": "The evidence explicitly states that a replacement-card fee may apply unless there are fee-waiver circumstances such as bank error, fraud, or expiry related loss or other exceptions.",
+        "reason": "The evidence explicitly states that a replacement-card fee may apply unless a fee-waiver circumstance applies.",
         "actual_verification_status": "SUPPORTED",
         "correct": true
       },
@@ -110,16 +114,17 @@
         },
         "evidence_chunks": [
           {
-            "id": "E001",
-            "score": 0.95,
             "doc_reference": {
               "file_name": "mock.md",
               "heading_path": ["Mock Title", "Mock Title 2"]
             },
-            "content": "A replacement-card fee may apply unless the loss was caused by bank error, fraud, expiry, or another fee-waiver circumstance."
+            "content": "A replacement-card fee may apply unless the loss was caused by bank error, fraud, expiry, or another fee-waiver circumstance.",
+            "chunk_id": "E001",
+            "retrieval_score": null,
+            "reranker_score": null
           }
         ],
-        "reason": "The evidence explicitly states that a replacement-card fee may apply, contradicting the claim that it will never apply.",
+        "reason": "The evidence establishes that a replacement-card fee may apply, so it will not never apply.",
         "actual_verification_status": "CONTRADICTED",
         "correct": true
       }

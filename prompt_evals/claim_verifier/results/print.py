@@ -54,7 +54,7 @@ def print_results(
         for claim in batch.failed_claims
     ]
     
-    print_template = Path("prompt_evals/claim_verifier/evaluation_print_template.txt").read_text(
+    print_template = Path("prompt_evals/claim_verifier/results/evaluation_print_template.txt").read_text(
         encoding="utf-8"
     )
     
