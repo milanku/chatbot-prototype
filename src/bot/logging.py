@@ -85,6 +85,7 @@ def log_event(*, event: str, payload: dict[str, Any]) -> None:
     
     record: dict[str, Any] = {
         "ts": datetime.now(timezone.utc).isoformat(),
+        "session_id": get_current_session_id(),
         "trace_id": get_current_trace_id(),
         "event": event,
         "payload": payload,

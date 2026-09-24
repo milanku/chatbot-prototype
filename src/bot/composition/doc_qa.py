@@ -74,7 +74,6 @@ def create_docs_answer_handler(
     )
 
     answer_verifier = AnswerVerifier(
-        llm_client=llm_client,
         claim_extractor=claim_extractor,
         claim_verifier=claims_verifier,
     )

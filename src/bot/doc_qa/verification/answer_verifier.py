@@ -9,7 +9,6 @@ from bot.doc_qa.verification.models import (
     VerifiedClaim,
 )
 from bot.doc_qa.verification.verifier import ClaimsVerifier
-from bot.llm.client import LLMClient
 
 
 @dataclass
@@ -21,11 +20,9 @@ class AnswerVerifier:
     def __init__(
         self,
         *,
-        llm_client: LLMClient,
         claim_extractor: ClaimExtractor,
         claim_verifier: ClaimsVerifier
     ):
-        self._llm_client = llm_client
         self._claim_extractor = claim_extractor
         self._claim_verifier = claim_verifier
         
