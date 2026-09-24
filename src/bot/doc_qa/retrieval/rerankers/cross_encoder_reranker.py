@@ -28,15 +28,26 @@ class CrossEncoderReranker(Reranker):
 
         return np.asarray(scores, dtype=np.float64)
     
-    def rerank(self, query: str, documents: list[DocChunk]) -> list[DocChunk]:
-        pairs = [(query, doc.content) for doc in documents]
+    def rerank(self, query: str, chunks: list[DocChunk]) -> list[DocChunk]:
+        query_chunk_pairs = [
+            (query, doc.content)
+            for doc in chunks
+        ]
         
-        scores = self._compute_scores(pairs)
+        scores = self._compute_scores(query_chunk_pairs)
         
-        for doc, score in zip(documents, scores, strict=True):
-            doc.reranker_score = float(score)
+        scored_docs = [
+            doc.model_copy(update={"reranker_score": float(score)})
+            for doc, score in zip(chunks, scores, strict=True)
+        ]
         
-        return sorted(documents, key=lambda doc: doc.reranker_score or 0, reverse=True)[:self._config.top_k]
+        return sorted(
+            scored_docs,
+            key=lambda doc: doc.reranker_score
+                if doc.reranker_score is not None
+                else float('-inf'),
+            reverse=True
+        )[:self._config.top_k]
 
 
         
