@@ -1,6 +1,5 @@
-from dataclasses import dataclass
-
-from bot.doc_qa.indexing.models import DocChunk, DocReference
+from bot.doc_qa.indexing.models import DocChunk
+from bot.doc_qa.models import DocsAnswerResult, DocsAnswerStatus
 from bot.doc_qa.retrieval.judges.models import ChunkFilter
 from bot.doc_qa.retrieval.rerankers.cross_encoder_reranker import Reranker
 from bot.doc_qa.retrieval.retrievers.models import ChunksRetriever
@@ -9,11 +8,6 @@ from bot.doc_qa.verification.answer_verifier import AnswerVerification, AnswerVe
 from bot.doc_qa.verification.models import ClaimVerificationStatus
 from bot.logging import log_event
 
-
-@dataclass
-class DocsAnswerResult:
-    answer_text: str
-    references: list[DocReference]
 
 class DocsAnswerCoordinator:
     def __init__(
@@ -50,6 +44,7 @@ class DocsAnswerCoordinator:
             payload={"question": question},
         )
         return DocsAnswerResult(
+            status=DocsAnswerStatus.INSUFFICIENT_EVIDENCE,
             answer_text="I couldn't find enough information in the documentation to answer your question.",
             references=[]
         )
@@ -63,6 +58,7 @@ class DocsAnswerCoordinator:
     ) -> DocsAnswerResult:
         if(draft_verification.is_supported):
             return DocsAnswerResult(
+                status=DocsAnswerStatus.ANSWERED,
                 answer_text=draft_answer,
                 references=[hit.doc_reference for hit in required_chunks]
             )
@@ -77,7 +73,9 @@ class DocsAnswerCoordinator:
                         "unverified_claim": claim,
                     }
                 )
+                
         return DocsAnswerResult(
+            status=DocsAnswerStatus.DRAFT_VERIFICATION_FAIL,
             answer_text="I am not able to provide unambiguous answer to your question based on the available documentation.",
             references=[]
         )

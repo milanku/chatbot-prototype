@@ -11,6 +11,8 @@ class DocsAnswerHandler(RouteHandler):
         answer: DocsAnswerResult = self._coordinator.answer(
             question=message,
         )
+        
+        # FUTURE: Add translations/localization for answer.status values and supported languages
 
         return RouteHandlerResult(
             answer_text=answer.answer_text,
