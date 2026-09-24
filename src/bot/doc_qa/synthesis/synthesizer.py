@@ -33,4 +33,5 @@ class AnswerSynthesizer:
             prompt=user_prompt,
             system_instructions=system_prompt,
         )
+        
         return synthesized_answer
