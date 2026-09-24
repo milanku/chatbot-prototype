@@ -23,3 +23,4 @@ class PromptLoader(ABC, Generic[PromptInputT]):
     @abstractmethod
     def build_user_prompt(self, input: PromptInputT) -> str:
         ...
+        

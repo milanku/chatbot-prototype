@@ -14,7 +14,7 @@ from bot.doc_qa.indexing.models import Chunker
 from bot.doc_qa.indexing.store_persistor import EmbeddingsStoreRepository
 from bot.doc_qa.retrieval.embedders.factory import create_embedder
 from bot.engine import ChatbotEngine, EngineDeps
-from bot.engine_model import EngineResponse
+from bot.engine_models import EngineResponse
 from bot.llm.client import LLMClient
 from bot.llm.factory import create_llm
 from bot.logging import setup_logging

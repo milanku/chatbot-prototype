@@ -5,7 +5,9 @@ from bot.tx_qa.parsing.explain_summary_parser import ExplainTxSummaryParser
 from bot.tx_qa.parsing.explain_summary_parser_prompt_loader import (
     ExplainTxSummaryParserPromptLoader,
 )
-from bot.tx_qa.tx_summary.explain_tx_summary_coordinator import ExplainTxSummaryCoordinator
+from bot.tx_qa.tx_summary.explain_tx_summary_coordinator import (
+    ExplainTxSummaryCoordinator,
+)
 
 
 def create_explain_tx_summary_handler(
