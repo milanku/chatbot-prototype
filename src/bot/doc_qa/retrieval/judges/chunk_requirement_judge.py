@@ -19,7 +19,7 @@ class ChunkRequirementJudge(ChunkJudge[ChunkRequirement]):
         super().__init__(
             llm_client=llm_client,
             relevance_judge_prompt_loader=relevance_judge_prompt_loader,
-            allow_judgement=allow_judgement,
+            judgement_pass_filter=allow_judgement,
             output_format=output_format,
             retries=retries
         )
