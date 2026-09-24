@@ -13,12 +13,21 @@ class ClaimVerifierPromptInput:
     
 class ClaimVerifierPromptLoader(PromptLoader[ClaimVerifierPromptInput]):
     def build_user_prompt(self, input: ClaimVerifierPromptInput) -> str:
-        claims_segment = "\n\n".join(f"Claim ID: [{claim.claim_id}]\nContent: {claim.claim}" for claim in input.claims)
-        evidence_segment = "\n\n".join(f"Evidence ID: [{chunk.chunk_id}]\nContent: {chunk.content}" for chunk in input.retrieved_evidence_chunks)
+        claims_segment = "\n\n".join(
+            f"Claim ID: [{claim.claim_id}]\n"
+            f"Content: {claim.claim}"
+            for claim in input.claims
+        )
+        
+        evidence_segment = "\n\n".join(
+            f"Evidence ID: [{chunk.chunk_id}]\n"
+            f"Content: {chunk.content}"
+            for chunk in input.retrieved_evidence_chunks
+        )
 
         return (
             "Verify the following claims based on the retrieved evidence chunks.\n\n"
-            f"USER QUERY:{input.user_query!r}\n"
-            f"CLAIMS:{claims_segment}\n"
-            f"RETRIEVED EVIDENCE CHUNKS:{evidence_segment}\n"
+            f"USER QUERY:\n{input.user_query!r}\n"
+            f"CLAIMS:\n{claims_segment}\n"
+            f"RETRIEVED EVIDENCE CHUNKS:\n{evidence_segment}\n"
         )

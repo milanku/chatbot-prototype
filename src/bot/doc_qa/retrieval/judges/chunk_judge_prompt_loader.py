@@ -11,12 +11,14 @@ class ChunkJudgePromptInput:
     
 class ChunkJudgePromptLoader(PromptLoader[ChunkJudgePromptInput]):
     def build_user_prompt(self, input: ChunkJudgePromptInput) -> str:
-        chunks = "\n\n".join(f"Chunk ID: {input_chunk.chunk_id}\nContent: {input_chunk.content}" for input_chunk in input.candidate_chunks)
+        chunks = "\n\n".join(
+            f"Chunk ID: {input_chunk.chunk_id}\n"
+            f"Content: {input_chunk.content}"
+            for input_chunk in input.candidate_chunks
+        )
         
         return (
             "Judge the relevance of the following chunks to the user's question.\n\n"
-            f"User Question:\n"
-            f"{input.question}\n\n"
-            f"Chunks:\n\n"
-            f"{chunks}\n"
+            f"User Question:\n{input.question}\n\n"
+            f"Chunks:\n\n{chunks}\n"
         )

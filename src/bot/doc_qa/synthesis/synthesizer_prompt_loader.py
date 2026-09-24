@@ -17,5 +17,5 @@ class SynthesizerPromptLoader(PromptLoader[SynthesizerPromptInput]):
         return (
             f"Answer the user's question based on the following relevant information retrieved from the documents:\n\n"
             f"Question: {question}\n\n"
-            f"Retrieved information: \n{context_block}\n\n"
+            f"Retrieved information:\n{context_block}\n\n"
         )

@@ -10,9 +10,13 @@ class QuestionQualityJudgePromptInput:
     
 class QuestionQualityJudgePromptLoader(PromptLoader[QuestionQualityJudgePromptInput]):
     def build_user_prompt(self, input: QuestionQualityJudgePromptInput) -> str:
-        questions = "\n\n".join(f"Question ID: {input_question.id}\nContent: {input_question.content}" for input_question in input.candidate_questions)
+        questions = "\n\n".join(
+            f"Question ID: {input_question.id}\n"
+            f"Content: {input_question.content}"
+            for input_question in input.candidate_questions
+        )
         
         return (
-            "Judge the quality of the following questions:\n\n"
+            f"Judge the quality of the following questions:\n\n"
             f"{questions}\n"
         )

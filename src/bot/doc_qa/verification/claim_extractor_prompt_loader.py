@@ -10,7 +10,11 @@ class ClaimExtractorPromptInput:
     
 class ClaimExtractorPromptLoader(PromptLoader[ClaimExtractorPromptInput]):
     def build_user_prompt(self, input: ClaimExtractorPromptInput) -> str:
-        chunks = "\n\n".join(f"Sentence ID: [{sentence.chunk_id}]\nContent: {sentence.content}" for sentence in input.sentences)
+        chunks = "\n\n".join(
+            f"Sentence ID: [{sentence.chunk_id}]\n"
+            f"Content: {sentence.content}"
+            for sentence in input.sentences
+        )
         
         return (
             "Extract the independently verifiable claims from the following sentences.\n\n"

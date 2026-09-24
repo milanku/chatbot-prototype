@@ -21,7 +21,10 @@ class RouterPromptLoader(PromptLoader[RouterPromptInput]):
     
     def build_system_instructions(self, allowed_routes: list[str]) -> str:
         allowed_routes_str = "\n\n".join(allowed_routes)
-        allowed_routes_descriptions_str = "\n\n".join(ROUTE_DESCRIPTIONS_PATHS[Route(route)].read_text(encoding="utf-8") for route in allowed_routes)
+        allowed_routes_descriptions_str = "\n\n".join(
+            ROUTE_DESCRIPTIONS_PATHS[Route(route)].read_text(encoding="utf-8")
+            for route in allowed_routes
+        )
         allowed_routes_list_with_commas = ", ".join(allowed_routes)
         
         return self.load_system_instructions().format(
@@ -31,4 +34,7 @@ class RouterPromptLoader(PromptLoader[RouterPromptInput]):
         )
     
     def build_user_prompt(self, input: RouterPromptInput) -> str:
-        return f"Classify this message.\n\nUser message: {input.message}"
+        return (
+            f"Classify this message.\n\n"
+            f"User message:\n{input.message}"
+        )
