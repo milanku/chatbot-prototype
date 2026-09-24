@@ -2,8 +2,8 @@ from datetime import date
 
 import pytest
 
-from bot.models.tx_qa.query import DateRange
 from bot.tx_qa.timeframe.calendar_utils import (
+    DateRange,
     day_range,
     month_range,
     quarter_range,

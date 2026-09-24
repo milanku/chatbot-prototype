@@ -3,7 +3,7 @@ from unittest.mock import call, patch
 
 import pytest
 
-from bot.models.tx_qa.query import (
+from bot.tx_qa.timeframe.models import (
     RawRangeEndpoint,
     RollingRangeMode,
     RollingRangeUnit,
@@ -179,7 +179,7 @@ def test_dispatches_to_correct_resolver_with_expected_arguments(
     )
 
     with patch(
-        f"bot.routes.tx_qa.timeframe.resolve.{resolver_name}",
+        f"bot.tx_qa.timeframe.resolve.{resolver_name}",
         autospec=True,
         return_value=SENTINEL_RANGE,
     ) as resolver:
@@ -352,7 +352,7 @@ def test_does_not_dispatch_when_required_data_is_missing(
 
     with (
         patch(
-            f"bot.routes.tx_qa.timeframe.resolve.{resolver_name}",
+            f"bot.tx_qa.timeframe.resolve.{resolver_name}",
             autospec=True,
         ) as resolver,
     ):
@@ -384,7 +384,7 @@ def test_propagates_none_from_resolver() -> None:
 
     with (
         patch(
-            "bot.routes.tx_qa.timeframe.resolve.resolve_named_month",
+            "bot.tx_qa.timeframe.resolve.resolve_named_month",
             autospec=True,
             return_value=None,
         ) as resolver,

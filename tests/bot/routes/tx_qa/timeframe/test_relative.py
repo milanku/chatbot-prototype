@@ -2,7 +2,7 @@ from datetime import date
 
 import pytest
 
-from bot.models.tx_qa.query import DateRange
+from bot.tx_qa.timeframe.calendar_utils import DateRange
 from bot.tx_qa.timeframe.relative import (
     resolve_relative_day,
     resolve_relative_month,
