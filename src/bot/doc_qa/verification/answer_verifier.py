@@ -45,8 +45,10 @@ class AnswerVerifier:
             evidence_chunks=source_evidence,
         )
     
-        is_supported = all(claim.verification_status == ClaimVerificationStatus.SUPPORTED for claim in verified_claims)
         return AnswerVerification(
-            is_supported=is_supported,
+            is_supported=all(
+                claim.verification_status == ClaimVerificationStatus.SUPPORTED
+                for claim in verified_claims
+            ),
             verified_claims=verified_claims,
         )
