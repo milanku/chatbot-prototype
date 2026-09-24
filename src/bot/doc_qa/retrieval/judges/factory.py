@@ -6,6 +6,8 @@ from bot.config.judge import (
     JudgeConfig,
 )
 from bot.doc_qa.retrieval.judges.chunk_judge_prompt_loader import ChunkJudgePromptLoader
+from bot.doc_qa.retrieval.judges.chunk_relevance_judge import ChunkRelevanceJudge
+from bot.doc_qa.retrieval.judges.chunk_requirement_judge import ChunkRequirementJudge
 from bot.doc_qa.retrieval.judges.models import JudgeOutputFormat
 from bot.llm.client import LLMClient
 
@@ -16,12 +18,9 @@ def create_chunk_judge(
     llm_client: LLMClient,
     relevance_judge_prompt_loader: ChunkJudgePromptLoader,
     allow_judgement: frozenset[str],
-    ):
+):
     match config:
         case ChunkRequirementJudgeConfig():
-            from bot.doc_qa.retrieval.judges.chunk_requirement_judge import (
-                ChunkRequirementJudge,
-            )
             return ChunkRequirementJudge(
                 llm_client=llm_client,
                 relevance_judge_prompt_loader=relevance_judge_prompt_loader,
@@ -30,9 +29,6 @@ def create_chunk_judge(
                 retries=config.retries
             )
         case ChunkRelevanceJudgeConfig():
-            from bot.doc_qa.retrieval.judges.chunk_relevance_judge import (
-                ChunkRelevanceJudge,
-            )
             return ChunkRelevanceJudge(
                 llm_client=llm_client,
                 relevance_judge_prompt_loader=relevance_judge_prompt_loader,
