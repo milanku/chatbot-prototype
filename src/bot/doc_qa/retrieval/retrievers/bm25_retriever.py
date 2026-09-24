@@ -6,6 +6,7 @@ from langchain_core.documents import Document
 from bot.config.retriever import BM25RetrieverConfig
 from bot.doc_qa.indexing.models import DocChunk
 from bot.doc_qa.retrieval.retrievers.models import ChunksRetriever
+from bot.logging import log_event
 
 
 class BM25ChunksRetriever(ChunksRetriever):
@@ -18,7 +19,7 @@ class BM25ChunksRetriever(ChunksRetriever):
     ):
         self._config = config
         self._doc_chunks = doc_chunks
-        self._doc_chunks_by_content = {chunk.content: chunk for chunk in self._doc_chunks}
+        self._doc_chunks_by_id = {chunk.chunk_id: chunk for chunk in self._doc_chunks}
         self._retriever = retriever
         
     @classmethod
@@ -52,10 +53,6 @@ class BM25ChunksRetriever(ChunksRetriever):
         retrieved_chunks = self._retriever.invoke(question)
         
         return [
-            DocChunk(
-                chunk_id=chunk.metadata["chunk_id"],
-                content=chunk.page_content,
-                doc_reference=self._doc_chunks_by_content[chunk.page_content].doc_reference
-            )
+            self._doc_chunks_by_id[chunk.metadata["chunk_id"]]
             for chunk in retrieved_chunks
         ][:self._config.top_k]
