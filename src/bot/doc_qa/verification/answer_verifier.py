@@ -46,9 +46,12 @@ class AnswerVerifier:
         )
     
         return AnswerVerification(
-            is_supported=all(
-                claim.verification_status == ClaimVerificationStatus.SUPPORTED
-                for claim in verified_claims
+            is_supported=(
+                bool(verified_claims)
+                and all(
+                    claim.verification_status == ClaimVerificationStatus.SUPPORTED
+                    for claim in verified_claims
+                )
             ),
             verified_claims=verified_claims,
         )
