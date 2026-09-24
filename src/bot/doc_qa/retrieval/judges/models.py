@@ -35,7 +35,6 @@ class ChunkRequirementJudgeOutputFormat(
 ):
     pass
 
-
 class ChunkRelevanceJudgeOutputFormat(
     JudgeOutputFormat[ChunkRelevance]
 ):
