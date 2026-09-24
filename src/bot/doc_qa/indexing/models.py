@@ -16,10 +16,10 @@ class DocChunk(BaseModel):
     retrieval_score: float | None = None
     reranker_score: float | None = None
     
-class EmbeddedDocChunk(DocChunk, BaseModel):
+class EmbeddedDocChunk(DocChunk):
     embedding: list[float]
     
-        
+
 class Chunker(Protocol):    
     def split(self, text: str, file_name: str) -> list[DocChunk]:
         ...
