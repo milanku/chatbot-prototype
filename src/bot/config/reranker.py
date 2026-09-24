@@ -1,6 +1,6 @@
 from enum import StrEnum
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class SupportedLocalReranker(StrEnum):
@@ -9,6 +9,6 @@ class SupportedLocalReranker(StrEnum):
 class LocalRerankerConfig(BaseModel):
     model: SupportedLocalReranker
     use_fp16: bool
-    top_k: int
+    top_k: int = Field(gt=0)
 
 RerankerConfig = LocalRerankerConfig
