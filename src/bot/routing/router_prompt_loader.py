@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from pathlib import Path
 
-from bot.models.prompts import PromptLoader
+from bot.prompts.models import PromptLoader
 from bot.routing.models import Route
 
 

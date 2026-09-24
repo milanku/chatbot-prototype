@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 from bot.doc_qa.verification.models import SentenceForExtraction
-from bot.models.prompts import PromptLoader
+from bot.prompts.models import PromptLoader
 
 
 @dataclass(frozen=True)

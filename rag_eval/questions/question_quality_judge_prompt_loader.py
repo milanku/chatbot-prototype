@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from bot.models.prompts import PromptLoader
+from bot.prompts.models import PromptLoader
 from rag_eval.questions.models import Question
 
 
