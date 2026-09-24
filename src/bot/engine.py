@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-from dataclasses import asdict
-from uuid import uuid4
+from datetime import datetime
+
+from attr import asdict
 
 from bot.bot_models import BotResponse
 from bot.composition.doc_qa import create_docs_answer_handler
@@ -12,11 +13,11 @@ from bot.engine_models import EngineDeps, EngineResponse
 from bot.handlers.models import RouteHandler, RouteHandlerResult
 from bot.handlers.out_of_scope import OutOfScopeHandler
 from bot.handlers.unknown_route import UnknownRouteHandler
-from bot.logging import log_event
+from bot.logging import generate_id, log_event
 from bot.routing.models import Route, RouterDecision
 from bot.routing.router import RouteSelector
 from bot.routing.router_prompt_loader import RouterPromptLoader
-from bot.trace_context import bind_trace_id, get_current_session_id
+from bot.trace_context import bind_trace_id
 from bot.tx_qa.memory.models import SessionState
 
 
@@ -62,14 +63,13 @@ class ChatbotEngine:
         *,
         session_state: SessionState
     ) -> EngineResponse:
-        trace_id = uuid4().hex
-        session_id = get_current_session_id()
+        current_time = datetime.now()
+        trace_id = generate_id(current_time)
         
         with bind_trace_id(trace_id):
             log_event(
                 event="engine.start",
                 payload={
-                    "session_id": session_id,
                     "message": message,
                 }
             )
@@ -102,7 +102,10 @@ class ChatbotEngine:
 
             log_event(
                 event="engine.finish",
-                payload={"doc_references": [asdict(ref) for ref in result.references]},
+                payload={
+                    "answer": result.answer_text,
+                    "doc_references": [asdict(ref) for ref in result.references]
+                },
             )
 
         bot_response = BotResponse(answer=result.answer_text, doc_references=result.references, trace_id=trace_id)

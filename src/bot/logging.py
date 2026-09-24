@@ -5,12 +5,16 @@ import enum
 import json
 import logging
 from datetime import date, datetime, timezone
+from pathlib import Path
 from typing import Any, Protocol, cast, runtime_checkable
 
-from bot.trace_context import get_current_trace_id
+from uuid_utils import uuid4
+
+from bot.trace_context import get_current_session_id, get_current_trace_id
 
 _json_indent: int | None = None
 
+LOGS_DIR = Path("logs")
 
 @runtime_checkable
 class _SupportsToDict(Protocol):
@@ -64,29 +68,44 @@ def _default_serializer(o: Any) -> Any:
     # Last resort
     return str(o)
 
+def generate_id(time: datetime) -> str:
+    return f"{time.strftime('%Y-%m-%d_%H:%M:%S')}_{uuid4().hex[:4]}"
 
-def log_event(*, event: str, payload: dict[str, Any], trace_id: str | None = None) -> None:
-    resolved_trace_id = trace_id or get_current_trace_id() or "missing-trace-id"
+def get_current_log_path() -> Path:
+    session_id = get_current_session_id()
+    trace_id = get_current_trace_id()
+    
+    if(session_id and trace_id):
+        return LOGS_DIR / session_id / f"{trace_id}.log"
+    return LOGS_DIR / "default.log"
+
+def log_event(*, event: str, payload: dict[str, Any]) -> None:
+    path = get_current_log_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    
     record: dict[str, Any] = {
         "ts": datetime.now(timezone.utc).isoformat(),
-        "trace_id": resolved_trace_id,
+        "trace_id": get_current_trace_id(),
         "event": event,
         "payload": payload,
     }
-
+    text = ""
+    
     try:
-        text = json.dumps(
+        record_dump = json.dumps(
             record,
             ensure_ascii=False,
             default=_default_serializer,
             indent=_json_indent,
         )
+        with path.open("a", encoding="utf-8") as f:
+            f.write(record_dump + "\n")
     except TypeError:
-        # Very defensive: fall back to a best-effort string representation
+        # Fallback to a best-effort string representation
         try:
             record["payload"] = str(payload)
             text = json.dumps(record, ensure_ascii=False, indent=_json_indent)
         except Exception:
-            text = f"{record['ts']} {resolved_trace_id} {event} (unserializable payload)"
+            text = f"{record['ts']} {get_current_trace_id()} {event} (unserializable payload)"
 
-    logging.getLogger("bot").debug(f"\n\n{text}")
+    logging.getLogger("bot").debug(f"\n\n{record if 'record' in locals() else text}")

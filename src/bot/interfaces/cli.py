@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from uuid import uuid4
+from datetime import datetime
 
 import typer
 from dotenv import load_dotenv
@@ -17,7 +17,7 @@ from bot.engine import ChatbotEngine, EngineDeps
 from bot.engine_models import EngineResponse
 from bot.llm.client import LLMClient
 from bot.llm.factory import create_llm
-from bot.logging import setup_logging
+from bot.logging import generate_id, setup_logging
 from bot.trace_context import bind_session_id, get_current_session_id
 from bot.tx_qa.indexing.transactions_repository import (
     TransactionsRepositoryFromJsonMock,
@@ -30,11 +30,12 @@ app = typer.Typer(add_completion=False)
 
 @app.callback(invoke_without_command=True)
 def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable verbose logging")) -> None:
-    setup_logging(verbose=verbose)
     load_dotenv()
     
-    session_id = uuid4().hex
+    current_time = datetime.now()
+    session_id = generate_id(current_time)
     session_store: SessionStore = InMemorySessionStore()
+    setup_logging(verbose=verbose)
     
     llm_client: LLMClient = create_llm(BOT_CONFIG.llm)
     embedder: Embeddings = create_embedder(BOT_CONFIG.embedder)
