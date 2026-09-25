@@ -28,7 +28,6 @@ class ClaimVerifierEvaluator:
                     claim_id=case.claim_id,
                     claim=case.claim,
                     source_text=case.source_text,
-                    source_sentence_ids=case.source_sentence_ids,
                 )
                 for case in batch.claims
             ],
