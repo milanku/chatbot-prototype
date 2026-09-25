@@ -54,17 +54,11 @@ def _default_serializer(o: Any) -> Any:
 
     # Objects providing to_dict
     if isinstance(o, _SupportsToDict):
-        try:
-            return o.to_dict()
-        except Exception:
-            pass
+        return o.to_dict()
 
     # Fallback to __dict__ when available
     if hasattr(o, "__dict__"):
-        try:
-            return o.__dict__
-        except Exception:
-            pass
+        return o.__dict__
 
     # Last resort
     return str(o)
@@ -83,6 +77,29 @@ def get_current_log_path() -> Path:
     return LOGS_DIR / "default.log"
 
 
+def _serialize_record(record: dict[str, Any]) -> str:
+    try:
+        return json.dumps(
+            record,
+            ensure_ascii=False,
+            default=_default_serializer,
+            indent=_json_indent,
+        )
+    except Exception as exc:
+        return json.dumps(
+            {
+                "ts": record["ts"],
+                "session_id": record["session_id"],
+                "trace_id": record["trace_id"],
+                "event": "logging.serialization_failed",
+                "original_event": record["event"],
+                "error": repr(exc),
+            },
+            ensure_ascii=False,
+            indent=_json_indent,
+        )
+
+
 def log_event(*, event: str, payload: dict[str, Any]) -> None:
     path = get_current_log_path()
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -94,23 +111,10 @@ def log_event(*, event: str, payload: dict[str, Any]) -> None:
         "event": event,
         "payload": payload,
     }
-    text = ""
 
-    try:
-        record_dump = json.dumps(
-            record,
-            ensure_ascii=False,
-            default=_default_serializer,
-            indent=_json_indent,
-        )
-        with path.open("a", encoding="utf-8") as f:
-            f.write(record_dump + "\n")
-    except TypeError:
-        # Fallback to a best-effort string representation
-        try:
-            record["payload"] = str(payload)
-            text = json.dumps(record, ensure_ascii=False, indent=_json_indent)
-        except Exception:
-            text = f"{record['ts']} {get_current_trace_id()} {event} (unserializable payload)"
+    text = _serialize_record(record)
 
-    logging.getLogger("bot").debug(f"\n\n{record if 'record' in locals() else text}")
+    with path.open("a", encoding="utf-8") as f:
+        f.write(text + "\n")
+
+    logging.getLogger("bot").debug("\n\n%s", text)
