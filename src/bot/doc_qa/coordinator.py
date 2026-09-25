@@ -66,7 +66,7 @@ class DocsAnswerCoordinator:
         for claim in draft_verification.verified_claims:
             if claim.verification_status != ClaimVerificationStatus.SUPPORTED:
                 log_event(
-                    event="doc_qa.coordinator.verification_failure(unverified_claim)",
+                    event="doc_qa.coordinator.error_unverified_claim",
                     payload={
                         "question": question,
                         "draft_answer": draft_answer,
