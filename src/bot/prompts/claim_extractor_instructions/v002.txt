@@ -79,13 +79,10 @@ IMPORTANT RULES:
 12. Do not merge separate claims merely because they appear in the same
     sentence.
 
-13. If the same claim appears multiple times in the answer, return it only
-    once and include all relevant source sentence IDs.
-
-14. Ignore greetings, transitions, stylistic language, and other text that
+13. Ignore greetings, transitions, stylistic language, and other text that
     does not express an independently verifiable proposition.
 
-15. Preserve all factual values exactly as expressed in the answer, including:
+14. Preserve all factual values exactly as expressed in the answer, including:
     - numbers and decimal places
     - monetary amounts
     - currencies
@@ -104,7 +101,7 @@ IMPORTANT RULES:
     - "3.25%" must remain "3.25%", not "3%" or "3.2%".
     - "up to EUR 25.00" must preserve both "up to" and "EUR 25.00".
 
-16. Claims may be expressed by any part of the answer, including:
+15. Claims may be expressed by any part of the answer, including:
     - prose sentences
     - paragraphs
     - bullet points
