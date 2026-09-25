@@ -8,15 +8,15 @@ from bot.prompts.models import PromptLoader
 class ChunkJudgePromptInput:
     question: str
     candidate_chunks: list[DocChunk]
-    
+
+
 class ChunkJudgePromptLoader(PromptLoader[ChunkJudgePromptInput]):
     def build_user_prompt(self, input: ChunkJudgePromptInput) -> str:
         chunks = "\n\n".join(
-            f"Chunk ID: {input_chunk.chunk_id}\n"
-            f"Content: {input_chunk.content}"
+            f"Chunk ID: {input_chunk.chunk_id}\nContent: {input_chunk.content}"
             for input_chunk in input.candidate_chunks
         )
-        
+
         return (
             "Judge the relevance of the following chunks to the user's question.\n\n"
             f"User Question:\n{input.question}\n\n"

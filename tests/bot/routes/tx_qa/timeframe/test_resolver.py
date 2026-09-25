@@ -30,6 +30,7 @@ RAW_RANGE_ENDPOINT_2025_05_10 = RawRangeEndpoint(
     day=10,
 )
 
+
 def create_timeframe_query(**overrides: object) -> Timeframe:
     return Timeframe(
         timeframe_type=TimeframeType.UNKNOWN,
@@ -158,14 +159,17 @@ def create_timeframe_query(**overrides: object) -> Timeframe:
         ),
         pytest.param(
             TimeframeType.ROLLING_RANGE,
-            {"mode": RollingRangeMode.PREVIOUS_COMPLETE, "unit": RollingRangeUnit.WEEK, "unit_amount": 2},
+            {
+                "mode": RollingRangeMode.PREVIOUS_COMPLETE,
+                "unit": RollingRangeUnit.WEEK,
+                "unit_amount": 2,
+            },
             "resolve_previous_complete_range",
             call(unit=RollingRangeUnit.WEEK, unit_amount=2, today=TODAY),
             id="rolling-range-previous-complete",
-        )
+        ),
     ],
 )
-
 def test_dispatches_to_correct_resolver_with_expected_arguments(
     timeframe_type: TimeframeType,
     raw_overrides: dict[str, object],
@@ -173,10 +177,7 @@ def test_dispatches_to_correct_resolver_with_expected_arguments(
     expected_call: object,
 ) -> None:
 
-    raw = create_timeframe_query(
-        timeframe_type=timeframe_type,
-        **raw_overrides
-    )
+    raw = create_timeframe_query(timeframe_type=timeframe_type, **raw_overrides)
 
     with patch(
         f"bot.tx_qa.timeframe.resolve.{resolver_name}",
@@ -191,70 +192,24 @@ def test_dispatches_to_correct_resolver_with_expected_arguments(
     assert result == SENTINEL_RANGE
     resolver.assert_called_once()
     assert resolver.call_args == expected_call
-    
+
 
 @pytest.mark.parametrize(
     ("timeframe_type", "raw_overrides", "resolver_name"),
     [
+        pytest.param(TimeframeType.NAMED_YEAR, {}, "resolve_named_year", id="named-year"),
+        pytest.param(TimeframeType.NAMED_MONTH, {}, "resolve_named_month", id="named-month"),
+        pytest.param(TimeframeType.NAMED_QUARTER, {}, "resolve_named_quarter", id="named-quarter"),
+        pytest.param(TimeframeType.NAMED_WEEKDAY, {}, "resolve_named_weekday", id="named-weekday"),
+        pytest.param(TimeframeType.NAMED_DATE, {}, "resolve_named_date", id="named-date"),
+        pytest.param(TimeframeType.RELATIVE_YEAR, {}, "resolve_relative_year", id="relative-year"),
         pytest.param(
-            TimeframeType.NAMED_YEAR,
-            {},
-            "resolve_named_year",
-            id="named-year"
+            TimeframeType.RELATIVE_MONTH, {}, "resolve_relative_month", id="relative-month"
         ),
+        pytest.param(TimeframeType.RELATIVE_WEEK, {}, "resolve_relative_week", id="relative-week"),
+        pytest.param(TimeframeType.RELATIVE_DAY, {}, "resolve_relative_day", id="relative-day"),
         pytest.param(
-            TimeframeType.NAMED_MONTH,
-            {},
-            "resolve_named_month",
-            id="named-month"
-        ),
-        pytest.param(
-            TimeframeType.NAMED_QUARTER,
-            {},
-            "resolve_named_quarter",
-            id="named-quarter"
-        ),
-        pytest.param(
-            TimeframeType.NAMED_WEEKDAY,
-            {},
-            "resolve_named_weekday",
-            id="named-weekday"
-        ),
-        pytest.param(
-            TimeframeType.NAMED_DATE,
-            {},
-            "resolve_named_date",
-            id="named-date"
-        ),
-        pytest.param(
-            TimeframeType.RELATIVE_YEAR,
-            {},
-            "resolve_relative_year",
-            id="relative-year"
-        ),
-        pytest.param(
-            TimeframeType.RELATIVE_MONTH,
-            {},
-            "resolve_relative_month",
-            id="relative-month"
-        ),
-        pytest.param(
-            TimeframeType.RELATIVE_WEEK,
-            {},
-            "resolve_relative_week",
-            id="relative-week"
-        ),
-        pytest.param(
-            TimeframeType.RELATIVE_DAY,
-            {},
-            "resolve_relative_day",
-            id="relative-day"
-        ),
-        pytest.param(
-            TimeframeType.EXPLICIT_RANGE,
-            {},
-            "resolve_explicit_range",
-            id="explicit-range"
+            TimeframeType.EXPLICIT_RANGE, {}, "resolve_explicit_range", id="explicit-range"
         ),
         pytest.param(
             TimeframeType.EXPLICIT_RANGE,
@@ -275,9 +230,7 @@ def test_dispatches_to_correct_resolver_with_expected_arguments(
         ),
         pytest.param(
             TimeframeType.EXPLICIT_RANGE,
-            {
-                "start_endpoint": RawRangeEndpoint(month=5)
-            },
+            {"start_endpoint": RawRangeEndpoint(month=5)},
             "resolve_explicit_range",
             id="explicit-range-missing-end",
         ),
@@ -294,51 +247,51 @@ def test_dispatches_to_correct_resolver_with_expected_arguments(
             TimeframeType.ROLLING_RANGE,
             {"mode": RollingRangeMode.TRAILING},
             "resolve_trailing_range",
-            id="rolling-range"
+            id="rolling-range",
         ),
         pytest.param(
             TimeframeType.ROLLING_RANGE,
             {"mode": RollingRangeMode.TRAILING, "unit": RollingRangeUnit.DAY},
             "resolve_trailing_range",
-            id="rolling-range-missing-amount"
+            id="rolling-range-missing-amount",
         ),
         pytest.param(
             TimeframeType.ROLLING_RANGE,
             {"mode": RollingRangeMode.TRAILING, "unit_amount": 5},
             "resolve_trailing_range",
-            id="rolling-range-missing-unit"
+            id="rolling-range-missing-unit",
         ),
         pytest.param(
             TimeframeType.ROLLING_RANGE,
             {"mode": RollingRangeMode.PREVIOUS_COMPLETE},
             "resolve_previous_complete_range",
-            id="rolling-range-previous-complete"
+            id="rolling-range-previous-complete",
         ),
         pytest.param(
             TimeframeType.ROLLING_RANGE,
             {"mode": RollingRangeMode.PREVIOUS_COMPLETE, "unit": RollingRangeUnit.DAY},
             "resolve_previous_complete_range",
-            id="rolling-range-previous-complete-missing-amount"
+            id="rolling-range-previous-complete-missing-amount",
         ),
         pytest.param(
             TimeframeType.ROLLING_RANGE,
             {"mode": RollingRangeMode.PREVIOUS_COMPLETE, "unit_amount": 5},
             "resolve_previous_complete_range",
-            id="rolling-range-previous-complete-missing-unit"
+            id="rolling-range-previous-complete-missing-unit",
         ),
         pytest.param(
             TimeframeType.ROLLING_RANGE,
             {"mode": None, "unit_amount": 5, "unit": RollingRangeUnit.DAY},
             "resolve_trailing_range",
-            id="rolling-missing-mode-does-not-call-trailing"
+            id="rolling-missing-mode-does-not-call-trailing",
         ),
         pytest.param(
             TimeframeType.ROLLING_RANGE,
             {"mode": None, "unit_amount": 5, "unit": RollingRangeUnit.DAY},
             "resolve_previous_complete_range",
-            id="rolling-missing-mode-does-not-call-previous-complete"
+            id="rolling-missing-mode-does-not-call-previous-complete",
         ),
-    ]
+    ],
 )
 def test_does_not_dispatch_when_required_data_is_missing(
     timeframe_type: TimeframeType,
@@ -363,7 +316,8 @@ def test_does_not_dispatch_when_required_data_is_missing(
 
     assert result is None
     resolver.assert_not_called()
-    
+
+
 def test_returns_none_for_unknown_timeframe() -> None:
     raw = create_timeframe_query(
         timeframe_type=TimeframeType.UNKNOWN,
@@ -375,7 +329,8 @@ def test_returns_none_for_unknown_timeframe() -> None:
     )
 
     assert result is None
-    
+
+
 def test_propagates_none_from_resolver() -> None:
     raw = create_timeframe_query(
         timeframe_type=TimeframeType.NAMED_MONTH,

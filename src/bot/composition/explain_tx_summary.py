@@ -14,15 +14,15 @@ def create_explain_tx_summary_handler(
     *,
     llm_client: LLMClient,
     explain_summary_parser_prompt_config: PromptConfig,
- ) -> ExplainTxSummaryHandler:
-    
+) -> ExplainTxSummaryHandler:
+
     explain_summary_parser = ExplainTxSummaryParser(
         llm_client=llm_client,
-        prompt_loader=ExplainTxSummaryParserPromptLoader(prompt_config=explain_summary_parser_prompt_config),
+        prompt_loader=ExplainTxSummaryParserPromptLoader(
+            prompt_config=explain_summary_parser_prompt_config
+        ),
     )
-    
-    coordinator = ExplainTxSummaryCoordinator(
-        explain_summary_parser=explain_summary_parser
-    )
-    
+
+    coordinator = ExplainTxSummaryCoordinator(explain_summary_parser=explain_summary_parser)
+
     return ExplainTxSummaryHandler(coordinator=coordinator)

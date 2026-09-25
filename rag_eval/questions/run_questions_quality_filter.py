@@ -13,20 +13,22 @@ def run_questions_quality_filter(
     questions: ArtifactRef[QuestionCollection],
     question_judgements: ArtifactRef[list[JudgedQuestion]],
     config: QuestionQualityFilterConfig,
-    runner: ArtifactStepExecutor
+    runner: ArtifactStepExecutor,
 ) -> ArtifactRef[QuestionCollection]:
-    
+
     def run() -> QuestionCollection:
         filtered_questions_list = [
-            question for question in questions.data.questions
+            question
+            for question in questions.data.questions
             if any(
-                question_judgement.question_id == question.id and question_judgement.quality == QuestionQuality.ACCEPT
+                question_judgement.question_id == question.id
+                and question_judgement.quality == QuestionQuality.ACCEPT
                 for question_judgement in question_judgements.data
             )
         ]
         filtered_questions = QuestionCollection(
             question_collection_id=questions.data.question_collection_id,
-            questions=filtered_questions_list
+            questions=filtered_questions_list,
         )
         return filtered_questions
 
@@ -37,5 +39,3 @@ def run_questions_quality_filter(
         config=config,
         compute=run,
     )
-    
-    

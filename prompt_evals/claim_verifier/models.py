@@ -6,19 +6,22 @@ from bot.doc_qa.verification.models import ClaimVerificationStatus, ExtractedCla
 
 class ClaimVerifierTestClaim(ExtractedClaim, BaseModel):
     expected_verification_status: ClaimVerificationStatus
-    
+
+
 class ClaimVerifierTestBatch(BaseModel):
     id: str
     user_query: str
     claims: list[ClaimVerifierTestClaim]
     evidence_chunks: list[DocChunk]
-    
+
+
 class ClaimVerifierTestClaimResult(BaseModel):
     verified_claim: ClaimVerifierTestClaim
     evidence_chunks: list[DocChunk]
     reason: str | None = None
     actual_verification_status: ClaimVerificationStatus
     correct: bool
+
 
 class ClaimVerifierBatchEvaluationResult(BaseModel):
     batch_id: str

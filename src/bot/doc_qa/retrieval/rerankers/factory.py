@@ -16,7 +16,7 @@ def create_reranker(
                     config.model,
                     use_fp16=config.use_fp16,
                 ),
-                config=config
+                config=config,
             )
 
         case _:

@@ -16,16 +16,12 @@ class AnswerVerification:
     is_supported: bool
     verified_claims: list[VerifiedClaim]
 
+
 class AnswerVerifier:
-    def __init__(
-        self,
-        *,
-        claim_extractor: ClaimExtractor,
-        claim_verifier: ClaimsVerifier
-    ):
+    def __init__(self, *, claim_extractor: ClaimExtractor, claim_verifier: ClaimsVerifier):
         self._claim_extractor = claim_extractor
         self._claim_verifier = claim_verifier
-        
+
     def verify_answer(
         self,
         *,
@@ -41,7 +37,7 @@ class AnswerVerifier:
             claims=extracted_claims_from_draft_answer,
             evidence_chunks=source_evidence,
         )
-    
+
         return AnswerVerification(
             is_supported=(
                 bool(verified_claims)

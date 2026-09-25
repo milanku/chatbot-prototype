@@ -13,15 +13,14 @@ def create_tx_summary_handler(
     tx_repository: TransactionsRepository,
     timeframe_parser_prompt_config: PromptConfig,
 ) -> TxSummaryHandler:
-    
+
     timeframe_parser = TimeframeParser(
         llm_client=llm_client,
         prompt_loader=TimeframeParserPromptLoader(prompt_config=timeframe_parser_prompt_config),
     )
-    
+
     coordinator = TxSummaryCoordinator(
-        tx_repository=tx_repository,
-        timeframe_parser=timeframe_parser
+        tx_repository=tx_repository, timeframe_parser=timeframe_parser
     )
-    
+
     return TxSummaryHandler(coordinator=coordinator)

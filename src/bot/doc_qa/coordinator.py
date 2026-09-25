@@ -24,7 +24,7 @@ class DocsAnswerCoordinator:
         self._verifier = verifier
         self._judge = judge
         self._reranker = reranker
-        
+
     def _retrieve(
         self,
         question: str,
@@ -34,7 +34,7 @@ class DocsAnswerCoordinator:
             for chunk in retriever.retrieve(question=question):
                 chunks[chunk.chunk_id] = chunk
         return list(chunks.values())
-    
+
     def _insufficient_evidence_result(
         self,
         question: str,
@@ -46,9 +46,9 @@ class DocsAnswerCoordinator:
         return DocsAnswerResult(
             status=DocsAnswerStatus.INSUFFICIENT_EVIDENCE,
             answer_text="I couldn't find enough information in the documentation to answer your question.",
-            references=[]
+            references=[],
         )
-        
+
     def _handle_verification_result(
         self,
         draft_verification: AnswerVerification,
@@ -56,13 +56,13 @@ class DocsAnswerCoordinator:
         draft_answer: str,
         required_chunks: list[DocChunk],
     ) -> DocsAnswerResult:
-        if(draft_verification.is_supported):
+        if draft_verification.is_supported:
             return DocsAnswerResult(
                 status=DocsAnswerStatus.ANSWERED,
                 answer_text=draft_answer,
-                references=[hit.doc_reference for hit in required_chunks]
+                references=[hit.doc_reference for hit in required_chunks],
             )
-        
+
         for claim in draft_verification.verified_claims:
             if claim.verification_status != ClaimVerificationStatus.SUPPORTED:
                 log_event(
@@ -71,48 +71,39 @@ class DocsAnswerCoordinator:
                         "question": question,
                         "draft_answer": draft_answer,
                         "unverified_claim": claim,
-                    }
+                    },
                 )
-                
+
         return DocsAnswerResult(
             status=DocsAnswerStatus.DRAFT_VERIFICATION_FAIL,
             answer_text="I am not able to provide unambiguous answer to your question based on the available documentation.",
-            references=[]
+            references=[],
         )
-    
+
     def answer(self, question: str) -> DocsAnswerResult:
         retrieved_chunks = self._retrieve(question)
-        
-        reranked_chunks = self._reranker.rerank(
-            question,
-            retrieved_chunks
-        )
-        
+
+        reranked_chunks = self._reranker.rerank(question, retrieved_chunks)
+
         required_chunks = self._judge.filter_chunks(
             question=question,
             candidate_chunks=reranked_chunks,
         )
-        
+
         if not required_chunks:
             return self._insufficient_evidence_result(question)
-        
+
         draft_answer = self._synthesizer.synthesize(
             question=question,
-            chunks_for_synthesis=[
-                hit.content
-                for hit in required_chunks
-            ],
+            chunks_for_synthesis=[hit.content for hit in required_chunks],
         )
-        
+
         draft_verification = self._verifier.verify_answer(
             question=question,
             draft_answer=draft_answer,
-            source_evidence=[
-                hit
-                for hit in required_chunks
-            ],
+            source_evidence=[hit for hit in required_chunks],
         )
-        
+
         return self._handle_verification_result(
             draft_verification=draft_verification,
             question=question,

@@ -10,5 +10,6 @@ class ChunksRetrieval(BaseModel):
     bm25_retrieved_chunks: list[DocChunk]
     reranked_chunks: list[DocChunk]
     chunks_judged_as_required: list[JudgedChunk[ChunkRequirement]]
-    
+
+
 QuestionChunksRetrieval = dict[str, ChunksRetrieval]

@@ -13,7 +13,9 @@ class ExplainTxSummaryParser:
 
     def parse(self, *, msg: str) -> ExplainTxSummaryQueryExtraction:
         system_prompt = self._prompt_loader.load_system_instructions()
-        user_prompt = self._prompt_loader.build_user_prompt(ExplainTxSummaryParserPromptInput(message=msg))
+        user_prompt = self._prompt_loader.build_user_prompt(
+            ExplainTxSummaryParserPromptInput(message=msg)
+        )
 
         llm_structured_response = self._llm_client.generate_with_structured_output(
             prompt=user_prompt,
@@ -22,4 +24,3 @@ class ExplainTxSummaryParser:
         )
 
         return llm_structured_response
-     

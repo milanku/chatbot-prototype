@@ -23,18 +23,14 @@ class EmbeddingsChunksRetriever(ChunksRetriever):
         question: str,
     ) -> list[DocChunk]:
         query_vector = self._embedder.embed_query(question)
-        
+
         chunk_scores: list[tuple[DocChunk, float]] = [
             (chunk_embedding, vectors_cosine_similarity(query_vector, chunk_embedding.embedding))
             for chunk_embedding in self._embedded_doc_chunks
         ]
 
-        sorted_chunks = sorted(
-            chunk_scores,
-            key=lambda item: item[1],
-            reverse=True
-        )
-        
+        sorted_chunks = sorted(chunk_scores, key=lambda item: item[1], reverse=True)
+
         return [
             DocChunk(
                 chunk_id=chunk.chunk_id,
@@ -42,5 +38,5 @@ class EmbeddingsChunksRetriever(ChunksRetriever):
                 retrieval_score=score,
                 content=chunk.content,
             )
-            for chunk, score in sorted_chunks[:self._config.top_k]
-        ][:self._config.top_k]
+            for chunk, score in sorted_chunks[: self._config.top_k]
+        ][: self._config.top_k]

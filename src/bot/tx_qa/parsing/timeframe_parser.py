@@ -13,8 +13,10 @@ class TimeframeParser:
 
     def parse(self, user_msg: str) -> TxQueryExtraction:
         system_prompt = self._prompt_loader.load_system_instructions()
-        user_prompt = self._prompt_loader.build_user_prompt(input=TimeframeParserPromptInput(message=user_msg))
-        
+        user_prompt = self._prompt_loader.build_user_prompt(
+            input=TimeframeParserPromptInput(message=user_msg)
+        )
+
         llm_structured_response = self._llm_client.generate_with_structured_output(
             prompt=user_prompt,
             output_format=TxQueryExtraction,

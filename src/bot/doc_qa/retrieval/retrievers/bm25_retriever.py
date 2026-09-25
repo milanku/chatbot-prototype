@@ -1,4 +1,4 @@
-from typing import Sequence
+from collections.abc import Sequence
 
 from langchain_community.retrievers import BM25Retriever
 from langchain_core.documents import Document
@@ -14,13 +14,13 @@ class BM25ChunksRetriever(ChunksRetriever):
         *,
         doc_chunks: Sequence[DocChunk],
         config: BM25RetrieverConfig,
-        retriever: BM25Retriever
+        retriever: BM25Retriever,
     ):
         self._config = config
         self._doc_chunks = doc_chunks
         self._doc_chunks_by_id = {chunk.chunk_id: chunk for chunk in self._doc_chunks}
         self._retriever = retriever
-        
+
     @classmethod
     def from_doc_chunks(
         cls,
@@ -30,28 +30,21 @@ class BM25ChunksRetriever(ChunksRetriever):
     ) -> "BM25ChunksRetriever":
         retriever = BM25Retriever.from_documents(
             documents=[
-                Document(
-                    page_content=chunk.content,
-                    metadata={
-                        "chunk_id": chunk.chunk_id
-                    }
-                ) for chunk in doc_chunks
+                Document(page_content=chunk.content, metadata={"chunk_id": chunk.chunk_id})
+                for chunk in doc_chunks
             ]
         )
-       
-        return cls(
-            doc_chunks=doc_chunks,
-            config=config,
-            retriever=retriever
-        )
+
+        return cls(doc_chunks=doc_chunks, config=config, retriever=retriever)
 
     def retrieve(
         self,
         question: str,
     ) -> list[DocChunk]:
         retrieved_chunks = self._retriever.invoke(question)
-        
-        return [
-            self._doc_chunks_by_id[chunk.metadata["chunk_id"]]
-            for chunk in retrieved_chunks
-        ][:self._config.top_k]
+
+        retrieved_doc_chunks = [
+            self._doc_chunks_by_id[chunk.metadata["chunk_id"]] for chunk in retrieved_chunks
+        ]
+
+        return retrieved_doc_chunks[: self._config.top_k]

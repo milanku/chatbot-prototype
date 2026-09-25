@@ -16,7 +16,7 @@ def run_pipeline_evaluation_test(
     config: EvaluationConfig,
     runner: ArtifactStepExecutor,
 ) -> ArtifactRef[list[TestCaseEvaluationResult]]:
-    
+
     def run() -> list[TestCaseEvaluationResult]:
         results: list[TestCaseEvaluationResult] = evaluate_pipeline(
             test_suite=test_suite.data,
@@ -25,7 +25,7 @@ def run_pipeline_evaluation_test(
         )
 
         return results
-        
+
     return runner.execute(
         artifact_type=ArtifactType.EVALUATION_RESULTS,
         artifact_data_type=list[TestCaseEvaluationResult],

@@ -62,12 +62,6 @@ dev = [
   "sphinx>=7.0",
 ]
 
-[tool.black]
-line-length = 100
-
-[tool.isort]
-profile = "black"
-
 [tool.tox]
 requires = ["tox>=4.0"]
 
@@ -83,6 +77,9 @@ src = ["src", "tests"]
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "SIM", "Q"]
 ignore = ["E501", "SIM108"]
+
+[tool.ruff.format]
+skip-magic-trailing-comma = false
 
 [tool.mypy]
 python_version = "3.11"
@@ -106,6 +103,6 @@ packages = [{ include = "bot", from = "src" }]
 dev = [
     "ruff (>=0.15.2,<0.16.0)",
     "mypy (>=1.19.1,<2.0.0)",
-    "black (>=26.1.0,<27.0.0)",
-    "pylance (>=2.0.1,<3.0.0)"
+    "pylance (>=2.0.1,<3.0.0)",
+    "pre-commit (>=4.6.2,<5.0.0)"
 ]

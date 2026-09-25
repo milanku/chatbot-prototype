@@ -26,7 +26,7 @@ def create_chunk_judge(
                 relevance_judge_prompt_loader=relevance_judge_prompt_loader,
                 allow_judgement=allow_judgement,
                 output_format=JudgeOutputFormat,
-                retries=config.retries
+                retries=config.retries,
             )
         case ChunkRelevanceJudgeConfig():
             return ChunkRelevanceJudge(
@@ -34,7 +34,7 @@ def create_chunk_judge(
                 relevance_judge_prompt_loader=relevance_judge_prompt_loader,
                 allow_judgement=allow_judgement,
                 output_format=JudgeOutputFormat,
-                retries=config.retries
+                retries=config.retries,
             )
         case _:
             assert_never(config)

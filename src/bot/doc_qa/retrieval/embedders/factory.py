@@ -23,7 +23,7 @@ def create_embedder(
                     trust_remote_code=True,
                 )
             )
-            
+
         case OpenAIEmbedderConfig():
             return OpenAIEmbeddings(
                 model=config.model,

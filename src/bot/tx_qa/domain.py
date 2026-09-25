@@ -9,10 +9,12 @@ class Label(str, Enum):
     FOOD = "food"
     PETS = "pets"
     OTHER = "other"
-    
+
+
 class Direction(str, Enum):
     SPEND = "spend"
     RECEIVE = "receive"
+
 
 class Transaction(BaseModel):
     id: str

@@ -25,7 +25,7 @@ from bot.tx_qa.timeframe.named import (
             ),
             id="explicit-year",
         ),
-    ]
+    ],
 )
 def test_named_year(
     year: int,
@@ -36,7 +36,7 @@ def test_named_year(
     )
 
     assert result == expected
-    
+
 
 @pytest.mark.parametrize(
     ("year", "quarter", "today", "expected"),
@@ -86,7 +86,8 @@ def test_named_quarter(
     )
 
     assert result == expected
-    
+
+
 @pytest.mark.parametrize(
     ("year", "month", "today", "expected"),
     [
@@ -145,17 +146,21 @@ def test_named_month(
     )
 
     assert result == expected
-    
-    
+
+
 @pytest.mark.parametrize(
     (
-        "year", "month", "day",
+        "year",
+        "month",
+        "day",
         "today",
         "expected",
     ),
     [
         pytest.param(
-            2026, 1, 15,
+            2026,
+            1,
+            15,
             date(2030, 6, 20),
             DateRange(
                 start_date=date(2026, 1, 15),
@@ -164,7 +169,9 @@ def test_named_month(
             id="explicit-year-month-day",
         ),
         pytest.param(
-            None, 1, 20,
+            None,
+            1,
+            20,
             date(2026, 2, 5),
             DateRange(
                 start_date=date(2026, 1, 20),
@@ -173,7 +180,9 @@ def test_named_month(
             id="month-and-day-use-current-year",
         ),
         pytest.param(
-            None, 3, 20,
+            None,
+            3,
+            20,
             date(2026, 2, 5),
             DateRange(
                 start_date=date(2025, 3, 20),
@@ -182,7 +191,9 @@ def test_named_month(
             id="future-month-and-day-use-previous-year",
         ),
         pytest.param(
-            None, None, 2,
+            None,
+            None,
+            2,
             date(2026, 2, 5),
             DateRange(
                 start_date=date(2026, 2, 2),
@@ -191,7 +202,9 @@ def test_named_month(
             id="day-already-passed-use-current-month",
         ),
         pytest.param(
-            None, None, 20,
+            None,
+            None,
+            20,
             date(2026, 2, 5),
             DateRange(
                 start_date=date(2026, 1, 20),
@@ -200,7 +213,9 @@ def test_named_month(
             id="future-day-use-previous-month",
         ),
         pytest.param(
-            None, None, 20,
+            None,
+            None,
+            20,
             date(2026, 1, 5),
             DateRange(
                 start_date=date(2025, 12, 20),
@@ -209,7 +224,9 @@ def test_named_month(
             id="previous-month-crosses-year-boundary",
         ),
         pytest.param(
-            2024, 2, 29,
+            2024,
+            2,
+            29,
             date(2030, 6, 20),
             DateRange(
                 start_date=date(2024, 2, 29),
@@ -218,25 +235,33 @@ def test_named_month(
             id="valid-leap-day",
         ),
         pytest.param(
-            2025, 2, 29,
+            2025,
+            2,
+            29,
             date(2030, 6, 20),
             None,
             id="invalid-leap-day",
         ),
         pytest.param(
-            2026, None, 15,
+            2026,
+            None,
+            15,
             date(2030, 6, 20),
             None,
             id="explicit-year-but-missing-month",
         ),
         pytest.param(
-            2026, 13, 1,
+            2026,
+            13,
+            1,
             date(2030, 6, 20),
             None,
             id="invalid-month",
         ),
         pytest.param(
-            2026, 4, 31,
+            2026,
+            4,
+            31,
             date(2030, 6, 20),
             None,
             id="invalid-day-for-month",

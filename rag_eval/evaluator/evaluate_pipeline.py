@@ -10,20 +10,15 @@ from rag_eval.tests.models import RetrievalTestCase
 
 
 def _build_reference_chunk_ids(test_case: RetrievalTestCase) -> ReferenceChunkIds:
-    required = {
-        judged_chunk.chunk.chunk_id
-        for judged_chunk in test_case.required_chunks
-    }
+    required = {judged_chunk.chunk.chunk_id for judged_chunk in test_case.required_chunks}
 
-    relevant = {
-        judged_chunk.chunk.chunk_id
-        for judged_chunk in test_case.relevant_chunks
-    }
+    relevant = {judged_chunk.chunk.chunk_id for judged_chunk in test_case.relevant_chunks}
 
     return ReferenceChunkIds(
         required=required,
         required_or_relevant=required | relevant,
     )
+
 
 def evaluate_pipeline(
     *,
@@ -31,23 +26,14 @@ def evaluate_pipeline(
     precomputed_retrievals: QuestionChunksRetrieval,
     configs: EvaluationConfig,
 ) -> list[TestCaseEvaluationResult]:
-    evaluation_results = [
-        TestCaseEvaluationResult(config=config)
-        for config in configs.k_configs
-    ]
+    evaluation_results = [TestCaseEvaluationResult(config=config) for config in configs.k_configs]
 
     for i, test_case in enumerate(test_suite):
-        print(
-            f"Evaluating test case "
-            f"{i + 1}/{len(test_suite)}"
-        )
+        print(f"Evaluating test case {i + 1}/{len(test_suite)}")
 
         reference = _build_reference_chunk_ids(test_case)
 
-        for config, result in zip(
-            configs.k_configs,
-            evaluation_results,
-        ):
+        for config, result in zip(configs.k_configs, evaluation_results, strict=True):
             pipeline = simulate_pipeline_run(
                 precomputed_retrieval=precomputed_retrievals[test_case.question.id],
                 config=config,

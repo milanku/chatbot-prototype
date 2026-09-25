@@ -13,10 +13,9 @@ class BotConfig(BaseModel):
     docs_dir_path: Path
     embeddings_dir_path: Path
     transactions_mock_file_path: Path
-    
+
     llm: LLMConfig
     embedder: EmbedderConfig
     chunker: ChunkerConfig
     retrievers: list[RetrieverConfig]
     reranker: RerankerConfig
-    

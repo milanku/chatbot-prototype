@@ -11,6 +11,7 @@ class DateRange:
     start_date: date
     end_date: date
 
+
 class TimeframeType(Enum):
     RELATIVE_DAY = "RELATIVE_DAY"
     RELATIVE_WEEK = "RELATIVE_WEEK"
@@ -24,6 +25,7 @@ class TimeframeType(Enum):
     EXPLICIT_RANGE = "EXPLICIT_RANGE"
     ROLLING_RANGE = "ROLLING_RANGE"
     UNKNOWN = "UNKNOWN"
+
 
 RELATIVE_TIMEFRAMES: Final[frozenset[TimeframeType]] = frozenset(
     {
@@ -43,6 +45,7 @@ NAMED_RANGE_TIMEFRAMES: Final[frozenset[TimeframeType]] = frozenset(
     }
 )
 
+
 class RawRangeEndpoint(BaseModel):
     year: int | None = None
     quarter: int | None = None
@@ -60,7 +63,8 @@ class RawRangeEndpoint(BaseModel):
                 self.day,
             )
         )
-        
+
+
 class RollingRangeUnit(Enum):
     DAY = "day"
     WEEK = "week"
@@ -68,18 +72,20 @@ class RollingRangeUnit(Enum):
     QUARTER = "quarter"
     YEAR = "year"
 
+
 class RollingRangeMode(Enum):
     TRAILING = "trailing"
     PREVIOUS_COMPLETE = "previous_complete"
- 
+
+
 class Timeframe(BaseModel):
     timeframe_type: TimeframeType
-    
+
     # For relative timeframes, e.g., "last month" -> relative_offset = -1, "next month" -> relative_offset = 1
     relative_offset: int | None = None
 
     # For named timeframes
-    year: int | None =  None
+    year: int | None = None
     quarter: int | None = None
     month: int | None = None
     day: int | None = None
@@ -88,7 +94,7 @@ class Timeframe(BaseModel):
     start_endpoint: RawRangeEndpoint | None = None
     # For DATE_RANGE timeframe this contains end date data only.
     end_endpoint: RawRangeEndpoint | None = None
-    
+
     # For ROLLING_RANGE timeframes, e.g., "last 3 months" -> mode = RollingRangeMode.TRAILING
     mode: RollingRangeMode | None = None
     # For ROLLING_RANGE timeframes, e.g., "last 3 months" -> unit = RollingRangeUnit.MONTH

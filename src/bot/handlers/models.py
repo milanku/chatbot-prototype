@@ -10,7 +10,8 @@ class RouteHandlerResult:
     answer_text: str
     references: list[DocReference]
     new_state: SessionState | None = None
-    
+
+
 class RouteHandler(ABC):
     @abstractmethod
     def handle(

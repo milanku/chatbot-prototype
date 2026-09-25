@@ -7,7 +7,7 @@ from sentence_transformers import SentenceTransformer
 class LocalEmbeddings(BaseRagasEmbeddings):
     def __init__(self, sentence_transformer: SentenceTransformer):
         self._model = sentence_transformer
-        
+
     def embed_query(self, text: str) -> list[float]:
         query_embedding: list[float] = self._model.encode(
             text,
@@ -23,7 +23,7 @@ class LocalEmbeddings(BaseRagasEmbeddings):
             normalize_embeddings=True,
         )  # pyright: ignore[reportUnknownMemberType]
         return document_embeddings.tolist()
-    
+
     async def aembed_query(self, text: str) -> list[float]:
         return self.embed_query(text)
 

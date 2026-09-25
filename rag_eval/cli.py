@@ -23,17 +23,18 @@ def main():
     args = parser.parse_args()
     setup_logging(verbose=args.verbose)
     load_dotenv()
-     
-    config = create_pipeline_config()    
+
+    config = create_pipeline_config()
     artifact_store: ArtifactStore = LocalArtifactStore(
         base_dir_path=Path("rag_eval/data/artifacts"),
     )
     runner = ArtifactStepExecutor(
         artifact_store=artifact_store,
     )
-    
+
     pipeline = EvaluationPipeline(config=config, artifact_store=artifact_store, runner=runner)
     pipeline.run()
-    
+
+
 if __name__ == "__main__":
     main()

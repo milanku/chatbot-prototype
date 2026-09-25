@@ -10,6 +10,7 @@ def resolve_relative_year(
 ) -> DateRange:
     return year_range(today.year + offset)
 
+
 def resolve_relative_month(
     offset: int,
     today: date,
@@ -20,6 +21,7 @@ def resolve_relative_month(
     month = target_month_index % 12 + 1
     return month_range(year, month)
 
+
 def resolve_relative_week(
     offset: int,
     today: date,
@@ -27,6 +29,7 @@ def resolve_relative_week(
     current_monday = today - timedelta(days=today.weekday())
     start = current_monday + timedelta(weeks=offset)
     return DateRange(start_date=start, end_date=start + timedelta(days=6))
+
 
 def resolve_relative_day(
     offset: int,

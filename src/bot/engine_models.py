@@ -22,7 +22,8 @@ class EngineDeps:
     prompt_configs: PromptConfigs
     retriever_configs: list[RetrieverConfig]
     reranker_config: RerankerConfig
-    
+
+
 class EngineResponse(BaseModel):
     response: BotResponse
     new_state: SessionState | None

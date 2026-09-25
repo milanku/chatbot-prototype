@@ -30,11 +30,11 @@ class ChatbotEngine:
         self._tx_list_handler: RouteHandler = create_tx_list_handler(
             llm_client=deps.llm_client,
             tx_repository=deps.tx_repository,
-            timeframe_parser_prompt_config=deps.prompt_configs.timeframe_parser
+            timeframe_parser_prompt_config=deps.prompt_configs.timeframe_parser,
         )
         self._explain_tx_summary_handler: RouteHandler = create_explain_tx_summary_handler(
             llm_client=deps.llm_client,
-            explain_summary_parser_prompt_config=deps.prompt_configs.explain_tx_summary_parser
+            explain_summary_parser_prompt_config=deps.prompt_configs.explain_tx_summary_parser,
         )
         self._docs_answer_handler: RouteHandler = create_docs_answer_handler(
             llm_client=deps.llm_client,
@@ -49,54 +49,65 @@ class ChatbotEngine:
         )
         self._out_of_scope_handler: RouteHandler = OutOfScopeHandler()
         self._unknown_route_handler: RouteHandler = UnknownRouteHandler()
-        
+
         self._route_selector = RouteSelector(
             llm_client=deps.llm_client,
-            prompt_loader=RouterPromptLoader(prompt_config=deps.prompt_configs.router)
+            prompt_loader=RouterPromptLoader(prompt_config=deps.prompt_configs.router),
         )
-        
-    def answer(
-        self,
-        message: str,
-        *,
-        session_state: SessionState
-    ) -> EngineResponse:
+
+    def answer(self, message: str, *, session_state: SessionState) -> EngineResponse:
         current_time = datetime.now()
         trace_id = generate_id(current_time)
-        
+
         with bind_trace_id(trace_id):
             log_event(
                 event="engine.start",
                 payload={
                     "message": message,
-                }
+                },
             )
 
             # Main router logic
-            router_decision: RouterDecision = self._route_selector.select(
-                message=message
-            )
+            router_decision: RouterDecision = self._route_selector.select(message=message)
 
             log_event(
                 event="router.decision",
                 payload={
                     "route": router_decision.route.value,
-                }
+                },
             )
 
             match router_decision.route:
                 case Route.TX_SUMMARY:
-                    result: RouteHandlerResult = self._tx_summary_handler.handle(message=message, session_state=session_state)
+                    result: RouteHandlerResult = self._tx_summary_handler.handle(
+                        message=message,
+                        session_state=session_state,
+                    )
                 case Route.TX_LIST:
-                    result = self._tx_list_handler.handle(message=message, session_state=session_state)
+                    result = self._tx_list_handler.handle(
+                        message=message,
+                        session_state=session_state,
+                    )
                 case Route.EXPLAIN_TX_SUMMARY:
-                    result = self._explain_tx_summary_handler.handle(message=message, session_state=session_state)
+                    result = self._explain_tx_summary_handler.handle(
+                        message=message,
+                        session_state=session_state,
+                    )
                 case Route.DOCS_ANSWER:
-                    result = self._docs_answer_handler.handle(message=message, session_state=session_state)
+                    result = self._docs_answer_handler.handle(
+                        message=message,
+                        session_state=session_state,
+                    )
                 case Route.OUT_OF_SCOPE:
-                    result = self._out_of_scope_handler.handle(message=message, session_state=session_state)
+                    result = self._out_of_scope_handler.handle(
+                        message=message,
+                        session_state=session_state,
+                    )
                 case _:
-                    result = self._unknown_route_handler.handle(message=message, session_state=session_state)
+                    result = self._unknown_route_handler.handle(
+                        message=message,
+                        session_state=session_state,
+                    )
 
             log_event(
                 event="engine.finish",
@@ -106,6 +117,13 @@ class ChatbotEngine:
                 },
             )
 
-        bot_response = BotResponse(answer=result.answer_text, doc_references=result.references, trace_id=trace_id)
+        bot_response = BotResponse(
+            answer=result.answer_text,
+            doc_references=result.references,
+            trace_id=trace_id,
+        )
 
-        return EngineResponse(response=bot_response, new_state=result.new_state)
+        return EngineResponse(
+            response=bot_response,
+            new_state=result.new_state,
+        )

@@ -11,7 +11,7 @@ from bot.doc_qa.indexing.store_models import (
 )
 
 
-class EmbeddingsStore:    
+class EmbeddingsStore:
     def __init__(
         self,
         *,
@@ -22,7 +22,7 @@ class EmbeddingsStore:
         self._chunks = chunks
         self._chunk_embeddings = chunk_embeddings
         self._manifest = manifest
-        
+
     @classmethod
     def from_docs_dir(
         cls,
@@ -30,7 +30,7 @@ class EmbeddingsStore:
         embedder: Embeddings,
         md_docs_dir: Path,
         manifest: EmbeddingsStoreManifest | None = None,
-        chunker: Chunker
+        chunker: Chunker,
     ) -> "EmbeddingsStore":
         md_documents = read_markdown_docs(md_docs_dir)
         all_chunks: list[DocChunk] = [
@@ -48,7 +48,7 @@ class EmbeddingsStore:
             chunk_embeddings={ce.chunk_id: ce for ce in all_chunk_embeddings},
             manifest=manifest,
         )
-    
+
     @classmethod
     def from_persistable_model(cls, model: EmbeddingsStoreData) -> "EmbeddingsStore":
         return cls(
@@ -56,23 +56,23 @@ class EmbeddingsStore:
             chunk_embeddings={ce_id: ce for ce_id, ce in model.chunk_embeddings.items()},
             manifest=model.manifest,
         )
-        
+
     def to_persistable_model(self) -> EmbeddingsStoreData:
         return EmbeddingsStoreData(
             manifest=self._manifest,
             chunks={chunk_id: chunk for chunk_id, chunk in self._chunks.items()},
             chunk_embeddings={ce_id: ce for ce_id, ce in self._chunk_embeddings.items()},
         )
-        
+
     def get_manifest(self) -> EmbeddingsStoreManifest | None:
         return self._manifest
-    
+
     def get_doc_chunks_dict(self) -> dict[str, DocChunk]:
         return {chunk_id: chunk for chunk_id, chunk in self._chunks.items()}
-        
+
     def get_doc_chunks(self) -> list[DocChunk]:
         return list(self._chunks.values())
-    
+
     def get_doc_chunk_by_id(self, chunk_id: str) -> DocChunk | None:
         return self._chunks.get(chunk_id)
 
@@ -84,7 +84,6 @@ class EmbeddingsStore:
 
     def get_chunk_embedding(self, chunk_id: str) -> ChunkEmbedding | None:
         return self._chunk_embeddings.get(chunk_id)
-    
+
     def get_chunk_embeddings(self) -> list[ChunkEmbedding]:
         return list(self._chunk_embeddings.values())
-    

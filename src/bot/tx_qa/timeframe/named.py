@@ -15,6 +15,7 @@ def resolve_named_year(
 ) -> DateRange:
     return year_range(year)
 
+
 def resolve_named_quarter(
     *,
     year: int | None,
@@ -28,9 +29,10 @@ def resolve_named_quarter(
         if quarter <= current_quarter:
             target_year = today.year
         else:
-            target_year = today.year - 1 
-    
+            target_year = today.year - 1
+
     return quarter_range(target_year, quarter)
+
 
 def resolve_named_month(
     *,
@@ -47,18 +49,15 @@ def resolve_named_month(
             target_year = today.year - 1
     return month_range(target_year, month)
 
-# Explicit date is specified by a single date, e.g., "January 1, 2026" or "2026-01-01" or "22nd of February" or "on the 3rd"                
+
+# Explicit date is specified by a single date, e.g., "January 1, 2026" or "2026-01-01" or "22nd of February" or "on the 3rd"
 def resolve_named_date(
-    *,
-    year: int | None = None,
-    month: int | None = None,
-    day: int,
-    today: date
+    *, year: int | None = None, month: int | None = None, day: int, today: date
 ) -> DateRange | None:
     target_year = year
     target_month = month
-    if(year is None):
-        if(month is None):
+    if year is None:
+        if month is None:
             # If only day is provided, choose the most recent occurrence of the day in current/previous month
             target_month = today.month
             target_year = today.year
@@ -72,9 +71,13 @@ def resolve_named_date(
             target_year = today.year
             if month > today.month:
                 target_year -= 1
-        
+
     # Validate final date
     try:
-        return day_range(target_year, target_month, day) if target_year and target_month and day else None
+        return (
+            day_range(target_year, target_month, day)
+            if target_year and target_month and day
+            else None
+        )
     except Exception:
         return None

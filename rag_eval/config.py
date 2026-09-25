@@ -23,47 +23,58 @@ class MdDocsConfig(BaseModel):
     docs_dir: Path
     docs_set_id: Path
 
+
 class EmbeddingsConfig(BaseModel):
     embedder: EmbedderConfig
-    
+
+
 class QuestionQualityFilterConfig(BaseModel):
     quality_threshold: QuestionQuality = QuestionQuality.ACCEPT
-    
+
+
 class TestPreparationConfig(BaseModel):
     test_suite_id: str
-    
+
+
 class QuestionGeneratorConfig(BaseModel):
     question_set: str
     embedder: EmbedderConfig
     llm_config: LLMConfig
     num_questions: int
     persona_list: list[Persona]
-    
+
+
 class RetrieverForCandidateGeneratorConfig(BaseModel):
     config: RetrieverConfig
     embedder_config: EmbedderConfig
-    
+
+
 class CandidateChunksRetrieverConfig(BaseModel):
     nr_candidates: int
     retriever_configs: list[RetrieverForCandidateGeneratorConfig]
-    
+
+
 class JudgeConfig(BaseModel):
     prompt_config: PromptConfig
     llm_config: LLMConfig
-        
+
+
 class EvalConfig(BaseModel):
     retriever_top_k: int
     reranker_top_k: int
     bm25_top_k: int
-    
+
+
 class EvaluationConfig(BaseModel):
     version: str
     metrics: list[str]
     k_configs: list[EvalConfig]
-    
+
+
 class RetrievalSimulatorConfig(BaseModel):
     llm_config: LLMConfig
     relevance_judge_prompt_config: PromptConfig
+
 
 class PipelineConfig(BaseModel):
     md_docs: MdDocsConfig
@@ -77,7 +88,8 @@ class PipelineConfig(BaseModel):
     question_quality_judge: JudgeConfig
     evaluation: EvaluationConfig
     runner: RetrievalSimulatorConfig
-    
+
+
 persona_list = [
     Persona(
         name="Existing customer needing support",
@@ -114,23 +126,15 @@ persona_list = [
     ),
 ]
 
+
 def create_pipeline_config() -> PipelineConfig:
     return PipelineConfig(
-        md_docs=MdDocsConfig(
-            docs_dir=Path("rag_eval/data/docs"),
-            docs_set_id=Path("docs_001")
-        ),
-        md_chunking=ChunkerConfig(
-            version="paragraph_with_breadcrumb_chunker_v01"
-        ),
-        docs_embeddings=LocalEmbedderConfig(
-            model=SupportedLocalEmbedder.JINA_EMBEDDINGS_V3
-        ),
+        md_docs=MdDocsConfig(docs_dir=Path("rag_eval/data/docs"), docs_set_id=Path("docs_001")),
+        md_chunking=ChunkerConfig(version="paragraph_with_breadcrumb_chunker_v01"),
+        docs_embeddings=LocalEmbedderConfig(model=SupportedLocalEmbedder.JINA_EMBEDDINGS_V3),
         question_generator=QuestionGeneratorConfig(
             question_set="question_set_001",
-            embedder=LocalEmbedderConfig(
-                model=SupportedLocalEmbedder.QWEN3_EMBEDDING_4B
-            ),
+            embedder=LocalEmbedderConfig(model=SupportedLocalEmbedder.QWEN3_EMBEDDING_4B),
             llm_config=OpenAILLMConfig(
                 model="gpt-5.4-mini",
             ),
@@ -141,30 +145,24 @@ def create_pipeline_config() -> PipelineConfig:
             nr_candidates=10,
             retriever_configs=[
                 RetrieverForCandidateGeneratorConfig(
-                    config=EmbeddingsRetrieverConfig(
-                        top_k=10
-                    ),
+                    config=EmbeddingsRetrieverConfig(top_k=10),
                     embedder_config=LocalEmbedderConfig(
                         model=SupportedLocalEmbedder.JINA_EMBEDDINGS_V3
                     ),
                 ),
                 RetrieverForCandidateGeneratorConfig(
-                    config=EmbeddingsRetrieverConfig(
-                        top_k=10
-                    ),
+                    config=EmbeddingsRetrieverConfig(top_k=10),
                     embedder_config=LocalEmbedderConfig(
                         model=SupportedLocalEmbedder.QWEN3_EMBEDDING_4B
                     ),
                 ),
                 RetrieverForCandidateGeneratorConfig(
-                    config=BM25RetrieverConfig(
-                        top_k=10
-                    ),
+                    config=BM25RetrieverConfig(top_k=10),
                     embedder_config=LocalEmbedderConfig(
                         model=SupportedLocalEmbedder.JINA_EMBEDDINGS_V3
                     ),
                 ),
-            ]
+            ],
         ),
         judge=JudgeConfig(
             prompt_config=PromptConfig(
@@ -173,7 +171,7 @@ def create_pipeline_config() -> PipelineConfig:
             ),
             llm_config=OpenAILLMConfig(
                 model="gpt-5.4-mini",
-            )
+            ),
         ),
         question_quality_judge=JudgeConfig(
             prompt_config=PromptConfig(
@@ -182,7 +180,7 @@ def create_pipeline_config() -> PipelineConfig:
             ),
             llm_config=OpenAILLMConfig(
                 model="gpt-5.4-mini",
-            )
+            ),
         ),
         runner=RetrievalSimulatorConfig(
             llm_config=OpenAILLMConfig(
@@ -202,12 +200,8 @@ def create_pipeline_config() -> PipelineConfig:
                 for rrk in [5, 7, 10, 12]
                 for bm25k in [5, 10, 15]
                 if rtk >= rrk and rtk >= bm25k
-            ]
+            ],
         ),
-        filter_quality_config=QuestionQualityFilterConfig(
-            quality_threshold=QuestionQuality.ACCEPT
-        ),
-        test_preparation=TestPreparationConfig(
-            test_suite_id="test_suite_001"
-        ),
+        filter_quality_config=QuestionQualityFilterConfig(quality_threshold=QuestionQuality.ACCEPT),
+        test_preparation=TestPreparationConfig(test_suite_id="test_suite_001"),
     )

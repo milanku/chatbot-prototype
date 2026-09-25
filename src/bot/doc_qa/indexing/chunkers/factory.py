@@ -9,6 +9,6 @@ def create_chunker(config: ChunkerConfig) -> Chunker:
     match config:
         case ContextualChunkerConfig():
             return ContextualChunker()
-        
+
         case _:
             assert_never(config)

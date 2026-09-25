@@ -9,6 +9,7 @@ class DocsAnswerStatus(StrEnum):
     INSUFFICIENT_EVIDENCE = "INSUFFICIENT_EVIDENCE"
     DRAFT_VERIFICATION_FAIL = "DRAFT_VERIFICATION_FAIL"
 
+
 @dataclass
 class DocsAnswerResult:
     status: DocsAnswerStatus

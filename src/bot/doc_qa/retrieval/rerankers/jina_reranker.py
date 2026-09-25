@@ -12,12 +12,11 @@ class JinaRerankerModel(Protocol):
         self,
         query: str,
         chunks: list[str],
-    ) -> list[dict[str, Any]]:
-        ...
-        
-    def eval(self) -> None:
-        ...
-        
+    ) -> list[dict[str, Any]]: ...
+
+    def eval(self) -> None: ...
+
+
 class JinaReranker(Reranker):
     def __init__(self):
         self._reranker = cast(
@@ -34,14 +33,8 @@ class JinaReranker(Reranker):
         if not chunks:
             return []
 
-        contents = [
-            doc.content
-            for doc in chunks
-        ]
-        
+        contents = [doc.content for doc in chunks]
+
         results = self._reranker.rerank(query, contents)
 
-        return [
-            chunks[result["index"]]
-            for result in results
-        ]
+        return [chunks[result["index"]] for result in results]

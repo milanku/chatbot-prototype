@@ -53,7 +53,7 @@ from bot.tx_qa.timeframe.weekday import resolve_named_weekday
                 end_date=date(2026, 7, 25),
             ),
             id="named-weekday-offset-previous-week-2",
-        ),       
+        ),
         pytest.param(
             1,
             -2,
@@ -82,10 +82,6 @@ def test_range_from_named_weekday(
     today: date,
     expected: DateRange | None,
 ) -> None:
-    result = resolve_named_weekday(
-        weekday=weekday,
-        offset=offset,
-        today=today
-    )
+    result = resolve_named_weekday(weekday=weekday, offset=offset, today=today)
 
     assert result == expected

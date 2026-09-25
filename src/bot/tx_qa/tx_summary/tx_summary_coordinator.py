@@ -16,20 +16,21 @@ class TxSummaryResult:
     answer_text: str
     new_state: SessionState | None = None
 
+
 class TxSummaryCoordinator:
     def __init__(self, *, tx_repository: TransactionsRepository, timeframe_parser: TimeframeParser):
         self._tx_repository = tx_repository
         self._timeframe_parser = timeframe_parser
-    
+
     def answer(self, message: str, *, session_state: SessionState, today: date) -> TxSummaryResult:
         extraction = self._timeframe_parser.parse(message)
         date_range = resolve_date_range(extraction.timeframe, today)
-        
+
         if date_range is None:
             return TxSummaryResult(
                 answer_text="Sorry, I could not determine the date range for your query. Please make sure to specify a valid timeframe (e.g., 'last month', 'from January 1st to January 31st').\n",
-            )   
-        
+            )
+
         query = TxQuery(
             label=extraction.label,
             start_date=date_range.start_date,
@@ -41,7 +42,7 @@ class TxSummaryCoordinator:
         query_result: SummaryQueryResult = SummaryQueryResult(
             query=query,
             transactions=txs,
-            total=Decimal(total_amount), 
+            total=Decimal(total_amount),
             created_at=datetime.now(),
         )
         # Update state with the new query result

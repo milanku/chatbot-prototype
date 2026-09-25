@@ -10,4 +10,3 @@ class EmbeddingsRetrieverConfig(BaseModel):
 
 
 RetrieverConfig = BM25RetrieverConfig | EmbeddingsRetrieverConfig
-    

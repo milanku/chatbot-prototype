@@ -10,7 +10,7 @@ from bot.tx_qa.parsing.models import TxQuery
 
 class TransactionsRepositoryFromJsonMock(TransactionsRepository):
     _transactions: list[Transaction]
-    
+
     def __init__(self, *, _transactions: list[Transaction]):
         self._transactions = _transactions
 
@@ -18,16 +18,14 @@ class TransactionsRepositoryFromJsonMock(TransactionsRepository):
     def from_json_file(cls, file_path: Path) -> "TransactionsRepositoryFromJsonMock":
         try:
             raw_data = json.loads(file_path.read_text(encoding="utf-8"))
-            transactions_data = [
-                Transaction.model_validate(tx) for tx in raw_data
-            ]
+            transactions_data = [Transaction.model_validate(tx) for tx in raw_data]
         except FileNotFoundError as e:
             raise FileNotFoundError(f"JSON file not found at {file_path}") from e
         except json.JSONDecodeError as e:
             raise ValueError(f"Invalid JSON format in file at {file_path}:\n {e}") from e
         except ValidationError as e:
             raise ValueError(f"Invalid transaction data in JSON file at {file_path}:\n {e}") from e
-        
+
         transactions: list[Transaction] = [
             Transaction(
                 id=tx.id,
@@ -37,7 +35,7 @@ class TransactionsRepositoryFromJsonMock(TransactionsRepository):
                 other_account=tx.other_account,
                 other_contact_name=tx.other_contact_name,
                 description=tx.description,
-                label=tx.label
+                label=tx.label,
             )
             for tx in transactions_data
         ]
@@ -47,7 +45,7 @@ class TransactionsRepositoryFromJsonMock(TransactionsRepository):
         return [
             tx
             for tx in self._transactions
-            if tx_query.start_date <= tx.date 
+            if tx_query.start_date <= tx.date
             and tx.date <= tx_query.end_date
             and tx.direction == tx_query.direction
             and tx.label == tx_query.label

@@ -1,8 +1,5 @@
-
 from datetime import datetime
 
-from bot.config.embedder import LocalEmbedderConfig, SupportedLocalEmbedder
-from bot.doc_qa.retrieval.embedders.factory import create_embedder
 from rag_eval.artifacts.artifact_lineage import (
     ArtifactNode,
     ArtifactRef,
@@ -29,6 +26,9 @@ from rag_eval.simulation.run_retrievals_generation import (
 from rag_eval.simulation.summarize_results import summarize_results
 from rag_eval.tests.run_tests_preparation import run_tests_preparation
 
+from bot.config.embedder import LocalEmbedderConfig, SupportedLocalEmbedder
+from bot.doc_qa.retrieval.embedders.factory import create_embedder
+
 
 class EvaluationPipeline:
     def __init__(
@@ -41,43 +41,35 @@ class EvaluationPipeline:
         self._config = config
         self._artifact_store = artifact_store
         self._runner = runner
-        
-    def run(self):      
-        root = ArtifactNode(
-            artifact_id="root",
-            artifact_type=ArtifactType.ROOT,
-            children=[]
-        )
-        
+
+    def run(self):
+        root = ArtifactNode(artifact_id="root", artifact_type=ArtifactType.ROOT, children=[])
+
         print("Reading markdown documents...")
-        reader_art = read_md_docs(root=ArtifactRef(artifact_node=root, data=None), config=self._config.md_docs)
-        
+        reader_art = read_md_docs(
+            root=ArtifactRef(artifact_node=root, data=None), config=self._config.md_docs
+        )
+
         print("Splitting markdown documents into chunks...")
         splitter_art = run_splitter(
-            md_docs=reader_art,
-            config=self._config.md_chunking,
-            runner=self._runner
+            md_docs=reader_art, config=self._config.md_chunking, runner=self._runner
         )
 
         print("Embedding document chunks...")
         embeddings_art = run_chunks_embedder(
-            chunks=splitter_art,
-            config=self._config.docs_embeddings,
-            runner=self._runner
+            chunks=splitter_art, config=self._config.docs_embeddings, runner=self._runner
         )
-        
+
         print("Generating question collection...")
         question_collection_art = run_questions_generator(
-            doc_chunks=splitter_art,
-            config=self._config.question_generator,
-            runner=self._runner
+            doc_chunks=splitter_art, config=self._config.question_generator, runner=self._runner
         )
-        
+
         print("Picking high-quality questions...")
         judged_questions = run_questions_quality_judge(
             question_collection=question_collection_art,
             config=self._config.question_quality_judge,
-            runner=self._runner
+            runner=self._runner,
         )
         hq_questions_collection = run_questions_quality_filter(
             questions=question_collection_art,
@@ -85,25 +77,21 @@ class EvaluationPipeline:
             runner=self._runner,
             config=self._config.filter_quality_config,
         )
-        
+
         print("Embedding document chunks with Jina embeddings...")
         jina_embeddings_art = run_chunks_embedder(
             chunks=splitter_art,
-            config=LocalEmbedderConfig(
-                model=SupportedLocalEmbedder.JINA_EMBEDDINGS_V3
-            ),
-            runner=self._runner
+            config=LocalEmbedderConfig(model=SupportedLocalEmbedder.JINA_EMBEDDINGS_V3),
+            runner=self._runner,
         )
-        
+
         print("Embedding document chunks with Qwen embeddings...")
         qwen_embeddings_art = run_chunks_embedder(
             chunks=splitter_art,
-            config=LocalEmbedderConfig(
-                model=SupportedLocalEmbedder.QWEN3_EMBEDDING_4B
-            ),
-            runner=self._runner
+            config=LocalEmbedderConfig(model=SupportedLocalEmbedder.QWEN3_EMBEDDING_4B),
+            runner=self._runner,
         )
-        
+
         print("Retrieval of candidate chunks...")
         candidate_chunks_art = run_candidate_chunks_retrieval(
             question_collection=hq_questions_collection,
@@ -111,17 +99,17 @@ class EvaluationPipeline:
             jina_embeddings=jina_embeddings_art,
             qwen_embeddings=qwen_embeddings_art,
             config=self._config.candidate_answers_generator,
-            runner=self._runner
+            runner=self._runner,
         )
-        
+
         print("Judging candidate chunks...")
         judgement = run_candidates_judge(
             question_collection=hq_questions_collection,
             candidate_retrieval=candidate_chunks_art,
             config=self._config.judge,
-            runner=self._runner
+            runner=self._runner,
         )
-        
+
         print("Preparing tests...")
         tests = run_tests_preparation(
             question_collection=hq_questions_collection,
@@ -129,7 +117,7 @@ class EvaluationPipeline:
             runner=self._runner,
             config=self._config.test_preparation,
         )
-        
+
         precomputed_retrievals = run_retrievals_generation(
             test_suite=tests,
             embedder=create_embedder(self._config.docs_embeddings),
@@ -138,22 +126,24 @@ class EvaluationPipeline:
             runner=self._runner,
             config=self._config.runner,
         )
-        
-        #config=self._config.eval_retrieval,
+
+        # config=self._config.eval_retrieval,
         print("Evaluating the pipeline...")
         evaluation = evaluate_pipeline(
             test_suite=tests.data,
             precomputed_retrievals=precomputed_retrievals.data,
             configs=self._config.evaluation,
-        )      
-        
-        date_now_str = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
-        
+        )
+
+        date_now_str = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+
         print("Summarizing results...")
         summary = summarize_results(
             evaluation=evaluation,
             artifact_id=f"summary_{date_now_str}",
-            artifact_store=self._artifact_store
+            artifact_store=self._artifact_store,
         )
         print(summary)
-        persist_pipeline_run_config(artifact_id=f"run_{date_now_str}", root=root, artifact_store=self._artifact_store)
+        persist_pipeline_run_config(
+            artifact_id=f"run_{date_now_str}", root=root, artifact_store=self._artifact_store
+        )

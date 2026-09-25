@@ -43,14 +43,11 @@ def test_range_from_relative_year(
     today: date,
     expected: DateRange | None,
 ) -> None:
-    result = resolve_relative_year(
-        offset,
-        today
-    )
+    result = resolve_relative_year(offset, today)
 
     assert result == expected
-    
-    
+
+
 @pytest.mark.parametrize(
     (
         "offset",
@@ -92,13 +89,11 @@ def test_range_from_relative_month(
     today: date,
     expected: DateRange | None,
 ) -> None:
-    result = resolve_relative_month(
-        offset,
-        today
-    )
+    result = resolve_relative_month(offset, today)
 
     assert result == expected
-    
+
+
 @pytest.mark.parametrize(
     (
         "offset",
@@ -140,13 +135,11 @@ def test_range_from_relative_week(
     today: date,
     expected: DateRange | None,
 ) -> None:
-    result = resolve_relative_week(
-        offset,
-        today
-    )
+    result = resolve_relative_week(offset, today)
 
     assert result == expected
-    
+
+
 @pytest.mark.parametrize(
     (
         "offset",
@@ -188,9 +181,6 @@ def test_range_from_relative_day(
     today: date,
     expected: DateRange | None,
 ) -> None:
-    result = resolve_relative_day(
-        offset,
-        today
-    )
+    result = resolve_relative_day(offset, today)
 
     assert result == expected

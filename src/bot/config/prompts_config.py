@@ -1,4 +1,3 @@
-
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -7,11 +6,12 @@ from pathlib import Path
 class PromptConfig:
     directory: Path
     version: str
-    
+
     @property
     def instructions_file_path(self) -> Path:
         return self.directory / f"{self.version}.txt"
-    
+
+
 @dataclass(frozen=True)
 class PromptConfigs:
     router: PromptConfig
@@ -21,6 +21,7 @@ class PromptConfigs:
     timeframe_parser: PromptConfig
     doc_answer_synthesizer: PromptConfig
     chunk_judge: PromptConfig
+
 
 PROMPT_CONFIGS = PromptConfigs(
     router=PromptConfig(

@@ -19,9 +19,7 @@ def _add_stage_metrics(
     relevant_precision: MetricAccumulator,
     complete_required_recall: CountMetricAccumulator,
 ) -> None:
-    required_recall.add(
-        calc_recall(required_chunk_ids, predicted_chunk_ids)
-    )
+    required_recall.add(calc_recall(required_chunk_ids, predicted_chunk_ids))
 
     relevant_recall.add(
         calc_recall(
@@ -30,9 +28,7 @@ def _add_stage_metrics(
         )
     )
 
-    required_precision.add(
-        calc_precision(required_chunk_ids, predicted_chunk_ids)
-    )
+    required_precision.add(calc_precision(required_chunk_ids, predicted_chunk_ids))
 
     relevant_precision.add(
         calc_precision(
@@ -41,10 +37,9 @@ def _add_stage_metrics(
         )
     )
 
-    complete_required_recall.add(
-        required_chunk_ids.issubset(predicted_chunk_ids)
-    )
-    
+    complete_required_recall.add(required_chunk_ids.issubset(predicted_chunk_ids))
+
+
 def add_metrics(
     *,
     result: TestCaseEvaluationResult,

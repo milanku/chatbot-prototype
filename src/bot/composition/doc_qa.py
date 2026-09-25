@@ -41,14 +41,17 @@ def create_docs_answer_handler(
     reranker_config: RerankerConfig,
 ) -> DocsAnswerHandler:
 
-    retrievers = [create_retriever(
-        config=config,
-        embedder=embedder,
-        embedded_doc_chunks=embedded_doc_chunks,
-    ) for config in retriever_configs]
-    
+    retrievers = [
+        create_retriever(
+            config=config,
+            embedder=embedder,
+            embedded_doc_chunks=embedded_doc_chunks,
+        )
+        for config in retriever_configs
+    ]
+
     reranker = create_reranker(reranker_config)
-    
+
     required_chunk_judge = ChunkRequirementJudge(
         llm_client=llm_client,
         relevance_judge_prompt_loader=ChunkJudgePromptLoader(
@@ -57,7 +60,7 @@ def create_docs_answer_handler(
         allow_judgement=frozenset([ChunkRequirement.REQUIRED]),
         output_format=ChunkRequirementJudgeOutputFormat,
     )
-    
+
     synthesizer = AnswerSynthesizer(
         llm_client=llm_client,
         prompt_loader=SynthesizerPromptLoader(prompt_config=answer_synthesizer_prompt_config),
@@ -65,19 +68,23 @@ def create_docs_answer_handler(
 
     claim_extractor = ClaimExtractor(
         llm_client=llm_client,
-        claim_extraction_prompt_loader=ClaimExtractorPromptLoader(prompt_config=claim_extractor_prompt_config),
+        claim_extraction_prompt_loader=ClaimExtractorPromptLoader(
+            prompt_config=claim_extractor_prompt_config
+        ),
     )
 
     claims_verifier = ClaimsVerifier(
         llm_client=llm_client,
-        claim_verifier_prompt_loader=ClaimVerifierPromptLoader(prompt_config=claim_verifier_prompt_config),
+        claim_verifier_prompt_loader=ClaimVerifierPromptLoader(
+            prompt_config=claim_verifier_prompt_config
+        ),
     )
 
     answer_verifier = AnswerVerifier(
         claim_extractor=claim_extractor,
         claim_verifier=claims_verifier,
     )
-    
+
     coordinator = DocsAnswerCoordinator(
         retrievers=retrievers,
         synthesizer=synthesizer,

@@ -1,7 +1,7 @@
 from pydantic import BaseModel
+from rag_eval.questions.models import Question
 
 from bot.doc_qa.retrieval.judges.models import ChunkRelevance, JudgedChunk
-from rag_eval.questions.models import Question
 
 
 class RetrievalTestCase(BaseModel):

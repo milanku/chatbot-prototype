@@ -11,7 +11,7 @@ def resolve_explicit_range(
 ) -> DateRange | None:
     resolved_start_date: date | None = None
     resolved_end_date: date | None = None
-    
+
     start_day = start_endpoint.day
     start_month = start_endpoint.month
     start_year = start_endpoint.year
@@ -21,78 +21,78 @@ def resolve_explicit_range(
     end_month = end_endpoint.month
     end_year = end_endpoint.year
     end_quarter = end_endpoint.quarter
-    
+
     # TODO: fix very awkward implementation, refactor needed. This is very basic and does not handle all cases.
     # @today might be needed to resolve cases where some parts are meant to be implied
-    
-    if(start_day is not None):
-        if(start_month is not None):
-            if(start_year is not None):
+
+    if start_day is not None:
+        if start_month is not None:
+            if start_year is not None:
                 resolved_start_date = date(start_year, start_month, start_day)
-            elif(end_year is not None):
+            elif end_year is not None:
                 resolved_start_date = date(end_year, start_month, start_day)
             else:
                 candidate_date = date(today.year, start_month, start_day)
-                if(candidate_date > today):
+                if candidate_date > today:
                     candidate_date = date(today.year - 1, start_month, start_day)
                 resolved_start_date = candidate_date
-        elif(end_month is not None):
-            if(start_year is not None):
+        elif end_month is not None:
+            if start_year is not None:
                 resolved_start_date = date(start_year, end_month, start_day)
-            elif(end_year is not None):
+            elif end_year is not None:
                 resolved_start_date = date(end_year, end_month, start_day)
-    elif(start_month is not None):
-        if(start_year is not None):
+    elif start_month is not None:
+        if start_year is not None:
             resolved_start_date = date(start_year, start_month, 1)
-        elif(end_year is not None):
+        elif end_year is not None:
             resolved_start_date = date(end_year, start_month, 1)
-    elif(start_year is not None):
+    elif start_year is not None:
         resolved_start_date = date(start_year, 1, 1)
-        
-    if(end_day is not None):
-        if(end_month is not None):
-            if(end_year is not None):
+
+    if end_day is not None:
+        if end_month is not None:
+            if end_year is not None:
                 resolved_end_date = date(end_year, end_month, end_day)
-            elif(start_year is not None):
+            elif start_year is not None:
                 resolved_end_date = date(start_year, end_month, end_day)
             else:
                 candidate_date = date(today.year, end_month, end_day)
-                if(candidate_date > today):
+                if candidate_date > today:
                     candidate_date = date(today.year - 1, end_month, end_day)
                 resolved_end_date = candidate_date
-        elif(start_month is not None):
-            if(end_year is not None):
+        elif start_month is not None:
+            if end_year is not None:
                 resolved_end_date = date(end_year, start_month, end_day)
-            elif(start_year is not None):
+            elif start_year is not None:
                 resolved_end_date = date(start_year, start_month, end_day)
-    elif(end_month is not None):
-        if(end_year is not None):
+    elif end_month is not None:
+        if end_year is not None:
             last_day = (date(end_year, end_month + 1, 1) - timedelta(days=1)).day
             resolved_end_date = date(end_year, end_month, last_day)
-        elif(start_year is not None):
+        elif start_year is not None:
             last_day = (date(start_year, end_month + 1, 1) - timedelta(days=1)).day
             resolved_end_date = date(start_year, end_month, last_day)
-    elif(end_year is not None):
+    elif end_year is not None:
         resolved_end_date = date(end_year, 12, 31)
-        
-    if(start_quarter is not None):
-        if(start_year is not None):
+
+    if start_quarter is not None:
+        if start_year is not None:
             start_month = (start_quarter - 1) * 3 + 1
             resolved_start_date = date(start_year, start_month, 1)
-        elif(end_year is not None):
+        elif end_year is not None:
             start_month = (start_quarter - 1) * 3 + 1
             resolved_start_date = date(end_year, start_month, 1)
         else:
             current_year = today.year
             start_month = (start_quarter - 1) * 3 + 1
             resolved_start_date = date(current_year, start_month, 1)
-            
-    if(end_quarter is not None):
-        if(end_year is not None):
+
+    if end_quarter is not None:
+        if end_year is not None:
             end_month = end_quarter * 3
             last_day = (date(end_year, end_month + 1, 1) - timedelta(days=1)).day
             resolved_end_date = date(end_year, end_month, last_day)
-        elif(start_year is not None):
+        elif start_year is not None:
             end_month = end_quarter * 3
             last_day = (date(start_year, end_month + 1, 1) - timedelta(days=1)).day
             resolved_end_date = date(start_year, end_month, last_day)
@@ -101,7 +101,7 @@ def resolve_explicit_range(
             end_month = end_quarter * 3
             last_day = (date(current_year, end_month + 1, 1) - timedelta(days=1)).day
             resolved_end_date = date(current_year, end_month, last_day)
-            
+
     log_event(
         event="resolve_explicit_range",
         payload={
@@ -110,7 +110,11 @@ def resolve_explicit_range(
             "today": today.isoformat(),
             "resolved_start_date": resolved_start_date.isoformat() if resolved_start_date else None,
             "resolved_end_date": resolved_end_date.isoformat() if resolved_end_date else None,
-        }
+        },
     )
 
-    return DateRange(start_date=resolved_start_date, end_date=resolved_end_date) if resolved_start_date is not None and resolved_end_date is not None else None
+    return (
+        DateRange(start_date=resolved_start_date, end_date=resolved_end_date)
+        if resolved_start_date is not None and resolved_end_date is not None
+        else None
+    )

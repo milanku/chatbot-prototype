@@ -57,7 +57,7 @@ from bot.tx_qa.timeframe.rolling import (
                 end_date=date(2026, 1, 3),
             ),
             id="trailing-week-offset-previous-year",
-        ),        
+        ),
         pytest.param(
             RollingRangeUnit.MONTH,
             2,
@@ -98,8 +98,6 @@ from bot.tx_qa.timeframe.rolling import (
             ),
             id="trailing-year-offset-leap-year",
         ),
-        
-        
     ],
 )
 def test_range_from_trailing_rolling_range(
@@ -108,15 +106,11 @@ def test_range_from_trailing_rolling_range(
     today: date,
     expected: DateRange | None,
 ) -> None:
-    result = resolve_trailing_range(
-        unit=unit,
-        unit_amount=amount,
-        today=today
-    )
+    result = resolve_trailing_range(unit=unit, unit_amount=amount, today=today)
 
     assert result == expected
-    
-    
+
+
 @pytest.mark.parametrize(
     (
         "unit",
@@ -164,7 +158,7 @@ def test_range_from_trailing_rolling_range(
                 end_date=date(2025, 12, 28),
             ),
             id="trailing-week-offset-previous-year",
-        ),        
+        ),
         pytest.param(
             RollingRangeUnit.MONTH,
             2,
@@ -225,8 +219,6 @@ def test_range_from_trailing_rolling_range(
             ),
             id="trailing-year-offset-leap-year",
         ),
-        
-        
     ],
 )
 def test_range_from_previous_complete_rolling_range(
@@ -235,10 +227,6 @@ def test_range_from_previous_complete_rolling_range(
     today: date,
     expected: DateRange | None,
 ) -> None:
-    result = resolve_previous_complete_range(
-        unit=unit,
-        unit_amount=amount,
-        today=today
-    )
+    result = resolve_previous_complete_range(unit=unit, unit_amount=amount, today=today)
 
     assert result == expected

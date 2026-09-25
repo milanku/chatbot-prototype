@@ -31,12 +31,11 @@ def test_year_range(
     year: int,
     expected: DateRange | None,
 ) -> None:
-    result = year_range(
-        year=year
-    )
+    result = year_range(year=year)
 
     assert result == expected
-    
+
+
 @pytest.mark.parametrize(
     (
         "year",
@@ -66,7 +65,8 @@ def test_quarter_range(
     )
 
     assert result == expected
-    
+
+
 @pytest.mark.parametrize(
     (
         "year",
@@ -105,12 +105,13 @@ def test_month_range(
     )
 
     assert result == expected
-    
+
+
 @pytest.mark.parametrize(
     (
         "year",
         "month",
-        "day",  
+        "day",
         "expected",
     ),
     [

@@ -16,6 +16,7 @@ _json_indent: int | None = None
 
 LOGS_DIR = Path("logs")
 
+
 @runtime_checkable
 class _SupportsToDict(Protocol):
     def to_dict(self) -> Any: ...
@@ -68,21 +69,24 @@ def _default_serializer(o: Any) -> Any:
     # Last resort
     return str(o)
 
+
 def generate_id(time: datetime) -> str:
     return f"{time.strftime('%Y-%m-%d_%H:%M:%S')}_{uuid4().hex[:4]}"
+
 
 def get_current_log_path() -> Path:
     session_id = get_current_session_id()
     trace_id = get_current_trace_id()
-    
-    if(session_id and trace_id):
+
+    if session_id and trace_id:
         return LOGS_DIR / session_id / f"{trace_id}.log"
     return LOGS_DIR / "default.log"
+
 
 def log_event(*, event: str, payload: dict[str, Any]) -> None:
     path = get_current_log_path()
     path.parent.mkdir(parents=True, exist_ok=True)
-    
+
     record: dict[str, Any] = {
         "ts": datetime.now(timezone.utc).isoformat(),
         "session_id": get_current_session_id(),
@@ -91,7 +95,7 @@ def log_event(*, event: str, payload: dict[str, Any]) -> None:
         "payload": payload,
     }
     text = ""
-    
+
     try:
         record_dump = json.dumps(
             record,

@@ -12,7 +12,7 @@ from bot.tx_qa.timeframe.models import RawRangeEndpoint
     (
         "start_endpoint",
         "end_endpoint",
-        "today",  
+        "today",
         "expected",
     ),
     [
@@ -25,7 +25,7 @@ from bot.tx_qa.timeframe.models import RawRangeEndpoint
                 end_date=date(2021, 7, 28),
             ),
             id="explicit-range-all-parts",
-        ),        
+        ),
         pytest.param(
             RawRangeEndpoint(month=7, day=15),
             RawRangeEndpoint(year=2021, month=7, day=28),
@@ -65,7 +65,7 @@ from bot.tx_qa.timeframe.models import RawRangeEndpoint
                 end_date=date(2021, 7, 28),
             ),
             id="explicit-range-infer-year-and-month-from-end",
-        ),        
+        ),
         pytest.param(
             RawRangeEndpoint(year=2021, quarter=1),
             RawRangeEndpoint(year=2021, quarter=3),

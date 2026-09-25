@@ -7,5 +7,4 @@ class ChunksRetriever(Protocol):
     def retrieve(
         self,
         question: str,
-    ) -> list[DocChunk]:
-        ...
+    ) -> list[DocChunk]: ...

@@ -14,7 +14,7 @@ def resolve_named_weekday(
         days_difference = (current_weekday - weekday) % 7
         target_date = today - timedelta(days=days_difference)
         return DateRange(start_date=target_date, end_date=target_date)
-    elif(offset == -2):
+    elif offset == -2:
         # Most recent occurrence of the weekday in the week before the previous week
         current_weekday = today.isoweekday()
         days_difference = (current_weekday - weekday) % 7

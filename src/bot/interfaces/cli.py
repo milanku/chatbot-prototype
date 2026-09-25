@@ -29,14 +29,16 @@ app = typer.Typer(add_completion=False)
 
 
 @app.callback(invoke_without_command=True)
-def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable verbose logging")) -> None:
+def main(
+    verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable verbose logging"),
+) -> None:
     load_dotenv()
-    
+
     current_time = datetime.now()
     session_id = generate_id(current_time)
     session_store: SessionStore = InMemorySessionStore()
     setup_logging(verbose=verbose)
-    
+
     llm_client: LLMClient = create_llm(BOT_CONFIG.llm)
     embedder: Embeddings = create_embedder(BOT_CONFIG.embedder)
     chunker: Chunker = create_chunker(BOT_CONFIG.chunker)
@@ -50,10 +52,10 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
         embedder=embedder,
         embeddings_model=BOT_CONFIG.embedder.model,
         repository=EmbeddingsStoreRepository(
-            embeddings_dir_path=BOT_CONFIG.embeddings_dir_path
+            embeddings_dir_path=BOT_CONFIG.embeddings_dir_path,
         ),
     ).load_or_create()
-    
+
     engine_deps = EngineDeps(
         tx_repository=tx_repository,
         embeddings_store=embeddings_store,
@@ -63,7 +65,7 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
         retriever_configs=BOT_CONFIG.retrievers,
         reranker_config=BOT_CONFIG.reranker,
     )
-    
+
     engine = ChatbotEngine(engine_deps)
 
     typer.echo("Chatbot prototype (type 'exit' to quit)")
@@ -73,18 +75,23 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable ver
             msg = typer.prompt("> ")
             if msg.strip().lower() in {"exit", "quit"}:
                 break
-            
+
             result: EngineResponse = engine.answer(
                 msg, session_state=session_store.get_session(get_current_session_id() or session_id)
             )
             response = result.response
             new_state = result.new_state
-            if(new_state is not None):
+            if new_state is not None:
                 session_store.set_session(session_id, new_state)  # Update session state
-            
+
             typer.echo(f"\n\n{response.answer}\n\n")
-            if(response.doc_references):
-                typer.echo(        
-                    "Referenced documents:\n" + "\n".join(f"{ref.file_name} ({' >> '.join(ref.heading_path)})" for ref in response.doc_references) + "\n\n"
+            if response.doc_references:
+                typer.echo(
+                    "Referenced documents:\n"
+                    + "\n".join(
+                        f"{ref.file_name} ({' >> '.join(ref.heading_path)})"
+                        for ref in response.doc_references
+                    )
+                    + "\n\n"
                 )
             typer.echo(f"(trace_id: {response.trace_id})")

@@ -4,6 +4,7 @@ from rag_eval.artifacts.artifact_lineage import ArtifactType
 
 ArtifactT = TypeVar("ArtifactT")
 
+
 class ArtifactStore(Protocol):
     def exists(
         self,
@@ -11,8 +12,7 @@ class ArtifactStore(Protocol):
         artifact_type: ArtifactType,
         artifact_id: str,
         artifact_data_type: type[ArtifactT],
-    ) -> bool:
-        ...
+    ) -> bool: ...
 
     def save(
         self,
@@ -21,8 +21,7 @@ class ArtifactStore(Protocol):
         artifact_id: str,
         artifact: object,
         artifact_data_type: type[ArtifactT],
-    ) -> None:
-        ...
+    ) -> None: ...
 
     def load(
         self,
@@ -30,5 +29,4 @@ class ArtifactStore(Protocol):
         artifact_type: ArtifactType,
         artifact_id: str,
         artifact_data_type: type[ArtifactT],
-    ) -> ArtifactT:
-        ...
+    ) -> ArtifactT: ...
