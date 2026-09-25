@@ -9,6 +9,7 @@ from bot.doc_qa.verification.models import (
     VerifiedClaim,
 )
 from bot.doc_qa.verification.verifier import ClaimsVerifier
+from bot.logging import log_event
 
 
 @dataclass
@@ -32,6 +33,19 @@ class AnswerVerifier:
         extracted_claims_from_draft_answer = self._claim_extractor.extract_claims_from_text(
             text=draft_answer
         )
+
+        # Don´t run the verifier if no claims were extracted
+        if not extracted_claims_from_draft_answer:
+            log_event(
+                event="doc_qa.verification.no_claims_extracted",
+                payload={"question": question, "draft_answer": draft_answer},
+            )
+
+            return AnswerVerification(
+                is_supported=False,
+                verified_claims=[],
+            )
+
         verified_claims = self._claim_verifier.verify_against_evidence(
             user_query=question,
             claims=extracted_claims_from_draft_answer,
