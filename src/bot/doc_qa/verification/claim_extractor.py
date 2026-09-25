@@ -3,11 +3,13 @@ from bot.doc_qa.verification.claim_extractor_prompt_loader import (
     ClaimExtractorPromptLoader,
 )
 from bot.doc_qa.verification.models import (
+    ClaimExtractionLLMOutput,
     ExtractedClaim,
-    ExtractionResult,
-    SentenceForExtraction,
 )
 from bot.llm.client import LLMClient
+from bot.logging import log_event
+
+DEFAULT_RETRIES = 3
 
 
 class ClaimExtractor:
@@ -17,17 +19,37 @@ class ClaimExtractor:
         self._claim_extraction_prompt_loader = claim_extraction_prompt_loader
         self._llm_client = llm_client
 
-    def _split_text_into_sentences(
+    def _check_is_output_valid(
         self,
         *,
-        text: str,
-    ) -> list[SentenceForExtraction]:
-        sentences = text.split(".")
-        return [
-            SentenceForExtraction(chunk_id=f"CHUNK_{i:03d}", content=sentence.strip())
-            for i, sentence in enumerate(sentences)
-            if sentence.strip()
-        ]
+        source_text: str,
+        llm_output: ClaimExtractionLLMOutput,
+    ) -> bool:
+        """Checks if each extracted claim in the llm_output has source_span in the source_text verbatim
+
+        Args:
+            source_text (str): The original text from which claims were extracted.
+            llm_output (ClaimExtractionLLMOutput): The output from the LLM containing extracted claims.
+
+        Returns:
+            bool: True if all extracted claims have valid source spans in the source text, False otherwise.
+        """
+
+        for extracted_claim in llm_output.claims:
+            for source_span in extracted_claim.source_spans:
+                if source_span not in source_text:
+                    log_event(
+                        event="doc_qa.claim_extractor.invalid_output",
+                        payload={
+                            "reason": "Source span not found in the source text.",
+                            "source_text": source_text,
+                            "extracted_claim": extracted_claim.claim,
+                            "invalid_source_span": source_span,
+                        },
+                    )
+                    return False
+
+        return True
 
     def extract_claims_from_text(
         self,
@@ -45,15 +67,19 @@ class ClaimExtractor:
         """
 
         system_prompt = self._claim_extraction_prompt_loader.load_system_instructions()
-        sentences = self._split_text_into_sentences(text=text)
         user_prompt = self._claim_extraction_prompt_loader.build_user_prompt(
-            ClaimExtractorPromptInput(sentences=sentences)
+            ClaimExtractorPromptInput(text=text)
         )
 
         llm_structured_response = self._llm_client.generate_with_structured_output(
             prompt=user_prompt,
-            output_format=ExtractionResult,
+            output_format=ClaimExtractionLLMOutput,
             system_instructions=system_prompt,
+            retries=DEFAULT_RETRIES,
+            check_is_output_valid=lambda output: self._check_is_output_valid(
+                source_text=text,
+                llm_output=output,
+            ),
         )
 
         return [

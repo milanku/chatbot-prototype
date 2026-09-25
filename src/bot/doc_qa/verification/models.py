@@ -1,17 +1,17 @@
 from enum import Enum
+from typing import Annotated
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from bot.doc_qa.indexing.models import DocChunk
 
 
 class LLMExtractedClaim(BaseModel):
     claim: str
-    source_sentence_ids: list[str] | None = None
-    source_text: str | None = None
+    source_spans: Annotated[list[str], Field(min_length=1)]
 
 
-class ExtractionResult(BaseModel):
+class ClaimExtractionLLMOutput(BaseModel):
     claims: list[LLMExtractedClaim]
 
 

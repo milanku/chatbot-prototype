@@ -30,7 +30,7 @@ PROMPT_CONFIGS = PromptConfigs(
     ),
     claim_extractor=PromptConfig(
         directory=Path("src/bot/prompts/claim_extractor_instructions"),
-        version="v001",
+        version="v002",
     ),
     claim_verifier=PromptConfig(
         directory=Path("src/bot/prompts/claim_verificator_instructions"),
