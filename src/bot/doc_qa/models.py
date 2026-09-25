@@ -10,6 +10,12 @@ class DocsAnswerStatus(StrEnum):
     DRAFT_VERIFICATION_FAIL = "DRAFT_VERIFICATION_FAIL"
 
 
+class InsufficientEvidenceReason(StrEnum):
+    EMPTY_RETRIEVAL = "EMPTY_RETRIEVAL"
+    EMPTY_RERANK = "EMPTY_RERANK"
+    EMPTY_REQUIRED = "EMPTY_REQUIRED"
+
+
 @dataclass
 class DocsAnswerResult:
     status: DocsAnswerStatus

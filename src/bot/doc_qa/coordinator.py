@@ -1,5 +1,5 @@
 from bot.doc_qa.indexing.models import DocChunk
-from bot.doc_qa.models import DocsAnswerResult, DocsAnswerStatus
+from bot.doc_qa.models import DocsAnswerResult, DocsAnswerStatus, InsufficientEvidenceReason
 from bot.doc_qa.retrieval.judges.models import ChunkFilter
 from bot.doc_qa.retrieval.rerankers.cross_encoder_reranker import Reranker
 from bot.doc_qa.retrieval.retrievers.models import ChunksRetriever
@@ -38,10 +38,14 @@ class DocsAnswerCoordinator:
     def _insufficient_evidence_result(
         self,
         question: str,
+        reason: InsufficientEvidenceReason,
     ) -> DocsAnswerResult:
         log_event(
             event="doc_qa.coordinator.insufficient_evidence",
-            payload={"question": question},
+            payload={
+                "question": question,
+                "reason": reason,
+            },
         )
         return DocsAnswerResult(
             status=DocsAnswerStatus.INSUFFICIENT_EVIDENCE,
@@ -83,7 +87,17 @@ class DocsAnswerCoordinator:
     def answer(self, question: str) -> DocsAnswerResult:
         retrieved_chunks = self._retrieve(question)
 
+        if not retrieved_chunks:
+            return self._insufficient_evidence_result(
+                question, InsufficientEvidenceReason.EMPTY_RETRIEVAL
+            )
+
         reranked_chunks = self._reranker.rerank(question, retrieved_chunks)
+
+        if not reranked_chunks:
+            return self._insufficient_evidence_result(
+                question, InsufficientEvidenceReason.EMPTY_RERANK
+            )
 
         required_chunks = self._judge.filter_chunks(
             question=question,
@@ -91,7 +105,9 @@ class DocsAnswerCoordinator:
         )
 
         if not required_chunks:
-            return self._insufficient_evidence_result(question)
+            return self._insufficient_evidence_result(
+                question, InsufficientEvidenceReason.EMPTY_REQUIRED
+            )
 
         draft_answer = self._synthesizer.synthesize(
             question=question,
