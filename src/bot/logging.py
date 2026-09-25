@@ -8,6 +8,7 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any, Protocol, cast, runtime_checkable
 
+from pydantic import BaseModel
 from uuid_utils import uuid4
 
 from bot.trace_context import get_current_session_id, get_current_trace_id
@@ -15,6 +16,7 @@ from bot.trace_context import get_current_session_id, get_current_trace_id
 _json_indent: int | None = None
 
 LOGS_DIR = Path("logs")
+_OMITTED_LOG_FIELDS = {"embedding"}
 
 
 @runtime_checkable
@@ -34,6 +36,10 @@ def setup_logging(*, verbose: bool = False, pretty_json: bool | None = None) -> 
 
 
 def _default_serializer(o: Any) -> Any:
+    # Pydantic models -> dict
+    if isinstance(o, BaseModel):
+        return o.model_dump(exclude=_OMITTED_LOG_FIELDS)
+
     # dataclasses -> dict
     if dataclasses.is_dataclass(o):
         if isinstance(o, type):
