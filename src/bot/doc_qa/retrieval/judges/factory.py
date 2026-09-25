@@ -18,7 +18,7 @@ def create_chunk_judge(
     llm_client: LLMClient,
     relevance_judge_prompt_loader: ChunkJudgePromptLoader,
     allow_judgement: frozenset[str],
-):
+) -> ChunkRequirementJudge | ChunkRelevanceJudge:
     match config:
         case ChunkRequirementJudgeConfig():
             return ChunkRequirementJudge(

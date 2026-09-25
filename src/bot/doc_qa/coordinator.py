@@ -1,7 +1,7 @@
 from bot.doc_qa.indexing.models import DocChunk
 from bot.doc_qa.models import DocsAnswerResult, DocsAnswerStatus, InsufficientEvidenceReason
 from bot.doc_qa.retrieval.judges.models import ChunkFilter
-from bot.doc_qa.retrieval.rerankers.cross_encoder_reranker import Reranker
+from bot.doc_qa.retrieval.rerankers.models import Reranker
 from bot.doc_qa.retrieval.retrievers.models import ChunksRetriever
 from bot.doc_qa.synthesis.synthesizer import AnswerSynthesizer
 from bot.doc_qa.verification.answer_verifier import AnswerVerification, AnswerVerifier

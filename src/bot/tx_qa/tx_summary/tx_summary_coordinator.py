@@ -5,9 +5,10 @@ from decimal import Decimal
 from bot.tx_qa.compute import compute_total_amount
 from bot.tx_qa.indexing.models import TransactionsRepository
 from bot.tx_qa.memory.models import SessionState
+from bot.tx_qa.parsing.models import TxQuery
 from bot.tx_qa.parsing.timeframe_parser import TimeframeParser
 from bot.tx_qa.timeframe.resolve import resolve_date_range
-from bot.tx_qa.tx_summary.models import SummaryQueryResult, TxQuery
+from bot.tx_qa.tx_summary.models import SummaryQueryResult
 from bot.tx_qa.tx_summary.tx_summary_formatter import format_tx_summary
 
 

@@ -1,7 +1,7 @@
 from decimal import Decimal
 
 from bot.tx_qa.domain import Direction
-from bot.tx_qa.tx_summary.models import TxQuery
+from bot.tx_qa.parsing.models import TxQuery
 
 
 def format_tx_summary(query: TxQuery, total_amount: Decimal) -> str:

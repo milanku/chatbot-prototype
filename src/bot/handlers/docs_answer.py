@@ -1,4 +1,5 @@
-from bot.doc_qa.coordinator import DocsAnswerCoordinator, DocsAnswerResult
+from bot.doc_qa.coordinator import DocsAnswerCoordinator
+from bot.doc_qa.models import DocsAnswerResult
 from bot.handlers.models import RouteHandler, RouteHandlerResult
 from bot.tx_qa.memory.models import SessionState
 

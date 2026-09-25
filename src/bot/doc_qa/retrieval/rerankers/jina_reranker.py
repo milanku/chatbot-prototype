@@ -18,7 +18,7 @@ class JinaRerankerModel(Protocol):
 
 
 class JinaReranker(Reranker):
-    def __init__(self):
+    def __init__(self) -> None:
         self._reranker = cast(
             JinaRerankerModel,
             AutoModel.from_pretrained(
