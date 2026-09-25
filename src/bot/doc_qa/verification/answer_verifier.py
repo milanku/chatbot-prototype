@@ -9,7 +9,7 @@ from bot.doc_qa.verification.models import (
     VerifiedClaim,
 )
 from bot.doc_qa.verification.verifier import ClaimsVerifier
-from bot.logging import log_event
+from bot.logging import LogLevel, log_event
 
 
 @dataclass
@@ -39,6 +39,7 @@ class AnswerVerifier:
             log_event(
                 event="doc_qa.verification.no_claims_extracted",
                 payload={"question": question, "draft_answer": draft_answer},
+                log_level=LogLevel.INFO,
             )
 
             return AnswerVerification(

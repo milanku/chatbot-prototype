@@ -7,7 +7,7 @@ from bot.doc_qa.verification.models import (
     ExtractedClaim,
 )
 from bot.llm.client import LLMClient
-from bot.logging import log_event
+from bot.logging import LogLevel, log_event
 
 DEFAULT_RETRIES = 3
 
@@ -40,6 +40,7 @@ class ClaimExtractor:
                 if source_span not in source_text:
                     log_event(
                         event="doc_qa.claim_extractor.invalid_output",
+                        log_level=LogLevel.ERROR,
                         payload={
                             "reason": "Source span not found in the source text.",
                             "source_text": source_text,

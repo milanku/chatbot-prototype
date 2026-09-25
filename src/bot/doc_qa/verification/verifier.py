@@ -10,7 +10,7 @@ from bot.doc_qa.verification.verifier_prompt_loader import (
     ClaimVerifierPromptLoader,
 )
 from bot.llm.client import LLMClient
-from bot.logging import log_event
+from bot.logging import LogLevel, log_event
 
 DEFAULT_RETRIES = 3
 
@@ -77,6 +77,7 @@ class ClaimsVerifier:
         if len(claims) != len(verification_results) or expected_ids != llm_output_ids:
             log_event(
                 event="claim_verification.invalid_output",
+                log_level=LogLevel.ERROR,
                 payload={
                     "expected_ids": expected_ids,
                     "output_ids": llm_output_ids,

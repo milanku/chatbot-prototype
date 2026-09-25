@@ -8,7 +8,7 @@ from langchain_openai import ChatOpenAI
 from pydantic import BaseModel
 
 from bot.llm.client import LLMClient
-from bot.logging import log_event
+from bot.logging import LogLevel, log_event
 
 T = TypeVar("T", bound=BaseModel)
 
@@ -86,6 +86,7 @@ class OpenAIClient(LLMClient):
             except Exception as e:
                 log_event(
                     event="llm_client.generate_with_structured_output.error",
+                    log_level=LogLevel.ERROR,
                     payload={
                         "prompt": prompt,
                         "system_instructions": system_instructions,
@@ -134,6 +135,7 @@ class OpenAIClient(LLMClient):
             except Exception as e:
                 log_event(
                     event="llm_client.agenerate_with_structured_output.error",
+                    log_level=LogLevel.ERROR,
                     payload={
                         "prompt": prompt,
                         "system_instructions": system_instructions,

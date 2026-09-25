@@ -6,7 +6,7 @@ from bot.doc_qa.retrieval.retrievers.models import ChunksRetriever
 from bot.doc_qa.synthesis.synthesizer import AnswerSynthesizer
 from bot.doc_qa.verification.answer_verifier import AnswerVerification, AnswerVerifier
 from bot.doc_qa.verification.models import ClaimVerificationStatus
-from bot.logging import log_event
+from bot.logging import LogLevel, log_event
 
 
 class DocsAnswerCoordinator:
@@ -46,6 +46,7 @@ class DocsAnswerCoordinator:
                 "question": question,
                 "reason": reason,
             },
+            log_level=LogLevel.INFO,
         )
         return DocsAnswerResult(
             status=DocsAnswerStatus.INSUFFICIENT_EVIDENCE,
@@ -76,6 +77,7 @@ class DocsAnswerCoordinator:
                         "draft_answer": draft_answer,
                         "unverified_claim": claim,
                     },
+                    log_level=LogLevel.WARNING,
                 )
 
         return DocsAnswerResult(

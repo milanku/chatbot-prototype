@@ -13,7 +13,7 @@ from bot.doc_qa.retrieval.judges.models import (
     JudgeOutputFormat,
 )
 from bot.llm.client import LLMClient
-from bot.logging import log_event
+from bot.logging import LogLevel, log_event
 
 T = TypeVar("T", bound=StrEnum)
 
@@ -52,6 +52,7 @@ class ChunkJudge(ChunkFilter, Generic[T], ABC):
         if len(candidate_chunks) != len(judge_output.results) or expected_ids != judge_output_ids:
             log_event(
                 event="judge_output_invalid",
+                log_level=LogLevel.ERROR,
                 payload={
                     "expected_ids": expected_ids,
                     "output_ids": judge_output_ids,
