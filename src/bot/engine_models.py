@@ -4,6 +4,6 @@ from bot.handlers.models import RouteHandlerResult
 
 
 @dataclass(frozen=True)
-class EngineResponse:
+class EngineResult:
     route_result: RouteHandlerResult
     trace_id: str

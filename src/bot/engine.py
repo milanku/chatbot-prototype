@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import datetime
 
 from bot.common.lazy import Lazy
-from bot.engine_models import EngineResponse
+from bot.engine_models import EngineResult
 from bot.handlers.models import RouteHandler, RouteHandlerResult
 from bot.logging import generate_id, log_event
 from bot.routing.models import ChatbotRouter, Route, RouterDecision
@@ -31,7 +31,7 @@ class ChatbotEngine:
         self._out_of_scope_handler = out_of_scope_handler
         self._unknown_route_handler = unknown_route_handler
 
-    def answer(self, message: str, *, session_state: SessionState) -> EngineResponse:
+    def answer(self, message: str, *, session_state: SessionState) -> EngineResult:
         current_time = datetime.now()
         trace_id = generate_id(current_time)
 
@@ -92,7 +92,7 @@ class ChatbotEngine:
                 },
             )
 
-        return EngineResponse(
+        return EngineResult(
             route_result=result,
             trace_id=trace_id,
         )

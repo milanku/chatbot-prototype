@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from bot.composition.engine import create_chatbot_engine
 from bot.config.bot import BOT_CONFIG
 from bot.config.prompts_config import PROMPT_CONFIGS
-from bot.engine_models import EngineResponse
+from bot.engine_models import EngineResult
 from bot.logging import generate_id, setup_logging
 from bot.trace_context import bind_session_id, get_current_session_id
 from bot.tx_qa.memory.models import SessionStore
@@ -41,7 +41,7 @@ def main(
             if msg.strip().lower() in {"exit", "quit"}:
                 break
 
-            result: EngineResponse = engine.answer(
+            result: EngineResult = engine.answer(
                 msg, session_state=session_store.get_session(get_current_session_id() or session_id)
             )
             trace_id = result.trace_id
