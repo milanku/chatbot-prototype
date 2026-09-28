@@ -1,20 +1,29 @@
 from pathlib import Path
 
+from bot.app_settings import AppSettings
 from bot.config.chunker import ContextualChunkerConfig
-from bot.config.embedder import LocalEmbedderConfig, SupportedLocalEmbedder
+from bot.config.embedder import (
+    LocalEmbedderConfig,
+    SupportedLocalEmbedder,
+)
 from bot.config.llm import OpenAILLMConfig
 from bot.config.models import BotConfig
 from bot.config.reranker import LocalRerankerConfig, SupportedLocalReranker
 from bot.config.retriever import BM25RetrieverConfig, EmbeddingsRetrieverConfig
 
+settings = AppSettings()
+
 BOT_CONFIG = BotConfig(
-    docs_dir_path=Path("data/docs"),
+    docs_dir_path=Path(settings.docs_dir_path),
     embeddings_dir_path=Path("data/embeddings"),
-    transactions_mock_file_path=Path("data/mocks/transactions_mock_jan2025_sep2026.json"),
+    transactions_mock_file_path=Path(settings.transactions_mock_file_path),
     llm=OpenAILLMConfig(
         model="gpt-4.1-mini",
     ),
     embedder=LocalEmbedderConfig(model=SupportedLocalEmbedder.JINA_EMBEDDINGS_V3),
+    # embedder=OpenAIEmbedderConfig(
+    #    model=SupportedOpenAIEmbedder.TEXT_EMBEDDING_3_SMALL,
+    # ),
     chunker=ContextualChunkerConfig(
         version="contextual_chunker_v01",
     ),
