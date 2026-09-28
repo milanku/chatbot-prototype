@@ -49,3 +49,6 @@ _build/
 # Windows
 Thumbs.db
 desktop.ini
+
+# Embeddings persistance
+data/embeddings/
