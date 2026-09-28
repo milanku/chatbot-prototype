@@ -6,6 +6,7 @@ from pathlib import Path
 class PromptConfig:
     directory: Path
     version: str
+    package: str = "bot.config"
 
     @property
     def instructions_file_path(self) -> Path:
