@@ -3,57 +3,34 @@ from __future__ import annotations
 from datetime import datetime
 
 from bot.bot_models import BotResponse
-from bot.composition.doc_qa import create_docs_answer_handler
-from bot.composition.explain_tx_summary import create_explain_tx_summary_handler
-from bot.composition.tx_list import create_tx_list_handler
-from bot.composition.tx_summary import create_tx_summary_handler
-from bot.engine_models import EngineDeps, EngineResponse
+from bot.common.lazy import Lazy
+from bot.engine_models import EngineResponse
 from bot.handlers.models import RouteHandler, RouteHandlerResult
-from bot.handlers.out_of_scope import OutOfScopeHandler
-from bot.handlers.unknown_route import UnknownRouteHandler
 from bot.logging import generate_id, log_event
-from bot.routing.models import Route, RouterDecision
-from bot.routing.router import RouteSelector
-from bot.routing.router_prompt_loader import RouterPromptLoader
+from bot.routing.models import ChatbotRouter, Route, RouterDecision
 from bot.trace_context import bind_trace_id
 from bot.tx_qa.memory.models import SessionState
 
 
 class ChatbotEngine:
-    def __init__(self, deps: EngineDeps) -> None:
-        self._embeddings_store = deps.embeddings_store
-        self._tx_summary_handler: RouteHandler = create_tx_summary_handler(
-            llm_client=deps.llm_client,
-            tx_repository=deps.tx_repository,
-            timeframe_parser_prompt_config=deps.prompt_configs.timeframe_parser,
-        )
-        self._tx_list_handler: RouteHandler = create_tx_list_handler(
-            llm_client=deps.llm_client,
-            tx_repository=deps.tx_repository,
-            timeframe_parser_prompt_config=deps.prompt_configs.timeframe_parser,
-        )
-        self._explain_tx_summary_handler: RouteHandler = create_explain_tx_summary_handler(
-            llm_client=deps.llm_client,
-            explain_summary_parser_prompt_config=deps.prompt_configs.explain_tx_summary_parser,
-        )
-        self._docs_answer_handler: RouteHandler = create_docs_answer_handler(
-            llm_client=deps.llm_client,
-            embedded_doc_chunks=deps.embeddings_store.get_embedded_chunks(),
-            embedder=deps.embedder,
-            answer_synthesizer_prompt_config=deps.prompt_configs.doc_answer_synthesizer,
-            claim_extractor_prompt_config=deps.prompt_configs.claim_extractor,
-            claim_verifier_prompt_config=deps.prompt_configs.claim_verifier,
-            chunk_judge_prompt_config=deps.prompt_configs.chunk_judge,
-            retriever_configs=deps.retriever_configs,
-            reranker_config=deps.reranker_config,
-        )
-        self._out_of_scope_handler: RouteHandler = OutOfScopeHandler()
-        self._unknown_route_handler: RouteHandler = UnknownRouteHandler()
-
-        self._route_selector = RouteSelector(
-            llm_client=deps.llm_client,
-            prompt_loader=RouterPromptLoader(prompt_config=deps.prompt_configs.router),
-        )
+    def __init__(
+        self,
+        *,
+        route_selector: ChatbotRouter,
+        tx_summary_handler: RouteHandler,
+        explain_tx_summary_handler: RouteHandler,
+        tx_list_handler: RouteHandler,
+        docs_answer_handler: Lazy[RouteHandler],
+        out_of_scope_handler: RouteHandler,
+        unknown_route_handler: RouteHandler,
+    ) -> None:
+        self._route_selector = route_selector
+        self._tx_summary_handler = tx_summary_handler
+        self._explain_tx_summary_handler = explain_tx_summary_handler
+        self._tx_list_handler = tx_list_handler
+        self._docs_answer_handler = docs_answer_handler
+        self._out_of_scope_handler = out_of_scope_handler
+        self._unknown_route_handler = unknown_route_handler
 
     def answer(self, message: str, *, session_state: SessionState) -> EngineResponse:
         current_time = datetime.now()
@@ -94,7 +71,7 @@ class ChatbotEngine:
                         session_state=session_state,
                     )
                 case Route.DOCS_ANSWER:
-                    result = self._docs_answer_handler.handle(
+                    result = self._docs_answer_handler.get().handle(
                         message=message,
                         session_state=session_state,
                     )

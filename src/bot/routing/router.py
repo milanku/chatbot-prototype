@@ -1,12 +1,12 @@
 from bot.llm.client import LLMClient
-from bot.routing.models import Route, RouterDecision, RouterDecisionExtraction
+from bot.routing.models import ChatbotRouter, Route, RouterDecision, RouterDecisionExtraction
 from bot.routing.router_prompt_loader import (
     RouterPromptInput,
     RouterPromptLoader,
 )
 
 
-class RouteSelector:
+class RouteSelector(ChatbotRouter):
     def __init__(self, *, llm_client: LLMClient, prompt_loader: RouterPromptLoader) -> None:
         self._llm_client = llm_client
         self._prompt_loader = prompt_loader

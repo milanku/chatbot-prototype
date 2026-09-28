@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from enum import Enum
+from typing import Protocol
 
 from pydantic import BaseModel
 
@@ -22,3 +23,7 @@ class RouterDecisionExtraction(BaseModel):
 
 class RouterDecision(BaseModel):
     route: Route
+
+
+class ChatbotRouter(Protocol):
+    def select(self, *, message: str) -> RouterDecision: ...
