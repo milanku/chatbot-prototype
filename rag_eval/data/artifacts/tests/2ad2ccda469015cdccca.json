@@ -1,0 +1,330 @@
+{
+  "test_cases": [
+    {
+      "question": {
+        "id": "question_1",
+        "content": "What does Aurora Bank do for complaints and customers who need extra help?",
+        "reference_answer": "This document explains how Aurora Bank handles complaints and supports customers who need additional help. Contact routes and service levels are listed in [Glossary, Contact Channels & Service Levels](12_glossary_contact_and_service_level.md)."
+      },
+      "required_chunks": [
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/10_complaints_vulnerable_customers_and_accessibility.md",
+              "heading_path": [
+                "Complaints, Vulnerable Customers & Accessibility"
+              ]
+            },
+            "content": "Complaints, Vulnerable Customers & Accessibility\nThis document explains how Aurora Bank handles complaints and supports customers who need additional help. Contact routes and service levels are listed in [Glossary, Contact Channels & Service Levels](12_glossary_contact_and_service_level.md).",
+            "chunk_id": "rag_eval/data/docs/docs_001/10_complaints_vulnerable_customers_and_accessibility.md_1",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "REQUIRED",
+          "reason": "Directly states that the document covers how Aurora Bank handles complaints and supports customers who need additional help, which answers the question."
+        }
+      ],
+      "relevant_chunks": [
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/10_complaints_vulnerable_customers_and_accessibility.md",
+              "heading_path": [
+                "Complaints, Vulnerable Customers & Accessibility",
+                "5. Escalation and external review"
+              ]
+            },
+            "content": "Complaints, Vulnerable Customers & Accessibility\n5. Escalation and external review\nIf the customer is not satisfied with the final response, they may be able to refer the complaint to an ombudsman, financial services mediator, data protection authority, court, or regulator depending on complaint type and jurisdiction. The final response will include relevant escalation information where required.\nCustomers usually must complain to Aurora Bank before using an external dispute resolution body.",
+            "chunk_id": "rag_eval/data/docs/docs_001/10_complaints_vulnerable_customers_and_accessibility.md_6",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "RELEVANT",
+          "reason": "Provides a specific part of complaint handling: if unhappy with the final response, customers can escalate to an ombudsman or other external body."
+        },
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/01_account_opening_and_kyc.md",
+              "heading_path": [
+                "Account Opening, Eligibility & Customer Verification Policy",
+                "9. Customers who need support"
+              ]
+            },
+            "content": "Account Opening, Eligibility & Customer Verification Policy\n9. Customers who need support\nAurora Bank will make reasonable adjustments for customers who cannot complete standard onboarding because of disability, illness, digital exclusion, language barriers, domestic abuse, homelessness, displacement, or other vulnerability. Examples include branch appointments, interpreter support, alternative documents, large-print forms, and trusted-contact procedures.\nSupport options are described in [Complaints, Vulnerable Customers & Accessibility](10_complaints_vulnerable_customers_and_accessibility.md).",
+            "chunk_id": "rag_eval/data/docs/docs_001/01_account_opening_and_kyc.md_13",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "RELEVANT",
+          "reason": "Describes support for customers who need reasonable adjustments due to vulnerability, giving concrete examples of extra-help measures that support the question."
+        },
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/10_complaints_vulnerable_customers_and_accessibility.md",
+              "heading_path": [
+                "Complaints, Vulnerable Customers & Accessibility",
+                "4. What Aurora Bank may do to resolve a complaint"
+              ]
+            },
+            "content": "Complaints, Vulnerable Customers & Accessibility\n4. What Aurora Bank may do to resolve a complaint\nDepending on the facts, Aurora Bank may:\n- apologize;\n- correct an error;\n- refund a fee or interest;\n- make a goodwill payment;\n- update records;\n- reopen an investigation;\n- provide staff feedback or training;\n- improve a process;\n- explain why the original decision was correct;\n- refer the customer to an external dispute resolution body.\nAurora Bank does not provide compensation for every inconvenience, and redress depends on evidence, legal obligations, financial loss, distress, and fairness.",
+            "chunk_id": "rag_eval/data/docs/docs_001/10_complaints_vulnerable_customers_and_accessibility.md_5",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "RELEVANT",
+          "reason": "Lists the ways Aurora Bank may resolve a complaint, such as apologizing, correcting errors, refunds, goodwill payments, and process improvements, which directly supports the complaints part of the question."
+        }
+      ],
+      "irrelevant_chunks": [
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/10_complaints_vulnerable_customers_and_accessibility.md",
+              "heading_path": [
+                "Complaints, Vulnerable Customers & Accessibility",
+                "9. Financial difficulty"
+              ]
+            },
+            "content": "Complaints, Vulnerable Customers & Accessibility\n9. Financial difficulty\nCustomers who cannot pay bills, loan repayments, overdrafts, or credit-card balances should contact Aurora Bank as early as possible. Early contact gives more options.\nSupport may include:\n- income and expenditure review;\n- temporary payment arrangement;\n- overdraft review;\n- breathing-space or moratorium process where available;\n- referral to free debt advice;\n- freezing certain charges where appropriate;\n- restructuring or term extension where allowed;\n- collections hold while evidence is reviewed.\nFinancial difficulty support may affect credit reporting depending on the arrangement.",
+            "chunk_id": "rag_eval/data/docs/docs_001/10_complaints_vulnerable_customers_and_accessibility.md_10",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "IRRELEVANT",
+          "reason": "About financial difficulty support, which is a separate issue from the general question about complaints and extra help."
+        }
+      ]
+    },
+    {
+      "question": {
+        "id": "question_2",
+        "content": "What is the difference between an arranged overdraft and an unarranged overdraft at Aurora Bank, and how is an arranged overdraft described in the lending products covered section?",
+        "reference_answer": "At Aurora Bank, an arranged overdraft is listed as a lending product and is described as a short-term cash-flow buffer linked to a current account. It is repayable on demand, interest is charged on the used balance, and it is unsecured. An unarranged overdraft, by contrast, is defined as a negative balance that occurs without an approved overdraft or above the arranged overdraft limit."
+      },
+      "required_chunks": [
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/05_loans_overdrafts_and_credit_assessment.md",
+              "heading_path": [
+                "Loans, Overdrafts & Credit Assessment",
+                "9. Arranged overdrafts"
+              ]
+            },
+            "content": "Loans, Overdrafts & Credit Assessment\n9. Arranged overdrafts\nAn arranged overdraft is intended as a short-term borrowing facility. It should not be used for long-term borrowing or regular living costs. Aurora Bank may review, reduce, suspend, or cancel an overdraft after notice or immediately where required for risk, fraud, legal, or account-conduct reasons.\nImportant overdraft rules:\n- Interest is charged only on the used arranged overdraft balance.\n- The overdraft is repayable on demand.\n- Exceeding the limit may lead to declined payments and fees.\n- An overdraft limit is not a promise that every payment will be honored.\n- Savings accounts and youth accounts do not have overdrafts.",
+            "chunk_id": "rag_eval/data/docs/docs_001/05_loans_overdrafts_and_credit_assessment.md_10",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "REQUIRED",
+          "reason": "Explains arranged overdraft features needed for the comparison: short-term borrowing facility, interest on used balance, repayable on demand, and limit consequences."
+        },
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/02_current_savings_accounts_terms.md",
+              "heading_path": [
+                "Current & Savings Accounts Terms",
+                "6. Overdraft basics"
+              ]
+            },
+            "content": "Current & Savings Accounts Terms\n6. Overdraft basics\nAn arranged overdraft is a credit facility attached to a current account. It allows the balance to go below zero up to an approved limit. Arranged overdrafts are subject to credit assessment and are not guaranteed. Details are in [Loans, Overdrafts & Credit Assessment](05_loans_overdrafts_and_credit_assessment.md).\nAn unarranged overdraft occurs when the account goes below zero without approval or exceeds an arranged limit. Aurora Bank may refuse payments that would create or increase an unarranged overdraft. Fees and interest may apply as described in [Fees, Interest & Foreign Exchange](06_fees_interest_and_exchange_rates.md).\nYouth accounts, Basic Payment Accounts, savings accounts, and Fixed Term Deposits do not offer arranged overdrafts.",
+            "chunk_id": "rag_eval/data/docs/docs_001/02_current_savings_accounts_terms.md_10",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "REQUIRED",
+          "reason": "Defines both arranged and unarranged overdrafts, directly answering the difference between them."
+        },
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/05_loans_overdrafts_and_credit_assessment.md",
+              "heading_path": [
+                "Loans, Overdrafts & Credit Assessment",
+                "1. Lending products covered"
+              ]
+            },
+            "content": "Loans, Overdrafts & Credit Assessment\n1. Lending products covered\nAurora Bank may offer the following consumer credit products:\n| Product | Typical purpose | Repayment style | Security |\n|---|---|---|---|\n| Personal loan | Car, home improvement, education, debt consolidation, major purchase | Fixed monthly instalments | Usually unsecured |\n| Arranged overdraft | Short-term cash-flow buffer linked to current account | Repayable on demand; interest charged on used balance | Unsecured |\n| Credit card | Flexible purchases and short-term borrowing | Minimum monthly payment; revolving balance | Unsecured |\n| Mortgage referral or home loan | Property purchase or refinancing | Monthly instalments over long term | Secured on property |\n| Green home improvement loan | Energy-efficiency upgrades | Fixed instalments | Usually unsecured, invoices may be required |\nProduct availability depends on jurisdiction, customer profile, and regulatory permission.",
+            "chunk_id": "rag_eval/data/docs/docs_001/05_loans_overdrafts_and_credit_assessment.md_2",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "REQUIRED",
+          "reason": "States the arranged overdraft description in the lending products covered section as a short-term cash-flow buffer linked to a current account, with repayment on demand, interest on used balance, and unsecured status."
+        }
+      ],
+      "relevant_chunks": [
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/06_fees_interest_and_exchange_rates.md",
+              "heading_path": [
+                "Fees, Interest & Foreign Exchange",
+                "5. Overdraft fees and interest"
+              ]
+            },
+            "content": "Fees, Interest & Foreign Exchange\n5. Overdraft fees and interest\nArranged overdraft interest is calculated daily on the used arranged overdraft balance and charged monthly. The illustrative arranged overdraft rate is 13.90% annual nominal variable.\nAurora Bank does not charge a separate daily unarranged overdraft fee in this mock fee schedule. However, payments that exceed the available balance may be rejected and failed-payment fees may apply where permitted. If an unarranged negative balance occurs, debit interest may be charged and the customer must repay it immediately.\nThe bank may reduce or waive fees where financial difficulty is confirmed. Hardship support is described in [Loans, Overdrafts & Credit Assessment](05_loans_overdrafts_and_credit_assessment.md).",
+            "chunk_id": "rag_eval/data/docs/docs_001/06_fees_interest_and_exchange_rates.md_6",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "RELEVANT",
+          "reason": "Adds a concrete consequence for unarranged negative balances—debit interest may be charged and immediate repayment is required—which helps clarify how unarranged overdrafts are handled."
+        }
+      ],
+      "irrelevant_chunks": [
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/03_payments_transfers_and_cutoff_times.md",
+              "heading_path": [
+                "Payments, Transfers & Cutoff Times",
+                "7. Future-dated payments and standing orders"
+              ]
+            },
+            "content": "Payments, Transfers & Cutoff Times\n7. Future-dated payments and standing orders\nA future-dated payment is executed on a date chosen by the customer. A standing order is a repeated future-dated payment. The customer must ensure there is enough available balance before the payment is due.\nIf there is not enough available balance at the processing time, Aurora Bank may:\n- reject the payment;\n- retry the payment later the same day;\n- create or increase an arranged overdraft if available and permitted;\n- create an unarranged overdraft only where permitted by product terms.\nRejected-payment fees may apply. See [Fees, Interest & Foreign Exchange](06_fees_interest_and_exchange_rates.md).",
+            "chunk_id": "rag_eval/data/docs/docs_001/03_payments_transfers_and_cutoff_times.md_8",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "IRRELEVANT",
+          "reason": "Describes payment handling when funds are insufficient, but does not add to the definition or contrast of arranged vs unarranged overdrafts asked here."
+        }
+      ]
+    },
+    {
+      "question": {
+        "id": "question_3",
+        "content": "Aurora Bank support: if I am an employed customer and my payment or transfer is delayed, what do the Aurora cutoff times say about when different transfers are usually sent or credited, and what documents may Aurora ask for if I apply for credit or a loan?",
+        "reference_answer": "Aurora Bank says cutoff times are shown in Central European Time unless otherwise stated, and they can change during public holidays, system maintenance, or payment-scheme disruption. For payments and transfers, a SEPA Credit Transfer submitted in online banking has a standard cutoff of 15:30 on a business day and is sent the same business day, usually credited by the beneficiary bank by the next business day. A SEPA Credit Transfer submitted in branch has a cutoff of 14:00 on a business day and is sent the same business day if accepted before cutoff. A SEPA Instant Credit Transfer is available 24/7 where available and is usually within seconds, though it may fall back or be declined if unavailable. An internal transfer between your own Aurora accounts is 24/7 and usually immediate. An internal transfer to another Aurora customer has a daily cutoff of 22:00 and is usually same day after security checks. An international wire in EUR has a cutoff of 13:00 on a business day and is usually 1-2 business days, while an international wire in non-EUR currency has a cutoff of 11:30 on a business day and is usually 2-5 business days. Standing order changes after the 18:00 business-day-before cutoff may apply to the next cycle only, and direct debit cancellation after the 18:00 business-day-before cutoff may not stop the payment. Aurora also notes that cutoff times are not promises that the beneficiary will receive funds at a specific hour, because intermediary banks, receiving banks, screening, incorrect details, and payment-system availability may affect timing.\n\nFor loans, overdrafts, and credit assessment, employed customers may be asked for recent payslips, an employment contract or employer confirmation, bank statements showing salary credits, a tax certificate or annual income statement, proof of address, and details of other credit commitments. If salary is paid into an Aurora current account, fewer documents may be required, but Aurora Bank may still request evidence."
+      },
+      "required_chunks": [
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/05_loans_overdrafts_and_credit_assessment.md",
+              "heading_path": [
+                "Loans, Overdrafts & Credit Assessment",
+                "4. Documents for employed customers"
+              ]
+            },
+            "content": "Loans, Overdrafts & Credit Assessment\n4. Documents for employed customers\nEmployed customers may be asked for:\n- recent payslips;\n- employment contract or employer confirmation;\n- bank statements showing salary credits;\n- tax certificate or annual income statement;\n- proof of address;\n- details of other credit commitments.\nWhere salary is paid into an Aurora current account, fewer documents may be required, but Aurora Bank may still request evidence.",
+            "chunk_id": "rag_eval/data/docs/docs_001/05_loans_overdrafts_and_credit_assessment.md_5",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "REQUIRED",
+          "reason": "This chunk directly answers what documents Aurora may ask for from employed customers when applying for credit or a loan."
+        },
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/03_payments_transfers_and_cutoff_times.md",
+              "heading_path": [
+                "Payments, Transfers & Cutoff Times",
+                "3. Cutoff times"
+              ]
+            },
+            "content": "Payments, Transfers & Cutoff Times\n3. Cutoff times\nCutoff times are shown in Central European Time unless otherwise stated. They can change during public holidays, system maintenance, or payment-scheme disruption.\n| Payment type | Standard cutoff | Execution expectation |\n|---|---:|---|\n| SEPA Credit Transfer submitted in online banking | 15:30 on a business day | Sent same business day; usually credited by beneficiary bank by next business day. |\n| SEPA Credit Transfer submitted in branch | 14:00 on a business day | Sent same business day if accepted before cutoff. |\n| SEPA Instant Credit Transfer | 24/7 where available | Usually within seconds; may fall back or be declined if unavailable. |\n| Internal transfer between own Aurora accounts | 24/7 | Usually immediate. |\n| Internal transfer to another Aurora customer | 22:00 daily | Usually same day after security checks. |\n| International wire in EUR | 13:00 on a business day | Usually 1-2 business days, depending on route. |\n| International wire in non-EUR currency | 11:30 on a business day | Usually 2-5 business days, depending on currency and intermediaries. |\n| Standing order creation or amendment | 18:00 the business day before due date | Changes after cutoff may apply to the next cycle only. |\n| Direct debit cancellation | 18:00 the business day before collection date | Later cancellation may not stop the payment. |\nCutoff times are not promises that the beneficiary will receive funds at a specific hour. Intermediary banks, receiving banks, screening, incorrect details, and payment-system availability may affect timing.",
+            "chunk_id": "rag_eval/data/docs/docs_001/03_payments_transfers_and_cutoff_times.md_4",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "REQUIRED",
+          "reason": "This chunk provides the cutoff times and expected sending/crediting timing for the different transfer types the question asks about, including the note that cutoffs are in CET and can change."
+        }
+      ],
+      "relevant_chunks": [],
+      "irrelevant_chunks": [
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/03_payments_transfers_and_cutoff_times.md",
+              "heading_path": [
+                "Payments, Transfers & Cutoff Times"
+              ]
+            },
+            "content": "Payments, Transfers & Cutoff Times\nThis document explains how Aurora Bank processes payments and transfers. It should be read with [Fees, Interest & Foreign Exchange](06_fees_interest_and_exchange_rates.md), [Security, Online Banking & Customer Responsibilities](09_security_online_banking_and_customer_responsibilities.md), and [Disputes, Chargebacks & Fraud Claims](07_disputes_chargebacks_and_fraud_claims.md).",
+            "chunk_id": "rag_eval/data/docs/docs_001/03_payments_transfers_and_cutoff_times.md_1",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "IRRELEVANT",
+          "reason": "This is only a section heading and document navigation note; it does not provide the cutoff timing or execution details asked for."
+        },
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/01_account_opening_and_kyc.md",
+              "heading_path": [
+                "Account Opening, Eligibility & Customer Verification Policy",
+                "4. Application channels"
+              ]
+            },
+            "content": "Account Opening, Eligibility & Customer Verification Policy\n4. Application channels\nCustomers may apply through:\n1. Aurora Online Banking or the mobile application;\n2. an Aurora branch or partner branch;\n3. telephone-assisted onboarding for customers who need accessibility support;\n4. a workplace, student, or relocation onboarding program approved by Aurora Bank.\nOnline applications can usually be completed without visiting a branch. We may still require branch verification if documents are unclear, fraud indicators are present, or the customer is applying for a product with enhanced checks.",
+            "chunk_id": "rag_eval/data/docs/docs_001/01_account_opening_and_kyc.md_8",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "IRRELEVANT",
+          "reason": "This chunk is about application channels and branch verification during account opening, not the loan/credit documents or transfer cutoff times asked about."
+        },
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/03_payments_transfers_and_cutoff_times.md",
+              "heading_path": [
+                "Payments, Transfers & Cutoff Times",
+                "6. Payment authentication"
+              ]
+            },
+            "content": "Payments, Transfers & Cutoff Times\n6. Payment authentication\nPayments may require strong customer authentication. Authentication can include a password, app confirmation, biometric confirmation, one-time passcode, hardware token, or call-back verification. Aurora Bank will never ask a customer to disclose a full password, full card PIN, or remote-access code.\nAdditional security checks may delay a payment. Aurora Bank may hold or reject a payment if fraud, sanctions, money laundering, scam, account takeover, or unusual activity indicators are present.",
+            "chunk_id": "rag_eval/data/docs/docs_001/03_payments_transfers_and_cutoff_times.md_7",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "IRRELEVANT",
+          "reason": "This is about payment authentication and security checks in general, not the specific cutoff times or credit/loan documents requested."
+        },
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/12_glossary_contact_and_service_level.md",
+              "heading_path": [
+                "Glossary, Contact Channels & Service Levels",
+                "3. Definitions",
+                "Cutoff time"
+              ]
+            },
+            "content": "Glossary, Contact Channels & Service Levels\n3. Definitions\nCutoff time\nThe latest time on a business day when Aurora Bank normally accepts a payment instruction for same-day processing.",
+            "chunk_id": "rag_eval/data/docs/docs_001/12_glossary_contact_and_service_level.md_10",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "IRRELEVANT",
+          "reason": "This is only a definition of 'cutoff time' and adds no substantive transfer timing or document information beyond what the main cutoff table already provides."
+        },
+        {
+          "chunk": {
+            "doc_reference": {
+              "file_name": "rag_eval/data/docs/docs_001/07_disputes_chargebacks_and_fraud_claims.md",
+              "heading_path": [
+                "Disputes, Chargebacks & Fraud Claims",
+                "9. Payment sent to the wrong account"
+              ]
+            },
+            "content": "Disputes, Chargebacks & Fraud Claims\n9. Payment sent to the wrong account\nIf a customer authorized a transfer to the wrong IBAN or beneficiary, Aurora Bank cannot simply reverse it. We may attempt a recall through the receiving bank. The recipient may need to consent unless legal rules allow otherwise.\nThe customer should provide:\n- payment date and amount;\n- beneficiary IBAN and name entered;\n- intended beneficiary details;\n- reason for error;\n- any communication with the unintended recipient.\nRecall fees may apply even if recovery is unsuccessful. See [Fees, Interest & Foreign Exchange](06_fees_interest_and_exchange_rates.md).",
+            "chunk_id": "rag_eval/data/docs/docs_001/07_disputes_chargebacks_and_fraud_claims.md_10",
+            "retrieval_score": null,
+            "reranker_score": null
+          },
+          "relevance": "IRRELEVANT",
+          "reason": "This concerns mistaken transfers and recall steps, which are unrelated to the question about normal cutoff times and loan/credit documentation."
+        }
+      ]
+    }
+  ]
+}

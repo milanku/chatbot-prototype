@@ -4,11 +4,12 @@ from FlagEmbedding.inference import FlagReranker
 
 from bot.config.reranker import LocalRerankerConfig, RerankerConfig
 from bot.doc_qa.retrieval.rerankers.cross_encoder_reranker import CrossEncoderReranker
+from bot.doc_qa.retrieval.rerankers.models import Reranker
 
 
 def create_reranker(
     config: RerankerConfig,
-) -> CrossEncoderReranker:
+) -> Reranker:
     match config:
         case LocalRerankerConfig():
             return CrossEncoderReranker(

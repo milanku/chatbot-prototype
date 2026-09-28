@@ -1,0 +1,783 @@
+{
+  "test_case_results": [
+    {
+      "config": {
+        "retriever_top_k": 5,
+        "reranker_top_k": 5,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 79.25,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 61.91017316017315,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 14.164682539682534,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 34.01507936507935,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 78.83333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 55.73300865800866,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 22.399999999999974,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 47.59999999999999,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 76,
+      "reranking_complete_required_recall": 77
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 5,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 80.08333333333333,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 72.2703823953824,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 9.298701298701294,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 27.15159840159839,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 78.83333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 55.73300865800866,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 22.399999999999974,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 47.59999999999999,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 77,
+      "reranking_complete_required_recall": 77
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 5,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 80.91666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 78.31168831168831,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 7.164732579941554,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 22.57345711563977,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 78.83333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 55.73300865800866,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 22.399999999999974,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 47.59999999999999,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 79,
+      "reranking_complete_required_recall": 77
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 7,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 80.08333333333333,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 72.2703823953824,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 9.298701298701294,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 27.15159840159839,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 80.08333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 63.34343434343433,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 16.428571428571427,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 40.42857142857143,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 77,
+      "reranking_complete_required_recall": 79
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 7,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 80.91666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 78.31168831168831,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 7.164732579941554,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 22.57345711563977,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 80.08333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 63.34343434343433,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 16.428571428571427,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 40.42857142857143,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 79,
+      "reranking_complete_required_recall": 79
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 10,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 80.08333333333333,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 72.2703823953824,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 9.298701298701294,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 27.15159840159839,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 80.58333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 69.93852813852813,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 11.699999999999985,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 32.90000000000001,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 77,
+      "reranking_complete_required_recall": 79
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 10,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 80.91666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 78.31168831168831,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 7.164732579941554,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 22.57345711563977,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 80.58333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 69.93852813852813,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 11.699999999999985,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 32.90000000000001,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 79,
+      "reranking_complete_required_recall": 79
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 5,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 81.58333333333333,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 75.74906204906202,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 6.905198658410727,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 21.158733230134146,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 78.83333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 55.73300865800866,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 22.399999999999974,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 47.59999999999999,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 80,
+      "reranking_complete_required_recall": 77
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 5,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 82.41666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 80.82132034632033,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 5.793323500955751,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 18.674440912208446,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 78.83333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 55.73300865800866,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 22.399999999999974,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 47.59999999999999,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 82,
+      "reranking_complete_required_recall": 77
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 5,
+        "bm25_top_k": 15
+      },
+      "retrieval_required_recall": {
+        "total": 82.66666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 81.15465367965366,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 4.919408087054264,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 15.84622220829867,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 78.83333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 55.73300865800866,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 22.399999999999974,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 47.59999999999999,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 83,
+      "reranking_complete_required_recall": 77
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 7,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 81.58333333333333,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 75.74906204906202,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 6.905198658410727,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 21.158733230134146,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 80.08333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 63.34343434343433,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 16.428571428571427,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 40.42857142857143,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 80,
+      "reranking_complete_required_recall": 79
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 7,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 82.41666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 80.82132034632033,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 5.793323500955751,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 18.674440912208446,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 80.08333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 63.34343434343433,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 16.428571428571427,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 40.42857142857143,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 82,
+      "reranking_complete_required_recall": 79
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 7,
+        "bm25_top_k": 15
+      },
+      "retrieval_required_recall": {
+        "total": 82.66666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 81.15465367965366,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 4.919408087054264,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 15.84622220829867,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 80.08333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 63.34343434343433,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 16.428571428571427,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 40.42857142857143,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 83,
+      "reranking_complete_required_recall": 79
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 10,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 81.58333333333333,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 75.74906204906202,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 6.905198658410727,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 21.158733230134146,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 80.58333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 69.93852813852813,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 11.699999999999985,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 32.90000000000001,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 80,
+      "reranking_complete_required_recall": 79
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 10,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 82.41666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 80.82132034632033,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 5.793323500955751,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 18.674440912208446,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 80.58333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 69.93852813852813,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 11.699999999999985,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 32.90000000000001,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 82,
+      "reranking_complete_required_recall": 79
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 10,
+        "bm25_top_k": 15
+      },
+      "retrieval_required_recall": {
+        "total": 82.66666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 81.15465367965366,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 4.919408087054264,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 15.84622220829867,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 80.58333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 69.93852813852813,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 11.699999999999985,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 32.90000000000001,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 83,
+      "reranking_complete_required_recall": 79
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 12,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 81.58333333333333,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 75.74906204906202,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 6.905198658410727,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 21.158733230134146,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 81.08333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 73.84455266955266,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 9.833333333333329,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 29.333333333333332,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 80,
+      "reranking_complete_required_recall": 80
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 12,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 82.41666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 80.82132034632033,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 5.793323500955751,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 18.674440912208446,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 81.08333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 73.84455266955266,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 9.833333333333329,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 29.333333333333332,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 82,
+      "reranking_complete_required_recall": 80
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 12,
+        "bm25_top_k": 15
+      },
+      "retrieval_required_recall": {
+        "total": 82.66666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 81.15465367965366,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 4.919408087054264,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 15.84622220829867,
+        "count": 84
+      },
+      "reranking_required_recall": {
+        "total": 81.08333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 73.84455266955266,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 9.833333333333329,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 29.333333333333332,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": 83,
+      "reranking_complete_required_recall": 80
+    }
+  ]
+}

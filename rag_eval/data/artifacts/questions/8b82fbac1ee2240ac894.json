@@ -1,0 +1,25 @@
+{
+  "id": "question_set_002",
+  "questions": [
+    {
+      "id": "question_0",
+      "content": "What does \"Complaints, Vulnerable Customers & Accessibility\" cover for a prospective customer who wants to understand Aurora Bank's guidance before making a decision?",
+      "reference_answer": "\"Complaints, Vulnerable Customers & Accessibility\" is the title of a public customer guidance document. It has doc_id AB-CUST-COMPL-2026-01, is owned by the Customer Resolution Office & Inclusive Banking Team, and has an effective date of 2026-01-01. It applies to complaints, service issues, accessibility requests, vulnerable customer support, and bereavement assistance."
+    },
+    {
+      "id": "question_1",
+      "content": "What does Aurora Bank do for complaints and customers who need extra help?",
+      "reference_answer": "This document explains how Aurora Bank handles complaints and supports customers who need additional help. Contact routes and service levels are listed in [Glossary, Contact Channels & Service Levels](12_glossary_contact_and_service_level.md)."
+    },
+    {
+      "id": "question_2",
+      "content": "What is the difference between an arranged overdraft and an unarranged overdraft at Aurora Bank, and how is an arranged overdraft described in the lending products covered section?",
+      "reference_answer": "At Aurora Bank, an arranged overdraft is listed as a lending product and is described as a short-term cash-flow buffer linked to a current account. It is repayable on demand, interest is charged on the used balance, and it is unsecured. An unarranged overdraft, by contrast, is defined as a negative balance that occurs without an approved overdraft or above the arranged overdraft limit."
+    },
+    {
+      "id": "question_3",
+      "content": "Aurora Bank support: if I am an employed customer and my payment or transfer is delayed, what do the Aurora cutoff times say about when different transfers are usually sent or credited, and what documents may Aurora ask for if I apply for credit or a loan?",
+      "reference_answer": "Aurora Bank says cutoff times are shown in Central European Time unless otherwise stated, and they can change during public holidays, system maintenance, or payment-scheme disruption. For payments and transfers, a SEPA Credit Transfer submitted in online banking has a standard cutoff of 15:30 on a business day and is sent the same business day, usually credited by the beneficiary bank by the next business day. A SEPA Credit Transfer submitted in branch has a cutoff of 14:00 on a business day and is sent the same business day if accepted before cutoff. A SEPA Instant Credit Transfer is available 24/7 where available and is usually within seconds, though it may fall back or be declined if unavailable. An internal transfer between your own Aurora accounts is 24/7 and usually immediate. An internal transfer to another Aurora customer has a daily cutoff of 22:00 and is usually same day after security checks. An international wire in EUR has a cutoff of 13:00 on a business day and is usually 1-2 business days, while an international wire in non-EUR currency has a cutoff of 11:30 on a business day and is usually 2-5 business days. Standing order changes after the 18:00 business-day-before cutoff may apply to the next cycle only, and direct debit cancellation after the 18:00 business-day-before cutoff may not stop the payment. Aurora also notes that cutoff times are not promises that the beneficiary will receive funds at a specific hour, because intermediary banks, receiving banks, screening, incorrect details, and payment-system availability may affect timing.\n\nFor loans, overdrafts, and credit assessment, employed customers may be asked for recent payslips, an employment contract or employer confirmation, bank statements showing salary credits, a tax certificate or annual income statement, proof of address, and details of other credit commitments. If salary is paid into an Aurora current account, fewer documents may be required, but Aurora Bank may still request evidence."
+    }
+  ]
+}

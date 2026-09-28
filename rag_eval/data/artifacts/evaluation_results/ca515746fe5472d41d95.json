@@ -1,0 +1,1277 @@
+{
+  "test_case_results": [
+    {
+      "config": {
+        "retriever_top_k": 5,
+        "reranker_top_k": 5,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 79.25,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 61.91017316017315,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 14.164682539682534,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 34.01507936507935,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 76,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 77.25,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 56.24058441558442,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 21.799999999999972,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 47.99999999999999,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 74,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 74.58333333333334,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 45.05068542568543,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 51.616666666666674,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 77.23333333333333,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 69,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 5,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 80.08333333333333,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 72.2703823953824,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 9.298701298701294,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 27.15159840159839,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 77,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 76.5,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 56.65407647907648,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 21.399999999999974,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 48.79999999999999,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 73,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 73.83333333333334,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 45.705086580086586,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 50.53333333333334,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 77.39999999999999,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 69,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 5,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 80.91666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 78.31168831168831,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 7.164732579941554,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 22.57345711563977,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 79,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 77.33333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 56.24253246753247,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 21.799999999999972,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 48.19999999999999,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 75,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 74.66666666666666,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 45.45187590187591,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 51.2,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 76.81666666666666,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 70,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 7,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 80.08333333333333,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 72.2703823953824,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 9.298701298701294,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 27.15159840159839,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 77,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 78.25,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 64.13636363636363,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 16.000000000000004,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 41.14285714285714,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 75,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 75.33333333333334,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 49.95072150072151,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 49.050000000000004,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 77.68333333333334,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 70,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 7,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 80.91666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 78.31168831168831,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 7.164732579941554,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 22.57345711563977,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 79,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 78.83333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 65.36930014430014,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 16.142857142857146,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 41.999999999999986,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 77,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 76.16666666666666,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 50.384054834054844,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 47.800000000000004,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 76.61666666666665,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 71,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 10,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 80.08333333333333,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 72.2703823953824,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 9.298701298701294,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 27.15159840159839,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 77,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 78.75,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 69.56075036075035,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 11.299999999999985,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 32.400000000000006,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 75,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 75.83333333333334,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 52.12063492063491,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 45.50714285714287,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 75.15476190476188,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 70,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 10,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 80.91666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 78.31168831168831,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 7.164732579941554,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 22.57345711563977,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 79,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 79.08333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 71.2238095238095,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 11.399999999999986,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 33.30000000000001,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 77,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 76.16666666666666,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 52.878535353535355,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 44.87857142857143,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 74.42619047619047,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 71,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 5,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 81.58333333333333,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 75.74906204906202,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 6.905198658410727,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 21.158733230134146,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 80,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 78.0,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 55.33181818181818,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 21.99999999999997,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 47.19999999999999,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 75,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 75.33333333333334,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 45.56020923520924,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 51.06666666666667,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 76.35,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 71,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 5,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 82.41666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 80.82132034632033,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 5.793323500955751,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 18.674440912208446,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 82,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 78.83333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 56.033008658008654,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 22.399999999999974,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 47.999999999999986,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 77,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 76.16666666666666,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 45.651875901875904,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 52.31666666666668,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 76.85,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 72,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 5,
+        "bm25_top_k": 15
+      },
+      "retrieval_required_recall": {
+        "total": 82.66666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 81.15465367965366,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 4.919408087054264,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 15.84622220829867,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 83,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 78.83333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 55.73300865800866,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 22.399999999999974,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 47.59999999999999,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 77,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 76.16666666666666,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 45.55187590187591,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 52.26666666666667,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 76.44999999999999,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 72,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 7,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 81.58333333333333,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 75.74906204906202,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 6.905198658410727,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 21.158733230134146,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 80,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 79.5,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 64.1605339105339,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 16.28571428571429,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 41.28571428571429,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 77,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 76.83333333333334,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 50.241630591630596,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 48.9,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 76.6,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 72,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 7,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 82.41666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 80.82132034632033,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 5.793323500955751,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 18.674440912208446,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 82,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 80.33333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 63.819624819624806,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 16.57142857142857,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 40.85714285714286,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 79,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 77.66666666666666,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 50.542388167388175,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 48.449999999999996,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 76.26666666666667,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 73,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 7,
+        "bm25_top_k": 15
+      },
+      "retrieval_required_recall": {
+        "total": 82.66666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 81.15465367965366,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 4.919408087054264,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 15.84622220829867,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 83,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 80.08333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 63.34343434343433,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 16.428571428571427,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 40.42857142857143,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 79,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 77.41666666666666,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 50.232864357864365,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 48.01666666666667,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 75.43333333333332,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 73,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 10,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 81.58333333333333,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 75.74906204906202,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 6.905198658410727,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 21.158733230134146,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 80,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 79.75,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 69.50519480519478,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 11.499999999999986,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 32.800000000000004,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 77,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 76.83333333333334,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 51.87853535353536,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 45.80238095238094,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 73.6595238095238,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 72,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 10,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 82.41666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 80.82132034632033,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 5.793323500955751,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 18.674440912208446,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 82,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 80.58333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 70.48138528138527,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 11.699999999999985,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 33.30000000000001,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 79,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 77.66666666666666,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 52.670202020202034,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 46.30238095238094,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 74.55714285714284,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 73,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 10,
+        "bm25_top_k": 15
+      },
+      "retrieval_required_recall": {
+        "total": 82.66666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 81.15465367965366,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 4.919408087054264,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 15.84622220829867,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 83,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 80.58333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 69.93852813852813,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 11.699999999999985,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 32.90000000000001,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 79,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 77.66666666666666,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 52.42734487734488,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 45.99999999999999,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 73.51666666666667,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 73,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 12,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 81.58333333333333,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 75.74906204906202,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 6.905198658410727,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 21.158733230134146,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 80,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 80.25,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 72.55288600288598,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 9.666666666666663,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 28.833333333333336,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 78,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 77.33333333333334,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 53.30753968253968,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 44.5234126984127,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 73.38690476190476,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 73,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 12,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 82.41666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 80.82132034632033,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 5.793323500955751,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 18.674440912208446,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 82,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 81.08333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 74.21121933621933,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 9.833333333333329,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 29.416666666666664,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 80,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 78.16666666666666,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 54.24682539682539,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 44.50912698412698,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 73.02738095238094,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 74,
+        "total": 84
+      }
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 12,
+        "bm25_top_k": 15
+      },
+      "retrieval_required_recall": {
+        "total": 82.66666666666666,
+        "count": 83
+      },
+      "retrieval_relevant_recall": {
+        "total": 81.15465367965366,
+        "count": 84
+      },
+      "retrieval_required_precision": {
+        "total": 4.919408087054264,
+        "count": 84
+      },
+      "retrieval_relevant_precision": {
+        "total": 15.84622220829867,
+        "count": 84
+      },
+      "retrieval_complete_required_recall": {
+        "count": 83,
+        "total": 84
+      },
+      "reranking_required_recall": {
+        "total": 81.08333333333334,
+        "count": 83
+      },
+      "reranking_relevant_recall": {
+        "total": 73.84455266955266,
+        "count": 84
+      },
+      "reranking_required_precision": {
+        "total": 9.833333333333329,
+        "count": 84
+      },
+      "reranking_relevant_precision": {
+        "total": 29.333333333333332,
+        "count": 84
+      },
+      "reranking_complete_required_recall": {
+        "count": 80,
+        "total": 84
+      },
+      "judge_required_recall": {
+        "total": 78.16666666666666,
+        "count": 83
+      },
+      "judge_relevant_recall": {
+        "total": 53.91349206349206,
+        "count": 84
+      },
+      "judge_required_precision": {
+        "total": 44.38253968253967,
+        "count": 84
+      },
+      "judge_relevant_precision": {
+        "total": 72.08809523809522,
+        "count": 84
+      },
+      "judge_complete_required_recall": {
+        "count": 74,
+        "total": 84
+      }
+    }
+  ]
+}

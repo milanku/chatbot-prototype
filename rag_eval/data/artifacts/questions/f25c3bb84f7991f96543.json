@@ -1,0 +1,505 @@
+{
+  "question_collection_id": "question_set_001",
+  "questions": [
+    {
+      "id": "question_0",
+      "content": "What is Public customer guidance?",
+      "reference_answer": "Public customer guidance is the classification shown in the document."
+    },
+    {
+      "id": "question_1",
+      "content": "What does Aurora Bank say about complaints and vulnerable customers?",
+      "reference_answer": "This document explains how Aurora Bank handles complaints and supports customers who need additional help. Contact routes and service levels are listed in [Glossary, Contact Channels & Service Levels](12_glossary_contact_and_service_level.md)."
+    },
+    {
+      "id": "question_2",
+      "content": "What count as complaint at Aurora Bank?",
+      "reference_answer": "A complaint is an expression of dissatisfaction about Aurora Bank’s products, services, staff, systems, fees, decisions, delays, or complaint handling. A customer does not need to use the word \"complaint\" for Aurora Bank to treat it as one. Examples include a payment delay caused by bank error, a fee the customer believes is wrong, poor branch or telephone service, a declined card or payment where the customer believes the decision was wrong, disagreement with a fraud or chargeback outcome, accessibility needs not met, concerns about data privacy, and concerns about lending affordability or collections behavior."
+    },
+    {
+      "id": "question_3",
+      "content": "How do I book a brnch appointment to make a complaint?",
+      "reference_answer": "Customers can complain through a branch appointment. They should provide account details, contact details, what happened, relevant dates, amounts, names, evidence, and the outcome requested. Customers should not send passwords, PINs, or one-time passcodes."
+    },
+    {
+      "id": "question_4",
+      "content": "How quickly does Aurora Bank respond to complaints?",
+      "reference_answer": "Aurora Bank will acknowledge complaints promptly. Where possible, it resolves simple complaints within three business days. Standard complaints normally receive a written final response within 15 business days for payment-service complaints, or within 30 calendar days for other complaints where local rules allow. If more time is needed for a complex complaint, Aurora Bank will explain the delay and provide a final response within the maximum period required by law. The final response will explain the outcome, any redress, and escalation rights where applicable."
+    },
+    {
+      "id": "question_5",
+      "content": "How does Aurora Bank handle Accessibility-related complaints, and what may it do to resolve them?",
+      "reference_answer": "Depending on the facts, Aurora Bank may apologize, correct an error, refund a fee or interest, make a goodwill payment, update records, reopen an investigation, provide staff feedback or training, improve a process, explain why the original decision was correct, or refer the customer to an external dispute resolution body. Aurora Bank does not provide compensation for every inconvenience, and redress depends on evidence, legal obligations, financial loss, distress, and fairness."
+    },
+    {
+      "id": "question_6",
+      "content": "If I not satisfied with the final response, can I refer my complaint to a data protection authority?",
+      "reference_answer": "If the customer is not satisfied with the final response, they may be able to refer the complaint to a data protection authority, along with an ombudsman, financial services mediator, court, or regulator depending on complaint type and jurisdiction. The final response will include relevant escalation information where required. Customers usually must complain to Aurora Bank before using an external dispute resolution body."
+    },
+    {
+      "id": "question_7",
+      "content": "How can Aurora Bank help me if I am a vulnerable customer and need support?",
+      "reference_answer": "A customer may be vulnerable because of permanent, temporary, or situational circumstances. Examples include disability, serious illness, bereavement, mental health difficulty, addiction, financial abuse, domestic abuse, low literacy, language barriers, digital exclusion, unemployment, displacement, or sudden income shock. Aurora Bank can offer support such as alternative communication formats, extra time to provide documents, branch appointments in private rooms, third-party support with customer permission, trusted contact notes, temporary card or payment controls, debt-support referral, priority handling for urgent hardship, interpreter or relay services, and simplified explanations of fees, credit, and repayment options. Support is tailored to circumstances and product rules, and some requests may require evidence or legal authority."
+    },
+    {
+      "id": "question_8",
+      "content": "How can I get accesibility adjustments from Aurroa Bank, and what kinds of support can they provide if I need help with documents, appointments, or account access?",
+      "reference_answer": "Aurora Bank can provide reasonable adjustments such as large print, Braille, audio, or accessible PDF documents; telephone relay support; sign-language appointment where available; step-free branch appointment where possible; longer appointment slots; secure message instead of phone call; assistance reading forms; accessible card design or tactile card features where offered; and paper statements without fee where digital access is not suitable because of disability. Customers can request adjustments at any time. Some formats may take longer to prepare."
+    },
+    {
+      "id": "question_9",
+      "content": "Can you explain what Aurora Bank says about Account Closure, Inactivity, Estates & Power of Attorney, especially how power of attorney and estates are handled, and how this relates to third-party authority and support persons?",
+      "reference_answer": "Aurora Bank says that a customer can ask the bank to communicate with a support person, and the level of access depends on the authority provided. A trusted contact allows Aurora Bank to contact the person if concerned about customer welfare or financial harm, but it does not give transaction authority. One-time verbal authority allows discussion of a specific matter during a call or appointment. A third-party mandate allows ongoing account discussion or limited account operation, depending on the mandate. Power of attorney gives legal authority according to the document and local law. A guardian or court-appointed representative has authority defined by court or law. The context also says that power of attorney and estates processes are described in Account Closure, Inactivity, Estates & Power of Attorney."
+    },
+    {
+      "id": "question_10",
+      "content": "What should I do if I cant pay my bills with Aurora Bank?",
+      "reference_answer": "Customers who cannot pay bills, loan repayments, overdrafts, or credit-card balances should contact Aurora Bank as early as possible. Early contact gives more options. Support may include an income and expenditure review, a temporary payment arrangement, an overdraft review, a breathing-space or moratorium process where available, referral to free debt advice, freezing certain charges where appropriate, restructuring or term extension where allowed, and a collections hold while evidence is reviewed. Financial difficulty support may affect credit reporting depending on the arrangement."
+    },
+    {
+      "id": "question_11",
+      "content": "Can you explain what information is available about \"Account Closure, Inactivity, Estates & Power of Attorney\" in relation to bereavement support, and what documents or instructions Aurora Bank may need when a customer dies?",
+      "reference_answer": "When a customer dies, Aurora Bank will explain next steps to the representative or family. The bank may need a death certificate, proof of identity for the representative, grant of probate or an equivalent document, and instructions for account closure or transfer. Further details are in Account Closure, Inactivity, Estates & Power of Attorney."
+    },
+    {
+      "id": "question_12",
+      "content": "What does Aurora Bank recognize as financial abuse, and what support can a customer request?",
+      "reference_answer": "Aurora Bank recognizes that financial abuse can include controlling access to money, coercing loans, intercepting cards, monitoring statements, forcing transfers, or misusing joint accounts. Customers can request confidential support. Aurora Bank can discuss safe contact methods, correspondence suppression, card replacement, account separation options, payment controls, and referral to specialist organizations. Joint account changes may require legal or operational safeguards."
+    },
+    {
+      "id": "question_13",
+      "content": "How does Aurora Bank handle customer conduct and access to services?",
+      "reference_answer": "Customers and staff are expected to treat each other respectfully. Aurora Bank may restrict communication channels if a customer uses abusive, threatening, discriminatory, or persistently unreasonable behavior. We will still try to preserve access to essential banking services where safe and lawful."
+    },
+    {
+      "id": "question_14",
+      "content": "As a prospective customer, where should I look for account opening support related to \"Account Opening, Eligibility & Customer Verification\"?",
+      "reference_answer": "For account opening support, the related policy is [Account Opening, Eligibility & Customer Verification](01_account_opening_and_kyc.md)."
+    },
+    {
+      "id": "question_15",
+      "content": "What does the Account Opening, Eligibility & Customer Verification Policy say about joint accounts?",
+      "reference_answer": "The policy applies to joint accounts."
+    },
+    {
+      "id": "question_16",
+      "content": "What does Aurora Bank say about Loans, Overdrafts & Credit Assessment for prospective customers applying for personal banking products?",
+      "reference_answer": "The document says that Account Opening, Eligibility & Customer Verification Policy explains how Aurora Bank opens customer accounts, verifies customers, and reviews applications. It is written for customers applying for personal banking products. Lending-specific requirements are described in Loans, Overdrafts & Credit Assessment."
+    },
+    {
+      "id": "question_17",
+      "content": "What is a Basic Payment Account, and who may get one at Aurora Bank?",
+      "reference_answer": "Aurora Bank may offer a Basic Payment Account to customers who meet legal eligibility criteria but may not qualify for a standard packaged account. Basic accounts provide essential payment services but do not include credit facilities."
+    },
+    {
+      "id": "question_18",
+      "content": "What does the Customer Verification Policy say about residency and address requirements, and when may Aurora Bank ask for more information?",
+      "reference_answer": "A customer does not always need to be a citizen of the country where the account is opened. However, Aurora Bank must be able to verify the customer’s identity, address, tax residency, and expected account activity. Aurora Bank may request additional information where the customer recently moved to the country, the customer lives in one country but receives income in another, the customer has more than one tax residency, the customer is a student, posted worker, diplomat, cross-border employee, or seasonal worker, the customer cannot provide a standard utility bill or lease agreement, or the customer’s address is temporary, shared, institutional, or a correspondence-only address. A post-office box or virtual mailbox is not accepted as the sole residential address. A correspondence address can be added after a residential address has been verified."
+    },
+    {
+      "id": "question_19",
+      "content": "How does Aurora Bank verify the identity of account holders, and what documents or verification methods may be requested when opening an account?",
+      "reference_answer": "Aurora Bank must verify the identity of every account holder and certain related persons. Documents may be uploaded in online banking, presented in branch, or verified through an approved digital identity process."
+    },
+    {
+      "id": "question_20",
+      "content": "Can you tell me if a Residence permit can be used for proof of identity, and do I need it with a passport or national identity card?",
+      "reference_answer": "A Residence permit may be accepted together with a passport or national identity card. For proof of identity, Aurora normally accepts a passport, a national identity card, a Residence permit together with a passport or national identity card, or a digital identity certificate issued through an Aurora-approved identity scheme. Expired identity documents are normally not accepted, unless local law requires a transition period and the document can still be independently validated."
+    },
+    {
+      "id": "question_21",
+      "content": "What does the Customer Verification Policy accept as proof of address?",
+      "reference_answer": "We normally accept one of the following dated within the last 90 days: a utility bill for electricity, gas, water, fixed broadband, or municipal services; a bank statement issued by a regulated financial institution; a lease agreement with landlord details and property address; an official tax, social security, or municipal letter; employment confirmation showing a residential address, only where accompanied by another supporting document; or university housing confirmation for students. Mobile phone bills, handwritten letters, parcel receipts, and screenshots that do not show the issuer and date are not normally sufficient."
+    },
+    {
+      "id": "question_22",
+      "content": "What source-of-funds things can Aurora Bank ask me for, and when would they ask for it?",
+      "reference_answer": "For some customers, Aurora Bank may ask how money was earned or accumulated. This is not a loan assessment; it is a financial-crime control. Acceptable evidence can include payslips, employment contracts, tax returns, sale agreements, inheritance documents, dividend statements, grant letters, or business invoices. Aurora Bank may ask for source-of-funds information if an account is expected to receive unusually large transfers, cash deposits, third-party payments, crypto-asset proceeds, foreign-source income, or payments inconsistent with the stated account purpose."
+    },
+    {
+      "id": "question_23",
+      "content": "How can I apply through Aurora Online Banking, and when might Aurora Bank still require branch verification?",
+      "reference_answer": "Customers may apply through Aurora Online Banking or the mobile application, an Aurora branch or partner branch, telephone-assisted onboarding for customers who need accessibility support, or a workplace, student, or relocation onboarding program approved by Aurora Bank. Online applications can usually be completed without visiting a branch. Aurora Bank may still require branch verification if documents are unclear, fraud indicators are present, or the customer is applying for a product with enhanced checks."
+    },
+    {
+      "id": "question_24",
+      "content": "What checks might Aurora Bank carry out during verification, and is credit bureau information used for a basic current account?",
+      "reference_answer": "Aurora Bank may carry out identity document validation, address verification, sanctions and politically exposed person screening, fraud database and internal risk checks, credit reference agency checks where a credit facility is requested, tax residency and common reporting standard checks, and review of adverse media or publicly available information where relevant to financial-crime obligations. For non-credit accounts, credit bureau information is not normally used to decide whether the customer can open a basic current account, but it may be used to verify identity or assess an overdraft request."
+    },
+    {
+      "id": "question_25",
+      "content": "Can freelancers use a personal account for their banking, or do they need a separate business account?",
+      "reference_answer": "Sole traders and freelancers may need a separate business account if business income and expenses are regular or material. Customers must not use a personal account for business trading, client money, payment processing on behalf of others, unregistered charity activity, or money-service activity."
+    },
+    {
+      "id": "question_26",
+      "content": "What are the rules for Joint accounts at Aurora Bank, and who can use or be responsible for them?",
+      "reference_answer": "A joint account is owned by two or more customers. Each account holder must complete identity and address verification. Unless the account mandate says otherwise, any one account holder may give payment instructions, use a debit card issued in their own name, view statements, and close certain services. All account holders are jointly and severally responsible for fees, overdrafts, and negative balances. One account holder’s debt or legal restriction may affect the account. Account holders should agree privately how money in the account is owned, because Aurora Bank does not normally decide beneficial shares. If there is a dispute between account holders, Aurora Bank may restrict withdrawals or require joint instructions. A joint account is not suitable where customers cannot trust each other to operate the account responsibly. A joint account may be converted to a sole account only with the consent of all account holders and subject to product eligibility. If one account holder dies, the process in Account Closure, Inactivity, Estates & Power of Attorney applies."
+    },
+    {
+      "id": "question_27",
+      "content": "What do I need for a Youth Current Account, and what can it not do?",
+      "reference_answer": "A Youth Current Account is available to customers aged 15 to 17 with guardian consent. The guardian must verify their identity and relationship to the minor. Youth accounts do not offer overdrafts, credit cards, cheque facilities, or high-value international payments. When the customer turns 18, Aurora Bank may convert the account to an adult account after providing notice. The customer may need to provide updated identity, tax residency, and address information."
+    },
+    {
+      "id": "question_28",
+      "content": "How Aurora Bank help customers who need support under Complaints, Vulnerable Customers & Accessibility?",
+      "reference_answer": "Aurora Bank will make reasonable adjustments for customers who cannot complete standard onboarding because of disability, illness, digital exclusion, language barriers, domestic abuse, homelessness, displacement, or other vulnerability. Examples include branch appointments, interpreter support, alternative documents, large-print forms, and trusted-contact procedures. Support options are described in Complaints, Vulnerable Customers & Accessibility."
+    },
+    {
+      "id": "question_29",
+      "content": "Why my application delayed if sanctions screening need manual review?",
+      "reference_answer": "An application may take longer where sanctions, fraud, or legal-order screening requires manual review. We will normally tell the customer what information is missing, unless law or security rules prevent us from doing so."
+    },
+    {
+      "id": "question_30",
+      "content": "Under what circumstances may Aurora Bank refuse to open an account, and what information will it provide if it does refuse an application?",
+      "reference_answer": "Aurora Bank may refuse to open an account where identity cannot be verified, required documents are not provided, the customer provides false, misleading, or incomplete information, the account appears likely to be used for unlawful activity, sanctions, court orders, or regulatory restrictions apply, the customer has previously misused Aurora Bank services, the product is not suitable or available in the customer’s location, or the customer does not agree to the required terms. Where possible, Aurora Bank will give a general reason for refusal. It may not disclose detailed fraud, sanctions, or risk-screening reasons."
+    },
+    {
+      "id": "question_31",
+      "content": "How should I update my information with Aurora Bank after opening my account, and what kinds of details do I need to tell them about?",
+      "reference_answer": "Customers must keep their information up to date. They should tell Aurora Bank promptly when their name, address, phone number, email address, tax residency, citizenship, employment, expected account use, or beneficial ownership status changes. Aurora Bank may restrict certain services if a customer does not respond to reasonable information requests. Aurora Bank will not ask customers to disclose passwords, one-time passcodes, full card PINs, or remote-access credentials."
+    },
+    {
+      "id": "question_32",
+      "content": "How do Debit cards get issued, and do they come with account activation or are they separate?",
+      "reference_answer": "An account is normally activated when the account holder’s identity is verified, all required declarations are accepted, the customer receives account details, any initial deposit requirement is met, and the customer sets up secure access credentials. Debit cards and online banking access may be issued separately. Credit cards, overdrafts, and loans require separate approval."
+    },
+    {
+      "id": "question_33",
+      "content": "Where can I find information about Payments, Transfers & Cutoff Times?",
+      "reference_answer": "Payment processing and transfer limits are described in [Payments, Transfers & Cutoff Times](03_payments_transfers_and_cutoff_times.md)."
+    },
+    {
+      "id": "question_34",
+      "content": "What are the current terms for packaged accounts at Aurora Bank, and where can I find the eligibility, requirements, costs, terms, application procedures, and limitations before applying?",
+      "reference_answer": "The provided context identifies \"Current & Savings Accounts Terms\" as a public customer guidance document with doc_id \"AB-CUST-ACC-2026-01,\" owned by Retail Banking Products, effective date 2026-01-01. It applies to personal current accounts, savings accounts, packaged accounts, and basic payment accounts. No further details about eligibility, requirements, costs, terms, application procedures, or limitations are included in the context."
+    },
+    {
+      "id": "question_35",
+      "content": "What are the main operating rules for Aurora Bank personal current and savings accounts?",
+      "reference_answer": "This document explains the main operating rules for Aurora Bank personal current accounts and savings accounts. Account opening requirements are described in [Account Opening, Eligibility & Customer Verification](01_account_opening_and_kyc.md). Fees are described in [Fees, Interest & Foreign Exchange](06_fees_interest_and_exchange_rates.md)."
+    },
+    {
+      "id": "question_36",
+      "content": "What is Aurora Notice Saver for, and does it have credit?",
+      "reference_answer": "Aurora Notice Saver is a savings account with a notice period. It offers higher variable interest than Instant Saver, withdrawals require notice, and it has no credit."
+    },
+    {
+      "id": "question_37",
+      "content": "Can I make SEPA credit transfers from my current account, and what other core services are included?",
+      "reference_answer": "A current account normally allows the customer to receive salary, pension, benefits, refunds, and other incoming payments; make SEPA credit transfers and, where available, instant payments; set up standing orders and direct debits; use a debit card for purchases, cash withdrawals, and online payments; use mobile wallet services where the device and card are eligible; view balances, statements, and payment confirmations; send secure messages to Aurora Bank; and request account documents such as balance confirmations or interest certificates. A current account is not a safe-deposit service, investment product, escrow arrangement, or business merchant-processing account."
+    },
+    {
+      "id": "question_38",
+      "content": "What are the Savings Accounts Terms for a savings account?",
+      "reference_answer": "Savings accounts are designed for storing money and earning interest. They are not designed for high-frequency payments. A savings account may restrict debit cards, direct debits, standing orders, third-party incoming payments, international payments, or cash withdrawals."
+    },
+    {
+      "id": "question_39",
+      "content": "What core services does the Aurora Instant Saver provide, and what should I know about transfers, interest, and withdrawals?",
+      "reference_answer": "The Instant Saver allows transfers to and from a nominated Aurora current account. Interest is variable and may change after notice. Withdrawals can normally be made at any time, but large withdrawals may require additional security checks."
+    },
+    {
+      "id": "question_40",
+      "content": "What are the core services for a savings account under the Notice Saver, and what notice is required before withdrawal?",
+      "reference_answer": "The Notice Saver requires notice before withdrawal. A 32-day notice account requires 32 calendar days’ notice, and a 90-day notice account requires 90 calendar days’ notice. Aurora Bank may permit early withdrawal only in exceptional circumstances, such as serious illness, death, or legal obligation. An early-withdrawal interest adjustment may apply."
+    },
+    {
+      "id": "question_41",
+      "content": "What are Savings account core services for Fixed Term Deposit?",
+      "reference_answer": "A Fixed Term Deposit is opened for a fixed period and pays a fixed interest rate. Additional deposits and partial withdrawals are not normally allowed after the funding window closes. Early closure is not normally available unless required by law or approved due to hardship."
+    },
+    {
+      "id": "question_42",
+      "content": "How do card purchases and pre-authorizations affect my available balance and ledger balance, and where are pre-authorizations explained in Cards, Debit Cards, Credit Cards, ATMs & Mobile Wallets?",
+      "reference_answer": "The ledger balance is the balance after transactions already posted to the account. The available balance is the amount available for use after pending transactions, card authorizations, overdraft limits, account restrictions, and holds are considered. A card purchase may reduce the available balance immediately but post to the ledger balance later. A hotel, car rental, fuel station, or online merchant may place a pre-authorization that is higher than the final amount. Pre-authorizations are explained in Cards, Debit Cards, Credit Cards, ATMs & Mobile Wallets."
+    },
+    {
+      "id": "question_43",
+      "content": "How are account notices sent by SMS, and do I need to keep my contact details up to date?",
+      "reference_answer": "Important account notices may be delivered through online banking, secure message, email, SMS notification, postal mail, or branch notice. Customers must keep contact details up to date."
+    },
+    {
+      "id": "question_44",
+      "content": "Does Aurora Bank offer arranged overdrafts on savings accounts or youth accounts, and what happens if an account goes below zero without approval?",
+      "reference_answer": "An arranged overdraft is a credit facility attached to a current account that allows the balance to go below zero up to an approved limit. Arranged overdrafts are subject to credit assessment and are not guaranteed. Youth accounts, Basic Payment Accounts, savings accounts, and Fixed Term Deposits do not offer arranged overdrafts. An unarranged overdraft occurs when the account goes below zero without approval or exceeds an arranged limit. Aurora Bank may refuse payments that would create or increase an unarranged overdraft. Fees and interest may apply."
+    },
+    {
+      "id": "question_45",
+      "content": "As an Aurora Bank customer, could you explain how account packages and fee waivers work, including what kinds of benefits packaged accounts may include and under what circumstances Aurora Bank may waive or reduce account fees?",
+      "reference_answer": "Packaged accounts may include non-banking benefits, enhanced service channels, higher ATM fee allowances, or travel-related features. Benefits may be provided by third parties and may have separate eligibility terms. Aurora Bank may waive or reduce account fees for students, salary-account customers, seniors, customers receiving qualifying benefits, or customers who maintain a minimum monthly balance. Fee waivers are not automatic unless stated in the product terms."
+    },
+    {
+      "id": "question_46",
+      "content": "How cancel standing order or direct debit, and where Payments, Transfers & Cutoff Times say about timing?",
+      "reference_answer": "A standing order can normally be cancelled in online banking before the processing cutoff. A direct debit can be cancelled with Aurora Bank, but the customer should also cancel the agreement with the merchant. Payment execution and cancellation timings are described in Payments, Transfers & Cutoff Times."
+    },
+    {
+      "id": "question_47",
+      "content": "Can I make cash deposits and withdrawals at Aurora Bank?",
+      "reference_answer": "Cash services may be available at Aurora branches, partner branches, selected ATMs, and approved agent locations. Limits may apply based on product type, customer profile, channel, and security risk. Aurora Bank may ask for information about large or unusual cash deposits. Cash deposits can be rejected where required by law, where notes appear counterfeit, where the source of funds cannot be reasonably explained, or where cash activity is inconsistent with personal account use."
+    },
+    {
+      "id": "question_48",
+      "content": "How does Aurora Bank handle account inactivity and dormant accounts, and where can I find information about Account Closure, Inactivity, Estates & Power of Attorney?",
+      "reference_answer": "An account may be treated as inactive if there has been no customer-initiated transaction or customer contact for 12 months. It may be treated as dormant after a longer period defined by local law or product terms. Before restricting a dormant account, Aurora Bank will make reasonable efforts to contact the customer using the contact details on record. Dormant-account processes, reactivation, and estates handling are explained in Account Closure, Inactivity, Estates & Power of Attorney."
+    },
+    {
+      "id": "question_49",
+      "content": "How do I switch my payment arrangements to Aurroa Bank, and what should I know about the transition period?",
+      "reference_answer": "Customers may request to switch payment arrangements from another bank to Aurora Bank. Depending on the market and scheme availability, switching may include transfer of incoming salary, standing orders, direct debits, and closing balance. Aurora Bank cannot guarantee that all merchants or employers will update their records immediately. Customers should keep enough funds in both old and new accounts during the transition period. Missed payment charges from other providers are not automatically refunded by Aurora Bank."
+    },
+    {
+      "id": "question_50",
+      "content": "What is an overdraft, and which related policy should I check for overdraft basics and account terms?",
+      "reference_answer": "An overdraft is a credit facility that allows a current account balance to go below zero, subject to approval and terms. For overdraft basics and account terms, you should check the related policy \"Current & Savings Accounts Terms.\""
+    },
+    {
+      "id": "question_51",
+      "content": "What is the ledger balance, and how does it differ from the available balance?",
+      "reference_answer": "The ledger balance is the balance after transactions already posted to the account. The available balance is the amount currently available for use after pending card authorizations, holds, overdraft limits, account restrictions, and other holds are considered. A card purchase may reduce the available balance immediately but post to the ledger balance later."
+    },
+    {
+      "id": "question_52",
+      "content": "How can Customers use card controls, and what about Customers managing cookies and fraud-prevention signals on Aurora Bank websites and apps?",
+      "reference_answer": "Customers can use online banking or the mobile app to manage card controls, where available. These controls may include temporary card freeze and unfreeze, online payments on or off, contactless payments on or off, ATM withdrawals on or off, gambling merchant restrictions, international card use restrictions, card spending notifications, replacement card request, and PIN view or PIN change where supported. A card freeze may stop many new transactions, but it may not stop all transactions, because offline transactions, delayed transit charges, merchant adjustments, subscriptions, and pre-authorized payments may still be processed.\n\nFor cookies and digital analytics, Aurora Bank websites and apps may use cookies, device storage, and analytics tools for security, authentication, fraud prevention, service functionality, performance monitoring, and optional personalization. Customers can manage non-essential cookies where required by law. Security cookies and fraud-prevention signals may be required for online banking and cannot always be disabled."
+    },
+    {
+      "id": "question_53",
+      "content": "What are the terms and rate for a Fixed Term Deposit?",
+      "reference_answer": "A Fixed Term Deposit is opened for a fixed period and pays a fixed interest rate. Additional deposits and partial withdrawals are not normally allowed after the funding window closes, and early closure is not normally available unless required by law or approved due to hardship. Once the deposit is opened and funded, the rate is fixed for the term. The illustrative annual gross rate for a 12-Month Fixed Term Deposit is 2.40%."
+    },
+    {
+      "id": "question_54",
+      "content": "If i want to contact the Data Protection Office about my personal data, and also i think i should complain to a data protection authority, what rights do i have and what does Aurora Bank say about who controls customer data?",
+      "reference_answer": "Aurora Bank plc is the controller for most personal data processed in connection with personal banking products. Some services may involve joint controllers or independent controllers, such as card schemes, credit reference agencies, fraud prevention agencies, payment systems, insurers, and open banking providers. A customer can contact the Data Protection Office through the channels listed in [Glossary, Contact Channels & Service Levels](12_glossary_contact_and_service_level.md).\n\nSubject to legal limits, customers may have the right to access their personal data, correct inaccurate data, erase data where retention is no longer required, restrict processing, object to processing based on legitimate interests, receive certain data in portable format, withdraw consent, object to direct marketing, request human review of certain automated decisions, and complain to a data protection authority. Some rights may be limited where data is needed for account operation, legal obligations, financial crime prevention, legal claims, or rights of others."
+    },
+    {
+      "id": "question_55",
+      "content": "How do the guidance documents AB-CUST-CLOSE-2026-01 and AB-CUST-DSP-2026-01 differ in the issues they cover, and which types of customer problems does each one apply to?",
+      "reference_answer": "AB-CUST-CLOSE-2026-01 is the guidance document for account closure, dormant accounts, deceased customers, legal representatives, and powers of attorney. It is owned by Account Servicing Operations and has an effective date of 2026-01-01.\n\nAB-CUST-DSP-2026-01 is the guidance document for disputes, chargebacks, and fraud claims. It is owned by Fraud Operations, Card Disputes & Payment Investigations and also has an effective date of 2026-01-01. It applies to unauthorized transactions, card chargebacks, direct debit refunds, payment recalls, and merchant disputes.\n\nSo, the first document applies to account closure and related account-status or legal-representation matters, while the second applies to transaction disputes and fraud-related payment issues."
+    },
+    {
+      "id": "question_56",
+      "content": "In the context of Online Banking, what should a customer do when sending sensitive information or uploading documents, and what kinds of files or details may Aurora Bank reject or refuse to accept?",
+      "reference_answer": "Customers should send sensitive information only through approved secure channels in Online Banking. Documents uploaded to online banking should be clear, complete, and unaltered. Aurora Bank may reject documents that are cropped, blurry, password-protected, edited, or inconsistent. Customers should not send identity documents, card numbers, passwords, or one-time passcodes through ordinary email unless they are specifically instructed to do so through a secure process."
+    },
+    {
+      "id": "question_57",
+      "content": "Where can I find the \"Current & Savings Accounts Terms\" if I want to review the account product features before opening an account, and which policy also points to it from the payments and transfers section?",
+      "reference_answer": "The \"Current & Savings Accounts Terms\" are referenced in both provided policy sections. In the \"Payments, Transfers & Cutoff Times\" policy, the related policies list includes \"Account types and balances: [Current & Savings Accounts Terms](02_current_savings_accounts_terms.md).\" In the \"Account Opening, Eligibility & Customer Verification Policy,\" it says that account product features are described in \"[Current & Savings Accounts Terms](02_current_savings_accounts_terms.md).\""
+    },
+    {
+      "id": "question_58",
+      "content": "How long does Aurora Bank keep \"Complaints\" and \"Complaint records\", and what kinds of actions might it take to resolve a complaint based on those complaint records?",
+      "reference_answer": "Aurora Bank retains complaint records for 5-7 years after closure. In resolving a complaint, it may apologize, correct an error, refund a fee or interest, make a goodwill payment, update records, reopen an investigation, provide staff feedback or training, improve a process, explain why the original decision was correct, or refer the customer to an external dispute resolution body. It also says that redress does not apply to every inconvenience and depends on evidence, legal obligations, financial loss, distress, and fairness."
+    },
+    {
+      "id": "question_59",
+      "content": "If I use my card in the EEA, what fee and what about data go outside the EEA?",
+      "reference_answer": "For an EEA ATM cash withdrawal in EUR, the fee is EUR 1.50 after the monthly free allowance. Also, some service providers, payment systems, card schemes, or correspondent banks may process data outside the customer’s country or the EEA, and Aurora Bank uses appropriate safeguards where required."
+    },
+    {
+      "id": "question_60",
+      "content": "How do Aurora Bank interest rates and interest work across loans and savings, and what affects the rate or payment timing?",
+      "reference_answer": "Aurora Bank says loan interest rates can be fixed or variable depending on the product terms. The final rate may depend on credit assessment, loan amount, term, product type, collateral, account relationship, and market conditions. A representative example is only an illustration and does not guarantee that a customer will receive that rate. For loans, interest, annual percentage rate, arrangement fees, early-repayment charges, and late-payment charges are described in the customer’s credit agreement and in Fees, Interest & Foreign Exchange.\n\nFor savings, interest can also be fixed or variable. Variable rates may change after notice, while Fixed Term Deposit rates are fixed for the term once the deposit is opened and funded. The illustrative annual gross rates shown are 1.20% for Instant Saver, 1.85% for 32-Day Notice Saver, 2.10% for 90-Day Notice Saver, and 2.40% for a 12-Month Fixed Term Deposit. Interest is normally calculated daily on the cleared balance and paid monthly or annually depending on product terms. Tax may be withheld or reported depending on the customer’s tax status and local law."
+    },
+    {
+      "id": "question_61",
+      "content": "For customers dealing with a merchant dispute, what evidence should they provide, and how does Aurora Bank distinguish service messages from marketing preferences for customers who opt out of marketing?",
+      "reference_answer": "For merchant disputes, customers should provide evidence such as order confirmation, invoice or receipt, merchant terms and cancellation policy, delivery tracking, photos of defective goods, proof of return, cancellation confirmation, merchant correspondence, refund promise, police report where relevant, and travel disruption confirmation for travel claims. Screenshots should show dates, merchant identity, order number, and full conversation context where possible. Separately, Aurora Bank says service messages are not marketing and may still be sent even if a customer opts out of marketing. Service messages include security alerts, account notices, regulatory notices, fraud warnings, statement availability, and product changes. Customers can choose whether to receive marketing by email, SMS, phone, post, or in-app messages, and opting out of marketing does not stop personalized product features inside online banking where they are part of service delivery."
+    },
+    {
+      "id": "question_62",
+      "content": "Im considering applying for Aurora Bank products and I saw the themes AB-CUST-ONB-2026-01 and AB-CUST-DSP-2026-01. Can you explain, in a way that connects both documents, what each policy is about and how they differ for a customer who wants to open an account and also understand what happens if there is an unauthorized transaction or card dispute?",
+      "reference_answer": "AB-CUST-ONB-2026-01 is the Account Opening, Eligibility & Customer Verification Policy. It is owned by Retail Onboarding & Financial Crime Compliance, became effective on 2026-01-01, and applies to personal current accounts, savings accounts, joint accounts, youth accounts, and basic accounts. It is public customer guidance.\n\nAB-CUST-DSP-2026-01 is the Disputes, Chargebacks & Fraud Claims policy. It is owned by Fraud Operations, Card Disputes & Payment Investigations, also effective on 2026-01-01, and applies to unauthorized transactions, card chargebacks, direct debit refunds, payment recalls, and merchant disputes. It is also public customer guidance.\n\nSo, the first document is about opening an account, eligibility, and customer verification, while the second is about what happens after a payment problem, such as an unauthorized transaction or a card dispute. They cover different parts of the customer journey: one for onboarding and account setup, the other for disputes and fraud-related claims."
+    },
+    {
+      "id": "question_63",
+      "content": "If I have a problem with a payment or a payment dispute, what should I do next, and which policy covers unauthorized or incorrect payments?",
+      "reference_answer": "Customers should report unauthorized or incorrect payments as soon as they notice them. Fast reporting improves the chance of stopping further loss and recovering funds. Unauthorized electronic payments, scam payments, direct debit errors, card disputes, and merchant chargebacks are handled under Disputes, Chargebacks & Fraud Claims. The related policy for Payments is Payments, Transfers & Cutoff Times."
+    },
+    {
+      "id": "question_64",
+      "content": "For payments and payment disputes, where are card disputes and fraud claims handled?",
+      "reference_answer": "Card disputes and fraud claims are handled under \"Disputes, Chargebacks & Fraud Claims\". The payments section also says customers should report unauthorized or incorrect payments as soon as they notice them, because fast reporting improves the chance of stopping further loss and recovering funds."
+    },
+    {
+      "id": "question_65",
+      "content": "Aurora Bank cards: how do pre-authorizations and pending transactions work on debit cards and credit cards, and when can a card hold be removed early under the related cards policy?",
+      "reference_answer": "For Aurora Bank cards, debit cards, credit cards, ATMs, and mobile wallets, some merchants place a pre-authorization by reserving an estimated amount before the final transaction is known. This is common for hotels, car rental companies, fuel stations, restaurants with tips, online orders with split shipments, public transport and toll systems, and security deposits. A pre-authorization reduces the available balance, but it is not always the final amount. It normally expires automatically if the merchant does not settle it. Aurora Bank can remove a hold early only if the merchant provides release confirmation or if scheme rules permit the release. The related policies also point to the Cards, Debit Cards, Credit Cards, ATMs & Mobile Wallets policy for card matters."
+    },
+    {
+      "id": "question_66",
+      "content": "How do Aurora Bank loan interest rates get set under \"Loans, Overdrafts & Credit Assessment,\" and where would a customer look if they need help with credit hardship related to that same theme?",
+      "reference_answer": "Aurora Bank says loan interest rates can be fixed or variable depending on the product terms. The final rate may depend on credit assessment, loan amount, term, product type, collateral, account relationship, and market conditions. It also states that a representative example is only an illustration and does not guarantee the rate a customer will receive. Interest, annual percentage rate, arrangement fees, early-repayment charges, and late-payment charges are described in the customer’s credit agreement and in \"Fees, Interest & Foreign Exchange.\" If a customer needs help with credit hardship, the related policy is \"Loans, Overdrafts & Credit Assessment.\""
+    },
+    {
+      "id": "question_67",
+      "content": "Under the theme \"Cards, Debit Cards, Credit Cards, ATMs & Mobile Wallets,\" how do card payment authorization and settlement affect the available balance and ledger balance, and why might the final settlement amount differ from the original authorization amount?",
+      "reference_answer": "A card transaction usually has two stages. First is authorization, when the merchant requests approval and the available balance is reduced. Later is settlement, when the merchant presents the final transaction and it posts to the account. The settlement amount can differ from the authorization amount because of tips, currency conversion, fuel pre-authorizations, hotel deposits, delayed transit fares, or partial shipments. In terms of balances, the available balance is the amount available for use after pending transactions, card authorizations, overdraft limits, account restrictions, and holds are considered, while the ledger balance is the balance after transactions already posted to the account. So a card purchase may reduce the available balance immediately but post to the ledger balance later. A hotel, car rental, fuel station, or online merchant may also place a pre-authorization that is higher than the final amount."
+    },
+    {
+      "id": "question_68",
+      "content": "How can I use online banking to request a loan, and how does that relate to the bank's online banking security guidance for disputes, chargebacks, and fraud claims?",
+      "reference_answer": "A customer can request a loan through online banking, the mobile app, telephone banking, or a branch appointment. The request normally includes the requested amount, requested term, purpose of borrowing, employment status, income and regular expenses, housing costs, existing debts and credit commitments, dependants and household circumstances, consent to credit checks, and supporting documents where required. An indicative quote is not final approval; final approval depends on verification, affordability assessment, credit checks, and signing the credit agreement. The disputes, chargebacks, fraud claims, payment recalls, and merchant disputes document says that security guidance is in the Security, Online Banking & Customer Responsibilities document."
+    },
+    {
+      "id": "question_69",
+      "content": "If i need help with \"Payments, Transfers & Cutoff Times\", where do i go from the Security, Online Banking & Customer Responsibilities page, and what kinds of payments does that payments guide say it applies to?",
+      "reference_answer": "For payments help, the Security, Online Banking & Customer Responsibilities page points you to the related policy \"Payments, Transfers & Cutoff Times\". That payments guide says it applies to SEPA transfers, instant payments, international payments, standing orders, direct debits, and card settlements."
+    },
+    {
+      "id": "question_70",
+      "content": "How can a customer use online banking to make a complaint, and what online banking statement and notice options are available under Aurora Bank terms?",
+      "reference_answer": "A customer can make a complaint through secure message in online banking. Other complaint channels include telephone banking, a branch appointment, a postal letter, email to the complaints team where available, an authorized representative, attorney, guardian, or support worker, and an accessibility-assisted channel. When complaining, the customer should provide account details, contact details, what happened, relevant dates, amounts, names, evidence, and the outcome requested, and should not send passwords, PINs, or one-time passcodes.\n\nFor statements and notices, Aurora Bank provides monthly statements for current accounts and at least annual statements for savings accounts unless the product terms provide more frequent statements. Customers can access statements in online banking for at least seven years after issue, unless the account was closed and retention periods have expired. Customers may request paper statements, and a paper statement fee may apply unless paper statements are needed as an accessibility adjustment or local law requires free paper copies. Important account notices may be delivered through online banking, secure message, email, SMS notification, postal mail, or branch notice, and customers must keep contact details up to date."
+    },
+    {
+      "id": "question_71",
+      "content": "What customer rights are listed, and how does customer cooperation affect a claim?",
+      "reference_answer": "Subject to legal limits, customers may have the right to access their personal data, correct inaccurate data, erase data where retention is no longer required, restrict processing, object to processing based on legitimate interests, receive certain data in portable format, withdraw consent, object to direct marketing, request human review of certain automated decisions, and complain to a data protection authority. However, customers must also provide truthful and complete information when making a claim. A claim may be declined if the customer knowingly provides false information, withholds relevant facts, refuses reasonable evidence requests, or makes a duplicate claim after receiving a merchant refund. Knowingly false fraud claims may also lead to account closure, a police report, or fraud database filing."
+    },
+    {
+      "id": "question_72",
+      "content": "Under Aurora Bank's data-sharing policy, when may it share customer data with a credit reference agency, and what is a credit reference agency according to the glossary?",
+      "reference_answer": "Aurora Bank may share customer data with credit reference agencies as part of its data-sharing arrangements listed under Privacy, Data Protection & Open Banking. The glossary defines a credit reference agency as a company that collects and provides credit history and identity information to lenders and other permitted organizations."
+    },
+    {
+      "id": "question_73",
+      "content": "How do Aurora Bank use credit reference agencies, and what can happen to a customer future credit application?",
+      "reference_answer": "Aurora Bank may share repayment data with credit reference agencies and fraud prevention databases, and this can affect future credit applications. When a customer requests credit, Aurora Bank may also obtain information from credit reference agencies and fraud prevention databases to assess eligibility, affordability, risk, fraud indicators, and product pricing. A customer can request human review of certain automated decisions where legally required, but Aurora Bank may still decline credit if product criteria, affordability, fraud, or legal requirements are not met."
+    },
+    {
+      "id": "question_74",
+      "content": "On Cards, if a pre-authorization is still pending, can Aurora Bank remove the hold early, and what should I do if a merchant refund is not received?",
+      "reference_answer": "A pre-authorization reduces the available balance but is not always the final amount. It normally expires automatically if the merchant does not settle it. Aurora Bank can remove a hold early only if the merchant provides release confirmation or scheme rules permit release. For a merchant refund, it is initiated by the merchant and credited when received through the card scheme. It can take several business days and may not use the same exchange rate as the original transaction. If the refund is not received, the customer should first contact the merchant and then raise a card dispute if appropriate."
+    },
+    {
+      "id": "question_75",
+      "content": "What should I do for an ATM dispute, and why ATM fees or resolution can be different at non-Aurora ATM?",
+      "reference_answer": "For an ATM dispute, the customer should provide the ATM location and operator, date and approximate time, amount requested, amount dispensed if any, receipt or error message, whether the card was retained, and whether anyone nearby behaved suspiciously. Aurora Bank may contact the ATM operator and review settlement records. Resolution can take longer for non-Aurora ATMs or ATMs abroad. Also, Aurora Bank does not control fees charged by non-Aurora ATM operators, and those operators may charge their own fees or display conversion options."
+    },
+    {
+      "id": "question_76",
+      "content": "What information is required for a SEPA transfer, and what is the fee for a SEPA credit transfer in online banking?",
+      "reference_answer": "For a SEPA transfer, Aurora Bank requires complete and accurate payment information, normally including the beneficiary name, IBAN, amount, payment reference or description, execution date, and, for some payments, an optional beneficiary address. The fee for a SEPA credit transfer in online banking is EUR 0.00."
+    },
+    {
+      "id": "question_77",
+      "content": "How do the Savings account core services differ between a Fixed Term Deposit and a Notice Saver, especially regarding withdrawals, early access, and any possible interest adjustments or exceptions?",
+      "reference_answer": "Under the Savings account core services, a Fixed Term Deposit is opened for a fixed period and pays a fixed interest rate. After the funding window closes, additional deposits and partial withdrawals are not normally allowed. Early closure is not normally available unless required by law or approved due to hardship.\n\nA Notice Saver works differently because it requires notice before withdrawal. A 32-day notice account requires 32 calendar days’ notice, and a 90-day notice account requires 90 calendar days’ notice. Aurora Bank may permit early withdrawal only in exceptional circumstances, such as serious illness, death, or legal obligation, and an early-withdrawal interest adjustment may apply."
+    },
+    {
+      "id": "question_78",
+      "content": "In relation to online banking and Online Banking, where can an Aurora Bank customer find the related policies for fraud and transaction disputes, and how long can statements be accessed in online banking after they are issued?",
+      "reference_answer": "For online banking, the related policy for fraud and transaction disputes is \"Disputes, Chargebacks & Fraud Claims.\" The other related policies listed are \"Cards, Debit Cards, Credit Cards, ATMs & Mobile Wallets\" for card security, \"Payments, Transfers & Cutoff Times\" for payments, and \"Privacy, Data Protection & Open Banking\" for privacy and open banking. Aurora Bank provides monthly statements for current accounts and at least annual statements for savings accounts unless the product terms provide more frequent statements. Customers can access statements in online banking for at least seven years after issue, unless the account was closed and retention periods have expired."
+    },
+    {
+      "id": "question_79",
+      "content": "How do the \"Cards\" controls work for customers using online banking or the mobile app, and what related policy is referenced under Fees, Interest & Foreign Exchange for card usage?",
+      "reference_answer": "Customers can use online banking or the mobile app to manage card controls, where available. These controls may include temporary card freeze and unfreeze, turning online payments on or off, turning contactless payments on or off, turning ATM withdrawals on or off, gambling merchant restrictions, international card use restrictions, card spending notifications, replacement card requests, and PIN view or PIN change where supported. A card freeze may stop many new transactions, but it may not stop all transactions. Offline transactions, delayed transit charges, merchant adjustments, subscriptions, and pre-authorized payments may still be processed. Under Fees, Interest & Foreign Exchange, the related policy for card usage is \"Cards, Debit Cards, Credit Cards, ATMs & Mobile Wallets.\""
+    },
+    {
+      "id": "question_80",
+      "content": "How should an Aurora Bank customer use online banking safely when receiving a message asking them to act, and if they need to make a complaint through online banking, what information should they provide and what should they avoid sending?",
+      "reference_answer": "Aurora Bank says customers should access online banking by typing the known address or opening the official app, rather than following unexpected links, because not every message asking a customer to act is genuine. The bank may send one-time passcodes, but it will never ask the customer to disclose a passcode to approve an action the customer did not initiate. If the customer needs to make a complaint through online banking, they can do so by secure message in online banking. They should provide account details, contact details, what happened, relevant dates, amounts, names, evidence, and the outcome requested. They should not send passwords, PINs, or one-time passcodes."
+    },
+    {
+      "id": "question_81",
+      "content": "How does online banking relate to identity verification and account activation at Aurora Bank?",
+      "reference_answer": "Aurora Bank may request documents to verify the identity of every account holder and certain related persons, and these documents may be uploaded in online banking, presented in branch, or verified through an approved digital identity process. An account is normally activated only after the identity is verified, all required declarations are accepted, the customer receives account details, any initial deposit requirement is met, and the customer sets up secure access credentials. Debit cards and online banking access may be issued separately."
+    },
+    {
+      "id": "question_82",
+      "content": "How does online banking get set up after account activation, and what does the Online banking security guidance apply to?",
+      "reference_answer": "An account is normally activated when the customer’s identity is verified, all required declarations are accepted, the customer receives account details, any initial deposit requirement is met, and the customer sets up secure access credentials. Debit cards and online banking access may be issued separately. The security guidance titled \"Security, Online Banking & Customer Responsibilities\" applies to online banking, the mobile app, passwords, authentication, scams, account locks, and secure messaging."
+    },
+    {
+      "id": "question_83",
+      "content": "According to the sections on Privacy, Data Protection & Open Banking and Disputes, Chargebacks & Fraud Claims, how should a customer use the \"Glossary, Contact Channels & Service Levels\" information to contact Aurora Bank, and in what situations should the customer immediately do so?",
+      "reference_answer": "A customer can contact the Data Protection Office through the channels listed in \"Glossary, Contact Channels & Service Levels.\" The same section also lists the emergency contact options for disputes, chargebacks, and fraud claims. A customer should immediately contact Aurora Bank if a card or device is lost or stolen, if card details, a PIN, password, passcode, or authentication device may be compromised, if a transaction appears that the customer did not authorize, if the customer was tricked into sending money, if an ATM debited the account but did not dispense cash, if a merchant charged the wrong amount or charged after cancellation, if goods or services were not received, or if a promised refund has not arrived. Prompt reporting helps Aurora Bank block further transactions, preserve evidence, and start recovery steps."
+    },
+    {
+      "id": "question_84",
+      "content": "How can chargebacks affect a foreign-currency chargeback refund amount?",
+      "reference_answer": "A foreign-currency refund may not exactly equal the original home-currency charge because exchange rates can move between the purchase and refund dates. Merchant fees, partial refunds, and chargeback outcomes can also affect the amount received."
+    },
+    {
+      "id": "question_85",
+      "content": "Aurora Bank support: if I authorized a transfer to the wrong IBAN, can the bank reverse it, and what does IBAN mean in this context?",
+      "reference_answer": "If a customer authorized a transfer to the wrong IBAN or beneficiary, Aurora Bank cannot simply reverse it. The bank may attempt a recall through the receiving bank, and the recipient may need to consent unless legal rules allow otherwise. The customer should provide the payment date and amount, the beneficiary IBAN and name entered, the intended beneficiary details, the reason for the error, and any communication with the unintended recipient. Recall fees may apply even if recovery is unsuccessful. In this context, IBAN means International Bank Account Number, which is used to identify bank accounts for domestic and cross-border payments in many countries."
+    },
+    {
+      "id": "question_86",
+      "content": "For Aurora Bank \"Basic Payment Accounts,\" what do the terms say about arranged overdrafts and credit interest on a \"Basic Payment Account\"?",
+      "reference_answer": "The terms say that Basic Payment Accounts do not offer arranged overdrafts. They also say that a Basic Payment Account does not normally pay credit interest. Interest may only be available on promotional or packaged accounts, and even then it can depend on conditions such as minimum monthly deposits, direct debit activity, product package, or residency."
+    },
+    {
+      "id": "question_87",
+      "content": "How can I use a branch appointment to ask for a loan and also make a complaint?",
+      "reference_answer": "You can use a branch appointment for both. For a loan request, you normally need to give the requested amount, requested term, purpose of borrowing, employment status, income and regular expenses, housing costs, existing debts and credit commitments, dependants and household circumstances, consent to credit checks, and supporting documents where required. For a complaint, you should provide account details, contact details, what happened, relevant dates, amounts, names, evidence, and the outcome requested. Do not send passwords, PINs, or one-time passcodes."
+    },
+    {
+      "id": "question_88",
+      "content": "In the \"Payments, Transfers & Cutoff Times\" guidance, what should a customer do about unauthorized or incorrect payments, and why is fast reporting important, given that this section also applies to SEPA transfers, instant payments, international payments, standing orders, direct debits, and card settlements?",
+      "reference_answer": "Customers should report unauthorized or incorrect payments as soon as they notice them. Fast reporting is important because it improves the chance of stopping further loss and recovering funds. The guidance says that unauthorized electronic payments, scam payments, direct debit errors, card disputes, and merchant chargebacks are handled under \"Disputes, Chargebacks & Fraud Claims,\" and that security steps are described in \"Security, Online Banking & Customer Responsibilities.\""
+    },
+    {
+      "id": "question_89",
+      "content": "How do \"Loans, Overdrafts & Credit Assessment\" rules affect the final interest rate on a loan and the approval of an arranged overdraft, and what does Aurora Bank say about unarranged overdrafts?",
+      "reference_answer": "For loans, Aurora Bank says the interest rate can be fixed or variable depending on the product terms, and the final rate may depend on credit assessment, loan amount, term, product type, collateral, account relationship, and market conditions. A representative example is only an illustration and does not guarantee the rate a customer will receive. Interest, APR, arrangement fees, early-repayment charges, and late-payment charges are described in the customer’s credit agreement and the Fees, Interest & Foreign Exchange document.\n\nFor overdrafts, an arranged overdraft is a credit facility attached to a current account that allows the balance to go below zero up to an approved limit. It is subject to credit assessment and is not guaranteed. An unarranged overdraft happens when the account goes below zero without approval or exceeds an arranged limit. Aurora Bank may refuse payments that would create or increase an unarranged overdraft, and fees and interest may apply."
+    },
+    {
+      "id": "question_90",
+      "content": "How can Customers use card controls, and what can happen if a Customer makes a false fraud claim?",
+      "reference_answer": "Customers can use online banking or the mobile app to manage card controls, where available. These controls may include a temporary card freeze and unfreeze, turning online payments on or off, contactless payments on or off, ATM withdrawals on or off, gambling merchant restrictions, international card use restrictions, card spending notifications, replacement card requests, and PIN view or PIN change where supported. A card freeze may stop many new transactions, but it may not stop all transactions, because offline transactions, delayed transit charges, merchant adjustments, subscriptions, and pre-authorized payments may still be processed. For disputes, chargebacks, and fraud claims, Customers must provide truthful and complete information. A claim may be declined if the Customer knowingly provides false information, withholds relevant facts, refuses reasonable evidence requests, or makes a duplicate claim after receiving a merchant refund. Knowingly false fraud claims may lead to account closure, a police report, or fraud database filing."
+    },
+    {
+      "id": "question_91",
+      "content": "If my card was retained by an ATM, what should I do first, and what ATM fee or replacement-card fee might apply if I need a new card or withdraw cash from a non-Aurora ATM?",
+      "reference_answer": "If your card was retained by an ATM, you should immediately freeze the card in the app and contact Aurora Bank. Aurora Bank may cancel the card and issue a replacement. A replacement-card fee may apply unless the loss was caused by bank error, fraud, expiry, or another fee-waiver circumstance. For fees, a replacement card for loss or damage costs EUR 7.50 unless waived. For cash withdrawals, a domestic non-Aurora ATM cash withdrawal costs EUR 1.50 after the monthly free allowance, and an EEA ATM cash withdrawal in EUR also costs EUR 1.50 after the monthly free allowance. A non-EEA or non-EUR ATM cash withdrawal costs EUR 3.50 plus FX spread and ATM operator fees."
+    },
+    {
+      "id": "question_92",
+      "content": "What checks may Aurora Bank do with a credit reference agency when a credit facility is requested, and what is a credit reference agency anyway?",
+      "reference_answer": "Aurora Bank may carry out credit reference agency checks where a credit facility is requested. For non-credit accounts, credit bureau information is not normally used to decide whether the customer can open a basic current account, but it may be used to verify identity or assess an overdraft request. A credit reference agency is a company that collects and provides credit history and identity information to lenders and other permitted organizations."
+    },
+    {
+      "id": "question_93",
+      "content": "If I made a SEPA payment and want to know whether I can cancel or recall it, what does Aurora Bank say about a future-dated SEPA payment versus a SEPA instant transfer, and what does the SEPA guidance in the payments document indicate about these payment types?",
+      "reference_answer": "Aurora Bank says that a future-dated SEPA payment can usually be cancelled before the cutoff on the business day before execution, and online cancellation may be available. By contrast, a SEPA instant transfer is usually not cancellable once it has been authorized, although a recall can be attempted and is not guaranteed. The payments document also shows that these SEPA-related rules are part of the \"Payments, Transfers & Cutoff Times\" guidance, which applies to SEPA transfers and instant payments."
+    },
+    {
+      "id": "question_94",
+      "content": "How do Foreign Exchange rules affect a foreign-currency refund?",
+      "reference_answer": "A foreign-currency refund may not exactly equal the original home-currency charge because exchange rates can move between the purchase and refund dates. The amount received can also be affected by merchant fees, partial refunds, and chargeback outcomes."
+    },
+    {
+      "id": "question_95",
+      "content": "What are the savings account core services for Aurora Bank savings accounts, and how does the Notice Saver withdrawal notice requirement work for a 32-day or 90-day savings account?",
+      "reference_answer": "Aurora Bank's savings account core services include the Notice Saver. Under this service, a savings account requires notice before withdrawal. A 32-day notice account requires 32 calendar days' notice, and a 90-day notice account requires 90 calendar days' notice. Aurora Bank may allow early withdrawal only in exceptional circumstances, such as serious illness, death, or legal obligation, and an early-withdrawal interest adjustment may apply."
+    },
+    {
+      "id": "question_96",
+      "content": "Aurora Bank cards: where can I find the public customer guidance for cards, debit cards, credit cards, ATMs, and mobile wallets, and which related policy should I check for card usage?",
+      "reference_answer": "The public customer guidance is titled \"Cards, Debit Cards, Credit Cards, ATMs & Mobile Wallets\" with doc_id \"AB-CUST-CARD-2026-01\". It is owned by \"Card Issuing & Digital Wallet Services,\" has an effective date of 2026-01-01, and applies to debit cards, credit cards, ATM services, mobile wallets, and card controls. For card usage, the related policy to check is \"Cards, Debit Cards, Credit Cards, ATMs & Mobile Wallets\" under the related policies section."
+    },
+    {
+      "id": "question_97",
+      "content": "If a customer authorized a \"SEPA Instant Credit Transfer\" and later wants to cancel it, what does Aurora Bank say about whether a \"SEPA instant transfer\" can usually be cancelled or recalled, and what happens if the payment was sent to the wrong recipient?",
+      "reference_answer": "Aurora Bank says that a SEPA Instant Credit Transfer is usually not cancellable once it has been authorized. A recall can be attempted, but it is not guaranteed. If the payment was sent to the wrong recipient and it was authorized by the customer, Aurora Bank cannot guarantee recovery of the funds. The bank may try to contact the receiving bank, but the recipient may need to consent to return the funds unless legal rules allow reversal."
+    },
+    {
+      "id": "question_98",
+      "content": "What does Aurora Bank say about \"Interest\" on current accounts, and how does that compare with the \"Interest\"-related currency conversion charges when a merchant or ATM offers dynamic currency conversion in the customer’s home currency versus the local currency?",
+      "reference_answer": "Aurora Bank says that Aurora Everyday Current Account and Basic Payment Account do not normally pay credit interest. It also says that promotional or packaged accounts may pay interest on balances up to a stated cap, and that interest eligibility can depend on minimum monthly deposits, direct debit activity, product package, or residency.\n\nFor dynamic currency conversion, Aurora Bank explains that when a merchant or ATM offers to charge the customer in the customer’s home currency instead of the local currency, the displayed home-currency amount may include a markup set by the merchant or ATM operator. Aurora Bank generally recommends comparing rates before choosing. If the customer selects the local currency, Aurora Bank or the card scheme usually performs the conversion. If the customer selects the home currency, the merchant or ATM operator usually performs the conversion."
+    },
+    {
+      "id": "question_99",
+      "content": "For account opening and account operation, how long does Aurora Bank typically retain account opening and identity records, and what customer rights may be limited when the data is needed for account operation or legal obligations?",
+      "reference_answer": "Aurora Bank typically retains account opening and identity records for 5-10 years after the relationship ends, depending on the law. Some customer rights may be limited when the data is needed for account operation, legal obligations, financial crime prevention, legal claims, or the rights of others. In those cases, rights such as access, erasure, restriction, objection, portability, withdrawal of consent, objection to direct marketing, and request for human review of certain automated decisions may be limited subject to legal limits."
+    }
+  ]
+}

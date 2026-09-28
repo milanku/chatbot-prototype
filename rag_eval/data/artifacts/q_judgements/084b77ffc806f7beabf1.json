@@ -1,0 +1,502 @@
+[
+  {
+    "question_id": "question_0",
+    "quality": "REJECT",
+    "reason": "Asks about the meaning of a document name rather than a customer banking need."
+  },
+  {
+    "question_id": "question_1",
+    "quality": "ACCEPT",
+    "reason": "Asks about complaint handling and support for vulnerable customers, which is a realistic customer information need."
+  },
+  {
+    "question_id": "question_2",
+    "quality": "ACCEPT",
+    "reason": "Asks what counts as a complaint, which is customer-relevant policy information."
+  },
+  {
+    "question_id": "question_3",
+    "quality": "ACCEPT",
+    "reason": "Asks how to book a branch appointment to make a complaint, a practical service question."
+  },
+  {
+    "question_id": "question_4",
+    "quality": "ACCEPT",
+    "reason": "Asks about complaint response times, which is a customer policy question."
+  },
+  {
+    "question_id": "question_5",
+    "quality": "ACCEPT",
+    "reason": "Asks how accessibility-related complaints are handled and resolved, which is customer-relevant."
+  },
+  {
+    "question_id": "question_6",
+    "quality": "ACCEPT",
+    "reason": "Asks about escalation options after a final complaint response, which is a valid customer need."
+  },
+  {
+    "question_id": "question_7",
+    "quality": "ACCEPT",
+    "reason": "Asks what support is available for vulnerable customers, a standard banking assistance question."
+  },
+  {
+    "question_id": "question_8",
+    "quality": "ACCEPT",
+    "reason": "Asks about accessibility adjustments and support options, which is a legitimate customer need."
+  },
+  {
+    "question_id": "question_9",
+    "quality": "ACCEPT",
+    "reason": "Asks about account closure, estates, power of attorney, and related authority/support issues, all customer-relevant topics."
+  },
+  {
+    "question_id": "question_10",
+    "quality": "ACCEPT",
+    "reason": "Asks what to do if unable to pay bills, which is a real customer hardship situation."
+  },
+  {
+    "question_id": "question_11",
+    "quality": "ACCEPT",
+    "reason": "Asks about bereavement handling and required documents after a death, which is customer-relevant."
+  },
+  {
+    "question_id": "question_12",
+    "quality": "ACCEPT",
+    "reason": "Asks about financial abuse recognition and support options, a valid customer protection need."
+  },
+  {
+    "question_id": "question_13",
+    "quality": "ACCEPT",
+    "reason": "Asks about customer conduct and access to services, which is policy information a customer may need."
+  },
+  {
+    "question_id": "question_14",
+    "quality": "ACCEPT",
+    "reason": "Asks where to find account opening support information, which is useful customer guidance."
+  },
+  {
+    "question_id": "question_15",
+    "quality": "ACCEPT",
+    "reason": "Asks about joint account rules, a normal account-opening information need."
+  },
+  {
+    "question_id": "question_16",
+    "quality": "ACCEPT",
+    "reason": "Asks about loans, overdrafts, and credit assessment for applicants, which is customer-relevant."
+  },
+  {
+    "question_id": "question_17",
+    "quality": "ACCEPT",
+    "reason": "Asks what a Basic Payment Account is and who can get one, a legitimate product question."
+  },
+  {
+    "question_id": "question_18",
+    "quality": "ACCEPT",
+    "reason": "Asks about residency, address requirements, and extra information requests, which are relevant verification details."
+  },
+  {
+    "question_id": "question_19",
+    "quality": "ACCEPT",
+    "reason": "Asks how identity is verified and what documents may be requested, a standard onboarding question."
+  },
+  {
+    "question_id": "question_20",
+    "quality": "ACCEPT",
+    "reason": "Asks whether a residence permit can be used as proof of identity, a specific customer verification question."
+  },
+  {
+    "question_id": "question_21",
+    "quality": "ACCEPT",
+    "reason": "Asks what documents are accepted as proof of address, a normal account-opening need."
+  },
+  {
+    "question_id": "question_22",
+    "quality": "ACCEPT",
+    "reason": "Asks about source-of-funds checks and when they may be requested, which is customer-relevant compliance information."
+  },
+  {
+    "question_id": "question_23",
+    "quality": "ACCEPT",
+    "reason": "Asks how to apply through online banking and when branch verification may still be needed, a practical account-opening question."
+  },
+  {
+    "question_id": "question_24",
+    "quality": "ACCEPT",
+    "reason": "Asks about verification checks and credit bureau use for a basic current account, which is relevant customer information."
+  },
+  {
+    "question_id": "question_25",
+    "quality": "ACCEPT",
+    "reason": "Asks whether freelancers can use a personal account or need a business account, a valid product-usage question."
+  },
+  {
+    "question_id": "question_26",
+    "quality": "ACCEPT",
+    "reason": "Asks about joint account rules and responsibility, which is customer-relevant."
+  },
+  {
+    "question_id": "question_27",
+    "quality": "ACCEPT",
+    "reason": "Asks about requirements and limitations for a Youth Current Account, a legitimate product question."
+  },
+  {
+    "question_id": "question_28",
+    "quality": "ACCEPT",
+    "reason": "Asks how the bank helps customers needing support under complaints, vulnerability, and accessibility, which is customer-relevant."
+  },
+  {
+    "question_id": "question_29",
+    "quality": "ACCEPT",
+    "reason": "Asks why an application may be delayed due to sanctions screening, a realistic customer concern."
+  },
+  {
+    "question_id": "question_30",
+    "quality": "ACCEPT",
+    "reason": "Asks when an account application may be refused and what information is provided, which is customer-relevant."
+  },
+  {
+    "question_id": "question_31",
+    "quality": "ACCEPT",
+    "reason": "Asks how to update personal information after opening an account, a normal servicing question."
+  },
+  {
+    "question_id": "question_32",
+    "quality": "ACCEPT",
+    "reason": "Asks how debit cards are issued and whether they are separate from activation, a practical account-service question."
+  },
+  {
+    "question_id": "question_33",
+    "quality": "ACCEPT",
+    "reason": "Asks where to find information about payments, transfers, and cutoff times, which supports a customer need."
+  },
+  {
+    "question_id": "question_34",
+    "quality": "ACCEPT",
+    "reason": "Asks about packaged account terms, eligibility, costs, and limitations before applying, which is customer-relevant."
+  },
+  {
+    "question_id": "question_35",
+    "quality": "ACCEPT",
+    "reason": "Asks about main operating rules for personal current and savings accounts, a valid product-policy question."
+  },
+  {
+    "question_id": "question_36",
+    "quality": "ACCEPT",
+    "reason": "Asks what the Notice Saver is for and whether it has credit, which is customer-relevant product information."
+  },
+  {
+    "question_id": "question_37",
+    "quality": "ACCEPT",
+    "reason": "Asks about SEPA credit transfers and included core services, a valid banking service question."
+  },
+  {
+    "question_id": "question_38",
+    "quality": "ACCEPT",
+    "reason": "Asks for savings account terms, which is a normal customer information need."
+  },
+  {
+    "question_id": "question_39",
+    "quality": "ACCEPT",
+    "reason": "Asks about core services, transfers, interest, and withdrawals for a savings product, which is customer-relevant."
+  },
+  {
+    "question_id": "question_40",
+    "quality": "ACCEPT",
+    "reason": "Asks about savings account core services and required withdrawal notice, a legitimate customer question."
+  },
+  {
+    "question_id": "question_41",
+    "quality": "ACCEPT",
+    "reason": "Asks about core services for a fixed term deposit, which is customer-relevant product information."
+  },
+  {
+    "question_id": "question_42",
+    "quality": "ACCEPT",
+    "reason": "Asks how card purchases and pre-authorizations affect balances, a realistic account-management question."
+  },
+  {
+    "question_id": "question_43",
+    "quality": "ACCEPT",
+    "reason": "Asks how account notices are sent and whether contact details must be kept current, a practical servicing question."
+  },
+  {
+    "question_id": "question_44",
+    "quality": "ACCEPT",
+    "reason": "Asks about overdrafts on savings/youth accounts and consequences of going below zero, which is customer-relevant."
+  },
+  {
+    "question_id": "question_45",
+    "quality": "ACCEPT",
+    "reason": "Asks about packaged accounts and fee waivers, which is a valid customer policy question."
+  },
+  {
+    "question_id": "question_46",
+    "quality": "ACCEPT",
+    "reason": "Asks how to cancel standing orders/direct debits and about timing, a common payments question."
+  },
+  {
+    "question_id": "question_47",
+    "quality": "ACCEPT",
+    "reason": "Asks about cash deposits and withdrawals, which is a practical banking service need."
+  },
+  {
+    "question_id": "question_48",
+    "quality": "ACCEPT",
+    "reason": "Asks about inactivity and dormant accounts, which is customer-relevant account policy information."
+  },
+  {
+    "question_id": "question_49",
+    "quality": "ACCEPT",
+    "reason": "Asks how to switch payment arrangements and about the transition period, a realistic banking process question."
+  },
+  {
+    "question_id": "question_50",
+    "quality": "ACCEPT",
+    "reason": "Asks what an overdraft is and which policy covers it, a normal customer information need."
+  },
+  {
+    "question_id": "question_51",
+    "quality": "ACCEPT",
+    "reason": "Asks about ledger balance vs available balance, a common account-management question."
+  },
+  {
+    "question_id": "question_52",
+    "quality": "ACCEPT",
+    "reason": "Asks about card controls and cookies/fraud-prevention signals, which are customer-use and security topics."
+  },
+  {
+    "question_id": "question_53",
+    "quality": "ACCEPT",
+    "reason": "Asks about fixed term deposit terms and rates, a valid product question."
+  },
+  {
+    "question_id": "question_54",
+    "quality": "ACCEPT",
+    "reason": "Asks about data rights, the Data Protection Office, and complaint escalation, all customer-relevant privacy issues."
+  },
+  {
+    "question_id": "question_55",
+    "quality": "REJECT",
+    "reason": "Primarily compares document codes and asks how guidance documents differ, which is about document content/administration rather than a direct customer need."
+  },
+  {
+    "question_id": "question_56",
+    "quality": "ACCEPT",
+    "reason": "Asks how to send sensitive information safely online and what files may be rejected, a practical online banking question."
+  },
+  {
+    "question_id": "question_57",
+    "quality": "REJECT",
+    "reason": "Primarily asks where a named document can be found and which policy references it, focusing on document navigation rather than customer banking needs."
+  },
+  {
+    "question_id": "question_58",
+    "quality": "ACCEPT",
+    "reason": "Asks about complaint record retention and how complaints may be resolved, which is customer-relevant."
+  },
+  {
+    "question_id": "question_59",
+    "quality": "ACCEPT",
+    "reason": "Asks about fees and data when using a card in the EEA, a valid customer question."
+  },
+  {
+    "question_id": "question_60",
+    "quality": "ACCEPT",
+    "reason": "Asks how interest works on loans and savings, which is a normal banking information need."
+  },
+  {
+    "question_id": "question_61",
+    "quality": "ACCEPT",
+    "reason": "Asks about evidence for merchant disputes and the difference between service messages and marketing preferences, both customer-relevant topics."
+  },
+  {
+    "question_id": "question_62",
+    "quality": "REJECT",
+    "reason": "Focuses on comparing document themes/codes and how the documents differ, rather than a direct customer banking need."
+  },
+  {
+    "question_id": "question_63",
+    "quality": "ACCEPT",
+    "reason": "Asks what to do about payment problems and which policy covers unauthorized or incorrect payments, a valid customer issue."
+  },
+  {
+    "question_id": "question_64",
+    "quality": "ACCEPT",
+    "reason": "Asks where card disputes and fraud claims are handled, which is relevant to resolving payment issues."
+  },
+  {
+    "question_id": "question_65",
+    "quality": "ACCEPT",
+    "reason": "Asks about pre-authorizations, pending transactions, and early hold removal, a realistic card question."
+  },
+  {
+    "question_id": "question_66",
+    "quality": "ACCEPT",
+    "reason": "Asks about loan interest rates and hardship help, which are customer-relevant borrowing topics."
+  },
+  {
+    "question_id": "question_67",
+    "quality": "ACCEPT",
+    "reason": "Asks how card authorization and settlement affect balances and why settlement may differ, a valid payment-card question."
+  },
+  {
+    "question_id": "question_68",
+    "quality": "ACCEPT",
+    "reason": "Asks about using online banking to request a loan and related security guidance, which is a customer-relevant process question."
+  },
+  {
+    "question_id": "question_69",
+    "quality": "REJECT",
+    "reason": "Primarily asks where to go from a specific guidance page and what that guide applies to, which is mostly about document navigation/coverage."
+  },
+  {
+    "question_id": "question_70",
+    "quality": "ACCEPT",
+    "reason": "Asks how to make a complaint through online banking and about statement/notice options, which are customer-service topics."
+  },
+  {
+    "question_id": "question_71",
+    "quality": "ACCEPT",
+    "reason": "Asks about customer rights and cooperation affecting a claim, a valid policy question."
+  },
+  {
+    "question_id": "question_72",
+    "quality": "ACCEPT",
+    "reason": "Asks when data may be shared with credit reference agencies and what they are, which is customer-relevant privacy/credit information."
+  },
+  {
+    "question_id": "question_73",
+    "quality": "ACCEPT",
+    "reason": "Asks how credit reference agencies are used and potential effects on future credit applications, a normal customer concern."
+  },
+  {
+    "question_id": "question_74",
+    "quality": "ACCEPT",
+    "reason": "Asks about early release of a card hold and what to do about missing merchant refunds, which is customer-relevant."
+  },
+  {
+    "question_id": "question_75",
+    "quality": "ACCEPT",
+    "reason": "Asks what to do about an ATM dispute and why fees/resolution may differ at non-Aurora ATMs, a valid customer issue."
+  },
+  {
+    "question_id": "question_76",
+    "quality": "ACCEPT",
+    "reason": "Asks about required information and fees for SEPA transfers, which is practical payment information."
+  },
+  {
+    "question_id": "question_77",
+    "quality": "ACCEPT",
+    "reason": "Asks to compare savings account core services and withdrawal rules between products, which is customer-relevant."
+  },
+  {
+    "question_id": "question_78",
+    "quality": "ACCEPT",
+    "reason": "Asks where to find policies for fraud and transaction disputes and how long statements are available, both customer-relevant."
+  },
+  {
+    "question_id": "question_79",
+    "quality": "ACCEPT",
+    "reason": "Asks about card controls in online/mobile banking and a related card-usage policy, a legitimate customer need."
+  },
+  {
+    "question_id": "question_80",
+    "quality": "ACCEPT",
+    "reason": "Asks how to respond safely to suspicious messages and what to include or avoid when making a complaint online, which is customer-relevant."
+  },
+  {
+    "question_id": "question_81",
+    "quality": "ACCEPT",
+    "reason": "Asks how online banking relates to identity verification and account activation, a practical servicing question."
+  },
+  {
+    "question_id": "question_82",
+    "quality": "ACCEPT",
+    "reason": "Asks how online banking is set up after activation and what security guidance covers, a valid customer question."
+  },
+  {
+    "question_id": "question_83",
+    "quality": "ACCEPT",
+    "reason": "Asks how to use contact-channel guidance and when to contact the bank immediately, which is customer-relevant process information."
+  },
+  {
+    "question_id": "question_84",
+    "quality": "ACCEPT",
+    "reason": "Asks about how chargebacks affect foreign-currency refund amounts, a valid transaction question."
+  },
+  {
+    "question_id": "question_85",
+    "quality": "ACCEPT",
+    "reason": "Asks whether a wrong-IBAN transfer can be reversed and what IBAN means, a realistic payment issue."
+  },
+  {
+    "question_id": "question_86",
+    "quality": "ACCEPT",
+    "reason": "Asks about overdrafts and credit interest on basic payment accounts, which is customer-relevant product information."
+  },
+  {
+    "question_id": "question_87",
+    "quality": "ACCEPT",
+    "reason": "Asks about using a branch appointment for both a loan and a complaint, a practical service question."
+  },
+  {
+    "question_id": "question_88",
+    "quality": "ACCEPT",
+    "reason": "Asks what to do about unauthorized or incorrect payments and why reporting quickly matters, a realistic banking issue."
+  },
+  {
+    "question_id": "question_89",
+    "quality": "ACCEPT",
+    "reason": "Asks how loan/overdraft rules affect rates and approval, including unarranged overdrafts, which is customer-relevant."
+  },
+  {
+    "question_id": "question_90",
+    "quality": "ACCEPT",
+    "reason": "Asks about card controls and consequences of a false fraud claim, which is a valid customer policy question."
+  },
+  {
+    "question_id": "question_91",
+    "quality": "ACCEPT",
+    "reason": "Asks what to do if an ATM retains a card and what fees may apply, a practical customer issue."
+  },
+  {
+    "question_id": "question_92",
+    "quality": "ACCEPT",
+    "reason": "Asks what checks a credit reference agency may do and what it is, a standard credit-information question."
+  },
+  {
+    "question_id": "question_93",
+    "quality": "ACCEPT",
+    "reason": "Asks about cancelling or recalling SEPA payments and what happens if sent to the wrong recipient, which is customer-relevant."
+  },
+  {
+    "question_id": "question_94",
+    "quality": "ACCEPT",
+    "reason": "Asks how foreign exchange rules affect a foreign-currency refund, a valid banking fee question."
+  },
+  {
+    "question_id": "question_95",
+    "quality": "ACCEPT",
+    "reason": "Asks about core services for savings accounts and withdrawal notice periods, a customer-relevant product question."
+  },
+  {
+    "question_id": "question_96",
+    "quality": "REJECT",
+    "reason": "Primarily asks where to find public guidance and which related policy to check, focusing on document location rather than a direct banking need."
+  },
+  {
+    "question_id": "question_97",
+    "quality": "ACCEPT",
+    "reason": "Asks about cancelling a SEPA instant transfer and what happens if it was sent to the wrong recipient, a realistic payment issue."
+  },
+  {
+    "question_id": "question_98",
+    "quality": "ACCEPT",
+    "reason": "Asks about current account interest and foreign-currency conversion charges, which are customer-relevant fee/rate questions."
+  },
+  {
+    "question_id": "question_99",
+    "quality": "ACCEPT",
+    "reason": "Asks about retention of account and identity records and related rights limits, a valid data/privacy question."
+  }
+]
