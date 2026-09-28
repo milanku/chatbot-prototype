@@ -6,5 +6,4 @@ class UnknownRouteHandler(RouteHandler):
     def handle(self, *, message: str, session_state: SessionState) -> RouteHandlerResult:
         return RouteHandlerResult(
             answer_text="Unknown route.\n",
-            references=[],
         )

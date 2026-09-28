@@ -44,19 +44,12 @@ def main(
             result: EngineResponse = engine.answer(
                 msg, session_state=session_store.get_session(get_current_session_id() or session_id)
             )
-            response = result.response
-            new_state = result.new_state
+            trace_id = result.trace_id
+            route_result = result.route_result
+            new_state = route_result.new_state
+
             if new_state is not None:
                 session_store.set_session(session_id, new_state)  # Update session state
 
-            typer.echo(f"\n\n{response.answer}\n\n")
-            if response.doc_references:
-                typer.echo(
-                    "Referenced documents:\n"
-                    + "\n".join(
-                        f"{ref.file_name} ({' >> '.join(ref.heading_path)})"
-                        for ref in response.doc_references
-                    )
-                    + "\n\n"
-                )
-            typer.echo(f"(trace_id: {response.trace_id})")
+            typer.echo(f"\n\n{route_result.result_to_str()}\n\n")
+            typer.echo(f"(trace_id: {trace_id})")

@@ -17,5 +17,4 @@ class TxSummaryHandler(RouteHandler):
         return RouteHandlerResult(
             answer_text=coordinator_result.answer_text,
             new_state=coordinator_result.new_state,
-            references=[],
         )

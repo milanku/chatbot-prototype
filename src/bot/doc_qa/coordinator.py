@@ -54,7 +54,7 @@ class DocsAnswerCoordinator:
         return DocsAnswerResult(
             status=DocsAnswerStatus.INSUFFICIENT_EVIDENCE,
             answer_text="I couldn't find enough information in the documentation to answer your question.",
-            references=[],
+            doc_references=[],
         )
 
     def _handle_verification_result(
@@ -68,7 +68,7 @@ class DocsAnswerCoordinator:
             return DocsAnswerResult(
                 status=DocsAnswerStatus.ANSWERED,
                 answer_text=draft_answer,
-                references=[hit.doc_reference for hit in required_chunks],
+                doc_references=[hit.doc_reference for hit in required_chunks],
             )
 
         for claim in draft_verification.verified_claims:
@@ -86,7 +86,7 @@ class DocsAnswerCoordinator:
         return DocsAnswerResult(
             status=DocsAnswerStatus.DRAFT_VERIFICATION_FAIL,
             answer_text="I am not able to provide unambiguous answer to your question based on the available documentation.",
-            references=[],
+            doc_references=[],
         )
 
     def answer(self, question: str) -> DocsAnswerResult:

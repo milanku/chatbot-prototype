@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from bot.bot_models import BotResponse
 from bot.common.lazy import Lazy
 from bot.engine_models import EngineResponse
 from bot.handlers.models import RouteHandler, RouteHandlerResult
@@ -89,18 +88,11 @@ class ChatbotEngine:
             log_event(
                 event="engine.finish",
                 payload={
-                    "answer": result.answer_text,
-                    "doc_references": result.references,
+                    "bot_result": result,
                 },
             )
 
-        bot_response = BotResponse(
-            answer=result.answer_text,
-            doc_references=result.references,
-            trace_id=trace_id,
-        )
-
         return EngineResponse(
-            response=bot_response,
-            new_state=result.new_state,
+            route_result=result,
+            trace_id=trace_id,
         )

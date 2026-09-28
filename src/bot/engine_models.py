@@ -1,9 +1,9 @@
-from pydantic import BaseModel
+from dataclasses import dataclass
 
-from bot.bot_models import BotResponse
-from bot.tx_qa.memory.models import SessionState
+from bot.handlers.models import RouteHandlerResult
 
 
-class EngineResponse(BaseModel):
-    response: BotResponse
-    new_state: SessionState | None
+@dataclass(frozen=True)
+class EngineResponse:
+    route_result: RouteHandlerResult
+    trace_id: str

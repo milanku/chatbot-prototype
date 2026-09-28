@@ -1,6 +1,6 @@
 from bot.doc_qa.coordinator import DocsAnswerCoordinator
 from bot.doc_qa.models import DocsAnswerResult
-from bot.handlers.models import RouteHandler, RouteHandlerResult
+from bot.handlers.models import DocQARouterHandlerResult, RouteHandler, RouteHandlerResult
 from bot.tx_qa.memory.models import SessionState
 
 
@@ -15,7 +15,7 @@ class DocsAnswerHandler(RouteHandler):
 
         # FUTURE: Add translations/localization for answer.status values and supported languages
 
-        return RouteHandlerResult(
+        return DocQARouterHandlerResult(
             answer_text=answer.answer_text,
-            references=answer.references,
+            doc_references=answer.doc_references,
         )

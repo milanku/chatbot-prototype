@@ -20,4 +20,4 @@ class InsufficientEvidenceReason(StrEnum):
 class DocsAnswerResult:
     status: DocsAnswerStatus
     answer_text: str
-    references: list[DocReference]
+    doc_references: list[DocReference]

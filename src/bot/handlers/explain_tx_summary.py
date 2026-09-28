@@ -14,5 +14,4 @@ class ExplainTxSummaryHandler(RouteHandler):
 
         return RouteHandlerResult(
             answer_text=coordinator_result.answer,
-            references=[],
         )

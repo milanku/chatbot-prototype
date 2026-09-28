@@ -7,5 +7,4 @@ class OutOfScopeHandler(RouteHandler):
         answer_text = "Sorry, I can't help with that.\n"
         return RouteHandlerResult(
             answer_text=answer_text,
-            references=[],
         )
