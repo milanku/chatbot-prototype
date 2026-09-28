@@ -1,17 +1,17 @@
 from datetime import date
 from decimal import Decimal
-from enum import Enum
+from enum import StrEnum
 
 from pydantic import BaseModel
 
 
-class Label(str, Enum):
+class Label(StrEnum):
     FOOD = "food"
     PETS = "pets"
     OTHER = "other"
 
 
-class Direction(str, Enum):
+class Direction(StrEnum):
     SPEND = "spend"
     RECEIVE = "receive"
 
