@@ -13,8 +13,8 @@ from prompt_evals.claim_verifier.results.persistor import save_results
 from prompt_evals.claim_verifier.results.print import print_results
 
 from bot.config.llm import OpenAILLMConfig
-from bot.doc_qa.verification.verifier import ClaimsVerifier
-from bot.doc_qa.verification.verifier_prompt_loader import ClaimVerifierPromptLoader
+from bot.doc_qa.verification.claim_verifier import ClaimVerifier
+from bot.doc_qa.verification.claim_verifier_prompt_loader import ClaimVerifierPromptLoader
 from bot.llm.factory import create_llm
 from bot.logging import setup_logging
 
@@ -38,7 +38,7 @@ def main() -> None:
     llm_client = create_llm(config=OpenAILLMConfig(model="gpt-4.1-mini"))
     prompt_loader = ClaimVerifierPromptLoader(prompt_config=EVALUATOR_CLAIM_VERIFIER_PROMPT_CONFIG)
 
-    verifier = ClaimsVerifier(llm_client=llm_client, claim_verifier_prompt_loader=prompt_loader)
+    verifier = ClaimVerifier(llm_client=llm_client, claim_verifier_prompt_loader=prompt_loader)
     evaluator = ClaimVerifierEvaluator(llm_client=llm_client, verifier=verifier)
 
     # Load test batches, evaluate, print and save results

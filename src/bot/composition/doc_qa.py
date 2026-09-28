@@ -22,8 +22,8 @@ from bot.doc_qa.verification.claim_extractor import ClaimExtractor
 from bot.doc_qa.verification.claim_extractor_prompt_loader import (
     ClaimExtractorPromptLoader,
 )
-from bot.doc_qa.verification.verifier import ClaimsVerifier
-from bot.doc_qa.verification.verifier_prompt_loader import ClaimVerifierPromptLoader
+from bot.doc_qa.verification.claim_verifier import ClaimVerifier
+from bot.doc_qa.verification.claim_verifier_prompt_loader import ClaimVerifierPromptLoader
 from bot.handlers.docs_answer import DocsAnswerHandler
 from bot.llm.client import LLMClient
 
@@ -73,7 +73,7 @@ def create_docs_answer_handler(
         ),
     )
 
-    claims_verifier = ClaimsVerifier(
+    claims_verifier = ClaimVerifier(
         llm_client=llm_client,
         claim_verifier_prompt_loader=ClaimVerifierPromptLoader(
             prompt_config=claim_verifier_prompt_config

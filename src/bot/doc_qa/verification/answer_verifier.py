@@ -1,25 +1,14 @@
-from dataclasses import dataclass
-
 from bot.doc_qa.indexing.models import DocChunk
 from bot.doc_qa.verification.claim_extractor import (
     ClaimExtractor,
 )
-from bot.doc_qa.verification.models import (
-    ClaimVerificationStatus,
-    VerifiedClaim,
-)
-from bot.doc_qa.verification.verifier import ClaimsVerifier
+from bot.doc_qa.verification.claim_verifier import ClaimVerifier
+from bot.doc_qa.verification.models import AnswerVerification, ClaimVerificationStatus
 from bot.logging import LogLevel, log_event
 
 
-@dataclass
-class AnswerVerification:
-    is_supported: bool
-    verified_claims: list[VerifiedClaim]
-
-
 class AnswerVerifier:
-    def __init__(self, *, claim_extractor: ClaimExtractor, claim_verifier: ClaimsVerifier):
+    def __init__(self, *, claim_extractor: ClaimExtractor, claim_verifier: ClaimVerifier):
         self._claim_extractor = claim_extractor
         self._claim_verifier = claim_verifier
 

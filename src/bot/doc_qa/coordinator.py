@@ -4,8 +4,8 @@ from bot.doc_qa.retrieval.judges.models import ChunkFilter
 from bot.doc_qa.retrieval.rerankers.models import Reranker
 from bot.doc_qa.retrieval.retrievers.models import ChunksRetriever
 from bot.doc_qa.synthesis.synthesizer import AnswerSynthesizer
-from bot.doc_qa.verification.answer_verifier import AnswerVerification, AnswerVerifier
-from bot.doc_qa.verification.models import ClaimVerificationStatus
+from bot.doc_qa.verification.answer_verifier import AnswerVerifier
+from bot.doc_qa.verification.models import AnswerVerification, ClaimVerificationStatus
 from bot.logging import LogLevel, log_event
 
 

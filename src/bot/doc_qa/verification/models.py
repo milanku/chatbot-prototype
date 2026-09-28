@@ -6,22 +6,17 @@ from pydantic import BaseModel, Field
 from bot.doc_qa.indexing.models import DocChunk
 
 
-class LLMExtractedClaim(BaseModel):
+class ExtractedClaimByLLM(BaseModel):
     claim: str
     source_spans: Annotated[list[str], Field(min_length=1)]
 
 
 class ClaimExtractionLLMOutput(BaseModel):
-    claims: list[LLMExtractedClaim]
+    claims: list[ExtractedClaimByLLM]
 
 
-class ExtractedClaim(LLMExtractedClaim):
+class ExtractedClaim(ExtractedClaimByLLM):
     claim_id: str | None = None
-
-
-class SentenceForExtraction(BaseModel):
-    chunk_id: str
-    content: str
 
 
 class ClaimVerificationStatus(str, Enum):
@@ -45,3 +40,8 @@ class VerifiedClaim(BaseModel):
 
 class VerifiedClaimsLLMOutputFormat(BaseModel):
     verified_claims: list[ClaimVerificationResult]
+
+
+class AnswerVerification(BaseModel):
+    is_supported: bool
+    verified_claims: list[VerifiedClaim]

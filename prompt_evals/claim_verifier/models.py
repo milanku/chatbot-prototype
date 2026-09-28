@@ -1,11 +1,11 @@
 from pydantic import BaseModel
 
 from bot.doc_qa.indexing.models import DocChunk
-from bot.doc_qa.verification.models import ClaimVerificationStatus, ExtractedClaim
+from bot.doc_qa.verification.models import ClaimVerificationResult, ExtractedClaim
 
 
 class ClaimVerifierTestClaim(ExtractedClaim, BaseModel):
-    expected_verification_status: ClaimVerificationStatus
+    expected_verification_status: ClaimVerificationResult
 
 
 class ClaimVerifierTestBatch(BaseModel):
@@ -19,7 +19,7 @@ class ClaimVerifierTestClaimResult(BaseModel):
     verified_claim: ClaimVerifierTestClaim
     evidence_chunks: list[DocChunk]
     reason: str | None = None
-    actual_verification_status: ClaimVerificationStatus
+    actual_verification_status: ClaimVerificationResult
     correct: bool
 
 

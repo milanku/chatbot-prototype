@@ -1,13 +1,13 @@
 from bot.doc_qa.indexing.models import DocChunk
+from bot.doc_qa.verification.claim_verifier_prompt_loader import (
+    ClaimVerifierPromptInput,
+    ClaimVerifierPromptLoader,
+)
 from bot.doc_qa.verification.models import (
     ClaimVerificationResult,
     ExtractedClaim,
     VerifiedClaim,
     VerifiedClaimsLLMOutputFormat,
-)
-from bot.doc_qa.verification.verifier_prompt_loader import (
-    ClaimVerifierPromptInput,
-    ClaimVerifierPromptLoader,
 )
 from bot.llm.client import LLMClient
 from bot.logging import LogLevel, log_event
@@ -15,7 +15,7 @@ from bot.logging import LogLevel, log_event
 DEFAULT_RETRIES = 3
 
 
-class ClaimsVerifier:
+class ClaimVerifier:
     def __init__(
         self, *, llm_client: LLMClient, claim_verifier_prompt_loader: ClaimVerifierPromptLoader
     ):

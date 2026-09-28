@@ -5,14 +5,14 @@ from prompt_evals.claim_verifier.models import (
     ClaimVerifierTestClaimResult,
 )
 
+from bot.doc_qa.verification.claim_verifier import ClaimVerifier
 from bot.doc_qa.verification.models import ExtractedClaim, VerifiedClaim
-from bot.doc_qa.verification.verifier import ClaimsVerifier
 from bot.llm.client import LLMClient
 from bot.logging import log_event
 
 
 class ClaimVerifierEvaluator:
-    def __init__(self, llm_client: LLMClient, verifier: ClaimsVerifier):
+    def __init__(self, llm_client: LLMClient, verifier: ClaimVerifier):
         self.llm_client = llm_client
         self.verifier = verifier
 
