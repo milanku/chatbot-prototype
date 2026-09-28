@@ -57,11 +57,14 @@ git clone https://github.com/milanku/chatbot-prototype.git
 cd chatbot-prototype
 ```
 
-Tell Poetry which Python interpreter to use:
+Configure Poetry to create the virtual environment inside the repository, then select the Python interpreter:
 
 ```bash
+poetry config virtualenvs.in-project true --local
 poetry env use python3.11
 ```
+
+If your Poetry installation is already configured globally with `virtualenvs.in-project = true`, the first command is optional.
 
 Install the project and its dependencies:
 
@@ -685,6 +688,7 @@ For a fresh machine, the shortest setup is:
 git clone https://github.com/milanku/chatbot-prototype.git
 cd chatbot-prototype
 
+poetry config virtualenvs.in-project true --local
 poetry env use python3.11
 poetry install
 
