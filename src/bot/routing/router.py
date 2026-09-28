@@ -1,25 +1,27 @@
-from bot.models.routing import Recipe, RouterDecision
+from bot.llm.client import LLMClient
+from bot.routing.models import ChatbotRouter, Route, RouterDecision, RouterDecisionExtraction
+from bot.routing.router_prompt_loader import (
+    RouterPromptInput,
+    RouterPromptLoader,
+)
 
 
-def route(message: str) -> RouterDecision:
-    text = message.strip().lower()
+class RouteSelector(ChatbotRouter):
+    def __init__(self, *, llm_client: LLMClient, prompt_loader: RouterPromptLoader) -> None:
+        self._llm_client = llm_client
+        self._prompt_loader = prompt_loader
 
-    # Primitive routing logic for now --- TODO: replace with a proper router
+    def select(self, *, message: str) -> RouterDecision:
+        system_prompt = self._prompt_loader.build_system_instructions(
+            allowed_routes=[route.value for route in Route]
+        )
+        user_prompt = self._prompt_loader.build_user_prompt(RouterPromptInput(message=message))
+        router_response = self._llm_client.generate_with_structured_output(
+            prompt=user_prompt,
+            output_format=RouterDecisionExtraction,
+            system_instructions=system_prompt,
+        )
 
-    # Explain how sum was computed, list transactions that contributed to it
-    if any(keyphrase in text for keyphrase in ["list", "this sum"]):
-        return RouterDecision(recipe=Recipe.TX_EXPLAIN, confidence=0.9)
-
-    # Spending total
-    if any(keyphrase in text for keyphrase in ["how much", "spent on"]):
-        return RouterDecision(recipe=Recipe.TX_SUMMARY, confidence=0.9)
-
-    # Answer questions about docs
-    if any(
-        keyphrase in text
-        for keyphrase in ["how to", "what is", "explain", "where can i", "documentation"]
-    ):
-        return RouterDecision(recipe=Recipe.DOCS_ANSWER, confidence=0.9)
-
-    # Out of scope
-    return RouterDecision(recipe=Recipe.OUT_OF_SCOPE, confidence=0.9)
+        return RouterDecision(
+            route=router_response.decision.route,
+        )

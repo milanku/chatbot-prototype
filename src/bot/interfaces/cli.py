@@ -1,51 +1,55 @@
 from __future__ import annotations
 
-from pathlib import Path
-from uuid import uuid4
+from datetime import datetime
 
 import typer
+from dotenv import load_dotenv
 
-from bot.engine import ChatbotEngine, EngineConfig, EngineDeps
-from bot.logging import setup_logging
-from bot.memory.session_store import InMemorySessionStore
-from bot.recipes.doc_qa.mock_store import MockBankDocStore
-from bot.recipes.tx_qa.mock_repository import JsonMockTransactionsRepository
+from bot.composition.engine import create_chatbot_engine
+from bot.config.bot import BOT_CONFIG
+from bot.config.prompts_config import PROMPT_CONFIGS
+from bot.engine_models import EngineResult
+from bot.logging import generate_id, setup_logging
+from bot.trace_context import bind_session_id, get_current_session_id
+from bot.tx_qa.memory.models import SessionStore
+from bot.tx_qa.memory.session_store import InMemorySessionStore
 
 app = typer.Typer(add_completion=False)
 
 
 @app.callback(invoke_without_command=True)
-def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable verbose logging")) -> None:
+def main(
+    verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable verbose logging"),
+) -> None:
+    load_dotenv()
     setup_logging(verbose=verbose)
 
-    session_store = InMemorySessionStore()
-    session_id = uuid4().hex
+    current_time = datetime.now()
+    session_id = generate_id(current_time)
+    session_store: SessionStore = InMemorySessionStore()
 
-    tx_repository = JsonMockTransactionsRepository.from_json_file(
-        Path("data/mocks/transactions_mock.json")
+    engine = create_chatbot_engine(
+        config=BOT_CONFIG,
+        prompt_configs=PROMPT_CONFIGS,
     )
-    doc_repository = MockBankDocStore.from_files(
-        [
-            Path("data/docs/accounts-and-access.md"),
-            Path("data/docs/cards-and-payments.md"),
-            Path("data/docs/digital-banking-and-support.md"),
-            Path("data/docs/disputes-and-chargebacks.md"),
-            Path("data/docs/fees-and-pricing.md"),
-            Path("data/docs/loans-and-credit.md"),
-            Path("data/docs/privacy-and-data.md")
-        ]
-    )
-    engine = ChatbotEngine(EngineConfig(), EngineDeps(tx_repository=tx_repository, doc_repository=doc_repository))
 
     typer.echo("Chatbot prototype (type 'exit' to quit)")
 
-    while True:
-        msg = typer.prompt("> ")
-        if msg.strip().lower() in {"exit", "quit"}:
-            break
-        response, new_state = engine.answer(
-            msg, session_id=session_id, session_state=session_store.get_session(session_id)
-        )
-        session_store.set_session(session_id, new_state)  # Update session state
-        typer.echo(response.answer)
-        typer.echo(f"(trace_id: {response.trace_id})")
+    with bind_session_id(session_id):
+        while True:
+            msg = typer.prompt("> ")
+            if msg.strip().lower() in {"exit", "quit"}:
+                break
+
+            result: EngineResult = engine.answer(
+                msg, session_state=session_store.get_session(get_current_session_id() or session_id)
+            )
+            trace_id = result.trace_id
+            route_result = result.route_result
+            new_state = route_result.new_state
+
+            if new_state is not None:
+                session_store.set_session(session_id, new_state)  # Update session state
+
+            typer.echo(f"\n\n{route_result.result_to_str()}\n\n")
+            typer.echo(f"(trace_id: {trace_id})")

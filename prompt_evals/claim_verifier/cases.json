@@ -1,0 +1,59 @@
+[
+  {
+    "id": "lost_card_001",
+    "user_query": "What should I do if I lost my card?",
+    "claims": [
+      {
+        "claim_id": "CLAIM_001",
+        "claim": "The customer should immediately freeze the lost card in the app.",
+        "expected_verification_status": "SUPPORTED"
+      },
+      {
+        "claim_id": "CLAIM_002",
+        "claim": "The customer should wait for 24 hours before freezing the lost card in the app.",
+        "expected_verification_status": "CONTRADICTED"
+      }
+    ],
+    "evidence_chunks": [
+      {
+        "chunk_id": "E001",
+        "content": "If a card is lost, the customer should immediately freeze the card in the app.",
+        "doc_reference": {
+          "heading_path": ["Mock Title", "Mock Title 2"],
+          "file_name": "mock.md"
+        }
+      }
+    ]
+  },
+  {
+    "id": "may_vs_will_001",
+    "user_query": "Does a replacement fee apply for lost cards?",
+    "claims": [
+      {
+        "claim_id": "CLAIM_001",
+        "claim": "A replacement fee will apply.",
+        "expected_verification_status": "NOT_SUPPORTED"
+      },
+      {
+        "claim_id": "CLAIM_002",
+        "claim": "A replacement fee may apply.",
+        "expected_verification_status": "SUPPORTED"
+      },
+      {
+        "claim_id": "CLAIM_003",
+        "claim": "A replacement fee will never apply.",
+        "expected_verification_status": "CONTRADICTED"
+      }
+    ],
+    "evidence_chunks": [
+      {
+        "chunk_id": "E001",
+        "content": "A replacement-card fee may apply unless the loss was caused by bank error, fraud, expiry, or another fee-waiver circumstance.",
+        "doc_reference": {
+          "heading_path": ["Mock Title", "Mock Title 2"],
+          "file_name": "mock.md"
+        }
+      }
+    ]
+  }
+]

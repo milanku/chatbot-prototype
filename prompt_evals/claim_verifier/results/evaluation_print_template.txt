@@ -1,0 +1,17 @@
+=====================================================
+CLAIM VERIFIER EVALUATION
+=====================================================
+Prompt version:       {prompt_version}
+Batches:              {total_batches_count}
+Correct batches:      {passed_batches_count}
+
+Claims:               {total_claims_count}
+Correct:              {correct_claims_count}
+Incorrect:            {incorrect_claims_count}
+Accuracy:             {claim_accuracy}
+
+FAILURES:
+
+{failed_claims}
+
+=====================================================

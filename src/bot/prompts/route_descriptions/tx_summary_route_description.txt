@@ -1,0 +1,8 @@
+TX_SUMMARY
+Choose this when the user is asking for a transaction-based spending summary that should be computed from bank transactions.
+Typical examples:
+- "How much did I spend on pets in February?"
+- "What did I spend on food last month?"
+- "How much did I spend on other in January 2026?"
+- "Total spending on pets this year"
+This route applies even if the request is incomplete, for example if the timeframe is missing but the user is clearly asking for a spending total.
