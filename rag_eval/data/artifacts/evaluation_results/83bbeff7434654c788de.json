@@ -1,0 +1,783 @@
+{
+  "test_case_results": [
+    {
+      "config": {
+        "retriever_top_k": 5,
+        "reranker_top_k": 5,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.4,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.4027777777777778,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.6805555555555556,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 5,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.4,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.24567099567099568,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.408008658008658,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 5,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.8,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.17763157894736842,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.3980263157894737,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 7,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.4,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.24567099567099568,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.408008658008658,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 7,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.8,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.17763157894736842,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.3980263157894737,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 10,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.4,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.24567099567099568,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.408008658008658,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 10,
+        "reranker_top_k": 10,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.8,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.17763157894736842,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.3980263157894737,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 5,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.4,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.17395510835913314,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.28908668730650156,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 5,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.8,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.1369047619047619,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.30952380952380953,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 5,
+        "bm25_top_k": 15
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.8,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.11140583554376658,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.253315649867374,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 7,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.4,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.17395510835913314,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.28908668730650156,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 7,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.8,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.1369047619047619,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.30952380952380953,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 7,
+        "bm25_top_k": 15
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.8,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.11140583554376658,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.253315649867374,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 10,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.4,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.17395510835913314,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.28908668730650156,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 10,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.8,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.1369047619047619,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.30952380952380953,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 10,
+        "bm25_top_k": 15
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.8,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.11140583554376658,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.253315649867374,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 12,
+        "bm25_top_k": 5
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.4,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.17395510835913314,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.28908668730650156,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 12,
+        "bm25_top_k": 10
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.8,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.1369047619047619,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.30952380952380953,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    },
+    {
+      "config": {
+        "retriever_top_k": 15,
+        "reranker_top_k": 12,
+        "bm25_top_k": 15
+      },
+      "retrieval_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "retrieval_relevant_recall": {
+        "total": 2.8,
+        "count": 3
+      },
+      "retrieval_required_precision": {
+        "total": 0.11140583554376658,
+        "count": 3
+      },
+      "retrieval_relevant_precision": {
+        "total": 0.253315649867374,
+        "count": 3
+      },
+      "reranking_required_recall": {
+        "total": 3.0,
+        "count": 3
+      },
+      "reranking_relevant_recall": {
+        "total": 1.9,
+        "count": 3
+      },
+      "reranking_required_precision": {
+        "total": 2.0,
+        "count": 3
+      },
+      "reranking_relevant_precision": {
+        "total": 2.5,
+        "count": 3
+      },
+      "retrieval_complete_required_recall": 3,
+      "reranking_complete_required_recall": 3
+    }
+  ]
+}

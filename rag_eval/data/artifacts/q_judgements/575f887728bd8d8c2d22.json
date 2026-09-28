@@ -1,0 +1,504 @@
+{
+  "question_judgements": [
+    {
+      "question_id": "question_0",
+      "quality": "REJECT",
+      "reason": "Asks mainly what a specific document ID is about, which is document metadata rather than a customer information need."
+    },
+    {
+      "question_id": "question_1",
+      "quality": "ACCEPT",
+      "reason": "A realistic customer question about complaint handling and support for vulnerable customers."
+    },
+    {
+      "question_id": "question_2",
+      "quality": "ACCEPT",
+      "reason": "Asks what qualifies as a complaint, which is a valid customer information need."
+    },
+    {
+      "question_id": "question_3",
+      "quality": "ACCEPT",
+      "reason": "Seeks guidance on how vulnerable customers can make a complaint and what to include."
+    },
+    {
+      "question_id": "question_4",
+      "quality": "ACCEPT",
+      "reason": "Customer asks about complaint acknowledgment and response timelines, which is relevant support information."
+    },
+    {
+      "question_id": "question_5",
+      "quality": "ACCEPT",
+      "reason": "Asks about possible complaint resolutions and compensation, a valid banking policy question."
+    },
+    {
+      "question_id": "question_6",
+      "quality": "ACCEPT",
+      "reason": "Seeks escalation options after a final response, which is a normal customer need."
+    },
+    {
+      "question_id": "question_7",
+      "quality": "ACCEPT",
+      "reason": "Asks what support is available for vulnerable customers and what may be required, a legitimate service question."
+    },
+    {
+      "question_id": "question_8",
+      "quality": "ACCEPT",
+      "reason": "Requests accessibility adjustments, which is a valid customer support topic."
+    },
+    {
+      "question_id": "question_9",
+      "quality": "ACCEPT",
+      "reason": "Asks where to find details on account closure, inactivity, estates, and power of attorney, which is customer-relevant information."
+    },
+    {
+      "question_id": "question_10",
+      "quality": "ACCEPT",
+      "reason": "A customer asking for help when they cannot pay bills or credit commitments is a realistic banking need."
+    },
+    {
+      "question_id": "question_11",
+      "quality": "ACCEPT",
+      "reason": "Asks about bereavement support requirements, which is relevant customer guidance."
+    },
+    {
+      "question_id": "question_12",
+      "quality": "ACCEPT",
+      "reason": "Financial abuse support is a valid customer assistance topic."
+    },
+    {
+      "question_id": "question_13",
+      "quality": "ACCEPT",
+      "reason": "Asks about handling abusive customers and access to essential services, which is policy-relevant and customer-facing."
+    },
+    {
+      "question_id": "question_14",
+      "quality": "REJECT",
+      "reason": "Primarily asks where to find a policy document, with no substantive customer information need."
+    },
+    {
+      "question_id": "question_15",
+      "quality": "REJECT",
+      "reason": "Primarily asks what a specific document ID is about, which is document metadata rather than customer guidance."
+    },
+    {
+      "question_id": "question_16",
+      "quality": "REJECT",
+      "reason": "Asks what a policy document covers in general, without a specific customer information need."
+    },
+    {
+      "question_id": "question_17",
+      "quality": "ACCEPT",
+      "reason": "Customer asks who can apply and what is required before applying, a normal onboarding question."
+    },
+    {
+      "question_id": "question_18",
+      "quality": "ACCEPT",
+      "reason": "Requests detailed account-opening eligibility and verification requirements, which are customer-relevant."
+    },
+    {
+      "question_id": "question_19",
+      "quality": "ACCEPT",
+      "reason": "Asks what documents may be requested and how to provide them during account opening, which is practical customer guidance."
+    },
+    {
+      "question_id": "question_20",
+      "quality": "ACCEPT",
+      "reason": "Identity verification schemes are relevant to account opening and can be a legitimate customer question."
+    },
+    {
+      "question_id": "question_21",
+      "quality": "ACCEPT",
+      "reason": "Asks about acceptable proof of address documents, a standard customer need."
+    },
+    {
+      "question_id": "question_22",
+      "quality": "ACCEPT",
+      "reason": "A customer asking why source of funds is requested is a realistic banking question."
+    },
+    {
+      "question_id": "question_23",
+      "quality": "ACCEPT",
+      "reason": "Asking how to open an account is a common customer information need."
+    },
+    {
+      "question_id": "question_24",
+      "quality": "ACCEPT",
+      "reason": "Seeks information on verification checks during account opening, which is customer-facing."
+    },
+    {
+      "question_id": "question_25",
+      "quality": "ACCEPT",
+      "reason": "Asks about eligibility criteria and what account purpose/activity information the bank requests, which is relevant to applicants."
+    },
+    {
+      "question_id": "question_26",
+      "quality": "ACCEPT",
+      "reason": "Joint account rules are a realistic customer question despite the typo."
+    },
+    {
+      "question_id": "question_27",
+      "quality": "ACCEPT",
+      "reason": "Eligibility for youth accounts is a valid product question."
+    },
+    {
+      "question_id": "question_28",
+      "quality": "ACCEPT",
+      "reason": "Asks how the bank supports customers across complaints, vulnerability, and accessibility, which is customer support information."
+    },
+    {
+      "question_id": "question_29",
+      "quality": "ACCEPT",
+      "reason": "A customer asking why an application is delayed due to sanctions is a valid processing question."
+    },
+    {
+      "question_id": "question_30",
+      "quality": "ACCEPT",
+      "reason": "Asks when the bank may refuse to open an account, which is a legitimate eligibility question."
+    },
+    {
+      "question_id": "question_31",
+      "quality": "ACCEPT",
+      "reason": "Requests information about what details must be updated after opening an account, a common customer need."
+    },
+    {
+      "question_id": "question_32",
+      "quality": "ACCEPT",
+      "reason": "Asks about account activation and related products, which is operational customer guidance."
+    },
+    {
+      "question_id": "question_33",
+      "quality": "REJECT",
+      "reason": "Asks about related policies/document structure rather than customer-facing account information."
+    },
+    {
+      "question_id": "question_34",
+      "quality": "REJECT",
+      "reason": "This is about interpreting a term within a document, not a direct customer banking need."
+    },
+    {
+      "question_id": "question_35",
+      "quality": "ACCEPT",
+      "reason": "Asks what the terms cover and where requirements and fees are described, which helps a customer find relevant information."
+    },
+    {
+      "question_id": "question_36",
+      "quality": "ACCEPT",
+      "reason": "Asks about the purpose and features of a specific account, a valid product question."
+    },
+    {
+      "question_id": "question_37",
+      "quality": "ACCEPT",
+      "reason": "Current account features and SEPA credit transfers are customer-relevant product details."
+    },
+    {
+      "question_id": "question_38",
+      "quality": "ACCEPT",
+      "reason": "Savings account terms and restrictions are appropriate customer information."
+    },
+    {
+      "question_id": "question_39",
+      "quality": "ACCEPT",
+      "reason": "Asks about core services, transfers, interest, and withdrawals for a savings product, which is valid customer guidance."
+    },
+    {
+      "question_id": "question_40",
+      "quality": "ACCEPT",
+      "reason": "Notice requirements for a savings product are a legitimate customer question."
+    },
+    {
+      "question_id": "question_41",
+      "quality": "ACCEPT",
+      "reason": "Asks about core services for a fixed term deposit, which is customer-relevant."
+    },
+    {
+      "question_id": "question_42",
+      "quality": "ACCEPT",
+      "reason": "Balance definitions and card authorization effects are practical banking information."
+    },
+    {
+      "question_id": "question_43",
+      "quality": "ACCEPT",
+      "reason": "Statements access and paper statement availability are normal customer service questions."
+    },
+    {
+      "question_id": "question_44",
+      "quality": "ACCEPT",
+      "reason": "Overdraft and credit assessment details are customer-facing lending information."
+    },
+    {
+      "question_id": "question_45",
+      "quality": "ACCEPT",
+      "reason": "Fee waiver or reduction rules are relevant to customers."
+    },
+    {
+      "question_id": "question_46",
+      "quality": "ACCEPT",
+      "reason": "Asks how payment instructions work and how to cancel them, which is valid transactional guidance."
+    },
+    {
+      "question_id": "question_47",
+      "quality": "ACCEPT",
+      "reason": "Cash deposit checks for personal accounts are a reasonable customer policy question."
+    },
+    {
+      "question_id": "question_48",
+      "quality": "ACCEPT",
+      "reason": "Inactivity and dormancy rules are customer-relevant account management information."
+    },
+    {
+      "question_id": "question_49",
+      "quality": "ACCEPT",
+      "reason": "Account switching is a normal customer banking topic."
+    },
+    {
+      "question_id": "question_50",
+      "quality": "REJECT",
+      "reason": "Mostly asks about document references and combining policy sources, rather than a direct customer information need."
+    },
+    {
+      "question_id": "question_51",
+      "quality": "ACCEPT",
+      "reason": "Privacy complaint handling and contact options are valid customer questions."
+    },
+    {
+      "question_id": "question_52",
+      "quality": "ACCEPT",
+      "reason": "SMS communication security and what to do on suspicious messages are realistic customer concerns."
+    },
+    {
+      "question_id": "question_53",
+      "quality": "ACCEPT",
+      "reason": "Asks about withdrawal checks and a specific ATM fee, both customer-relevant."
+    },
+    {
+      "question_id": "question_54",
+      "quality": "ACCEPT",
+      "reason": "Verification requirements and additional information requests are core account-opening topics."
+    },
+    {
+      "question_id": "question_55",
+      "quality": "REJECT",
+      "reason": "This is an abstract link between unrelated document terms and claims/privacy, not a clear customer information need."
+    },
+    {
+      "question_id": "question_56",
+      "quality": "ACCEPT",
+      "reason": "Credit card assessment, limits, and statement information are valid customer product questions."
+    },
+    {
+      "question_id": "question_57",
+      "quality": "REJECT",
+      "reason": "Primarily asks about what a guidance document covers and where to look within policies, which is document-oriented."
+    },
+    {
+      "question_id": "question_58",
+      "quality": "ACCEPT",
+      "reason": "SEPA transfer limits are concrete banking information customers may need."
+    },
+    {
+      "question_id": "question_59",
+      "quality": "ACCEPT",
+      "reason": "Residency and address requirements for opening an account are valid customer onboarding information."
+    },
+    {
+      "question_id": "question_60",
+      "quality": "ACCEPT",
+      "reason": "Asks about documents for credit assessment and cash deposit handling, both customer-relevant topics."
+    },
+    {
+      "question_id": "question_61",
+      "quality": "ACCEPT",
+      "reason": "Customer responsibilities for keeping records accurate and consequences of outdated data are valid privacy questions."
+    },
+    {
+      "question_id": "question_62",
+      "quality": "ACCEPT",
+      "reason": "Missed loan repayment consequences and cash deposit checks are realistic banking policy questions."
+    },
+    {
+      "question_id": "question_63",
+      "quality": "ACCEPT",
+      "reason": "How to contact the complaints team is a direct customer service need."
+    },
+    {
+      "question_id": "question_64",
+      "quality": "REJECT",
+      "reason": "Asks about the meaning of theme/document identifiers, which is metadata rather than customer guidance."
+    },
+    {
+      "question_id": "question_65",
+      "quality": "ACCEPT",
+      "reason": "Loan APR determination and where to find exact rates and charges are valid customer questions."
+    },
+    {
+      "question_id": "question_66",
+      "quality": "ACCEPT",
+      "reason": "Asks which proof of address documents are accepted, a normal customer onboarding need."
+    },
+    {
+      "question_id": "question_67",
+      "quality": "ACCEPT",
+      "reason": "A fee comparison for ATM withdrawals is customer-relevant banking information."
+    },
+    {
+      "question_id": "question_68",
+      "quality": "ACCEPT",
+      "reason": "Asks about payment verification and related online safety guidance, which is a real customer concern."
+    },
+    {
+      "question_id": "question_69",
+      "quality": "ACCEPT",
+      "reason": "Loan rate factors and conditions for approval/access are legitimate lending questions."
+    },
+    {
+      "question_id": "question_70",
+      "quality": "ACCEPT",
+      "reason": "Connects payment disputes and privacy with security guidance, which is still a customer-facing information need."
+    },
+    {
+      "question_id": "question_71",
+      "quality": "ACCEPT",
+      "reason": "Asks about marketing opt-out and automated decisions, both valid privacy/data questions."
+    },
+    {
+      "question_id": "question_72",
+      "quality": "ACCEPT",
+      "reason": "Estate processing and related closure topics are customer-relevant account management information."
+    },
+    {
+      "question_id": "question_73",
+      "quality": "ACCEPT",
+      "reason": "Asks about SEPA transfer details and fees, which is a valid payments question."
+    },
+    {
+      "question_id": "question_74",
+      "quality": "ACCEPT",
+      "reason": "Balance definitions and card authorization effects are practical account information."
+    },
+    {
+      "question_id": "question_75",
+      "quality": "ACCEPT",
+      "reason": "PIN rules and related security practices are relevant customer guidance."
+    },
+    {
+      "question_id": "question_76",
+      "quality": "REJECT",
+      "reason": "Combines unrelated topics and is largely cross-referential to policies and fees rather than a focused customer information need."
+    },
+    {
+      "question_id": "question_77",
+      "quality": "ACCEPT",
+      "reason": "Fixed term deposit rate, deposit rules, and early closure consequences are customer-relevant product details."
+    },
+    {
+      "question_id": "question_78",
+      "quality": "ACCEPT",
+      "reason": "Credit checks and human review of automated decisions are valid customer questions."
+    },
+    {
+      "question_id": "question_79",
+      "quality": "ACCEPT",
+      "reason": "Overdraft definition and rate/terms assessment are relevant banking information."
+    },
+    {
+      "question_id": "question_80",
+      "quality": "ACCEPT",
+      "reason": "Mobile wallet security requirements are a legitimate customer concern."
+    },
+    {
+      "question_id": "question_81",
+      "quality": "ACCEPT",
+      "reason": "Interest rates, charges, and representative examples are standard product information customers may need."
+    },
+    {
+      "question_id": "question_82",
+      "quality": "ACCEPT",
+      "reason": "Identity/address/tax checks and data accuracy rules are relevant account-opening and privacy questions."
+    },
+    {
+      "question_id": "question_83",
+      "quality": "ACCEPT",
+      "reason": "Joint account death handling and bereavement documents are valid customer service topics."
+    },
+    {
+      "question_id": "question_84",
+      "quality": "ACCEPT",
+      "reason": "Asks about updating customer information and why accuracy matters, which is customer-relevant."
+    },
+    {
+      "question_id": "question_85",
+      "quality": "ACCEPT",
+      "reason": "Keeping details current and financial abuse support are legitimate customer assistance topics."
+    },
+    {
+      "question_id": "question_86",
+      "quality": "ACCEPT",
+      "reason": "Interest on basic payment accounts and changes if eligible are valid product questions."
+    },
+    {
+      "question_id": "question_87",
+      "quality": "ACCEPT",
+      "reason": "Customer responsibilities affecting services and claims are legitimate banking guidance."
+    },
+    {
+      "question_id": "question_88",
+      "quality": "ACCEPT",
+      "reason": "Fraud claims and strong customer authentication are relevant customer responsibilities topics."
+    },
+    {
+      "question_id": "question_89",
+      "quality": "ACCEPT",
+      "reason": "New payee verification and related policies are valid security and payments questions."
+    },
+    {
+      "question_id": "question_90",
+      "quality": "ACCEPT",
+      "reason": "Credit card assessment and statement contents are customer-relevant product details."
+    },
+    {
+      "question_id": "question_91",
+      "quality": "ACCEPT",
+      "reason": "Privacy processing bases, consent withdrawal, and marketing opt-out are valid customer privacy topics."
+    },
+    {
+      "question_id": "question_92",
+      "quality": "REJECT",
+      "reason": "Mainly asks about the scope of a guidance document and where product types are covered, which is document-oriented."
+    },
+    {
+      "question_id": "question_93",
+      "quality": "ACCEPT",
+      "reason": "Asks how security guidance relates to privacy and where practices are described, which is still customer-facing information."
+    },
+    {
+      "question_id": "question_94",
+      "quality": "REJECT",
+      "reason": "Primarily asks where to find a policy document and what it covers, which is document-focused."
+    },
+    {
+      "question_id": "question_95",
+      "quality": "REJECT",
+      "reason": "Asks about who controls customer data in payment documents and which policies to check, which is mainly document/policy cross-referencing."
+    },
+    {
+      "question_id": "question_96",
+      "quality": "ACCEPT",
+      "reason": "Cutoff times, execution timing, and transfer limits are practical payment information customers may need."
+    },
+    {
+      "question_id": "question_97",
+      "quality": "ACCEPT",
+      "reason": "Proof of identity documents and delayed applications due to verification issues are valid onboarding questions."
+    },
+    {
+      "question_id": "question_98",
+      "quality": "ACCEPT",
+      "reason": "Card activation and PIN handling are realistic customer service topics."
+    },
+    {
+      "question_id": "question_99",
+      "quality": "REJECT",
+      "reason": "Asks where to find the cards policy and broadly what a document covers, which is document-oriented rather than a direct customer need."
+    }
+  ]
+}

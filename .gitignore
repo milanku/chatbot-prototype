@@ -49,7 +49,3 @@ _build/
 # Windows
 Thumbs.db
 desktop.ini
-
-# Local development artifacts
-traces/
-data/

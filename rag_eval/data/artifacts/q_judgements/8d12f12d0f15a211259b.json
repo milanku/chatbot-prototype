@@ -1,0 +1,24 @@
+{
+  "question_judgements": [
+    {
+      "question_id": "question_0",
+      "quality": "REJECT",
+      "reason": "This asks what a document section covers, which is document-content/metadata focused rather than a direct customer banking need."
+    },
+    {
+      "question_id": "question_1",
+      "quality": "ACCEPT",
+      "reason": "This is a realistic customer question about complaints handling and extra support for vulnerable customers/accessibility."
+    },
+    {
+      "question_id": "question_2",
+      "quality": "ACCEPT",
+      "reason": "This asks about overdraft types and their description, which is a genuine banking product information need."
+    },
+    {
+      "question_id": "question_3",
+      "quality": "ACCEPT",
+      "reason": "This combines related customer needs about transfer cutoff times and documents requested for credit or loan applications, both realistic banking questions."
+    }
+  ]
+}

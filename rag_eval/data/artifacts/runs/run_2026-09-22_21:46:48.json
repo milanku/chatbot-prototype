@@ -1,0 +1,236 @@
+{
+  "artifact_id": "root",
+  "artifact_type": "root",
+  "children": [
+    {
+      "artifact_id": "39ee471f99684180b40423e64a47e3beca8f3c7b1ba752d97de32d7858a266cb",
+      "artifact_type": "docs",
+      "children": [
+        {
+          "artifact_id": "c1ab1c5af86793f3176e",
+          "artifact_type": "doc_chunks",
+          "children": [
+            {
+              "artifact_id": "ed5eee9b19a812a933bb",
+              "artifact_type": "embeddings",
+              "children": [
+                {
+                  "artifact_id": "e7ec30cb1b83217a8544",
+                  "artifact_type": "retrieval_store",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "artifact_id": "f25c3bb84f7991f96543",
+              "artifact_type": "questions",
+              "children": [
+                {
+                  "artifact_id": "084b77ffc806f7beabf1",
+                  "artifact_type": "q_judgements",
+                  "children": [
+                    {
+                      "artifact_id": "ab2cb7cf620aa8c07252",
+                      "artifact_type": "hq_questions",
+                      "children": [
+                        {
+                          "artifact_id": "ea7b8442bdf50b0cbe54",
+                          "artifact_type": "candidates",
+                          "children": [
+                            {
+                              "artifact_id": "6967003849cd7c3e6dca",
+                              "artifact_type": "judgments",
+                              "children": [
+                                {
+                                  "artifact_id": "d2b05cb10174058bc33d",
+                                  "artifact_type": "tests",
+                                  "children": [
+                                    {
+                                      "artifact_id": "e7ec30cb1b83217a8544",
+                                      "artifact_type": "retrieval_store",
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "artifact_id": "6967003849cd7c3e6dca",
+                          "artifact_type": "judgments",
+                          "children": [
+                            {
+                              "artifact_id": "d2b05cb10174058bc33d",
+                              "artifact_type": "tests",
+                              "children": [
+                                {
+                                  "artifact_id": "e7ec30cb1b83217a8544",
+                                  "artifact_type": "retrieval_store",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "artifact_id": "d2b05cb10174058bc33d",
+                          "artifact_type": "tests",
+                          "children": [
+                            {
+                              "artifact_id": "e7ec30cb1b83217a8544",
+                              "artifact_type": "retrieval_store",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "artifact_id": "ab2cb7cf620aa8c07252",
+                  "artifact_type": "hq_questions",
+                  "children": [
+                    {
+                      "artifact_id": "ea7b8442bdf50b0cbe54",
+                      "artifact_type": "candidates",
+                      "children": [
+                        {
+                          "artifact_id": "6967003849cd7c3e6dca",
+                          "artifact_type": "judgments",
+                          "children": [
+                            {
+                              "artifact_id": "d2b05cb10174058bc33d",
+                              "artifact_type": "tests",
+                              "children": [
+                                {
+                                  "artifact_id": "e7ec30cb1b83217a8544",
+                                  "artifact_type": "retrieval_store",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "artifact_id": "6967003849cd7c3e6dca",
+                      "artifact_type": "judgments",
+                      "children": [
+                        {
+                          "artifact_id": "d2b05cb10174058bc33d",
+                          "artifact_type": "tests",
+                          "children": [
+                            {
+                              "artifact_id": "e7ec30cb1b83217a8544",
+                              "artifact_type": "retrieval_store",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "artifact_id": "d2b05cb10174058bc33d",
+                      "artifact_type": "tests",
+                      "children": [
+                        {
+                          "artifact_id": "e7ec30cb1b83217a8544",
+                          "artifact_type": "retrieval_store",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "artifact_id": "ed5eee9b19a812a933bb",
+              "artifact_type": "embeddings",
+              "children": [
+                {
+                  "artifact_id": "ea7b8442bdf50b0cbe54",
+                  "artifact_type": "candidates",
+                  "children": [
+                    {
+                      "artifact_id": "6967003849cd7c3e6dca",
+                      "artifact_type": "judgments",
+                      "children": [
+                        {
+                          "artifact_id": "d2b05cb10174058bc33d",
+                          "artifact_type": "tests",
+                          "children": [
+                            {
+                              "artifact_id": "e7ec30cb1b83217a8544",
+                              "artifact_type": "retrieval_store",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "artifact_id": "60c757949c4141b8ba52",
+              "artifact_type": "embeddings",
+              "children": [
+                {
+                  "artifact_id": "ea7b8442bdf50b0cbe54",
+                  "artifact_type": "candidates",
+                  "children": [
+                    {
+                      "artifact_id": "6967003849cd7c3e6dca",
+                      "artifact_type": "judgments",
+                      "children": [
+                        {
+                          "artifact_id": "d2b05cb10174058bc33d",
+                          "artifact_type": "tests",
+                          "children": [
+                            {
+                              "artifact_id": "e7ec30cb1b83217a8544",
+                              "artifact_type": "retrieval_store",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "artifact_id": "ea7b8442bdf50b0cbe54",
+              "artifact_type": "candidates",
+              "children": [
+                {
+                  "artifact_id": "6967003849cd7c3e6dca",
+                  "artifact_type": "judgments",
+                  "children": [
+                    {
+                      "artifact_id": "d2b05cb10174058bc33d",
+                      "artifact_type": "tests",
+                      "children": [
+                        {
+                          "artifact_id": "e7ec30cb1b83217a8544",
+                          "artifact_type": "retrieval_store",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

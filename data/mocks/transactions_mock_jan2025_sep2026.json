@@ -1,0 +1,4982 @@
+[
+  {
+    "id": "tx0001",
+    "date": "2025-01-01",
+    "amount": 1100.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Jan 2025",
+    "label": "other"
+  },
+  {
+    "id": "tx0002",
+    "date": "2025-01-02",
+    "amount": 33.05,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Weekly groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0003",
+    "date": "2025-01-04",
+    "amount": 11.68,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Croissant and roll",
+    "label": "food"
+  },
+  {
+    "id": "tx0004",
+    "date": "2025-01-04",
+    "amount": 16.94,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Pet shampoo",
+    "label": "pets"
+  },
+  {
+    "id": "tx0005",
+    "date": "2025-01-06",
+    "amount": 69.3,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (January)",
+    "label": "other"
+  },
+  {
+    "id": "tx0006",
+    "date": "2025-01-07",
+    "amount": 44.09,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Household groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0007",
+    "date": "2025-01-08",
+    "amount": 11.02,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0008",
+    "date": "2025-01-09",
+    "amount": 41.34,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Gas (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0009",
+    "date": "2025-01-10",
+    "amount": 9.09,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread",
+    "label": "food"
+  },
+  {
+    "id": "tx0010",
+    "date": "2025-01-11",
+    "amount": 37.08,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Preventive care",
+    "label": "pets"
+  },
+  {
+    "id": "tx0011",
+    "date": "2025-01-12",
+    "amount": 6.25,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Cappuccino and snack",
+    "label": "food"
+  },
+  {
+    "id": "tx0012",
+    "date": "2025-01-14",
+    "amount": 47.63,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Household groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0013",
+    "date": "2025-01-16",
+    "amount": 13.79,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0014",
+    "date": "2025-01-17",
+    "amount": 9.98,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0015",
+    "date": "2025-01-18",
+    "amount": 29.22,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (January)",
+    "label": "other"
+  },
+  {
+    "id": "tx0016",
+    "date": "2025-01-19",
+    "amount": 12.04,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Croissant and roll",
+    "label": "food"
+  },
+  {
+    "id": "tx0017",
+    "date": "2025-01-21",
+    "amount": 28.34,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Pet grooming supplies",
+    "label": "pets"
+  },
+  {
+    "id": "tx0018",
+    "date": "2025-01-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (January)",
+    "label": "other"
+  },
+  {
+    "id": "tx0019",
+    "date": "2025-01-23",
+    "amount": 5.49,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bagels",
+    "label": "food"
+  },
+  {
+    "id": "tx0020",
+    "date": "2025-01-23",
+    "amount": 45.79,
+    "direction": "spend",
+    "other_account": "SK77004321",
+    "other_contact_name": "Home & More",
+    "description": "Household supplies",
+    "label": "other"
+  },
+  {
+    "id": "tx0021",
+    "date": "2025-01-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (January)",
+    "label": "other"
+  },
+  {
+    "id": "tx0022",
+    "date": "2025-01-27",
+    "amount": 16.17,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0023",
+    "date": "2025-01-29",
+    "amount": 19.78,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Vaccination",
+    "label": "pets"
+  },
+  {
+    "id": "tx0024",
+    "date": "2025-01-31",
+    "amount": 19.91,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Household groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0025",
+    "date": "2025-02-01",
+    "amount": 1060.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Feb 2025",
+    "label": "other"
+  },
+  {
+    "id": "tx0026",
+    "date": "2025-02-02",
+    "amount": 38.68,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Weekly groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0027",
+    "date": "2025-02-03",
+    "amount": 14.21,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0028",
+    "date": "2025-02-04",
+    "amount": 17.33,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Late lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0029",
+    "date": "2025-02-04",
+    "amount": 19.25,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Pet food bag",
+    "label": "pets"
+  },
+  {
+    "id": "tx0030",
+    "date": "2025-02-05",
+    "amount": 24.28,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Pet food refill",
+    "label": "pets"
+  },
+  {
+    "id": "tx0031",
+    "date": "2025-02-06",
+    "amount": 70.08,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (February)",
+    "label": "other"
+  },
+  {
+    "id": "tx0032",
+    "date": "2025-02-08",
+    "amount": 15.17,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Late lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0033",
+    "date": "2025-02-09",
+    "amount": 300.0,
+    "direction": "receive",
+    "other_account": "SK11000005",
+    "other_contact_name": "Employer Inc.",
+    "description": "Performance bonus",
+    "label": "other"
+  },
+  {
+    "id": "tx0034",
+    "date": "2025-02-09",
+    "amount": 46.87,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Water (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0035",
+    "date": "2025-02-10",
+    "amount": 9.68,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Pasta menu",
+    "label": "food"
+  },
+  {
+    "id": "tx0036",
+    "date": "2025-02-12",
+    "amount": 15.91,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Cappuccino and snack",
+    "label": "food"
+  },
+  {
+    "id": "tx0037",
+    "date": "2025-02-13",
+    "amount": 26.59,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Weekend groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0038",
+    "date": "2025-02-14",
+    "amount": 9.72,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Lunch combo",
+    "label": "food"
+  },
+  {
+    "id": "tx0039",
+    "date": "2025-02-16",
+    "amount": 12.18,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Espresso",
+    "label": "food"
+  },
+  {
+    "id": "tx0040",
+    "date": "2025-02-17",
+    "amount": 17.43,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Cappuccino and snack",
+    "label": "food"
+  },
+  {
+    "id": "tx0041",
+    "date": "2025-02-18",
+    "amount": 26.25,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (February)",
+    "label": "other"
+  },
+  {
+    "id": "tx0042",
+    "date": "2025-02-20",
+    "amount": 12.55,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Soup and salad",
+    "label": "food"
+  },
+  {
+    "id": "tx0043",
+    "date": "2025-02-20",
+    "amount": 30.43,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Cat treats",
+    "label": "pets"
+  },
+  {
+    "id": "tx0044",
+    "date": "2025-02-21",
+    "amount": 28.33,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Cat food (wet)",
+    "label": "pets"
+  },
+  {
+    "id": "tx0045",
+    "date": "2025-02-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (February)",
+    "label": "other"
+  },
+  {
+    "id": "tx0046",
+    "date": "2025-02-23",
+    "amount": 6.78,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread",
+    "label": "food"
+  },
+  {
+    "id": "tx0047",
+    "date": "2025-02-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (February)",
+    "label": "other"
+  },
+  {
+    "id": "tx0048",
+    "date": "2025-02-26",
+    "amount": 9.57,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Croissant and roll",
+    "label": "food"
+  },
+  {
+    "id": "tx0049",
+    "date": "2025-02-27",
+    "amount": 32.96,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Fresh produce and basics",
+    "label": "food"
+  },
+  {
+    "id": "tx0050",
+    "date": "2025-02-28",
+    "amount": 20.53,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Medication refill",
+    "label": "pets"
+  },
+  {
+    "id": "tx0051",
+    "date": "2025-03-02",
+    "amount": 1020.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Mar 2025",
+    "label": "other"
+  },
+  {
+    "id": "tx0052",
+    "date": "2025-03-04",
+    "amount": 34.08,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Spring groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0053",
+    "date": "2025-03-06",
+    "amount": 76.29,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (March)",
+    "label": "other"
+  },
+  {
+    "id": "tx0054",
+    "date": "2025-03-07",
+    "amount": 10.95,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread",
+    "label": "food"
+  },
+  {
+    "id": "tx0055",
+    "date": "2025-03-09",
+    "amount": 47.33,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Water (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0056",
+    "date": "2025-03-11",
+    "amount": 26.5,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Litter refill",
+    "label": "pets"
+  },
+  {
+    "id": "tx0057",
+    "date": "2025-03-12",
+    "amount": 18.03,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee to-go",
+    "label": "food"
+  },
+  {
+    "id": "tx0058",
+    "date": "2025-03-13",
+    "amount": 5.01,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Cappuccino and snack",
+    "label": "food"
+  },
+  {
+    "id": "tx0059",
+    "date": "2025-03-14",
+    "amount": 9.54,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Breakfast pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0060",
+    "date": "2025-03-17",
+    "amount": 13.77,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Soup and salad",
+    "label": "food"
+  },
+  {
+    "id": "tx0061",
+    "date": "2025-03-17",
+    "amount": 20.66,
+    "direction": "spend",
+    "other_account": "SK88005432",
+    "other_contact_name": "Book Point",
+    "description": "Magazine and stationery",
+    "label": "other"
+  },
+  {
+    "id": "tx0062",
+    "date": "2025-03-18",
+    "amount": 27.03,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (March)",
+    "label": "other"
+  },
+  {
+    "id": "tx0063",
+    "date": "2025-03-20",
+    "amount": 12.18,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0064",
+    "date": "2025-03-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (March)",
+    "label": "other"
+  },
+  {
+    "id": "tx0065",
+    "date": "2025-03-23",
+    "amount": 5.41,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Croissant and roll",
+    "label": "food"
+  },
+  {
+    "id": "tx0066",
+    "date": "2025-03-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (March)",
+    "label": "other"
+  },
+  {
+    "id": "tx0067",
+    "date": "2025-03-26",
+    "amount": 10.37,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Pasta menu",
+    "label": "food"
+  },
+  {
+    "id": "tx0068",
+    "date": "2025-03-27",
+    "amount": 8.4,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee and cake",
+    "label": "food"
+  },
+  {
+    "id": "tx0069",
+    "date": "2025-03-28",
+    "amount": 22.23,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Litter refill",
+    "label": "pets"
+  },
+  {
+    "id": "tx0070",
+    "date": "2025-03-29",
+    "amount": 12.46,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Late lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0071",
+    "date": "2025-03-29",
+    "amount": 18.56,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Pet food refill",
+    "label": "pets"
+  },
+  {
+    "id": "tx0072",
+    "date": "2025-03-30",
+    "amount": 11.99,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Pasta menu",
+    "label": "food"
+  },
+  {
+    "id": "tx0073",
+    "date": "2025-04-01",
+    "amount": 1270.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Apr 2025",
+    "label": "other"
+  },
+  {
+    "id": "tx0074",
+    "date": "2025-04-02",
+    "amount": 5.11,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Holiday pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0075",
+    "date": "2025-04-04",
+    "amount": 18.68,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0076",
+    "date": "2025-04-06",
+    "amount": 65.06,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (April)",
+    "label": "other"
+  },
+  {
+    "id": "tx0077",
+    "date": "2025-04-07",
+    "amount": 7.95,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread",
+    "label": "food"
+  },
+  {
+    "id": "tx0078",
+    "date": "2025-04-08",
+    "amount": 42.84,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Fresh produce and basics",
+    "label": "food"
+  },
+  {
+    "id": "tx0079",
+    "date": "2025-04-09",
+    "amount": 36.99,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Gas (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0080",
+    "date": "2025-04-10",
+    "amount": 6.41,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Croissant and roll",
+    "label": "food"
+  },
+  {
+    "id": "tx0081",
+    "date": "2025-04-12",
+    "amount": 24.39,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Weekend groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0082",
+    "date": "2025-04-13",
+    "amount": 6.85,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread and pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0083",
+    "date": "2025-04-17",
+    "amount": 24.09,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Household groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0084",
+    "date": "2025-04-18",
+    "amount": 28.47,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (April)",
+    "label": "other"
+  },
+  {
+    "id": "tx0085",
+    "date": "2025-04-20",
+    "amount": 12.76,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Scratching post accessories",
+    "label": "pets"
+  },
+  {
+    "id": "tx0086",
+    "date": "2025-04-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (April)",
+    "label": "other"
+  },
+  {
+    "id": "tx0087",
+    "date": "2025-04-23",
+    "amount": 20.32,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Weekly groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0088",
+    "date": "2025-04-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (April)",
+    "label": "other"
+  },
+  {
+    "id": "tx0089",
+    "date": "2025-04-25",
+    "amount": 18.57,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Quick dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0090",
+    "date": "2025-04-25",
+    "amount": 24.0,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Cat treats",
+    "label": "pets"
+  },
+  {
+    "id": "tx0091",
+    "date": "2025-04-26",
+    "amount": 14.59,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Latte",
+    "label": "food"
+  },
+  {
+    "id": "tx0092",
+    "date": "2025-04-27",
+    "amount": 11.77,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee beans",
+    "label": "food"
+  },
+  {
+    "id": "tx0093",
+    "date": "2025-04-28",
+    "amount": 23.63,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Preventive care",
+    "label": "pets"
+  },
+  {
+    "id": "tx0094",
+    "date": "2025-04-29",
+    "amount": 13.62,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Pet grooming supplies",
+    "label": "pets"
+  },
+  {
+    "id": "tx0095",
+    "date": "2025-04-30",
+    "amount": 10.99,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Croissant and roll",
+    "label": "food"
+  },
+  {
+    "id": "tx0096",
+    "date": "2025-05-01",
+    "amount": 1040.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary May 2025",
+    "label": "other"
+  },
+  {
+    "id": "tx0097",
+    "date": "2025-05-02",
+    "amount": 26.15,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Picnic groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0098",
+    "date": "2025-05-03",
+    "amount": 14.77,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0099",
+    "date": "2025-05-04",
+    "amount": 16.99,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee and cake",
+    "label": "food"
+  },
+  {
+    "id": "tx0100",
+    "date": "2025-05-04",
+    "amount": 23.46,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Dog leash",
+    "label": "pets"
+  },
+  {
+    "id": "tx0101",
+    "date": "2025-05-06",
+    "amount": 57.5,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (May)",
+    "label": "other"
+  },
+  {
+    "id": "tx0102",
+    "date": "2025-05-07",
+    "amount": 36.61,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Weekend groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0103",
+    "date": "2025-05-08",
+    "amount": 14.65,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi box",
+    "label": "food"
+  },
+  {
+    "id": "tx0104",
+    "date": "2025-05-09",
+    "amount": 37.31,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Water (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0105",
+    "date": "2025-05-12",
+    "amount": 10.25,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0106",
+    "date": "2025-05-16",
+    "amount": 14.75,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi box",
+    "label": "food"
+  },
+  {
+    "id": "tx0107",
+    "date": "2025-05-17",
+    "amount": 12.72,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Espresso",
+    "label": "food"
+  },
+  {
+    "id": "tx0108",
+    "date": "2025-05-18",
+    "amount": 24.03,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (May)",
+    "label": "other"
+  },
+  {
+    "id": "tx0109",
+    "date": "2025-05-19",
+    "amount": 11.04,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Espresso",
+    "label": "food"
+  },
+  {
+    "id": "tx0110",
+    "date": "2025-05-20",
+    "amount": 18.4,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Dinner box",
+    "label": "food"
+  },
+  {
+    "id": "tx0111",
+    "date": "2025-05-20",
+    "amount": 17.05,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Pet food refill",
+    "label": "pets"
+  },
+  {
+    "id": "tx0112",
+    "date": "2025-05-21",
+    "amount": 11.28,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Chew toy",
+    "label": "pets"
+  },
+  {
+    "id": "tx0113",
+    "date": "2025-05-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (May)",
+    "label": "other"
+  },
+  {
+    "id": "tx0114",
+    "date": "2025-05-23",
+    "amount": 15.12,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi box",
+    "label": "food"
+  },
+  {
+    "id": "tx0115",
+    "date": "2025-05-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (May)",
+    "label": "other"
+  },
+  {
+    "id": "tx0116",
+    "date": "2025-05-25",
+    "amount": 29.59,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Household groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0117",
+    "date": "2025-05-25",
+    "amount": 22.74,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Vaccination",
+    "label": "pets"
+  },
+  {
+    "id": "tx0118",
+    "date": "2025-05-26",
+    "amount": 9.82,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Pasta menu",
+    "label": "food"
+  },
+  {
+    "id": "tx0119",
+    "date": "2025-05-28",
+    "amount": 11.78,
+    "direction": "spend",
+    "other_account": "SK88005432",
+    "other_contact_name": "Book Point",
+    "description": "Book purchase",
+    "label": "other"
+  },
+  {
+    "id": "tx0120",
+    "date": "2025-05-29",
+    "amount": 10.14,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bagels",
+    "label": "food"
+  },
+  {
+    "id": "tx0121",
+    "date": "2025-05-29",
+    "amount": 23.85,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Cat food (wet)",
+    "label": "pets"
+  },
+  {
+    "id": "tx0122",
+    "date": "2025-06-02",
+    "amount": 1090.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Jun 2025",
+    "label": "other"
+  },
+  {
+    "id": "tx0123",
+    "date": "2025-06-02",
+    "amount": 15.81,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Cold drinks and snacks",
+    "label": "food"
+  },
+  {
+    "id": "tx0124",
+    "date": "2025-06-03",
+    "amount": 10.24,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread",
+    "label": "food"
+  },
+  {
+    "id": "tx0125",
+    "date": "2025-06-04",
+    "amount": 9.61,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Late lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0126",
+    "date": "2025-06-04",
+    "amount": 40.11,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Preventive care",
+    "label": "pets"
+  },
+  {
+    "id": "tx0127",
+    "date": "2025-06-06",
+    "amount": 56.33,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (June)",
+    "label": "other"
+  },
+  {
+    "id": "tx0128",
+    "date": "2025-06-08",
+    "amount": 180.0,
+    "direction": "receive",
+    "other_account": "SK11000005",
+    "other_contact_name": "Employer Inc.",
+    "description": "Bonus payment",
+    "label": "other"
+  },
+  {
+    "id": "tx0129",
+    "date": "2025-06-08",
+    "amount": 6.17,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Breakfast pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0130",
+    "date": "2025-06-09",
+    "amount": 39.74,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Electricity (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0131",
+    "date": "2025-06-12",
+    "amount": 12.31,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Soup and salad",
+    "label": "food"
+  },
+  {
+    "id": "tx0132",
+    "date": "2025-06-13",
+    "amount": 16.11,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Dinner box",
+    "label": "food"
+  },
+  {
+    "id": "tx0133",
+    "date": "2025-06-16",
+    "amount": 14.37,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee beans",
+    "label": "food"
+  },
+  {
+    "id": "tx0134",
+    "date": "2025-06-18",
+    "amount": 29.13,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (June)",
+    "label": "other"
+  },
+  {
+    "id": "tx0135",
+    "date": "2025-06-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (June)",
+    "label": "other"
+  },
+  {
+    "id": "tx0136",
+    "date": "2025-06-23",
+    "amount": 11.8,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Quick dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0137",
+    "date": "2025-06-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (June)",
+    "label": "other"
+  },
+  {
+    "id": "tx0138",
+    "date": "2025-06-25",
+    "amount": 8.92,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Breakfast pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0139",
+    "date": "2025-06-26",
+    "amount": 11.91,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Espresso",
+    "label": "food"
+  },
+  {
+    "id": "tx0140",
+    "date": "2025-06-28",
+    "amount": 23.39,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Vaccination",
+    "label": "pets"
+  },
+  {
+    "id": "tx0141",
+    "date": "2025-06-29",
+    "amount": 44.04,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Fresh produce and basics",
+    "label": "food"
+  },
+  {
+    "id": "tx0142",
+    "date": "2025-06-29",
+    "amount": 28.91,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Pet food refill",
+    "label": "pets"
+  },
+  {
+    "id": "tx0143",
+    "date": "2025-06-30",
+    "amount": 8.83,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee and cake",
+    "label": "food"
+  },
+  {
+    "id": "tx0144",
+    "date": "2025-07-01",
+    "amount": 1230.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Jul 2025",
+    "label": "other"
+  },
+  {
+    "id": "tx0145",
+    "date": "2025-07-03",
+    "amount": 30.36,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Summer fruit",
+    "label": "food"
+  },
+  {
+    "id": "tx0146",
+    "date": "2025-07-04",
+    "amount": 7.32,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread and pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0147",
+    "date": "2025-07-04",
+    "amount": 28.96,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Pet shampoo",
+    "label": "pets"
+  },
+  {
+    "id": "tx0148",
+    "date": "2025-07-05",
+    "amount": 19.66,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Chew toy",
+    "label": "pets"
+  },
+  {
+    "id": "tx0149",
+    "date": "2025-07-06",
+    "amount": 57.19,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (July)",
+    "label": "other"
+  },
+  {
+    "id": "tx0150",
+    "date": "2025-07-08",
+    "amount": 16.28,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi box",
+    "label": "food"
+  },
+  {
+    "id": "tx0151",
+    "date": "2025-07-09",
+    "amount": 45.07,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Gas (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0152",
+    "date": "2025-07-10",
+    "amount": 9.47,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread and pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0153",
+    "date": "2025-07-12",
+    "amount": 47.22,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Household groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0154",
+    "date": "2025-07-12",
+    "amount": 19.25,
+    "direction": "spend",
+    "other_account": "SK77004321",
+    "other_contact_name": "Home & More",
+    "description": "Kitchen accessories",
+    "label": "other"
+  },
+  {
+    "id": "tx0155",
+    "date": "2025-07-14",
+    "amount": 9.64,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Late lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0156",
+    "date": "2025-07-16",
+    "amount": 38.68,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Fresh produce and basics",
+    "label": "food"
+  },
+  {
+    "id": "tx0157",
+    "date": "2025-07-17",
+    "amount": 17.0,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee and cake",
+    "label": "food"
+  },
+  {
+    "id": "tx0158",
+    "date": "2025-07-18",
+    "amount": 30.51,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (July)",
+    "label": "other"
+  },
+  {
+    "id": "tx0159",
+    "date": "2025-07-19",
+    "amount": 10.27,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi box",
+    "label": "food"
+  },
+  {
+    "id": "tx0160",
+    "date": "2025-07-20",
+    "amount": 40.82,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Fresh produce and basics",
+    "label": "food"
+  },
+  {
+    "id": "tx0161",
+    "date": "2025-07-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (July)",
+    "label": "other"
+  },
+  {
+    "id": "tx0162",
+    "date": "2025-07-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (July)",
+    "label": "other"
+  },
+  {
+    "id": "tx0163",
+    "date": "2025-07-27",
+    "amount": 14.98,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0164",
+    "date": "2025-07-28",
+    "amount": 26.11,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Pet shampoo",
+    "label": "pets"
+  },
+  {
+    "id": "tx0165",
+    "date": "2025-07-29",
+    "amount": 21.84,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Routine check-up co-pay",
+    "label": "pets"
+  },
+  {
+    "id": "tx0166",
+    "date": "2025-07-30",
+    "amount": 11.89,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Lunch combo",
+    "label": "food"
+  },
+  {
+    "id": "tx0167",
+    "date": "2025-07-31",
+    "amount": 14.79,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Soup and salad",
+    "label": "food"
+  },
+  {
+    "id": "tx0168",
+    "date": "2025-08-01",
+    "amount": 1170.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Aug 2025",
+    "label": "other"
+  },
+  {
+    "id": "tx0169",
+    "date": "2025-08-04",
+    "amount": 19.64,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Summer fruit and snacks",
+    "label": "food"
+  },
+  {
+    "id": "tx0170",
+    "date": "2025-08-06",
+    "amount": 65.89,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (August)",
+    "label": "other"
+  },
+  {
+    "id": "tx0171",
+    "date": "2025-08-07",
+    "amount": 26.82,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0172",
+    "date": "2025-08-08",
+    "amount": 7.12,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread",
+    "label": "food"
+  },
+  {
+    "id": "tx0173",
+    "date": "2025-08-09",
+    "amount": 33.1,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Electricity (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0174",
+    "date": "2025-08-10",
+    "amount": 35.69,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Weekly groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0175",
+    "date": "2025-08-11",
+    "amount": 17.24,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Scratching post accessories",
+    "label": "pets"
+  },
+  {
+    "id": "tx0176",
+    "date": "2025-08-12",
+    "amount": 11.84,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Cappuccino and snack",
+    "label": "food"
+  },
+  {
+    "id": "tx0177",
+    "date": "2025-08-13",
+    "amount": 10.63,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Breakfast pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0178",
+    "date": "2025-08-15",
+    "amount": 31.03,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Preventive care",
+    "label": "pets"
+  },
+  {
+    "id": "tx0179",
+    "date": "2025-08-16",
+    "amount": 10.19,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0180",
+    "date": "2025-08-17",
+    "amount": 13.22,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Pasta menu",
+    "label": "food"
+  },
+  {
+    "id": "tx0181",
+    "date": "2025-08-18",
+    "amount": 25.88,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (August)",
+    "label": "other"
+  },
+  {
+    "id": "tx0182",
+    "date": "2025-08-20",
+    "amount": 43.38,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0183",
+    "date": "2025-08-20",
+    "amount": 35.49,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Preventive care",
+    "label": "pets"
+  },
+  {
+    "id": "tx0184",
+    "date": "2025-08-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (August)",
+    "label": "other"
+  },
+  {
+    "id": "tx0185",
+    "date": "2025-08-23",
+    "amount": 17.65,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0186",
+    "date": "2025-08-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (August)",
+    "label": "other"
+  },
+  {
+    "id": "tx0187",
+    "date": "2025-08-25",
+    "amount": 40.07,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Vet consultation",
+    "label": "pets"
+  },
+  {
+    "id": "tx0188",
+    "date": "2025-08-27",
+    "amount": 10.44,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bagels",
+    "label": "food"
+  },
+  {
+    "id": "tx0189",
+    "date": "2025-08-28",
+    "amount": 12.93,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Scratching post accessories",
+    "label": "pets"
+  },
+  {
+    "id": "tx0190",
+    "date": "2025-08-29",
+    "amount": 7.61,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Breakfast pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0191",
+    "date": "2025-08-30",
+    "amount": 15.48,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0192",
+    "date": "2025-08-31",
+    "amount": 5.75,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Espresso",
+    "label": "food"
+  },
+  {
+    "id": "tx0193",
+    "date": "2025-09-02",
+    "amount": 1020.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Sep 2025",
+    "label": "other"
+  },
+  {
+    "id": "tx0194",
+    "date": "2025-09-03",
+    "amount": 12.63,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi box",
+    "label": "food"
+  },
+  {
+    "id": "tx0195",
+    "date": "2025-09-04",
+    "amount": 14.5,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0196",
+    "date": "2025-09-05",
+    "amount": 22.79,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Cat treats",
+    "label": "pets"
+  },
+  {
+    "id": "tx0197",
+    "date": "2025-09-06",
+    "amount": 62.66,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (September)",
+    "label": "other"
+  },
+  {
+    "id": "tx0198",
+    "date": "2025-09-07",
+    "amount": 13.31,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee and cake",
+    "label": "food"
+  },
+  {
+    "id": "tx0199",
+    "date": "2025-09-08",
+    "amount": 36.43,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0200",
+    "date": "2025-09-09",
+    "amount": 47.59,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Electricity (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0201",
+    "date": "2025-09-10",
+    "amount": 16.89,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Quick dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0202",
+    "date": "2025-09-11",
+    "amount": 17.84,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Pet food refill",
+    "label": "pets"
+  },
+  {
+    "id": "tx0203",
+    "date": "2025-09-12",
+    "amount": 33.27,
+    "direction": "spend",
+    "other_account": "SK77004321",
+    "other_contact_name": "Home & More",
+    "description": "Household supplies",
+    "label": "other"
+  },
+  {
+    "id": "tx0204",
+    "date": "2025-09-13",
+    "amount": 11.32,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Cappuccino and snack",
+    "label": "food"
+  },
+  {
+    "id": "tx0205",
+    "date": "2025-09-16",
+    "amount": 24.87,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0206",
+    "date": "2025-09-18",
+    "amount": 25.74,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (September)",
+    "label": "other"
+  },
+  {
+    "id": "tx0207",
+    "date": "2025-09-19",
+    "amount": 10.36,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Espresso",
+    "label": "food"
+  },
+  {
+    "id": "tx0208",
+    "date": "2025-09-20",
+    "amount": 22.73,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Pet grooming supplies",
+    "label": "pets"
+  },
+  {
+    "id": "tx0209",
+    "date": "2025-09-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (September)",
+    "label": "other"
+  },
+  {
+    "id": "tx0210",
+    "date": "2025-09-23",
+    "amount": 38.39,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0211",
+    "date": "2025-09-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (September)",
+    "label": "other"
+  },
+  {
+    "id": "tx0212",
+    "date": "2025-09-27",
+    "amount": 9.8,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Dinner box",
+    "label": "food"
+  },
+  {
+    "id": "tx0213",
+    "date": "2025-09-29",
+    "amount": 11.05,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee and cake",
+    "label": "food"
+  },
+  {
+    "id": "tx0214",
+    "date": "2025-09-30",
+    "amount": 16.78,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Espresso",
+    "label": "food"
+  },
+  {
+    "id": "tx0215",
+    "date": "2025-10-01",
+    "amount": 1030.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Oct 2025",
+    "label": "other"
+  },
+  {
+    "id": "tx0216",
+    "date": "2025-10-03",
+    "amount": 33.75,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Autumn groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0217",
+    "date": "2025-10-04",
+    "amount": 10.55,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee to-go",
+    "label": "food"
+  },
+  {
+    "id": "tx0218",
+    "date": "2025-10-04",
+    "amount": 12.45,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Dog treats",
+    "label": "pets"
+  },
+  {
+    "id": "tx0219",
+    "date": "2025-10-05",
+    "amount": 39.48,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Medication refill",
+    "label": "pets"
+  },
+  {
+    "id": "tx0220",
+    "date": "2025-10-06",
+    "amount": 55.67,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (October)",
+    "label": "other"
+  },
+  {
+    "id": "tx0221",
+    "date": "2025-10-09",
+    "amount": 28.58,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Gas (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0222",
+    "date": "2025-10-10",
+    "amount": 12.06,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee to-go",
+    "label": "food"
+  },
+  {
+    "id": "tx0223",
+    "date": "2025-10-12",
+    "amount": 11.7,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Espresso",
+    "label": "food"
+  },
+  {
+    "id": "tx0224",
+    "date": "2025-10-13",
+    "amount": 9.95,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Breakfast pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0225",
+    "date": "2025-10-14",
+    "amount": 17.0,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi box",
+    "label": "food"
+  },
+  {
+    "id": "tx0226",
+    "date": "2025-10-16",
+    "amount": 16.19,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Pasta menu",
+    "label": "food"
+  },
+  {
+    "id": "tx0227",
+    "date": "2025-10-17",
+    "amount": 12.19,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Croissant and roll",
+    "label": "food"
+  },
+  {
+    "id": "tx0228",
+    "date": "2025-10-18",
+    "amount": 27.65,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (October)",
+    "label": "other"
+  },
+  {
+    "id": "tx0229",
+    "date": "2025-10-19",
+    "amount": 11.82,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Quick dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0230",
+    "date": "2025-10-20",
+    "amount": 20.03,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Scratching post accessories",
+    "label": "pets"
+  },
+  {
+    "id": "tx0231",
+    "date": "2025-10-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (October)",
+    "label": "other"
+  },
+  {
+    "id": "tx0232",
+    "date": "2025-10-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (October)",
+    "label": "other"
+  },
+  {
+    "id": "tx0233",
+    "date": "2025-10-25",
+    "amount": 9.9,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Dinner box",
+    "label": "food"
+  },
+  {
+    "id": "tx0234",
+    "date": "2025-10-25",
+    "amount": 24.21,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Scratching post accessories",
+    "label": "pets"
+  },
+  {
+    "id": "tx0235",
+    "date": "2025-10-26",
+    "amount": 13.31,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Cappuccino and snack",
+    "label": "food"
+  },
+  {
+    "id": "tx0236",
+    "date": "2025-10-27",
+    "amount": 9.15,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi box",
+    "label": "food"
+  },
+  {
+    "id": "tx0237",
+    "date": "2025-10-29",
+    "amount": 12.41,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0238",
+    "date": "2025-11-01",
+    "amount": 1160.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Nov 2025",
+    "label": "other"
+  },
+  {
+    "id": "tx0239",
+    "date": "2025-11-02",
+    "amount": 18.92,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Lunch combo",
+    "label": "food"
+  },
+  {
+    "id": "tx0240",
+    "date": "2025-11-03",
+    "amount": 7.75,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bagels",
+    "label": "food"
+  },
+  {
+    "id": "tx0241",
+    "date": "2025-11-04",
+    "amount": 14.92,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Dog treats",
+    "label": "pets"
+  },
+  {
+    "id": "tx0242",
+    "date": "2025-11-06",
+    "amount": 66.47,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (November)",
+    "label": "other"
+  },
+  {
+    "id": "tx0243",
+    "date": "2025-11-07",
+    "amount": 10.06,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Lunch combo",
+    "label": "food"
+  },
+  {
+    "id": "tx0244",
+    "date": "2025-11-08",
+    "amount": 250.0,
+    "direction": "receive",
+    "other_account": "SK11000005",
+    "other_contact_name": "Employer Inc.",
+    "description": "Performance bonus",
+    "label": "other"
+  },
+  {
+    "id": "tx0245",
+    "date": "2025-11-08",
+    "amount": 18.98,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Pasta menu",
+    "label": "food"
+  },
+  {
+    "id": "tx0246",
+    "date": "2025-11-09",
+    "amount": 40.75,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Electricity (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0247",
+    "date": "2025-11-10",
+    "amount": 15.97,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0248",
+    "date": "2025-11-11",
+    "amount": 23.99,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Litter refill",
+    "label": "pets"
+  },
+  {
+    "id": "tx0249",
+    "date": "2025-11-12",
+    "amount": 12.43,
+    "direction": "spend",
+    "other_account": "SK77004321",
+    "other_contact_name": "Home & More",
+    "description": "Cleaning supplies",
+    "label": "other"
+  },
+  {
+    "id": "tx0250",
+    "date": "2025-11-13",
+    "amount": 16.4,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch with colleague",
+    "label": "food"
+  },
+  {
+    "id": "tx0251",
+    "date": "2025-11-15",
+    "amount": 29.76,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Routine check-up co-pay",
+    "label": "pets"
+  },
+  {
+    "id": "tx0252",
+    "date": "2025-11-16",
+    "amount": 6.69,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread and pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0253",
+    "date": "2025-11-17",
+    "amount": 18.8,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Late lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0254",
+    "date": "2025-11-18",
+    "amount": 29.55,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (November)",
+    "label": "other"
+  },
+  {
+    "id": "tx0255",
+    "date": "2025-11-20",
+    "amount": 38.31,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Household groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0256",
+    "date": "2025-11-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (November)",
+    "label": "other"
+  },
+  {
+    "id": "tx0257",
+    "date": "2025-11-23",
+    "amount": 17.5,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee beans",
+    "label": "food"
+  },
+  {
+    "id": "tx0258",
+    "date": "2025-11-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (November)",
+    "label": "other"
+  },
+  {
+    "id": "tx0259",
+    "date": "2025-11-25",
+    "amount": 6.6,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bagels",
+    "label": "food"
+  },
+  {
+    "id": "tx0260",
+    "date": "2025-11-25",
+    "amount": 12.55,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Dog leash",
+    "label": "pets"
+  },
+  {
+    "id": "tx0261",
+    "date": "2025-11-26",
+    "amount": 21.32,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0262",
+    "date": "2025-11-29",
+    "amount": 11.74,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Dinner box",
+    "label": "food"
+  },
+  {
+    "id": "tx0263",
+    "date": "2025-11-29",
+    "amount": 19.89,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Routine check-up co-pay",
+    "label": "pets"
+  },
+  {
+    "id": "tx0264",
+    "date": "2025-11-30",
+    "amount": 11.44,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Quick dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0265",
+    "date": "2025-12-02",
+    "amount": 1050.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Dec 2025",
+    "label": "other"
+  },
+  {
+    "id": "tx0266",
+    "date": "2025-12-02",
+    "amount": 42.84,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Holiday groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0267",
+    "date": "2025-12-03",
+    "amount": 6.48,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Croissant and roll",
+    "label": "food"
+  },
+  {
+    "id": "tx0268",
+    "date": "2025-12-04",
+    "amount": 15.32,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Espresso",
+    "label": "food"
+  },
+  {
+    "id": "tx0269",
+    "date": "2025-12-06",
+    "amount": 74.73,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (December)",
+    "label": "other"
+  },
+  {
+    "id": "tx0270",
+    "date": "2025-12-09",
+    "amount": 41.9,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Gas (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0271",
+    "date": "2025-12-10",
+    "amount": 27.8,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Fresh produce and basics",
+    "label": "food"
+  },
+  {
+    "id": "tx0272",
+    "date": "2025-12-11",
+    "amount": 23.81,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Dog treats",
+    "label": "pets"
+  },
+  {
+    "id": "tx0273",
+    "date": "2025-12-12",
+    "amount": 7.04,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee and cake",
+    "label": "food"
+  },
+  {
+    "id": "tx0274",
+    "date": "2025-12-16",
+    "amount": 12.34,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bagels",
+    "label": "food"
+  },
+  {
+    "id": "tx0275",
+    "date": "2025-12-17",
+    "amount": 18.03,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Dinner box",
+    "label": "food"
+  },
+  {
+    "id": "tx0276",
+    "date": "2025-12-18",
+    "amount": 25.29,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (December)",
+    "label": "other"
+  },
+  {
+    "id": "tx0277",
+    "date": "2025-12-19",
+    "amount": 16.52,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee and cake",
+    "label": "food"
+  },
+  {
+    "id": "tx0278",
+    "date": "2025-12-20",
+    "amount": 27.39,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Scratching post accessories",
+    "label": "pets"
+  },
+  {
+    "id": "tx0279",
+    "date": "2025-12-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (December)",
+    "label": "other"
+  },
+  {
+    "id": "tx0280",
+    "date": "2025-12-23",
+    "amount": 10.27,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Soup and salad",
+    "label": "food"
+  },
+  {
+    "id": "tx0281",
+    "date": "2025-12-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (December)",
+    "label": "other"
+  },
+  {
+    "id": "tx0282",
+    "date": "2025-12-25",
+    "amount": 16.92,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Cappuccino and snack",
+    "label": "food"
+  },
+  {
+    "id": "tx0283",
+    "date": "2025-12-27",
+    "amount": 11.72,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bagels",
+    "label": "food"
+  },
+  {
+    "id": "tx0284",
+    "date": "2025-12-28",
+    "amount": 28.26,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Chew toy",
+    "label": "pets"
+  },
+  {
+    "id": "tx0285",
+    "date": "2025-12-31",
+    "amount": 8.82,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Cappuccino and snack",
+    "label": "food"
+  },
+  {
+    "id": "tx0286",
+    "date": "2026-01-01",
+    "amount": 1200.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Jan 2026",
+    "label": "other"
+  },
+  {
+    "id": "tx0287",
+    "date": "2026-01-03",
+    "amount": 31.37,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Groceries for New Year",
+    "label": "food"
+  },
+  {
+    "id": "tx0288",
+    "date": "2026-01-06",
+    "amount": 60.9,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (January)",
+    "label": "other"
+  },
+  {
+    "id": "tx0289",
+    "date": "2026-01-07",
+    "amount": 10.72,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Latte",
+    "label": "food"
+  },
+  {
+    "id": "tx0290",
+    "date": "2026-01-08",
+    "amount": 15.1,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0291",
+    "date": "2026-01-09",
+    "amount": 44.69,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Water (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0292",
+    "date": "2026-01-10",
+    "amount": 16.18,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0293",
+    "date": "2026-01-12",
+    "amount": 11.26,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0294",
+    "date": "2026-01-14",
+    "amount": 18.62,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0295",
+    "date": "2026-01-15",
+    "amount": 13.07,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Pet shampoo",
+    "label": "pets"
+  },
+  {
+    "id": "tx0296",
+    "date": "2026-01-16",
+    "amount": 5.73,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bagels",
+    "label": "food"
+  },
+  {
+    "id": "tx0297",
+    "date": "2026-01-18",
+    "amount": 24.84,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (January)",
+    "label": "other"
+  },
+  {
+    "id": "tx0298",
+    "date": "2026-01-20",
+    "amount": 33.16,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Weekly groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0299",
+    "date": "2026-01-20",
+    "amount": 28.38,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Routine check-up co-pay",
+    "label": "pets"
+  },
+  {
+    "id": "tx0300",
+    "date": "2026-01-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (January)",
+    "label": "other"
+  },
+  {
+    "id": "tx0301",
+    "date": "2026-01-23",
+    "amount": 37.35,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0302",
+    "date": "2026-01-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (January)",
+    "label": "other"
+  },
+  {
+    "id": "tx0303",
+    "date": "2026-01-25",
+    "amount": 22.98,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0304",
+    "date": "2026-01-25",
+    "amount": 22.85,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Pet food bag",
+    "label": "pets"
+  },
+  {
+    "id": "tx0305",
+    "date": "2026-01-26",
+    "amount": 15.5,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0306",
+    "date": "2026-01-27",
+    "amount": 15.35,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Dinner box",
+    "label": "food"
+  },
+  {
+    "id": "tx0307",
+    "date": "2026-01-28",
+    "amount": 27.29,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Pet grooming supplies",
+    "label": "pets"
+  },
+  {
+    "id": "tx0308",
+    "date": "2026-01-29",
+    "amount": 8.0,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Croissant and roll",
+    "label": "food"
+  },
+  {
+    "id": "tx0309",
+    "date": "2026-01-30",
+    "amount": 14.71,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Cappuccino and snack",
+    "label": "food"
+  },
+  {
+    "id": "tx0310",
+    "date": "2026-02-01",
+    "amount": 1040.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Feb 2026",
+    "label": "other"
+  },
+  {
+    "id": "tx0311",
+    "date": "2026-02-03",
+    "amount": 32.46,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Winter groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0312",
+    "date": "2026-02-04",
+    "amount": 4.57,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee and cake",
+    "label": "food"
+  },
+  {
+    "id": "tx0313",
+    "date": "2026-02-04",
+    "amount": 27.33,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Routine check-up co-pay",
+    "label": "pets"
+  },
+  {
+    "id": "tx0314",
+    "date": "2026-02-05",
+    "amount": 33.97,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Medication refill",
+    "label": "pets"
+  },
+  {
+    "id": "tx0315",
+    "date": "2026-02-06",
+    "amount": 64.02,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (February)",
+    "label": "other"
+  },
+  {
+    "id": "tx0316",
+    "date": "2026-02-08",
+    "amount": 5.16,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Espresso",
+    "label": "food"
+  },
+  {
+    "id": "tx0317",
+    "date": "2026-02-09",
+    "amount": 42.66,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Gas (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0318",
+    "date": "2026-02-10",
+    "amount": 300.0,
+    "direction": "receive",
+    "other_account": "SK11000005",
+    "other_contact_name": "Employer Inc.",
+    "description": "Expense reimbursement",
+    "label": "other"
+  },
+  {
+    "id": "tx0319",
+    "date": "2026-02-10",
+    "amount": 11.44,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bagels",
+    "label": "food"
+  },
+  {
+    "id": "tx0320",
+    "date": "2026-02-11",
+    "amount": 30.16,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Vet consultation",
+    "label": "pets"
+  },
+  {
+    "id": "tx0321",
+    "date": "2026-02-12",
+    "amount": 12.29,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch with colleague",
+    "label": "food"
+  },
+  {
+    "id": "tx0322",
+    "date": "2026-02-13",
+    "amount": 17.62,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch with colleague",
+    "label": "food"
+  },
+  {
+    "id": "tx0323",
+    "date": "2026-02-14",
+    "amount": 18.05,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch with colleague",
+    "label": "food"
+  },
+  {
+    "id": "tx0324",
+    "date": "2026-02-16",
+    "amount": 17.29,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Cappuccino and snack",
+    "label": "food"
+  },
+  {
+    "id": "tx0325",
+    "date": "2026-02-18",
+    "amount": 29.12,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (February)",
+    "label": "other"
+  },
+  {
+    "id": "tx0326",
+    "date": "2026-02-19",
+    "amount": 7.46,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Breakfast pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0327",
+    "date": "2026-02-20",
+    "amount": 7.03,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread and pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0328",
+    "date": "2026-02-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (February)",
+    "label": "other"
+  },
+  {
+    "id": "tx0329",
+    "date": "2026-02-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (February)",
+    "label": "other"
+  },
+  {
+    "id": "tx0330",
+    "date": "2026-02-25",
+    "amount": 17.9,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0331",
+    "date": "2026-02-25",
+    "amount": 34.49,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Vet consultation",
+    "label": "pets"
+  },
+  {
+    "id": "tx0332",
+    "date": "2026-02-26",
+    "amount": 39.46,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Fresh produce and basics",
+    "label": "food"
+  },
+  {
+    "id": "tx0333",
+    "date": "2026-02-27",
+    "amount": 20.56,
+    "direction": "spend",
+    "other_account": "SK88005432",
+    "other_contact_name": "Book Point",
+    "description": "Notebook and pens",
+    "label": "other"
+  },
+  {
+    "id": "tx0334",
+    "date": "2026-02-28",
+    "amount": 26.6,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Pet food bag",
+    "label": "pets"
+  },
+  {
+    "id": "tx0335",
+    "date": "2026-03-02",
+    "amount": 980.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Mar 2026",
+    "label": "other"
+  },
+  {
+    "id": "tx0336",
+    "date": "2026-03-03",
+    "amount": 21.22,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Spring groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0337",
+    "date": "2026-03-04",
+    "amount": 18.33,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Soup and salad",
+    "label": "food"
+  },
+  {
+    "id": "tx0338",
+    "date": "2026-03-04",
+    "amount": 26.35,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Vet consultation",
+    "label": "pets"
+  },
+  {
+    "id": "tx0339",
+    "date": "2026-03-06",
+    "amount": 68.86,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (March)",
+    "label": "other"
+  },
+  {
+    "id": "tx0340",
+    "date": "2026-03-07",
+    "amount": 10.35,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread and pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0341",
+    "date": "2026-03-08",
+    "amount": 13.94,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee beans",
+    "label": "food"
+  },
+  {
+    "id": "tx0342",
+    "date": "2026-03-09",
+    "amount": 32.73,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Gas (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0343",
+    "date": "2026-03-10",
+    "amount": 9.68,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Breakfast pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0344",
+    "date": "2026-03-14",
+    "amount": 11.0,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch with colleague",
+    "label": "food"
+  },
+  {
+    "id": "tx0345",
+    "date": "2026-03-17",
+    "amount": 16.07,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Dinner box",
+    "label": "food"
+  },
+  {
+    "id": "tx0346",
+    "date": "2026-03-18",
+    "amount": 29.3,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (March)",
+    "label": "other"
+  },
+  {
+    "id": "tx0347",
+    "date": "2026-03-19",
+    "amount": 37.82,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Fresh produce and basics",
+    "label": "food"
+  },
+  {
+    "id": "tx0348",
+    "date": "2026-03-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (March)",
+    "label": "other"
+  },
+  {
+    "id": "tx0349",
+    "date": "2026-03-23",
+    "amount": 14.69,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Soup and salad",
+    "label": "food"
+  },
+  {
+    "id": "tx0350",
+    "date": "2026-03-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (March)",
+    "label": "other"
+  },
+  {
+    "id": "tx0351",
+    "date": "2026-03-25",
+    "amount": 11.19,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0352",
+    "date": "2026-03-25",
+    "amount": 25.85,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Routine check-up co-pay",
+    "label": "pets"
+  },
+  {
+    "id": "tx0353",
+    "date": "2026-03-26",
+    "amount": 17.75,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Dinner box",
+    "label": "food"
+  },
+  {
+    "id": "tx0354",
+    "date": "2026-03-28",
+    "amount": 26.53,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Litter refill",
+    "label": "pets"
+  },
+  {
+    "id": "tx0355",
+    "date": "2026-03-29",
+    "amount": 10.08,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0356",
+    "date": "2026-03-31",
+    "amount": 6.09,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee to-go",
+    "label": "food"
+  },
+  {
+    "id": "tx0357",
+    "date": "2026-04-01",
+    "amount": 1090.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Apr 2026",
+    "label": "other"
+  },
+  {
+    "id": "tx0358",
+    "date": "2026-04-02",
+    "amount": 36.61,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Weekly groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0359",
+    "date": "2026-04-03",
+    "amount": 15.18,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Late lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0360",
+    "date": "2026-04-04",
+    "amount": 26.9,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Dog leash",
+    "label": "pets"
+  },
+  {
+    "id": "tx0361",
+    "date": "2026-04-06",
+    "amount": 75.52,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (April)",
+    "label": "other"
+  },
+  {
+    "id": "tx0362",
+    "date": "2026-04-07",
+    "amount": 9.14,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Pasta menu",
+    "label": "food"
+  },
+  {
+    "id": "tx0363",
+    "date": "2026-04-09",
+    "amount": 45.87,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Water (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0364",
+    "date": "2026-04-10",
+    "amount": 11.97,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Cappuccino and snack",
+    "label": "food"
+  },
+  {
+    "id": "tx0365",
+    "date": "2026-04-13",
+    "amount": 18.72,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0366",
+    "date": "2026-04-14",
+    "amount": 18.29,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0367",
+    "date": "2026-04-16",
+    "amount": 47.01,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Weekend groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0368",
+    "date": "2026-04-17",
+    "amount": 47.06,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0369",
+    "date": "2026-04-18",
+    "amount": 29.34,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (April)",
+    "label": "other"
+  },
+  {
+    "id": "tx0370",
+    "date": "2026-04-19",
+    "amount": 7.66,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bagels",
+    "label": "food"
+  },
+  {
+    "id": "tx0371",
+    "date": "2026-04-20",
+    "amount": 13.85,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee beans",
+    "label": "food"
+  },
+  {
+    "id": "tx0372",
+    "date": "2026-04-21",
+    "amount": 12.06,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Scratching post accessories",
+    "label": "pets"
+  },
+  {
+    "id": "tx0373",
+    "date": "2026-04-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (April)",
+    "label": "other"
+  },
+  {
+    "id": "tx0374",
+    "date": "2026-04-23",
+    "amount": 11.27,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Late lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0375",
+    "date": "2026-04-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (April)",
+    "label": "other"
+  },
+  {
+    "id": "tx0376",
+    "date": "2026-04-25",
+    "amount": 18.72,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Late lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0377",
+    "date": "2026-04-28",
+    "amount": 25.18,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Dog leash",
+    "label": "pets"
+  },
+  {
+    "id": "tx0378",
+    "date": "2026-04-28",
+    "amount": 33.43,
+    "direction": "spend",
+    "other_account": "SK88005432",
+    "other_contact_name": "Book Point",
+    "description": "Notebook and pens",
+    "label": "other"
+  },
+  {
+    "id": "tx0379",
+    "date": "2026-04-29",
+    "amount": 12.8,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0380",
+    "date": "2026-04-29",
+    "amount": 23.04,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Routine check-up co-pay",
+    "label": "pets"
+  },
+  {
+    "id": "tx0381",
+    "date": "2026-04-30",
+    "amount": 18.06,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Quick dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0382",
+    "date": "2026-05-01",
+    "amount": 1080.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary May 2026",
+    "label": "other"
+  },
+  {
+    "id": "tx0383",
+    "date": "2026-05-02",
+    "amount": 42.81,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Picnic groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0384",
+    "date": "2026-05-03",
+    "amount": 10.92,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee and cake",
+    "label": "food"
+  },
+  {
+    "id": "tx0385",
+    "date": "2026-05-04",
+    "amount": 17.99,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Vaccination",
+    "label": "pets"
+  },
+  {
+    "id": "tx0386",
+    "date": "2026-05-06",
+    "amount": 59.08,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (May)",
+    "label": "other"
+  },
+  {
+    "id": "tx0387",
+    "date": "2026-05-08",
+    "amount": 13.92,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee to-go",
+    "label": "food"
+  },
+  {
+    "id": "tx0388",
+    "date": "2026-05-09",
+    "amount": 30.44,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Electricity (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0389",
+    "date": "2026-05-11",
+    "amount": 29.52,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Vaccination",
+    "label": "pets"
+  },
+  {
+    "id": "tx0390",
+    "date": "2026-05-12",
+    "amount": 13.13,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Pasta menu",
+    "label": "food"
+  },
+  {
+    "id": "tx0391",
+    "date": "2026-05-13",
+    "amount": 9.24,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bagels",
+    "label": "food"
+  },
+  {
+    "id": "tx0392",
+    "date": "2026-05-14",
+    "amount": 18.72,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Weekly groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0393",
+    "date": "2026-05-16",
+    "amount": 13.56,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi box",
+    "label": "food"
+  },
+  {
+    "id": "tx0394",
+    "date": "2026-05-17",
+    "amount": 17.21,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Lunch combo",
+    "label": "food"
+  },
+  {
+    "id": "tx0395",
+    "date": "2026-05-18",
+    "amount": 26.35,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (May)",
+    "label": "other"
+  },
+  {
+    "id": "tx0396",
+    "date": "2026-05-20",
+    "amount": 10.2,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Breakfast pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0397",
+    "date": "2026-05-21",
+    "amount": 18.05,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Medication refill",
+    "label": "pets"
+  },
+  {
+    "id": "tx0398",
+    "date": "2026-05-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (May)",
+    "label": "other"
+  },
+  {
+    "id": "tx0399",
+    "date": "2026-05-23",
+    "amount": 10.79,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Pasta menu",
+    "label": "food"
+  },
+  {
+    "id": "tx0400",
+    "date": "2026-05-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (May)",
+    "label": "other"
+  },
+  {
+    "id": "tx0401",
+    "date": "2026-05-25",
+    "amount": 15.06,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Dinner box",
+    "label": "food"
+  },
+  {
+    "id": "tx0402",
+    "date": "2026-05-27",
+    "amount": 9.67,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread",
+    "label": "food"
+  },
+  {
+    "id": "tx0403",
+    "date": "2026-05-28",
+    "amount": 19.02,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Cat food (wet)",
+    "label": "pets"
+  },
+  {
+    "id": "tx0404",
+    "date": "2026-05-29",
+    "amount": 26.85,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Vaccination",
+    "label": "pets"
+  },
+  {
+    "id": "tx0405",
+    "date": "2026-06-02",
+    "amount": 1250.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Jun 2026",
+    "label": "other"
+  },
+  {
+    "id": "tx0406",
+    "date": "2026-06-04",
+    "amount": 12.26,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Cold drinks and snacks",
+    "label": "food"
+  },
+  {
+    "id": "tx0407",
+    "date": "2026-06-06",
+    "amount": 77.51,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (June)",
+    "label": "other"
+  },
+  {
+    "id": "tx0408",
+    "date": "2026-06-07",
+    "amount": 16.67,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0409",
+    "date": "2026-06-08",
+    "amount": 15.38,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0410",
+    "date": "2026-06-09",
+    "amount": 300.0,
+    "direction": "receive",
+    "other_account": "SK11000005",
+    "other_contact_name": "Employer Inc.",
+    "description": "Bonus payment",
+    "label": "other"
+  },
+  {
+    "id": "tx0411",
+    "date": "2026-06-09",
+    "amount": 37.42,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Gas (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0412",
+    "date": "2026-06-10",
+    "amount": 17.8,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Cappuccino and snack",
+    "label": "food"
+  },
+  {
+    "id": "tx0413",
+    "date": "2026-06-11",
+    "amount": 27.68,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Preventive care",
+    "label": "pets"
+  },
+  {
+    "id": "tx0414",
+    "date": "2026-06-12",
+    "amount": 37.53,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0415",
+    "date": "2026-06-13",
+    "amount": 12.56,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Dinner box",
+    "label": "food"
+  },
+  {
+    "id": "tx0416",
+    "date": "2026-06-14",
+    "amount": 12.22,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi box",
+    "label": "food"
+  },
+  {
+    "id": "tx0417",
+    "date": "2026-06-17",
+    "amount": 16.88,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0418",
+    "date": "2026-06-18",
+    "amount": 27.87,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (June)",
+    "label": "other"
+  },
+  {
+    "id": "tx0419",
+    "date": "2026-06-20",
+    "amount": 44.02,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Household groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0420",
+    "date": "2026-06-20",
+    "amount": 16.42,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Pet food bag",
+    "label": "pets"
+  },
+  {
+    "id": "tx0421",
+    "date": "2026-06-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (June)",
+    "label": "other"
+  },
+  {
+    "id": "tx0422",
+    "date": "2026-06-23",
+    "amount": 25.98,
+    "direction": "spend",
+    "other_account": "SK99006543",
+    "other_contact_name": "Health Store",
+    "description": "Pharmacy essentials",
+    "label": "other"
+  },
+  {
+    "id": "tx0423",
+    "date": "2026-06-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (June)",
+    "label": "other"
+  },
+  {
+    "id": "tx0424",
+    "date": "2026-06-25",
+    "amount": 18.7,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0425",
+    "date": "2026-06-26",
+    "amount": 20.03,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Household groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0426",
+    "date": "2026-06-27",
+    "amount": 12.58,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Quick dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0427",
+    "date": "2026-06-28",
+    "amount": 29.92,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Cat food (wet)",
+    "label": "pets"
+  },
+  {
+    "id": "tx0428",
+    "date": "2026-06-30",
+    "amount": 10.64,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Dinner box",
+    "label": "food"
+  },
+  {
+    "id": "tx0429",
+    "date": "2026-07-01",
+    "amount": 1030.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Jul 2026",
+    "label": "other"
+  },
+  {
+    "id": "tx0430",
+    "date": "2026-07-02",
+    "amount": 17.47,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Dinner box",
+    "label": "food"
+  },
+  {
+    "id": "tx0431",
+    "date": "2026-07-03",
+    "amount": 12.15,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee beans",
+    "label": "food"
+  },
+  {
+    "id": "tx0432",
+    "date": "2026-07-05",
+    "amount": 24.55,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Pet grooming supplies",
+    "label": "pets"
+  },
+  {
+    "id": "tx0433",
+    "date": "2026-07-06",
+    "amount": 74.74,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (July)",
+    "label": "other"
+  },
+  {
+    "id": "tx0434",
+    "date": "2026-07-08",
+    "amount": 16.93,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Late lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0435",
+    "date": "2026-07-09",
+    "amount": 44.95,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Electricity (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0436",
+    "date": "2026-07-11",
+    "amount": 30.2,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Preventive care",
+    "label": "pets"
+  },
+  {
+    "id": "tx0437",
+    "date": "2026-07-12",
+    "amount": 30.7,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Weekend groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0438",
+    "date": "2026-07-14",
+    "amount": 11.22,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Lunch combo",
+    "label": "food"
+  },
+  {
+    "id": "tx0439",
+    "date": "2026-07-16",
+    "amount": 17.0,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0440",
+    "date": "2026-07-17",
+    "amount": 22.15,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Weekly groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0441",
+    "date": "2026-07-18",
+    "amount": 27.38,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (July)",
+    "label": "other"
+  },
+  {
+    "id": "tx0442",
+    "date": "2026-07-20",
+    "amount": 11.48,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread and pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0443",
+    "date": "2026-07-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (July)",
+    "label": "other"
+  },
+  {
+    "id": "tx0444",
+    "date": "2026-07-23",
+    "amount": 45.69,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Household groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0445",
+    "date": "2026-07-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (July)",
+    "label": "other"
+  },
+  {
+    "id": "tx0446",
+    "date": "2026-07-25",
+    "amount": 16.84,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Dinner box",
+    "label": "food"
+  },
+  {
+    "id": "tx0447",
+    "date": "2026-07-26",
+    "amount": 8.61,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee and cake",
+    "label": "food"
+  },
+  {
+    "id": "tx0448",
+    "date": "2026-07-27",
+    "amount": 15.89,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Latte",
+    "label": "food"
+  },
+  {
+    "id": "tx0449",
+    "date": "2026-07-28",
+    "amount": 21.42,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Litter refill",
+    "label": "pets"
+  },
+  {
+    "id": "tx0450",
+    "date": "2026-07-29",
+    "amount": 18.27,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Cat food (wet)",
+    "label": "pets"
+  },
+  {
+    "id": "tx0451",
+    "date": "2026-07-30",
+    "amount": 4.62,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Coffee and cake",
+    "label": "food"
+  },
+  {
+    "id": "tx0452",
+    "date": "2026-07-31",
+    "amount": 6.2,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread and pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0453",
+    "date": "2026-08-01",
+    "amount": 1230.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Aug 2026",
+    "label": "other"
+  },
+  {
+    "id": "tx0454",
+    "date": "2026-08-04",
+    "amount": 15.44,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Lunch combo",
+    "label": "food"
+  },
+  {
+    "id": "tx0455",
+    "date": "2026-08-06",
+    "amount": 66.0,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (August)",
+    "label": "other"
+  },
+  {
+    "id": "tx0456",
+    "date": "2026-08-08",
+    "amount": 12.0,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Dinner",
+    "label": "food"
+  },
+  {
+    "id": "tx0457",
+    "date": "2026-08-09",
+    "amount": 33.63,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Water (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0458",
+    "date": "2026-08-10",
+    "amount": 14.43,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Late lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0459",
+    "date": "2026-08-11",
+    "amount": 18.56,
+    "direction": "spend",
+    "other_account": "AT15209999",
+    "other_contact_name": "Cats and Dogs",
+    "description": "Scratching post accessories",
+    "label": "pets"
+  },
+  {
+    "id": "tx0460",
+    "date": "2026-08-13",
+    "amount": 18.94,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Dinner box",
+    "label": "food"
+  },
+  {
+    "id": "tx0461",
+    "date": "2026-08-15",
+    "amount": 36.37,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Vet consultation",
+    "label": "pets"
+  },
+  {
+    "id": "tx0462",
+    "date": "2026-08-18",
+    "amount": 26.13,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (August)",
+    "label": "other"
+  },
+  {
+    "id": "tx0463",
+    "date": "2026-08-19",
+    "amount": 16.13,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch with colleague",
+    "label": "food"
+  },
+  {
+    "id": "tx0464",
+    "date": "2026-08-20",
+    "amount": 9.53,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Latte",
+    "label": "food"
+  },
+  {
+    "id": "tx0465",
+    "date": "2026-08-20",
+    "amount": 17.27,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Vaccination",
+    "label": "pets"
+  },
+  {
+    "id": "tx0466",
+    "date": "2026-08-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (August)",
+    "label": "other"
+  },
+  {
+    "id": "tx0467",
+    "date": "2026-08-23",
+    "amount": 9.92,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Croissant and roll",
+    "label": "food"
+  },
+  {
+    "id": "tx0468",
+    "date": "2026-08-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (August)",
+    "label": "other"
+  },
+  {
+    "id": "tx0469",
+    "date": "2026-08-25",
+    "amount": 11.52,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch with colleague",
+    "label": "food"
+  },
+  {
+    "id": "tx0470",
+    "date": "2026-08-25",
+    "amount": 16.98,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Vet consultation",
+    "label": "pets"
+  },
+  {
+    "id": "tx0471",
+    "date": "2026-08-27",
+    "amount": 17.2,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Lunch combo",
+    "label": "food"
+  },
+  {
+    "id": "tx0472",
+    "date": "2026-08-27",
+    "amount": 30.74,
+    "direction": "spend",
+    "other_account": "SK77004321",
+    "other_contact_name": "Home & More",
+    "description": "Cleaning supplies",
+    "label": "other"
+  },
+  {
+    "id": "tx0473",
+    "date": "2026-08-28",
+    "amount": 19.13,
+    "direction": "spend",
+    "other_account": "AT15208888",
+    "other_contact_name": "Pet Planet",
+    "description": "Pet food bag",
+    "label": "pets"
+  },
+  {
+    "id": "tx0474",
+    "date": "2026-08-29",
+    "amount": 11.46,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread and pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0475",
+    "date": "2026-08-30",
+    "amount": 14.5,
+    "direction": "spend",
+    "other_account": "SK11000002",
+    "other_contact_name": "Pasta Corner",
+    "description": "Lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0476",
+    "date": "2026-08-31",
+    "amount": 31.84,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Weekend groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0477",
+    "date": "2026-09-02",
+    "amount": 1180.0,
+    "direction": "receive",
+    "other_account": "SK22448888",
+    "other_contact_name": "Acme Labs",
+    "description": "Salary Sep 2026",
+    "label": "other"
+  },
+  {
+    "id": "tx0478",
+    "date": "2026-09-03",
+    "amount": 24.86,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Back-to-routine groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0479",
+    "date": "2026-09-05",
+    "amount": 26.27,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Routine check-up co-pay",
+    "label": "pets"
+  },
+  {
+    "id": "tx0480",
+    "date": "2026-09-06",
+    "amount": 56.91,
+    "direction": "spend",
+    "other_account": "SK33001122",
+    "other_contact_name": "RentCo",
+    "description": "Rent top-up (September)",
+    "label": "other"
+  },
+  {
+    "id": "tx0481",
+    "date": "2026-09-07",
+    "amount": 16.82,
+    "direction": "spend",
+    "other_account": "SK11000006",
+    "other_contact_name": "Sushi Mini",
+    "description": "Sushi lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0482",
+    "date": "2026-09-08",
+    "amount": 7.66,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Breakfast pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0483",
+    "date": "2026-09-09",
+    "amount": 38.52,
+    "direction": "spend",
+    "other_account": "DE99001234",
+    "other_contact_name": "Utility GmbH",
+    "description": "Gas (partial)",
+    "label": "other"
+  },
+  {
+    "id": "tx0484",
+    "date": "2026-09-10",
+    "amount": 10.99,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Breakfast pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0485",
+    "date": "2026-09-12",
+    "amount": 6.33,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bread",
+    "label": "food"
+  },
+  {
+    "id": "tx0486",
+    "date": "2026-09-14",
+    "amount": 9.31,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Late lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0487",
+    "date": "2026-09-16",
+    "amount": 9.1,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Soup and salad",
+    "label": "food"
+  },
+  {
+    "id": "tx0488",
+    "date": "2026-09-17",
+    "amount": 11.51,
+    "direction": "spend",
+    "other_account": "SK11000005",
+    "other_contact_name": "Soup & Salad",
+    "description": "Late lunch",
+    "label": "food"
+  },
+  {
+    "id": "tx0489",
+    "date": "2026-09-18",
+    "amount": 27.45,
+    "direction": "spend",
+    "other_account": "SK44007700",
+    "other_contact_name": "MobileTel",
+    "description": "Phone plan (September)",
+    "label": "other"
+  },
+  {
+    "id": "tx0490",
+    "date": "2026-09-19",
+    "amount": 14.93,
+    "direction": "spend",
+    "other_account": "SK11000003",
+    "other_contact_name": "Coffee Lab",
+    "description": "Espresso",
+    "label": "food"
+  },
+  {
+    "id": "tx0491",
+    "date": "2026-09-20",
+    "amount": 11.18,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Breakfast pastries",
+    "label": "food"
+  },
+  {
+    "id": "tx0492",
+    "date": "2026-09-21",
+    "amount": 19.07,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Medication refill",
+    "label": "pets"
+  },
+  {
+    "id": "tx0493",
+    "date": "2026-09-22",
+    "amount": 49.0,
+    "direction": "spend",
+    "other_account": "SK55006611",
+    "other_contact_name": "City Transport",
+    "description": "Monthly pass (September)",
+    "label": "other"
+  },
+  {
+    "id": "tx0494",
+    "date": "2026-09-23",
+    "amount": 41.41,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Household groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0495",
+    "date": "2026-09-24",
+    "amount": 9.99,
+    "direction": "spend",
+    "other_account": "SK66001234",
+    "other_contact_name": "StreamFlix",
+    "description": "Subscription (September)",
+    "label": "other"
+  },
+  {
+    "id": "tx0496",
+    "date": "2026-09-25",
+    "amount": 27.81,
+    "direction": "spend",
+    "other_account": "AT15207777",
+    "other_contact_name": "VetCare",
+    "description": "Preventive care",
+    "label": "pets"
+  },
+  {
+    "id": "tx0497",
+    "date": "2026-09-26",
+    "amount": 22.94,
+    "direction": "spend",
+    "other_account": "SK11000001",
+    "other_contact_name": "Fresh Market",
+    "description": "Household groceries",
+    "label": "food"
+  },
+  {
+    "id": "tx0498",
+    "date": "2026-09-29",
+    "amount": 7.06,
+    "direction": "spend",
+    "other_account": "SK11000004",
+    "other_contact_name": "Bakery Corner",
+    "description": "Bagels",
+    "label": "food"
+  }
+]
