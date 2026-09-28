@@ -6,7 +6,7 @@ from pathlib import Path
 class PromptConfig:
     directory: Path
     version: str
-    package: str = "bot.config"
+    package: str = "bot"
 
     @property
     def instructions_file_path(self) -> Path:
@@ -26,31 +26,31 @@ class PromptConfigs:
 
 PROMPT_CONFIGS = PromptConfigs(
     router=PromptConfig(
-        directory=Path("router_instructions"),
+        directory=Path("prompts/router_instructions"),
         version="v001",
     ),
     chunk_judge=PromptConfig(
-        directory=Path("doc_qa/chunk_judge"),
+        directory=Path("prompts/doc_qa/chunk_judge"),
         version="two-way-judge-v1",
     ),
     doc_answer_synthesizer=PromptConfig(
-        directory=Path("doc_qa/doc_answer_synthesizer_instructions"),
+        directory=Path("prompts/doc_qa/doc_answer_synthesizer_instructions"),
         version="v001",
     ),
     claim_extractor=PromptConfig(
-        directory=Path("doc_qa/claim_extractor_instructions"),
+        directory=Path("prompts/doc_qa/claim_extractor_instructions"),
         version="v002",
     ),
     claim_verifier=PromptConfig(
-        directory=Path("doc_qa/claim_verificator_instructions"),
+        directory=Path("prompts/doc_qa/claim_verificator_instructions"),
         version="v003",
     ),
     explain_tx_summary_parser=PromptConfig(
-        directory=Path("tx_qa/explain_tx_summary_parser_instructions"),
+        directory=Path("prompts/tx_qa/explain_tx_summary_parser_instructions"),
         version="v001",
     ),
     timeframe_parser=PromptConfig(
-        directory=Path("tx_qa/timeframe_parser_instructions"),
+        directory=Path("prompts/tx_qa/timeframe_parser_instructions"),
         version="v001",
     ),
 )
