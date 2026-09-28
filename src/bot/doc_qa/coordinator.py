@@ -30,6 +30,9 @@ class DocsAnswerCoordinator:
         question: str,
     ) -> list[DocChunk]:
         chunks: dict[str, DocChunk] = {}
+        # FUTURE: When using multiple retrievers, score gets overridden by the last retriever that returns the chunk.
+        # TODO: Merge scores from retrievers - consider adding a dict[retriever -> (score, rank)] to DocChunk model
+        # Note: This is not a problem when using a single retriever + bm25.
         for retriever in self._retrievers:
             for chunk in retriever.retrieve(question=question):
                 chunks[chunk.chunk_id] = chunk
