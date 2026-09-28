@@ -13,7 +13,7 @@ class PromptLoader(ABC, Generic[PromptInputT]):
 
     def load_system_instructions(self) -> str:
         return (
-            files("bot.prompts")
+            files(self.prompt_config.package)
             .joinpath(self.prompt_config.instructions_file_path)
             .read_text(encoding="utf-8")
         )
