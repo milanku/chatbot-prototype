@@ -167,7 +167,7 @@ def create_pipeline_config() -> PipelineConfig:
         judge=JudgeConfig(
             prompt_config=PromptConfig(
                 package="rag_eval",
-                directory=Path("prompts/question_relevance_judge"),
+                directory=Path("prompts/chunk_relevance_judge"),
                 version="three-way-judge-v1",
             ),
             llm_config=OpenAILLMConfig(
@@ -190,7 +190,7 @@ def create_pipeline_config() -> PipelineConfig:
             ),
             relevance_judge_prompt_config=PromptConfig(
                 package="rag_eval",
-                directory=Path("prompts/question_requirement_judge"),
+                directory=Path("prompts/chunk_requirement_judge"),
                 version="two-way-judge-v1",
             ),
         ),
