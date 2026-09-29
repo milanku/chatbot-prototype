@@ -1,4 +1,4 @@
-from enum import Enum
+from enum import StrEnum
 from typing import Annotated
 
 from pydantic import BaseModel, Field
@@ -19,7 +19,7 @@ class ExtractedClaim(ExtractedClaimByLLM):
     claim_id: str | None = None
 
 
-class ClaimVerificationStatus(str, Enum):
+class ClaimVerificationStatus(StrEnum):
     SUPPORTED = "SUPPORTED"
     CONTRADICTED = "CONTRADICTED"
     NOT_SUPPORTED = "NOT_SUPPORTED"
