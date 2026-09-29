@@ -29,6 +29,6 @@ BOT_CONFIG = BotConfig(
     ),
     retrievers=[EmbeddingsRetrieverConfig(top_k=15), BM25RetrieverConfig(top_k=10)],
     reranker=LocalRerankerConfig(
-        model=SupportedLocalReranker.BGE_RERANKER_V2_M3, use_fp16=True, top_k=5
+        model=SupportedLocalReranker.BGE_RERANKER_V2_M3, use_fp16=True, top_k=7
     ),
 )
