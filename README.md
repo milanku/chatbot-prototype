@@ -48,6 +48,25 @@ Python >=3.11,<3.14
 
 If `python3.11` is not available, use another supported interpreter such as `python3.12` or `python3.13`.
 
+## Quick start
+
+For a fresh machine, the shortest setup is:
+
+```bash
+git clone https://github.com/milanku/chatbot-prototype.git
+cd chatbot-prototype
+
+poetry config virtualenvs.in-project true --local
+poetry env use python3.11
+poetry install
+
+cp .env.example .env
+# Edit .env and set OPENAI_API_KEY
+
+source .venv/bin/activate
+python -m bot --verbose
+```
+
 ## Installation
 
 Clone the repository:
@@ -325,7 +344,7 @@ BOT_CONFIG = BotConfig(
     reranker=LocalRerankerConfig(
         model=SupportedLocalReranker.BGE_RERANKER_V2_M3,
         use_fp16=True,
-        top_k=5,
+        top_k=7,
     ),
 )
 ```
@@ -678,23 +697,4 @@ chatbot-prototype/
 ├── makefile
 ├── poetry.lock
 └── pyproject.toml
-```
-
-## Quick start
-
-For a fresh machine, the shortest setup is:
-
-```bash
-git clone https://github.com/milanku/chatbot-prototype.git
-cd chatbot-prototype
-
-poetry config virtualenvs.in-project true --local
-poetry env use python3.11
-poetry install
-
-cp .env.example .env
-# Edit .env and set OPENAI_API_KEY
-
-source .venv/bin/activate
-python -m bot --verbose
 ```
