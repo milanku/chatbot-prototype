@@ -1,0 +1,129 @@
+[
+  {
+    "batch_id": "lost_card_001",
+    "correct_claims": [
+      {
+        "verified_claim": {
+          "claim": "The customer should immediately freeze the lost card in the app.",
+          "source_spans": ["mock_source_span"],
+          "claim_id": "CLAIM_001",
+          "expected_verification_status": "SUPPORTED"
+        },
+        "evidence_chunks": [
+          {
+            "doc_reference": {
+              "file_name": "mock.md",
+              "heading_path": ["Mock Title", "Mock Title 2"]
+            },
+            "content": "If a card is lost, the customer should immediately freeze the card in the app.",
+            "chunk_id": "E001",
+            "retrieval_score": null,
+            "reranker_score": null
+          }
+        ],
+        "reason": "The evidence explicitly states that if a card is lost, the customer should immediately freeze the card in the app.",
+        "actual_verification_status": "SUPPORTED",
+        "correct": true
+      },
+      {
+        "verified_claim": {
+          "claim": "The customer should wait for 24 hours before freezing the lost card in the app.",
+          "source_spans": ["mock_source_span"],
+          "claim_id": "CLAIM_002",
+          "expected_verification_status": "CONTRADICTED"
+        },
+        "evidence_chunks": [
+          {
+            "doc_reference": {
+              "file_name": "mock.md",
+              "heading_path": ["Mock Title", "Mock Title 2"]
+            },
+            "content": "If a card is lost, the customer should immediately freeze the card in the app.",
+            "chunk_id": "E001",
+            "retrieval_score": null,
+            "reranker_score": null
+          }
+        ],
+        "reason": "The evidence states that the card should be frozen immediately, which contradicts waiting for 24 hours before freezing the card.",
+        "actual_verification_status": "CONTRADICTED",
+        "correct": true
+      }
+    ],
+    "failed_claims": []
+  },
+  {
+    "batch_id": "may_vs_will_001",
+    "correct_claims": [
+      {
+        "verified_claim": {
+          "claim": "A replacement fee will apply.",
+          "source_spans": ["mock_source_span"],
+          "claim_id": "CLAIM_001",
+          "expected_verification_status": "NOT_SUPPORTED"
+        },
+        "evidence_chunks": [
+          {
+            "doc_reference": {
+              "file_name": "mock.md",
+              "heading_path": ["Mock Title", "Mock Title 2"]
+            },
+            "content": "A replacement-card fee may apply unless the loss was caused by bank error, fraud, expiry, or another fee-waiver circumstance.",
+            "chunk_id": "E001",
+            "retrieval_score": null,
+            "reranker_score": null
+          }
+        ],
+        "reason": "The evidence states that a replacement-card fee may apply, but does not establish that it will apply in all cases.",
+        "actual_verification_status": "NOT_SUPPORTED",
+        "correct": true
+      },
+      {
+        "verified_claim": {
+          "claim": "A replacement fee may apply.",
+          "source_spans": ["mock_source_span"],
+          "claim_id": "CLAIM_002",
+          "expected_verification_status": "SUPPORTED"
+        },
+        "evidence_chunks": [
+          {
+            "doc_reference": {
+              "file_name": "mock.md",
+              "heading_path": ["Mock Title", "Mock Title 2"]
+            },
+            "content": "A replacement-card fee may apply unless the loss was caused by bank error, fraud, expiry, or another fee-waiver circumstance.",
+            "chunk_id": "E001",
+            "retrieval_score": null,
+            "reranker_score": null
+          }
+        ],
+        "reason": "The evidence explicitly states that a replacement-card fee may apply unless certain fee-waiver circumstances apply.",
+        "actual_verification_status": "SUPPORTED",
+        "correct": true
+      },
+      {
+        "verified_claim": {
+          "claim": "A replacement fee will never apply.",
+          "source_spans": ["mock_source_span"],
+          "claim_id": "CLAIM_003",
+          "expected_verification_status": "CONTRADICTED"
+        },
+        "evidence_chunks": [
+          {
+            "doc_reference": {
+              "file_name": "mock.md",
+              "heading_path": ["Mock Title", "Mock Title 2"]
+            },
+            "content": "A replacement-card fee may apply unless the loss was caused by bank error, fraud, expiry, or another fee-waiver circumstance.",
+            "chunk_id": "E001",
+            "retrieval_score": null,
+            "reranker_score": null
+          }
+        ],
+        "reason": "The evidence establishes that a replacement fee may apply, contradicting the claim that it will never apply.",
+        "actual_verification_status": "CONTRADICTED",
+        "correct": true
+      }
+    ],
+    "failed_claims": []
+  }
+]

@@ -6,12 +6,14 @@
       {
         "claim_id": "CLAIM_001",
         "claim": "The customer should immediately freeze the lost card in the app.",
-        "expected_verification_status": "SUPPORTED"
+        "expected_verification_status": "SUPPORTED",
+        "source_spans": ["mock_source_span"]
       },
       {
         "claim_id": "CLAIM_002",
         "claim": "The customer should wait for 24 hours before freezing the lost card in the app.",
-        "expected_verification_status": "CONTRADICTED"
+        "expected_verification_status": "CONTRADICTED",
+        "source_spans": ["mock_source_span"]
       }
     ],
     "evidence_chunks": [
@@ -32,17 +34,20 @@
       {
         "claim_id": "CLAIM_001",
         "claim": "A replacement fee will apply.",
-        "expected_verification_status": "NOT_SUPPORTED"
+        "expected_verification_status": "NOT_SUPPORTED",
+        "source_spans": ["mock_source_span"]
       },
       {
         "claim_id": "CLAIM_002",
         "claim": "A replacement fee may apply.",
-        "expected_verification_status": "SUPPORTED"
+        "expected_verification_status": "SUPPORTED",
+        "source_spans": ["mock_source_span"]
       },
       {
         "claim_id": "CLAIM_003",
         "claim": "A replacement fee will never apply.",
-        "expected_verification_status": "CONTRADICTED"
+        "expected_verification_status": "CONTRADICTED",
+        "source_spans": ["mock_source_span"]
       }
     ],
     "evidence_chunks": [

@@ -25,9 +25,7 @@ class ClaimVerifierEvaluator:
             user_query=batch.user_query,
             claims=[
                 ExtractedClaim(
-                    claim_id=case.claim_id,
-                    claim=case.claim,
-                    source_text=case.source_text,
+                    claim_id=case.claim_id, claim=case.claim, source_spans=case.source_spans
                 )
                 for case in batch.claims
             ],
@@ -48,9 +46,7 @@ class ClaimVerifierEvaluator:
         failed: list[ClaimVerifierTestClaimResult] = []
 
         for claim, verified in zip(batch.claims, verified_claims, strict=True):
-            is_correct = (
-                claim.expected_verification_status.value == verified.verification_status.value
-            )
+            is_correct = claim.expected_verification_status == verified.verification_status.value
             result = ClaimVerifierTestClaimResult(
                 verified_claim=ClaimVerifierTestClaim(
                     **verified.extracted_claim.model_dump(),
